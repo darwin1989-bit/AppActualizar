@@ -8,10 +8,12 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthModule } from "./auth/auth/auth.module";
 import { AppLayoutModule } from "./layout/app.layout.module";
+import { ApiModule } from "./api/api_login/api.module";
+import { PathRest } from "src/assets/static/path-rest";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppLayoutModule, AppRoutingModule, PrimeModule, HttpClientModule, FormsModule, BrowserAnimationsModule, AuthModule],
+  imports: [BrowserModule, AppLayoutModule, AppRoutingModule, PrimeModule, HttpClientModule, FormsModule, BrowserAnimationsModule, AuthModule, ApiModule.forRoot({ rootUrl: PathRest.POST_LOGIN })],
   providers: [],
   bootstrap: [AppComponent],
 })
