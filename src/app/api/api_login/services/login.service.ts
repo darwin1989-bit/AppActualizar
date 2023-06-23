@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { MLogin } from '../models/m-login';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<User>> {
 
     const rb = new RequestBuilder(this.rootUrl, LoginService.ApiLoginAuthenticatePostPath, 'post');
     if (params) {
@@ -52,7 +53,7 @@ export class LoginService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<User>;
       })
     );
   }
@@ -68,10 +69,10 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<string> {
+): Observable<User> {
 
     return this.apiLoginAuthenticatePost$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<User>) => r.body as User)
     );
   }
 
@@ -86,7 +87,7 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<string>> {
+): Observable<StrictHttpResponse<User>> {
 
     const rb = new RequestBuilder(this.rootUrl, LoginService.ApiLoginAuthenticatePostPath, 'post');
     if (params) {
@@ -100,7 +101,7 @@ export class LoginService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<string>;
+        return r as StrictHttpResponse<User>;
       })
     );
   }
@@ -116,10 +117,69 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<string> {
+): Observable<User> {
 
     return this.apiLoginAuthenticatePost$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<string>) => r.body as string)
+      map((r: StrictHttpResponse<User>) => r.body as User)
+    );
+  }
+
+  /**
+   * Path part for operation apiLoginUpdateThemeIdPut
+   */
+  static readonly ApiLoginUpdateThemeIdPutPath = '/api/Login/update-theme/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiLoginUpdateThemeIdPut()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiLoginUpdateThemeIdPut$Response(params: {
+    id: number;
+    theme?: string;
+    colorScheme?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, LoginService.ApiLoginUpdateThemeIdPutPath, 'put');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.query('theme', params.theme, {});
+      rb.query('colorScheme', params.colorScheme, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiLoginUpdateThemeIdPut$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiLoginUpdateThemeIdPut(params: {
+    id: number;
+    theme?: string;
+    colorScheme?: string;
+  },
+  context?: HttpContext
+
+): Observable<void> {
+
+    return this.apiLoginUpdateThemeIdPut$Response(params,context).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

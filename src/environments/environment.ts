@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint_login: "http://172.16.11.238:8091",
+  endpoint_login: "https://localhost:7197",
 };
 
 /*

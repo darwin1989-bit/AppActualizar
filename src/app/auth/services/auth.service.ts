@@ -1,23 +1,22 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Message } from "primeng/api";
 import { Observable, catchError, tap } from "rxjs";
-import { MLogin } from "src/app/api/api_login/models";
+import { MLogin, User } from "src/app/api/api_login/models";
 import { LoginService } from "src/app/api/api_login/services";
+import { LayoutService } from "src/app/layout/service/app.layout.service";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
-import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   private msgs: Message[] = [];
-  constructor(private router: Router, private http: HttpClient, private calledHttpService: CalledHttpService, private loginService: LoginService, private toastMesagge: ToastMessagesService) {}
+  constructor(private router: Router, private layoutService: LayoutService, private calledHttpService: CalledHttpService, private loginService: LoginService) {}
 
-  public logIn(credentials: MLogin): Observable<string> {
+  public logIn(credentials: MLogin): Observable<User> {
     return this.loginService.apiLoginAuthenticatePost$Json({ body: credentials }).pipe(
-      tap((token) => this.handleSuccessfullLogin(token)),
+      tap((user: User) => this.handleSuccessfullLogin(user)),
       catchError((error) => {
         if (error.status === 400) {
           return this.calledHttpService.errorHandler(error.error.message);
@@ -32,8 +31,11 @@ export class AuthService {
     this.router.navigate(["/login"]);
   }
 
-  private handleSuccessfullLogin(token: any): void {
-    sessionStorage.setItem("token", token.token);
+  private handleSuccessfullLogin(user: User): void {
+    this.layoutService.changeTheme(user.theme!, user.colorScheme!);
+    sessionStorage.setItem("token", user.token!);
+    sessionStorage.setItem("theme", user.theme!);
+    sessionStorage.setItem("colorScheme", user.colorScheme!);
     this.redirectToHome();
   }
 

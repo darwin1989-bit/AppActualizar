@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { LoginService } from "src/app/api/api_login/services";
 
 export interface AppConfig {
   inputStyle: string;
@@ -28,7 +29,7 @@ export class LayoutService {
     inputStyle: "outlined",
     menuMode: "static",
     colorScheme: "light",
-    theme: "saga-blue",
+    theme: "bootstrap4-light-blue",
     scale: 14,
   };
 
@@ -48,6 +49,8 @@ export class LayoutService {
   configUpdate$ = this.configUpdate.asObservable();
 
   overlayOpen$ = this.overlayOpen.asObservable();
+
+  constructor(private loginService: LoginService) {}
 
   onMenuToggle() {
     if (this.isOverlay()) {
@@ -93,5 +96,34 @@ export class LayoutService {
 
   onConfigUpdate() {
     this.configUpdate.next(this.config);
+  }
+  changeTheme(theme: string, colorScheme: string) {
+    this.loginService.apiLoginUpdateThemeIdPut({ id: 3, theme: theme, colorScheme: colorScheme }).subscribe();
+    sessionStorage.setItem("theme", theme);
+    sessionStorage.setItem("colorScheme", colorScheme);
+    const themeLink = <HTMLLinkElement>document.getElementById("theme-css");
+    const newHref = themeLink.getAttribute("href")!.replace(this.config.theme, theme);
+    this.config.colorScheme;
+    this.replaceThemeLink(newHref, () => {
+      this.config.theme = theme;
+      this.config.colorScheme = colorScheme;
+      this.onConfigUpdate();
+    });
+  }
+  replaceThemeLink(href: string, onComplete: Function) {
+    const id = "theme-css";
+    const themeLink = <HTMLLinkElement>document.getElementById("theme-css");
+    const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
+
+    cloneLinkElement.setAttribute("href", href);
+    cloneLinkElement.setAttribute("id", id + "-clone");
+
+    themeLink.parentNode!.insertBefore(cloneLinkElement, themeLink.nextSibling);
+
+    cloneLinkElement.addEventListener("load", () => {
+      themeLink.remove();
+      cloneLinkElement.setAttribute("id", id);
+      onComplete();
+    });
   }
 }
