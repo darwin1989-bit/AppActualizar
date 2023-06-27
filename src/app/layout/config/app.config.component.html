@@ -1,24 +1,44 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
-  <h5>Tamaño</h5>
+  <span class="font-normal text-2xl">Usuario</span>
   <div class="flex align-items-center">
+    <p class="font-light">{{ userApp.Name | uppercase }}</p>
+  </div>
+  <hr />
+  <span class="font-normal text-2xl">Perfil</span>
+  <div class="flex align-items-center">
+    <p class="font-light">{{ userApp.UserRol | uppercase }}</p>
+  </div>
+  <hr />
+  <span class="font-normal text-2xl">Escala</span>
+  <div class="flex align-items-center mt-2">
     <button icon="pi pi-minus" type="button" pButton (click)="decrementScale()" class="p-button-text p-button-rounded w-2rem h-2rem mr-2" [disabled]="scale === scales[0]"></button>
     <div class="flex gap-2 align-items-center">
       <i class="pi pi-circle-fill text-300" *ngFor="let s of scales" [ngClass]="{ 'text-primary-500': s === scale }"></i>
     </div>
     <button icon="pi pi-plus" type="button" pButton (click)="incrementScale()" class="p-button-text p-button-rounded w-2rem h-2rem ml-2" [disabled]="scale === scales[scales.length - 1]"></button>
   </div>
-
-  <h5>Tema</h5>
-  <div class="grid">
+  <hr />
+  <span class="font-normal text-2xl">Temas</span>
+  <div class="grid flex align-items-center mt-2">
     <div class="col-3">
-      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('bootstrap4-light-blue', 'light')">
-        <img src="assets/layout/images/themes/bootstrap4-light-blue.svg" class="w-2rem h-2rem" alt="Bootstrap Light Blue" />
+      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('saga-green', 'light')">
+        <img src="assets/layout/images/themes/saga-green.png" class="w-2rem h-2rem" alt="Saga Green" />
       </button>
     </div>
     <div class="col-3">
-      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('bootstrap4-dark-blue', 'dark')">
-        <img src="assets/layout/images/themes/bootstrap4-dark-blue.svg" class="w-2rem h-2rem" alt="Bootstrap Dark Blue" />
+      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('vela-green', 'dark')">
+        <img src="assets/layout/images/themes/vela-green.png" class="w-2rem h-2rem" alt="Vela Green" />
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('arya-green', 'dark')">
+        <img src="assets/layout/images/themes/arya-green.png" class="w-2rem h-2rem" alt="Arya Green" />
       </button>
     </div>
   </div>
 </p-sidebar>
+<p-confirmDialog #cd [style]="{ width: '30vw' }" key="positionDialog" position="top" [baseZIndex]="10000" [closable]="false">
+  <ng-template pTemplate="footer">
+    <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button class="p-button-sm" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button> </ng-template
+></p-confirmDialog>

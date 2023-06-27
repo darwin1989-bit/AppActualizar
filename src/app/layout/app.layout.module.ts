@@ -18,6 +18,7 @@ import { AppConfigModule } from "./config/config.module";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { PrimeModule } from "../prime.module";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [AppMenuitemComponent, AppTopBarComponent, AppFooterComponent, AppMenuComponent, AppSidebarComponent, AppLayoutComponent],
@@ -35,6 +36,7 @@ import { PrimeModule } from "../prime.module";
     RouterModule,
     AppConfigModule,
     PrimeModule,
+    SharedModule,
   ],
   exports: [AppLayoutComponent],
 })

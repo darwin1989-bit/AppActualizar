@@ -2,26 +2,35 @@
   <a class="layout-topbar-logo" routerLink="">
     <span>MENU</span>
   </a>
-
   <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
     <i class="pi pi-bars"></i>
   </button>
-
   <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
     <i class="pi pi-ellipsis-v"></i>
   </button>
-
+  <div class="layout-topbar-menu">
+    <a class="overflow-hidden flex align-items-center justify-content-center m-2">
+      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-database mr-2 font-semibold" style="font-size: 1rem"></i>IP : 172.16.11.190</span>
+    </a>
+    <a class="overflow-hidden flex align-items-center justify-content-center m-2">
+      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-building mr-2 font-semibold" style="font-size: 1rem"></i>OFICINA : 009</span>
+    </a>
+    <a class="overflow-hidden flex align-items-center justify-content-center m-2">
+      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-table mr-2 font-semibold" style="font-size: 1rem"></i>SAP : E001</span>
+    </a>
+  </div>
   <div #topbarmenu class="layout-topbar-menu" [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">
-    <!-- <button pTooltip="Configuración" tooltipPosition="bottom" class="p-link layout-topbar-button" (click)="onConfigButtonClick()">
+    <button pTooltip="Configuración" tooltipPosition="bottom" class="p-link layout-topbar-button" (click)="onConfigButtonClick()">
       <i class="pi pi-cog"></i>
       <span>Configuración</span>
-    </button> -->
-    <button pTooltip="Salir" tooltipPosition="bottom" class="p-link layout-topbar-button" (click)="confirmLogOff('top')">
+    </button>
+    <button pTooltip="Salir" tooltipPosition="bottom" class="p-link layout-topbar-button text" (click)="confirmLogOff('top')">
       <i class="pi pi-sign-out"></i>
       <span>Salir</span>
     </button>
   </div>
 </div>
+
 <p-confirmDialog #cd [style]="{ width: '30vw' }" key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false">
   <ng-template pTemplate="footer">
     <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>

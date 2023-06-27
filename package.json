@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "ng-openapi-gen_login": "ng-openapi-gen --input swagger/api_login.json --output src/app/API/api_login"
+    "login-openapi": "ng-openapi-gen --input swagger/api_login.json --output src/app/api/api_login",
+    "Actualizar-openapi": "ng-openapi-gen --input swagger/api_actualizar.json --output src/app/api/api_actualizar"
   },
   "private": true,
   "dependencies": {

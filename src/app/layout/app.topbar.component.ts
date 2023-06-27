@@ -6,6 +6,16 @@ import { AuthService } from "../auth/services/auth.service";
 @Component({
   selector: "app-topbar",
   templateUrl: "./app.topbar.component.html",
+  styles: [
+    `
+      .label-badge-success {
+        background: #c8e6c9;
+        color: #256029;
+        padding: 6px;
+        border-radius: 4px;
+      }
+    `,
+  ],
   providers: [ConfirmationService],
 })
 export class AppTopBarComponent {

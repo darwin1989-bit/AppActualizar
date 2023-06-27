@@ -39,6 +39,8 @@ import { CheckboxModule } from "primeng/checkbox";
 import { MenuModule } from "primeng/menu";
 import { SkeletonModule } from "primeng/skeleton";
 import { MultiSelectModule } from "primeng/multiselect";
+import { ChipsModule } from "primeng/chips";
+import { OverlayPanelModule } from "primeng/overlaypanel";
 
 const myModules = [
   CommonModule,
@@ -82,6 +84,8 @@ const myModules = [
   MenuModule,
   SkeletonModule,
   MultiSelectModule,
+  ChipsModule,
+  OverlayPanelModule,
 ];
 
 @NgModule({

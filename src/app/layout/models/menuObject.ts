@@ -1,5 +1,3 @@
-import { MenuItem } from "primeng/api";
-
 export const itemsObj: any[] = [
   {
     label: "Inicio",
@@ -8,7 +6,7 @@ export const itemsObj: any[] = [
   {
     label: "Clientes",
     items: [
-      { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["app/client/update-client"] },
+      { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["client/update-client"] },
       { label: "Facturas", icon: "pi pi-fw pi-file", routerLink: ["/uikit/input"] },
       { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/uikit/floatlabel"] },
       { label: "Transacciones", icon: "pi pi-fw pi-mobile", routerLink: ["/uikit/button"], class: "rotated-icon" },

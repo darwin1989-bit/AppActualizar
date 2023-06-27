@@ -12,6 +12,7 @@ const routes: Routes = [
         path: "home",
         component: PageHomeComponent,
       },
+      { path: "client", loadChildren: () => import("../client/client.module").then((m) => m.ClientModule) },
       {
         path: "",
         redirectTo: "home",
