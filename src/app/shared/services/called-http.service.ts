@@ -22,7 +22,7 @@ export class CalledHttpService {
         this.toastMesagge.showToast("tc", "error", "Error", "Se tuvo un error intente nuevamente", 4000);
       }
     } else {
-      this.toastMesagge.showToast("tc", "error", "Error", error.message, 4000);
+      this.toastMesagge.showToast("tc", "error", "Error", String(error), 4000);
     }
 
     return throwError(() => error);

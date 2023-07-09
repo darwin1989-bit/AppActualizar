@@ -27,17 +27,17 @@ export class ClientsService extends BaseService {
   }
 
   /**
-   * Path part for operation apiClientsGetclientGet
+   * Path part for operation apiClientsClientGet
    */
-  static readonly ApiClientsGetclientGetPath = '/api/Clients/getclient';
+  static readonly ApiClientsClientGetPath = '/api/Clients/client';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetclientGet$Plain()` instead.
+   * To access only the response body, use `apiClientsClientGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetclientGet$Plain$Response(params?: {
+  apiClientsClientGet$Plain$Response(params?: {
     ip?: string;
     numberId?: string;
   },
@@ -45,7 +45,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ClientDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetclientGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsClientGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberId', params.numberId, {});
@@ -65,11 +65,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetclientGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsClientGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetclientGet$Plain(params?: {
+  apiClientsClientGet$Plain(params?: {
     ip?: string;
     numberId?: string;
   },
@@ -77,18 +77,18 @@ export class ClientsService extends BaseService {
 
 ): Observable<ClientDto> {
 
-    return this.apiClientsGetclientGet$Plain$Response(params,context).pipe(
+    return this.apiClientsClientGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ClientDto>) => r.body as ClientDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetclientGet$Json()` instead.
+   * To access only the response body, use `apiClientsClientGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetclientGet$Json$Response(params?: {
+  apiClientsClientGet$Json$Response(params?: {
     ip?: string;
     numberId?: string;
   },
@@ -96,7 +96,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ClientDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetclientGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsClientGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberId', params.numberId, {});
@@ -116,11 +116,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetclientGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsClientGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetclientGet$Json(params?: {
+  apiClientsClientGet$Json(params?: {
     ip?: string;
     numberId?: string;
   },
@@ -128,23 +128,23 @@ export class ClientsService extends BaseService {
 
 ): Observable<ClientDto> {
 
-    return this.apiClientsGetclientGet$Json$Response(params,context).pipe(
+    return this.apiClientsClientGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ClientDto>) => r.body as ClientDto)
     );
   }
 
   /**
-   * Path part for operation apiClientsUpdateclientPut
+   * Path part for operation apiClientsClientPut
    */
-  static readonly ApiClientsUpdateclientPutPath = '/api/Clients/updateclient';
+  static readonly ApiClientsClientPutPath = '/api/Clients/client';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsUpdateclientPut()` instead.
+   * To access only the response body, use `apiClientsClientPut()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientsUpdateclientPut$Response(params?: {
+  apiClientsClientPut$Response(params?: {
     company?: string;
     ip?: string;
     numberId?: string;
@@ -154,7 +154,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsUpdateclientPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsClientPutPath, 'put');
     if (params) {
       rb.query('company', params.company, {});
       rb.query('ip', params.ip, {});
@@ -176,11 +176,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsUpdateclientPut$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsClientPut$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientsUpdateclientPut(params?: {
+  apiClientsClientPut(params?: {
     company?: string;
     ip?: string;
     numberId?: string;
@@ -190,23 +190,23 @@ export class ClientsService extends BaseService {
 
 ): Observable<void> {
 
-    return this.apiClientsUpdateclientPut$Response(params,context).pipe(
+    return this.apiClientsClientPut$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiClientsCreateClientPost
+   * Path part for operation apiClientsClientPost
    */
-  static readonly ApiClientsCreateClientPostPath = '/api/Clients/createClient';
+  static readonly ApiClientsClientPostPath = '/api/Clients/client';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsCreateClientPost()` instead.
+   * To access only the response body, use `apiClientsClientPost()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientsCreateClientPost$Response(params?: {
+  apiClientsClientPost$Response(params?: {
     ip?: string;
     numberId?: string;
     body?: ClientCreateDto
@@ -215,7 +215,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsCreateClientPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsClientPostPath, 'post');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberId', params.numberId, {});
@@ -236,11 +236,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsCreateClientPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsClientPost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientsCreateClientPost(params?: {
+  apiClientsClientPost(params?: {
     ip?: string;
     numberId?: string;
     body?: ClientCreateDto
@@ -249,30 +249,30 @@ export class ClientsService extends BaseService {
 
 ): Observable<void> {
 
-    return this.apiClientsCreateClientPost$Response(params,context).pipe(
+    return this.apiClientsClientPost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation apiClientsGetprovincesGet
+   * Path part for operation apiClientsProvincesGet
    */
-  static readonly ApiClientsGetprovincesGetPath = '/api/Clients/getprovinces';
+  static readonly ApiClientsProvincesGetPath = '/api/Clients/provinces';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetprovincesGet$Plain()` instead.
+   * To access only the response body, use `apiClientsProvincesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetprovincesGet$Plain$Response(params?: {
+  apiClientsProvincesGet$Plain$Response(params?: {
     ip?: string;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<Array<TblProvincia>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetprovincesGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsProvincesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
     }
@@ -291,36 +291,36 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetprovincesGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsProvincesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetprovincesGet$Plain(params?: {
+  apiClientsProvincesGet$Plain(params?: {
     ip?: string;
   },
   context?: HttpContext
 
 ): Observable<Array<TblProvincia>> {
 
-    return this.apiClientsGetprovincesGet$Plain$Response(params,context).pipe(
+    return this.apiClientsProvincesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<TblProvincia>>) => r.body as Array<TblProvincia>)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetprovincesGet$Json()` instead.
+   * To access only the response body, use `apiClientsProvincesGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetprovincesGet$Json$Response(params?: {
+  apiClientsProvincesGet$Json$Response(params?: {
     ip?: string;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<Array<TblProvincia>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetprovincesGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsProvincesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
     }
@@ -339,34 +339,34 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetprovincesGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsProvincesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetprovincesGet$Json(params?: {
+  apiClientsProvincesGet$Json(params?: {
     ip?: string;
   },
   context?: HttpContext
 
 ): Observable<Array<TblProvincia>> {
 
-    return this.apiClientsGetprovincesGet$Json$Response(params,context).pipe(
+    return this.apiClientsProvincesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<TblProvincia>>) => r.body as Array<TblProvincia>)
     );
   }
 
   /**
-   * Path part for operation apiClientsGetcitysGet
+   * Path part for operation apiClientsCitysGet
    */
-  static readonly ApiClientsGetcitysGetPath = '/api/Clients/getcitys';
+  static readonly ApiClientsCitysGetPath = '/api/Clients/citys';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetcitysGet$Plain()` instead.
+   * To access only the response body, use `apiClientsCitysGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetcitysGet$Plain$Response(params?: {
+  apiClientsCitysGet$Plain$Response(params?: {
     ip?: string;
     province?: string;
   },
@@ -374,7 +374,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<TblCiudad>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetcitysGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsCitysGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('province', params.province, {});
@@ -394,11 +394,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetcitysGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsCitysGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetcitysGet$Plain(params?: {
+  apiClientsCitysGet$Plain(params?: {
     ip?: string;
     province?: string;
   },
@@ -406,18 +406,18 @@ export class ClientsService extends BaseService {
 
 ): Observable<TblCiudad> {
 
-    return this.apiClientsGetcitysGet$Plain$Response(params,context).pipe(
+    return this.apiClientsCitysGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<TblCiudad>) => r.body as TblCiudad)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientsGetcitysGet$Json()` instead.
+   * To access only the response body, use `apiClientsCitysGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetcitysGet$Json$Response(params?: {
+  apiClientsCitysGet$Json$Response(params?: {
     ip?: string;
     province?: string;
   },
@@ -425,7 +425,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<StrictHttpResponse<TblCiudad>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsGetcitysGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ClientsService.ApiClientsCitysGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('province', params.province, {});
@@ -445,11 +445,11 @@ export class ClientsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientsGetcitysGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientsCitysGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiClientsGetcitysGet$Json(params?: {
+  apiClientsCitysGet$Json(params?: {
     ip?: string;
     province?: string;
   },
@@ -457,7 +457,7 @@ export class ClientsService extends BaseService {
 
 ): Observable<TblCiudad> {
 
-    return this.apiClientsGetcitysGet$Json$Response(params,context).pipe(
+    return this.apiClientsCitysGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<TblCiudad>) => r.body as TblCiudad)
     );
   }

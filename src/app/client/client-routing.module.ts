@@ -4,7 +4,11 @@ import { PageUpdateClientComponent } from "./pages/page-update-client/page-updat
 
 const routes: Routes = [
   { path: "update-client", component: PageUpdateClientComponent },
-  { path: "**", redirectTo: "/home" },
+  {
+    path: "",
+    redirectTo: "/actualizar/home",
+    pathMatch: "prefix",
+  },
 ];
 
 @NgModule({

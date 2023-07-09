@@ -1,3 +1,35 @@
-<div class="card flex justify-content-center">
-  <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country"> </p-dropdown>
+<div class="card p-fluid">
+  <h5>Buscar cliente</h5>
+  <div class="p-formgrid grid">
+    <div class="field col">
+      <p-dropdown
+        [options]="company"
+        [(ngModel)]="selectedCompany"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Selecciona la empresa"
+        (onChange)="changeCompany()"
+      >
+      </p-dropdown>
+    </div>
+    <div class="field col">
+      <p-dropdown
+        [options]="offices"
+        [(ngModel)]="selectedOffice"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Selecciona la oficina"
+        (onChange)="clearOffice()"
+        (onClick)="changeOffice()"
+      >
+      </p-dropdown>
+    </div>
+  </div>
+  <div class="flex justify-content-center">
+    <p-calendar></p-calendar>
+  </div>
 </div>

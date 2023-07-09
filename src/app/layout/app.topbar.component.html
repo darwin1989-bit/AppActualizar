@@ -8,15 +8,17 @@
   <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
     <i class="pi pi-ellipsis-v"></i>
   </button>
-  <div class="layout-topbar-menu">
+  <div class="layout-topbar-menu scalein animation-duration-500" *ngIf="(officesHttpService.offices$ | async)!.ipRed">
     <a class="overflow-hidden flex align-items-center justify-content-center m-2">
-      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-database mr-2 font-semibold" style="font-size: 1rem"></i>IP : 172.16.11.190</span>
+      <span class="label-badge-success flex align-items-center text-sm"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ipRed }}</span>
     </a>
     <a class="overflow-hidden flex align-items-center justify-content-center m-2">
-      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-building mr-2 font-semibold" style="font-size: 1rem"></i>OFICINA : 009</span>
+      <span class="label-badge-success flex align-items-center text-sm"><i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA : {{ (officesHttpService.offices$ | async)!.office }}</span>
     </a>
     <a class="overflow-hidden flex align-items-center justify-content-center m-2">
-      <span class="label-badge-success flex align-items-center font-semibold text-sm"><i class="pi pi-table mr-2 font-semibold" style="font-size: 1rem"></i>SAP : E001</span>
+      <span class="label-badge-success flex align-items-center text-sm"
+        ><i class="pi pi-table mr-2" style="font-size: 1rem"></i>SAP : {{ (officesHttpService.offices$ | async)!.companyInternalCode }}</span
+      >
     </a>
   </div>
   <div #topbarmenu class="layout-topbar-menu" [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">

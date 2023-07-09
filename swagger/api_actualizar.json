@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Clients/getclient": {
+    "/api/Clients/client": {
       "get": {
         "tags": ["Clients"],
         "parameters": [
@@ -46,9 +46,7 @@
             }
           }
         }
-      }
-    },
-    "/api/Clients/updateclient": {
+      },
       "put": {
         "tags": ["Clients"],
         "parameters": [
@@ -98,9 +96,7 @@
             "description": "Success"
           }
         }
-      }
-    },
-    "/api/Clients/createClient": {
+      },
       "post": {
         "tags": ["Clients"],
         "parameters": [
@@ -145,7 +141,7 @@
         }
       }
     },
-    "/api/Clients/getprovinces": {
+    "/api/Clients/provinces": {
       "get": {
         "tags": ["Clients"],
         "parameters": [
@@ -190,7 +186,7 @@
         }
       }
     },
-    "/api/Clients/getcitys": {
+    "/api/Clients/citys": {
       "get": {
         "tags": ["Clients"],
         "parameters": [

@@ -1,29 +1,48 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { OfficesHttpService } from "../../services/offices-http.service";
+import { OfficesDto } from "src/app/api/api_actualizar/models/offices-dto";
+import { AutoCompleteCompleteEvent, ICompany } from "../../models/offices.interface";
+import { DataCompany, DataOffice } from "../../models/objects";
 
 @Component({
   selector: "app-find-offices",
   templateUrl: "./find-offices.component.html",
   styleUrls: ["./find-offices.component.scss"],
 })
-export class FindOfficesComponent implements OnInit {
-  countries!: any[];
+export class FindOfficesComponent implements OnInit, OnDestroy {
+  public company: ICompany[] = [DataCompany];
+  public selectedCompany!: ICompany;
 
-  selectedCountry!: string;
+  public offices: OfficesDto[] = [DataOffice];
+  public selectedOffice!: OfficesDto;
 
-  constructor() {}
+  constructor(public officesHttpService: OfficesHttpService) {}
+
+  ngOnDestroy(): void {
+    this.officesHttpService.setOffice({});
+  }
 
   ngOnInit(): void {
-    this.countries = [
-      { name: "Australia", code: "AU" },
-      { name: "Brazil", code: "BR" },
-      { name: "China", code: "CN" },
-      { name: "Egypt", code: "EG" },
-      { name: "France", code: "FR" },
-      { name: "Germany", code: "DE" },
-      { name: "India", code: "IN" },
-      { name: "Japan", code: "JP" },
-      { name: "Spain", code: "ES" },
-      { name: "United States", code: "US" },
+    this.company = [
+      // { name: "ETAFASHION", code: "eta" },
+      // { name: "MODA RM", code: "rm" },
+      { name: "ETAFASHION CR", code: "cr" },
+      { name: "PRUEBAS", code: "prb" },
     ];
+  }
+
+  public changeCompany(): void {
+    this.offices = [DataOffice];
+    if (this.selectedCompany) {
+      this.officesHttpService.getOffices(this.selectedCompany.code).subscribe((offices) => {
+        this.offices = offices;
+      });
+    }
+  }
+  public changeOffice(): void {
+    if (this.selectedOffice) this.officesHttpService.setOffice(this.selectedOffice);
+  }
+  public clearOffice(): void {
+    this.officesHttpService.setOffice(DataOffice);
   }
 }

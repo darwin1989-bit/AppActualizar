@@ -1,0 +1,26 @@
+{
+  "primeng": {
+    "dayNames": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+    "dayNamesShort": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+    "dayNamesMin": ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+    "monthNames": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    "monthNamesShort": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    "today": "Hoy",
+    "weekHeader": "#",
+    "clear": "Limpiar",
+    "emptyMessage": "No se han encontrado resultados",
+    "emptyFilterMessage": "No se han encontrado resultados",
+    "matchAll": "Coincidir con todo",
+    "matchAny": "Coincidir con cualquiera",
+    "dateIs": "La fecha es",
+    "dateIsNot": "La fecha no es",
+    "dateBefore": "La fecha es anterior",
+    "dateAfter": "La fecha es posterior",
+    "addRule": "Agregar regla",
+    "apply": "Aplicar",
+    "chooseColumn": "Escoge las columnas",
+    "columnsSelected": "Columnas seleccionadas",
+    "removeRule": "Remover regla",
+    "dateFormat": "dd/mm/yy"
+  }
+}

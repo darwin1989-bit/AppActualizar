@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 import { ConfirmationService, MenuItem } from "primeng/api";
 import { LayoutService } from "./service/app.layout.service";
 import { AuthService } from "../auth/services/auth.service";
+import { OfficesHttpService } from "../shared/services/offices-http.service";
 
 @Component({
   selector: "app-topbar",
@@ -13,6 +14,9 @@ import { AuthService } from "../auth/services/auth.service";
         color: #256029;
         padding: 6px;
         border-radius: 4px;
+      }
+      .conecct {
+        visibility: hidden;
       }
     `,
   ],
@@ -29,7 +33,7 @@ export class AppTopBarComponent {
 
   public position!: string;
 
-  constructor(public layoutService: LayoutService, private confirmationService: ConfirmationService, private authService: AuthService) {}
+  constructor(public layoutService: LayoutService, private confirmationService: ConfirmationService, private authService: AuthService, public officesHttpService: OfficesHttpService) {}
 
   onConfigButtonClick() {
     this.layoutService.showConfigSidebar();

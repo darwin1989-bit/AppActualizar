@@ -28,7 +28,7 @@ export class AuthService {
 
   public logOut(): void {
     sessionStorage.clear();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/app/login"]);
   }
 
   private handleSuccessfullLogin(user: User): void {
@@ -40,6 +40,6 @@ export class AuthService {
   }
 
   private redirectToHome(): void {
-    this.router.navigate(["/actualizar/home"]);
+    this.router.navigate(["/app/home"]);
   }
 }

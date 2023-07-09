@@ -1,21 +1,26 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./auth/pages/page-login/page-login.component";
-import { AuthGuard } from "./auth/guards/auth.guard";
+import { homeGuard } from "./shared/guard/home.guard";
 
 const routes: Routes = [
   {
-    path: "login",
+    canActivate: [homeGuard],
+    path: "app/login",
     component: PageLoginComponent,
   },
   {
-    canActivate: [AuthGuard],
-    path: "actualizar",
+    path: "app",
     loadChildren: () => import("./shared/shared.module").then((m) => m.SharedModule),
   },
   {
+    path: "app",
+    redirectTo: "/app/login",
+    pathMatch: "full",
+  },
+  {
     path: "",
-    redirectTo: "/login",
+    redirectTo: "/app/login",
     pathMatch: "prefix",
   },
 ];

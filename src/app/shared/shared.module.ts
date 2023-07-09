@@ -11,6 +11,6 @@ import { FindOfficesComponent } from "./components/find-offices/find-offices.com
 @NgModule({
   declarations: [LoadPanelComponent, FindOfficesComponent],
   imports: [CommonModule, SharedRoutingModule, FormsModule, ReactiveFormsModule, PrimeModule, SharedRoutingModule, HomeModule],
-  exports: [LoadPanelComponent, PrimeModule],
+  exports: [LoadPanelComponent, PrimeModule, FindOfficesComponent],
 })
 export class SharedModule {}
