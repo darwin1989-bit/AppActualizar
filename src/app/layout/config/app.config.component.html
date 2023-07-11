@@ -1,4 +1,6 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
+  <button pButton label="Cerrar sesión" icon="pi pi-sign-out" pos="right" class="block w-full mb-4 p-button-lg" (click)="confirmLogOff('top')"></button>
+  <hr />
   <span class="font-normal text-2xl">Usuario</span>
   <div class="flex align-items-center">
     <p class="font-light">{{ userApp.Name | uppercase }}</p>
@@ -37,7 +39,7 @@
     </div>
   </div>
 </p-sidebar>
-<p-confirmDialog #cd [style]="{ width: '30vw' }" key="positionDialog" position="top" [baseZIndex]="10000" [closable]="false">
+<p-confirmDialog #cd key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false">
   <ng-template pTemplate="footer">
     <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
     <button class="p-button-sm" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button> </ng-template

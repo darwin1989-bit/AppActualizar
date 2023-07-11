@@ -27,9 +27,11 @@ export class AppConfigComponent implements OnInit {
     this._userApp = value;
   }
 
+  public position!: string;
+
   constructor(public layoutService: LayoutService, public menuService: MenuService, private confirmationService: ConfirmationService, public authService: AuthService) {
     const token = this.menuService.checkToken();
-    if (token) this.confirmLogOff();
+    if (token) this.expiredSession();
     if (sessionStorage.getItem("theme")) {
       const theme = sessionStorage?.getItem("theme");
       const colorScheme = sessionStorage.getItem("colorScheme");
@@ -101,13 +103,28 @@ export class AppConfigComponent implements OnInit {
     document.documentElement.style.fontSize = this.scale + "px";
   }
 
-  private confirmLogOff() {
+  private expiredSession() {
     this.confirmationService.confirm({
       message: "La sesión ha caducado",
       header: "Alerta",
       icon: "pi pi-info-circle",
       accept: () => {
         this.authService.logOut();
+      },
+      key: "positionDialog",
+    });
+  }
+
+  public confirmLogOff(position: string) {
+    this.position = position;
+
+    this.confirmationService.confirm({
+      message: `Esta seguro de salir del sistema?`,
+      header: "Confirmación",
+      icon: "pi pi-info-circle",
+      accept: () => {
+        this.authService.logOut();
+        window.location.reload();
       },
       key: "positionDialog",
     });

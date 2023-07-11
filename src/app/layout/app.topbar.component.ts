@@ -1,8 +1,10 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
-import { ConfirmationService, MenuItem } from "primeng/api";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ConfirmationService } from "primeng/api";
 import { LayoutService } from "./service/app.layout.service";
-import { AuthService } from "../auth/services/auth.service";
 import { OfficesHttpService } from "../shared/services/offices-http.service";
+import { MenuService } from "./app.menu.service";
+import { Router } from "@angular/router";
+import { itemsObj } from "./models/menuObject";
 
 @Component({
   selector: "app-topbar",
@@ -15,16 +17,14 @@ import { OfficesHttpService } from "../shared/services/offices-http.service";
         padding: 6px;
         border-radius: 4px;
       }
-      .conecct {
+      .connected {
         visibility: hidden;
       }
     `,
   ],
   providers: [ConfirmationService],
 })
-export class AppTopBarComponent {
-  items!: MenuItem[];
-
+export class AppTopBarComponent implements OnInit {
   @ViewChild("menubutton") menuButton!: ElementRef;
 
   @ViewChild("topbarmenubutton") topbarMenuButton!: ElementRef;
@@ -33,22 +33,19 @@ export class AppTopBarComponent {
 
   public position!: string;
 
-  constructor(public layoutService: LayoutService, private confirmationService: ConfirmationService, private authService: AuthService, public officesHttpService: OfficesHttpService) {}
+  public breadCrumb!: string[];
+
+  model: any[] = [];
+
+  constructor(public layoutService: LayoutService, public officesHttpService: OfficesHttpService, public menuService: MenuService, private route: Router) {}
+
+  ngOnInit(): void {
+    this.breadCrumb = this.route.url.split("/");
+
+    this.model = itemsObj;
+  }
 
   onConfigButtonClick() {
     this.layoutService.showConfigSidebar();
-  }
-  public confirmLogOff(position: string) {
-    this.position = position;
-
-    this.confirmationService.confirm({
-      message: `Esta seguro de salir del sistema?`,
-      header: "Confirmación",
-      icon: "pi pi-info-circle",
-      accept: () => {
-        this.authService.logOut();
-      },
-      key: "positionDialog",
-    });
   }
 }

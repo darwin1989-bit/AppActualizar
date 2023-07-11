@@ -1116,7 +1116,7 @@ p-inputnumber.p-inputnumber-clearable .p-inputnumber-buttons-horizontal .p-input
 .p-inputswitch .p-inputswitch-slider {
   background: rgba(68, 72, 109, 0.07);
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  border-radius: 12px;
+  /* border-radius: 12px; */
 }
 .p-inputswitch .p-inputswitch-slider:before {
   background: #676B89;
@@ -5553,7 +5553,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   line-height: 1.714rem;
   font-size: 1.143rem;
   z-index: 1;
-  border-radius: 12px;
+  /* border-radius: 12px; */
 }
 .p-steps .p-steps-item .p-menuitem-link .p-steps-title {
   margin-top: 0.5rem;

@@ -32,6 +32,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
   }
 
   public changeCompany(): void {
+    this.clearOffice();
     this.offices = [DataOffice];
     if (this.selectedCompany) {
       this.officesHttpService.getOffices(this.selectedCompany.code).subscribe((offices) => {

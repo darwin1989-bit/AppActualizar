@@ -17,8 +17,13 @@ export class MenuService {
   private menuSource = new Subject<MenuChangeEvent>();
   private resetSource = new Subject();
 
+  public indexMenu = new BehaviorSubject(0);
+  private indexMenuItem = new BehaviorSubject(0);
+
   menuSource$ = this.menuSource.asObservable();
   resetSource$ = this.resetSource.asObservable();
+  indexMenu$ = this.indexMenu.asObservable();
+  indexMenuItem$ = this.indexMenuItem.asObservable();
 
   private _userData = new BehaviorSubject<userData>({
     Name: "",
@@ -35,6 +40,12 @@ export class MenuService {
 
   onMenuStateChange(event: MenuChangeEvent) {
     this.menuSource.next(event);
+
+    const eventSplit = event.key.split("-");
+    console.log("🚀 ~ file: app.menu.service.ts:43 ~ MenuService ~ onMenuStateChange ~ eventSplit:", eventSplit[0]);
+
+    this.indexMenu.next(Number(eventSplit[0]));
+    this.indexMenuItem.next(Number(eventSplit[1]));
   }
 
   reset() {
