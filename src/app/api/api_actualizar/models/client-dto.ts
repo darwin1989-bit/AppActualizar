@@ -14,5 +14,6 @@ export interface ClientDto {
   numFono1?: null | string;
   numFono2?: null | string;
   numeroIdcliente?: null | string;
+  sexo?: null | string;
   tipoIdcliente?: null | string;
 }

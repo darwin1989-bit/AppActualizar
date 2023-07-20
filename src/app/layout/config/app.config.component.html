@@ -1,5 +1,5 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
-  <button pButton label="Cerrar sesión" icon="pi pi-sign-out" pos="right" class="block w-full mb-4 p-button-lg" (click)="confirmLogOff('top')"></button>
+  <button pButton label="Cerrar sesión" icon="pi pi-sign-out" pos="right" class="block w-full mb-4 p-button-raised" (click)="confirmLogOff('top', true)"></button>
   <hr />
   <span class="font-normal text-2xl">Usuario</span>
   <div class="flex align-items-center">
@@ -23,24 +23,30 @@
   <span class="font-normal text-2xl">Temas</span>
   <div class="grid flex align-items-center mt-2">
     <div class="col-3">
-      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('saga-green', 'light')">
+      <button class="p-link w-2rem h-2rem" (click)="changeTheme('saga-green')">
         <img src="assets/layout/images/themes/saga-green.png" class="w-2rem h-2rem" alt="Saga Green" />
       </button>
     </div>
     <div class="col-3">
-      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('vela-green', 'dark')">
+      <button class="p-link w-2rem h-2rem" (click)="changeTheme('vela-green')">
         <img src="assets/layout/images/themes/vela-green.png" class="w-2rem h-2rem" alt="Vela Green" />
       </button>
     </div>
     <div class="col-3">
-      <button class="p-link w-2rem h-2rem" (click)="layoutService.changeTheme('arya-green', 'dark')">
+      <button class="p-link w-2rem h-2rem" (click)="changeTheme('arya-green')">
         <img src="assets/layout/images/themes/arya-green.png" class="w-2rem h-2rem" alt="Arya Green" />
       </button>
     </div>
   </div>
 </p-sidebar>
-<p-confirmDialog #cd key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false">
+<p-confirmDialog #cd key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false" [style]="{ width: '400px' }">
   <ng-template pTemplate="footer">
-    <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-    <button class="p-button-sm" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button> </ng-template
-></p-confirmDialog>
+    <div *ngIf="!confirm; else blockButton">
+      <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-check" label="Aceptar" (click)="cd.accept()"></button>
+    </div>
+    <ng-template #blockButton>
+      <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+      <button class="p-button-sm" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button>
+    </ng-template>
+  </ng-template>
+</p-confirmDialog>

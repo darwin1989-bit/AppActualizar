@@ -5,9 +5,10 @@ import { ClientRoutingModule } from "./client-routing.module";
 import { PageUpdateClientComponent } from "./pages/page-update-client/page-update-client.component";
 import { UpdateClientComponent } from "./components/update-client/update-client.component";
 import { SharedModule } from "../shared/shared.module";
+import { FindClientComponent } from './components/find-client/find-client.component';
 
 @NgModule({
-  declarations: [PageUpdateClientComponent, UpdateClientComponent],
+  declarations: [PageUpdateClientComponent, UpdateClientComponent, FindClientComponent],
   imports: [CommonModule, ClientRoutingModule, SharedModule],
 })
 export class ClientModule {}

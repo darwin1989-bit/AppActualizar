@@ -4,6 +4,7 @@ import { filter, Subscription } from "rxjs";
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from "./app.topbar.component";
+import { ThemeService } from "../shared/services/theme.service";
 
 @Component({
   selector: "app-layout",
@@ -20,8 +21,12 @@ export class AppLayoutComponent implements OnDestroy {
 
   @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
-  constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
-    document.documentElement.style.fontSize = 13 + "px";
+  constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private themeService: ThemeService) {
+    let themeSesionStorage: string | null = sessionStorage.getItem("theme");
+
+    if (themeSesionStorage) this.themeService.switchTheme(themeSesionStorage);
+
+    document.documentElement.style.fontSize = 12 + "px";
 
     this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
       if (!this.menuOutsideClickListener) {

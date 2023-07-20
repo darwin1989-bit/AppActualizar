@@ -27,7 +27,24 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              {
+                "input": "src/theme-saga-green.scss",
+                "bundleName": "saga-green",
+                "inject": false
+              },
+              {
+                "input": "src/theme-vela-green.scss",
+                "bundleName": "vela-green",
+                "inject": false
+              },
+              {
+                "input": "src/theme-arya-green.scss",
+                "bundleName": "arya-green",
+                "inject": false
+              }
+            ],
             "scripts": []
           },
           "configurations": {
@@ -35,12 +52,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "2mb",
                   "maximumError": "4kb"
                 }
               ],

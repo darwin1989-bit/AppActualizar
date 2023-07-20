@@ -26,6 +26,7 @@ export class RequestInterceptor implements HttpInterceptor {
         })
       );
     } else {
+      this.callHttp.hideLoad();
       return next.handle(requestClone);
     }
   }

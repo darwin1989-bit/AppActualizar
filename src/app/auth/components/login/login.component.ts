@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Message } from "primeng/api";
 import { LayoutService } from "src/app/layout/service/app.layout.service";
-import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -12,7 +10,6 @@ import { AuthService } from "../../services/auth.service";
 })
 export class LoginComponent {
   public msgs: string = "";
-
   public regUserName: RegExp = /^[a-zA-Z.]+$/;
 
   loginForm = this.fb.group({
@@ -27,7 +24,7 @@ export class LoginComponent {
     return this.loginForm.get("password") as FormControl;
   }
 
-  constructor(public layoutService: LayoutService, private toastMesagge: ToastMessagesService, private fb: FormBuilder, private authService: AuthService) {}
+  constructor(public layoutService: LayoutService, private fb: FormBuilder, private authService: AuthService) {}
 
   public signIn(): void {
     this.loginForm.markAsPending();

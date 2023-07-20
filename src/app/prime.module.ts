@@ -42,6 +42,8 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ChipsModule } from "primeng/chips";
 import { OverlayPanelModule } from "primeng/overlaypanel";
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { OverlayModule } from "primeng/overlay";
+import { PanelModule } from "primeng/panel";
 
 const myModules = [
   CommonModule,
@@ -88,6 +90,8 @@ const myModules = [
   ChipsModule,
   OverlayPanelModule,
   AutoCompleteModule,
+  OverlayModule,
+  PanelModule,
 ];
 
 @NgModule({

@@ -5,6 +5,8 @@
   margin-bottom: 2rem;
   box-shadow: var(--card-shadow);
   // border-radius: $borderRadius;
+  border-color: var(--surface-400);
+  background-color: var(--surface-card);
 
   &:last-child {
     margin-bottom: 0;

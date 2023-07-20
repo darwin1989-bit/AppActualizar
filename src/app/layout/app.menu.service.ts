@@ -2,12 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
 import { MenuChangeEvent } from "./api/menuchangeevent";
 import { JwtHelperService } from "@auth0/angular-jwt";
-
-export interface userData {
-  Name: string;
-  UserName: string;
-  UserRol: string;
-}
+import { UserDataObj, userData } from "../shared/models/objects";
 
 @Injectable({
   providedIn: "root",
@@ -25,11 +20,7 @@ export class MenuService {
   indexMenu$ = this.indexMenu.asObservable();
   indexMenuItem$ = this.indexMenuItem.asObservable();
 
-  private _userData = new BehaviorSubject<userData>({
-    Name: "",
-    UserName: "",
-    UserRol: "",
-  });
+  private _userData = new BehaviorSubject<userData>(UserDataObj);
 
   public get userData() {
     return this._userData;
@@ -40,10 +31,7 @@ export class MenuService {
 
   onMenuStateChange(event: MenuChangeEvent) {
     this.menuSource.next(event);
-
     const eventSplit = event.key.split("-");
-    console.log("🚀 ~ file: app.menu.service.ts:43 ~ MenuService ~ onMenuStateChange ~ eventSplit:", eventSplit[0]);
-
     this.indexMenu.next(Number(eventSplit[0]));
     this.indexMenuItem.next(Number(eventSplit[1]));
   }

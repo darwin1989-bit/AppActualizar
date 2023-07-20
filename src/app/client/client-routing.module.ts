@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: "update-client", component: PageUpdateClientComponent },
   {
     path: "",
-    redirectTo: "/actualizar/home",
+    redirectTo: "/app/home",
     pathMatch: "prefix",
   },
 ];

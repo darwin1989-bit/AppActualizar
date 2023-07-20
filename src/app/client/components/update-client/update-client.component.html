@@ -1,33 +1,112 @@
 <div class="grid mt-3">
-  <div class="col-12">
-    <div class="card">
-      <h5>Buscar Cliente</h5>
+  <div class="col-12 md:col-12">
+    <div class="card surface-card border-1 border-400">
+      <div class="flex align-items-center justify-content-between">
+        <h4 class="my-0">Resultado</h4>
+        <div *ngIf="(clientService.clientFound$ | async)!.numeroIdcliente !== ''" class="flex justify-content-end align-items-center">
+          <p-divider layout="vertical"></p-divider>
+          <button (click)="showDialog()" icon="pi pi-user-edit" class="p-button-raised p-button-warning mr-2" pButton pRipple label="Editar"></button>
+          <button *ngIf="(clientService.clientFound$ | async)!.tipoIdcliente == 'R'" icon="pi pi-file" class="p-button-raised p-button-secondary" pButton pRipple label="Retencion"></button>
+        </div>
+      </div>
+      <hr />
       <div class="p-fluid p-formgrid grid">
-        <div class="field col-12 md:col-6">
-          <label htmlFor="firstname2">Firstname</label>
-          <input pInputText id="firstname2" type="text" />
+        <div class="field col-12 md:col-2">
+          <label>Documento</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numeroIdcliente }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-2">
+          <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
+            <label>Tipo Documento</label>
+          </div>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.tipoIdcliente }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-2">
+          <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
+            <label>Contribuyente Especial</label>
+          </div>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.contribuyenteEspecial }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-2">
+          <label>Es Empleado</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.esempleado }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-2">
+          <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
+            <label>Fecha nacimiento</label>
+          </div>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.fechaNacimiento | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-2">
+          <label>Fecha creación</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.fechaIngresocliente | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
-          <label htmlFor="lastname2">Lastname</label>
-          <input pInputText id="lastname2" type="text" />
-        </div>
-        <div class="field col-12">
-          <label htmlFor="address">Address</label>
-          <input pInputTextarea id="address" rows="4" />
+          <label>Nombre / Razón Social </label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.nombreRazon }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
-          <label htmlFor="city">City</label>
-          <input pInputText id="city" type="text" />
+          <label>Nombre Comercial</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.nombreComercial }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label>Dirección</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.direccion }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
-          <label htmlFor="state">State</label>
-          <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
+          <label>Telefono</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numFono1 }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
-          <label htmlFor="zip">Zip</label>
-          <input pInputText id="zip" type="text" />
+          <label>Celular</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numFono2 }}" disabled class="opacity-100" />
         </div>
       </div>
     </div>
   </div>
 </div>
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '600px' }" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-user-edit" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Editar cliente</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <form>
+      <div class="py-0 border-top-1 border-bottom-1 surface-border">
+        <div class="p-fluid p-formgrid grid py-4">
+          <div class="field col-12 md:col-12">
+            <label htmlFor="name">Nombre / Razón Social</label>
+            <input pInputText id="name" type="text" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="lastname2">Fecha Nacimiento</label>
+            <input pInputText id="lastname2" type="date" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="lastname2">Es empleado</label>
+            <p-dropdown optionLabel="name"></p-dropdown>
+          </div>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="address">Dirección</label>
+            <input pInputTextarea id="address" rows="4" />
+          </div>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="address">Email</label>
+            <input pInputTextarea id="address" rows="4" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="city">Teléfono Convencional</label>
+            <input pInputText id="city" type="text" pKeyFilter="int" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="state">Teléfono Celular</label>
+            <input pInputText id="lastname2" type="text" pKeyFilter="int" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-save" (click)="visible = false" label="Guardar"></p-button>
+  </ng-template>
+</p-dialog>

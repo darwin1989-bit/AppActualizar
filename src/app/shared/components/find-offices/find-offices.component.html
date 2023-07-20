@@ -1,52 +1,71 @@
-<div class="card p-fluid mt-4">
-  <div class="flex align-items-center justify-content-between mb-3">
-    <div class="flex justify-content-start align-items-center">
-      <h5 class="m-0">Selección tienda</h5>
+<div class="flex align-items-center justify-content-between mb-3">
+  <div class="flex justify-content-start align-items-center">
+    <h4 class="m-0">Selección tienda</h4>
+  </div>
+  <div
+    (click)="toggle()"
+    class="flex justify-content-end scalein animation-duration-500 cursor-pointer"
+    *ngIf="(officesHttpService.offices$ | async)!.ipRed != '' && (officesHttpService.offices$ | async)!.ipRed"
+  >
+    <div>
+      <a class="label-badge-success flex align-items-center text-sm font-semibold"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>Conectado</a>
     </div>
-    <div class="flex justify-content-end scalein animation-duration-500" *ngIf="(officesHttpService.offices$ | async)!.ipRed">
-      <p-divider layout="vertical"></p-divider>
-      <div class="overflow-hidden flex align-items-center justify-content-center mr-5">
-        <a class="label-badge-success flex align-items-center text-lg"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ipRed }}</a>
+    <p-overlay [(visible)]="overlayVisible" [responsive]="{ breakpoint: '640px', direction: 'top', contentStyleClass: 'w-15rem' }" contentStyleClass="p-4 surface-overlay shadow-2 border-round">
+      <div class="mb-2">
+        <a class="label-badge-success flex align-items-center text-sm font-semibold"
+          ><i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ipRed }}</a
+        >
       </div>
-      <p-divider layout="vertical"></p-divider>
-      <div class="overflow-hidden flex align-items-center justify-content-center mr-5">
-        <a class="label-badge-success flex align-items-center text-lg"><i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA : {{ (officesHttpService.offices$ | async)!.office }}</a>
+      <div class="mb-2">
+        <a class="label-badge-success flex align-items-center text-sm font-semibold"
+          ><i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA POS : {{ (officesHttpService.offices$ | async)!.office }}</a
+        >
       </div>
-      <p-divider layout="vertical"></p-divider>
-      <div class="overflow-hidden flex align-items-center justify-content-center mr-5">
-        <a class="label-badge-success flex align-items-center text-lg"
+      <div>
+        <a class="label-badge-success flex align-items-center text-sm font-semibold"
           ><i class="pi pi-table mr-2" style="font-size: 1rem"></i>SAP : {{ (officesHttpService.offices$ | async)!.companyInternalCode }}</a
         >
       </div>
-    </div>
-  </div>
-  <div class="p-formgrid grid">
-    <div class="field col">
-      <p-dropdown
-        [options]="company"
-        [(ngModel)]="selectedCompany"
-        optionLabel="name"
-        [filter]="true"
-        filterBy="name"
-        [showClear]="true"
-        placeholder="Selecciona la empresa"
-        (onChange)="changeCompany()"
-      >
-      </p-dropdown>
-    </div>
-    <div class="field col">
-      <p-dropdown
-        [options]="offices"
-        [(ngModel)]="selectedOffice"
-        optionLabel="name"
-        [filter]="true"
-        filterBy="name"
-        [showClear]="true"
-        placeholder="Selecciona la oficina"
-        (onChange)="clearOffice()"
-        (onClick)="changeOffice()"
-      >
-      </p-dropdown>
-    </div>
+    </p-overlay>
   </div>
 </div>
+<hr />
+<form [formGroup]="officesForm">
+  <div class="field">
+    <label htmlFor="companyInput" [class.text-red-500]="!companyControl.dirty && companyControl.touched">Empresa</label>
+    <p-dropdown
+      [options]="company"
+      [class.ng-dirty]="companyControl.touched"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Selecciona la empresa"
+      (onChange)="changeCompany()"
+      formControlName="companyInput"
+    >
+    </p-dropdown>
+    <div *ngIf="companyControl.touched">
+      <span class="text-red-500 text-sm" *ngIf="companyControl.hasError('required')">Este campo es requerido.</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label htmlFor="officeInput" [class.text-red-500]="!officeControl.dirty && officeControl.touched">Tienda</label>
+    <p-dropdown
+      [options]="offices"
+      [class.ng-dirty]="officeControl.touched"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Selecciona la oficina"
+      formControlName="officeInput"
+      (onChange)="changeOffice()"
+    >
+    </p-dropdown>
+    <div *ngIf="officeControl.touched">
+      <span class="text-red-500 text-sm" *ngIf="officeControl.hasError('required')">Este campo es requerido.</span>
+    </div>
+  </div>
+</form>

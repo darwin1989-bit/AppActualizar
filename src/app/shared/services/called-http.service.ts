@@ -13,18 +13,12 @@ export class CalledHttpService {
   constructor(private toastMesagge: ToastMessagesService, private router: Router) {}
 
   errorHandler(error: HttpErrorResponse) {
-    if (error.status) {
-      if (error.status === 404) {
-        this.router.navigate(["notfound"]);
-      } else if (error.status === 400) {
-        this.toastMesagge.showToast("tc", "error", "Error", error.error.message, 4000);
-      } else {
-        this.toastMesagge.showToast("tc", "error", "Error", "Se tuvo un error intente nuevamente", 4000);
-      }
-    } else {
-      this.toastMesagge.showToast("tc", "error", "Error", String(error), 4000);
+    if (error.status === 404) {
+      this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada", error.error.message, 4000);
+      return throwError(() => error);
     }
 
+    this.toastMesagge.showToast("tc", "error", "Error", error.error.message ? error.error.message : "Se tuvo un error intente nuevamente", 4000);
     return throwError(() => error);
   }
 

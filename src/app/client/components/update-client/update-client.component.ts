@@ -1,20 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ClientComponentService } from "../../service/client-component.service";
 
 @Component({
   selector: "app-update-client",
   templateUrl: "./update-client.component.html",
   styleUrls: ["./update-client.component.scss"],
 })
-export class UpdateClientComponent implements OnInit {
-  selectedState: any;
+export class UpdateClientComponent implements OnInit, OnDestroy {
+  public visible: boolean = true;
+  constructor(public clientService: ClientComponentService) {}
 
-  dropdownItems = [
-    { name: "Option 1", code: "Option 1" },
-    { name: "Option 2", code: "Option 2" },
-    { name: "Option 3", code: "Option 3" },
-  ];
-
-  constructor() {}
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {}
+
+  public showDialog() {
+    this.visible = true;
+  }
 }
