@@ -3,110 +3,265 @@
     <div class="card surface-card border-1 border-400">
       <div class="flex align-items-center justify-content-between">
         <h4 class="my-0">Resultado</h4>
-        <div *ngIf="(clientService.clientFound$ | async)!.numeroIdcliente !== ''" class="flex justify-content-end align-items-center">
+        <div *ngIf="(clientService.clientFound$ | async)![0].numero_Idcliente !== ''" class="flex justify-content-end align-items-center">
           <p-divider layout="vertical"></p-divider>
           <button (click)="showDialog()" icon="pi pi-user-edit" class="p-button-raised p-button-warning mr-2" pButton pRipple label="Editar"></button>
-          <button *ngIf="(clientService.clientFound$ | async)!.tipoIdcliente == 'R'" icon="pi pi-file" class="p-button-raised p-button-secondary" pButton pRipple label="Retencion"></button>
+          <button *ngIf="(clientService.clientFound$ | async)![0].tipo_Idcliente == 'R'" icon="pi pi-file" class="p-button-raised p-button-secondary" pButton pRipple label="Retencion"></button>
         </div>
       </div>
       <hr />
       <div class="p-fluid p-formgrid grid">
         <div class="field col-12 md:col-2">
           <label>Documento</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numeroIdcliente }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].numero_Idcliente }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Tipo Documento</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.tipoIdcliente }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].tipo_Idcliente }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Contribuyente Especial</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.contribuyenteEspecial }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].contribuyente_Especial }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <label>Es Empleado</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.esempleado }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].esempleado }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Fecha nacimiento</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.fechaNacimiento | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].cli_Fecha_Nacimiento | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <label>Fecha creación</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.fechaIngresocliente | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].fecha_Creacion | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
           <label>Nombre / Razón Social </label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.nombreRazon }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].nombre_Razon }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
-          <label>Nombre Comercial</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.nombreComercial }}" disabled class="opacity-100" />
+          <label>Correo Electrónico</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].email }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
           <label>Dirección</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.direccion }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].direccion }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
           <label>Telefono</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numFono1 }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].num_Fono1 }}" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
           <label>Celular</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)!.numFono2 }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].num_Fono2 }}" disabled class="opacity-100" />
         </div>
       </div>
     </div>
   </div>
 </div>
-<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '600px' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '600px' }" [resizable]="false">
   <ng-template pTemplate="header">
     <i class="pi pi-user-edit" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Editar cliente</h4>
   </ng-template>
   <ng-template pTemplate="content">
-    <form>
+    <form [formGroup]="clientForm">
       <div class="py-0 border-top-1 border-bottom-1 surface-border">
         <div class="p-fluid p-formgrid grid py-4">
           <div class="field col-12 md:col-12">
-            <label htmlFor="name">Nombre / Razón Social</label>
-            <input pInputText id="name" type="text" />
+            <label htmlFor="name" [class.text-red-500]="nameControl.invalid && nameControl.touched">Nombre / Razón Social</label>
+            <input formControlName="name" pInputText [pKeyFilter]="onlyAlphabetic" class="uppercase" autocomplete="off" [class.ng-touched]="nameControl.touched" />
+            <div *ngIf="nameControl.invalid && nameControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="nameControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="nameControl.hasError('minlength') || nameControl.hasError('maxlength')">El nombre / razón social es incorrecto.</span>
+            </div>
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="lastname2">Fecha Nacimiento</label>
-            <input pInputText id="lastname2" type="date" />
+            <label htmlFor="birthdate">Fecha Nacimiento</label>
+            <input formControlName="birthdate" pInputText type="date" />
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="lastname2">Es empleado</label>
-            <p-dropdown optionLabel="name"></p-dropdown>
+            <label htmlFor="isEmployed">Es empleado</label>
+            <p-dropdown formControlName="isEmployed" [options]="employed" optionLabel="name"></p-dropdown>
           </div>
           <div class="field col-12 md:col-12">
-            <label htmlFor="address">Dirección</label>
-            <input pInputTextarea id="address" rows="4" />
+            <label htmlFor="address" [class.text-red-500]="addressControl.invalid && addressControl.touched">Dirección</label>
+            <input formControlName="address" pInputText class="uppercase" autocomplete="off" [class.ng-touched]="addressControl.touched" />
+            <div *ngIf="addressControl.invalid && addressControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="addressControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="addressControl.hasError('minlength') || addressControl.hasError('maxlength')">La dirección es incorrecto.</span>
+            </div>
           </div>
           <div class="field col-12 md:col-12">
-            <label htmlFor="address">Email</label>
-            <input pInputTextarea id="address" rows="4" />
+            <label htmlFor="email" [class.text-red-500]="emailControl.invalid && emailControl.touched">Correo</label>
+            <input formControlName="email" pInputText type="email" email="true" [class.ng-touched]="emailControl.touched" />
+            <div *ngIf="emailControl.invalid && emailControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="emailControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="emailControl.hasError('email')">El correo incorrecto.</span>
+            </div>
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="city">Teléfono Convencional</label>
-            <input pInputText id="city" type="text" pKeyFilter="int" />
+            <label htmlFor="phone" [class.text-red-500]="phoneControl.invalid && phoneControl.touched">Teléfono Convencional</label>
+            <input formControlName="phone" pInputText type="text" pKeyFilter="int" [class.ng-touched]="phoneControl.touched" />
+            <div *ngIf="phoneControl.invalid && phoneControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="phoneControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="phoneControl.hasError('minlength') || phoneControl.hasError('maxlength')">El teléfono convencional es incorrecto.</span>
+            </div>
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="state">Teléfono Celular</label>
-            <input pInputText id="lastname2" type="text" pKeyFilter="int" />
+            <label htmlFor="cellPhone" [class.text-red-500]="cellPhoneControl.invalid && cellPhoneControl.touched">Teléfono Celular</label>
+            <input formControlName="cellPhone" pInputText type="text" pKeyFilter="int" [class.ng-touched]="cellPhoneControl.touched" />
+            <div *ngIf="cellPhoneControl.invalid && cellPhoneControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="cellPhoneControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="cellPhoneControl.hasError('minlength') || cellPhoneControl.hasError('maxlength')">El teléfono celular es incorrecto.</span>
+            </div>
           </div>
         </div>
       </div>
     </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-save" (click)="visible = false" label="Guardar"></p-button>
+    <p-button icon="pi pi-save" label="Guardar" (onClick)="save()" [disabled]="clientForm.pristine || !clientForm.invalid"></p-button>
+  </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="dialogCreate" [modal]="true" [style]="{ width: '600px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-user-plus" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Nuevo cliente</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <form [formGroup]="clientCreateForm" autocomplete="off">
+      <div class="py-0 border-top-1 border-bottom-1 surface-border">
+        <div class="p-fluid p-formgrid grid py-4">
+          <div class="field col-6 md:col-6">
+            <label htmlFor="numberId">Cédula/Ruc</label>
+            <input formControlName="numberId" pInputText type="text" class="opacity-90" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="typeId">Tipo</label>
+            <input formControlName="typeId" pInputText type="text" class="opacity-90" />
+          </div>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="nameCreate" [class.text-red-500]="(nameCreateControl.invalid && nameCreateControl.dirty) || (nameCreateControl.touched && nameCreateControl.invalid)"
+              >Nombre / Razón Social</label
+            >
+            <input formControlName="nameCreate" pInputText [pKeyFilter]="onlyAlphabetic" class="uppercase" autocomplete="off" [class.ng-dirty]="nameCreateControl.dirty || nameCreateControl.touched" />
+            <div *ngIf="(nameCreateControl.invalid && nameCreateControl.dirty) || nameCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="nameCreateControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="nameCreateControl.hasError('minlength') || nameCreateControl.hasError('maxlength')">El nombre / razón social es incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="birthdate" [class.text-red-500]="(birthdateCreateControl.invalid && birthdateCreateControl.dirty) || (birthdateCreateControl.touched && birthdateCreateControl.invalid)"
+              >Fecha Nacimiento</label
+            >
+            <input formControlName="birthdateCreate" pInputText type="date" [class.ng-dirty]="birthdateCreateControl.dirty || birthdateCreateControl.touched" min="1800-01-02" max="3000-12-31" />
+            <div *ngIf="(birthdateCreateControl.invalid && birthdateCreateControl.dirty) || birthdateCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="birthdateCreateControl.hasError('required')">Este campo es requerido.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="genderCreate" [class.text-red-500]="(genderCreateControl.invalid && genderCreateControl.dirty) || (genderCreateControl.touched && genderCreateControl.invalid)"
+              >Género</label
+            >
+            <p-dropdown
+              formControlName="genderCreate"
+              [options]="gender"
+              optionLabel="name"
+              placeholder="Selecciona el género"
+              [class.ng-dirty]="genderCreateControl.dirty || genderCreateControl.touched"
+            ></p-dropdown>
+            <div *ngIf="(genderCreateControl.invalid && genderCreateControl.dirty) || genderCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="genderCreateControl.hasError('required')">Este campo es requerido.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label
+              htmlFor="provincesCreate"
+              [class.text-red-500]="(provincesCreateControl.invalid && provincesCreateControl.dirty) || (provincesCreateControl.touched && provincesCreateControl.invalid)"
+              >Provincia</label
+            >
+            <p-dropdown
+              (onChange)="getCities()"
+              formControlName="provincesCreate"
+              [filter]="true"
+              filterBy="descripcion"
+              [options]="provinces"
+              optionLabel="descripcion"
+              placeholder="Selecciona la provincia"
+              [class.ng-dirty]="provincesCreateControl.dirty || provincesCreateControl.touched"
+            ></p-dropdown>
+            <div *ngIf="(provincesCreateControl.invalid && provincesCreateControl.dirty) || provincesCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="provincesCreateControl.hasError('required')">Este campo es requerido.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="citiesCreate" [class.text-red-500]="(citiesCreateControl.invalid && citiesCreateControl.dirty) || (citiesCreateControl.touched && citiesCreateControl.invalid)"
+              >Ciudad</label
+            >
+            <p-dropdown
+              formControlName="citiesCreate"
+              [filter]="true"
+              filterBy="descripcion"
+              optionLabel="descripcion"
+              [options]="cities"
+              optionLabel="descripcion"
+              placeholder="Selecciona la ciudad"
+              [class.ng-dirty]="citiesCreateControl.dirty || citiesCreateControl.touched"
+            ></p-dropdown>
+            <div *ngIf="(citiesCreateControl.invalid && citiesCreateControl.dirty) || citiesCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="citiesCreateControl.hasError('required')">Este campo es requerido.</span>
+            </div>
+          </div>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="address" [class.text-red-500]="(addressCreateControl.invalid && addressCreateControl.dirty) || (addressCreateControl.touched && addressCreateControl.invalid)"
+              >Dirección</label
+            >
+            <input formControlName="addressCreate" pInputText class="uppercase" autocomplete="off" [class.ng-dirty]="addressCreateControl.dirty || addressCreateControl.touched" />
+            <div *ngIf="(addressCreateControl.invalid && addressCreateControl.dirty) || addressCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="addressCreateControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="addressCreateControl.hasError('minlength') || addressCreateControl.hasError('maxlength')">La dirección es incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="emailCreate" [class.text-red-500]="(emailCreateControl.invalid && emailCreateControl.dirty) || (emailCreateControl.touched && emailCreateControl.invalid)">Correo</label>
+            <input formControlName="emailCreate" pInputText type="email" email="true" [class.ng-dirty]="emailCreateControl.dirty || emailCreateControl.touched" autocomplete="off" />
+            <div *ngIf="(emailCreateControl.invalid && emailCreateControl.dirty) || emailCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="emailCreateControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="emailCreateControl.hasError('email')">El correo incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="phone" [class.text-red-500]="(phoneCreateControl.invalid && phoneCreateControl.dirty) || (phoneCreateControl.touched && phoneCreateControl.invalid)"
+              >Teléfono Convencional</label
+            >
+            <input formControlName="phoneCreate" pInputText type="text" pKeyFilter="int" [class.ng-dirty]="phoneCreateControl.dirty || phoneCreateControl.touched" autocomplete="off" />
+            <div *ngIf="(phoneCreateControl.invalid && phoneCreateControl.dirty) || phoneCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="phoneCreateControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="phoneCreateControl.hasError('minlength') || phoneCreateControl.hasError('maxlength')">El teléfono convencional es incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="cellPhone" [class.text-red-500]="(cellPhoneCreateControl.invalid && cellPhoneCreateControl.dirty) || (cellPhoneCreateControl.touched && cellPhoneCreateControl.invalid)"
+              >Teléfono Celular</label
+            >
+            <input formControlName="cellPhoneCreate" pInputText type="text" pKeyFilter="int" [class.ng-dirty]="cellPhoneCreateControl.dirty || cellPhoneCreateControl.touched" autocomplete="off" />
+            <div *ngIf="(cellPhoneCreateControl.invalid && cellPhoneCreateControl.dirty) || cellPhoneCreateControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="cellPhoneCreateControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="cellPhoneCreateControl.hasError('minlength') || cellPhoneCreateControl.hasError('maxlength')">El teléfono celular es incorrecto.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button (onClick)="saveCreate()" icon="pi pi-save" label="Guardar"></p-button>
   </ng-template>
 </p-dialog>

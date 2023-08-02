@@ -1,8 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface TblProvincia {
+export interface GetProvincesDto {
   descripcion?: null | string;
-  envioPos?: null | string;
   pais?: null | string;
   zona?: null | string;
 }

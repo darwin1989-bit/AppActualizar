@@ -1,6 +1,6 @@
-export { ClientCreateDto } from './models/client-create-dto';
-export { ClientDto } from './models/client-dto';
-export { ClientUpdateDto } from './models/client-update-dto';
+export { ClientCreateParams } from './models/client-create-params';
+export { ClientParamsUpdate } from './models/client-params-update';
+export { GetCitiesDto } from './models/get-cities-dto';
+export { GetClientDto } from './models/get-client-dto';
+export { GetProvincesDto } from './models/get-provinces-dto';
 export { OfficesDto } from './models/offices-dto';
-export { TblCiudad } from './models/tbl-ciudad';
-export { TblProvincia } from './models/tbl-provincia';

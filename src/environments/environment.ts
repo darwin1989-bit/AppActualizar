@@ -5,8 +5,7 @@
 export const environment = {
   production: false,
   endpoint_login: "https://localhost:7197",
-  endpoint_actualizar: "https://localhost:7057",
-  company: [{ name: "PRUEBAS", code: "prb" }],
+  endpoint_actualizar: "https://localhost:7249",
 };
 
 /*

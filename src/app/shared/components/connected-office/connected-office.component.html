@@ -1,19 +1,19 @@
-<div class="scalein animation-duration-500" *ngIf="(officesHttpService.offices$ | async)!.ipRed">
+<div class="scalein animation-duration-500" *ngIf="(officesHttpService.offices$ | async)!.ip_Red">
   <div class="flex justify-content-center">Conectado</div>
   <div class="flex justify-content-center align-items-center">
     <div class="overflow-hidden flex align-items-center justify-content-center m-2">
-      <span class="label-badge-success flex align-items-center text-base"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ipRed }}</span>
+      <span class="label-badge-success flex align-items-center text-base"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ip_Red }}</span>
     </div>
     <p-divider layout="vertical"></p-divider>
     <div class="overflow-hidden flex align-items-center justify-content-center m-2">
       <span class="label-badge-success flex align-items-center text-base"
-        ><i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA : {{ (officesHttpService.offices$ | async)!.office }}</span
+        ><i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA : {{ (officesHttpService.offices$ | async)!.oficina }}</span
       >
     </div>
     <p-divider layout="vertical"></p-divider>
     <div class="overflow-hidden flex align-items-center justify-content-center m-2">
       <span class="label-badge-success flex align-items-center text-base"
-        ><i class="pi pi-table mr-2" style="font-size: 1rem"></i>SAP : {{ (officesHttpService.offices$ | async)!.companyInternalCode }}</span
+        ><i class="pi pi-table mr-2" style="font-size: 1rem"></i>SAP : {{ (officesHttpService.offices$ | async)!.ofi_Codigo_Interno_Empresa }}</span
       >
     </div>
   </div>

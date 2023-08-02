@@ -7,7 +7,7 @@ import { PrimeModule } from "../prime.module";
 import { HomeModule } from "../home/home.module";
 import { LoadPanelComponent } from "./components/load-panel/load-panel.component";
 import { FindOfficesComponent } from "./components/find-offices/find-offices.component";
-import { ConnectedOfficeComponent } from './components/connected-office/connected-office.component';
+import { ConnectedOfficeComponent } from "./components/connected-office/connected-office.component";
 
 @NgModule({
   declarations: [LoadPanelComponent, FindOfficesComponent, ConnectedOfficeComponent],

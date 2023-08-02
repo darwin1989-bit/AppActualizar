@@ -1,2 +1,2 @@
-export { ClientsService } from './services/clients.service';
+export { ClientService } from './services/client.service';
 export { OfficesService } from './services/offices.service';

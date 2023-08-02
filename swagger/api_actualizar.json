@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ApiActualizar",
+    "title": "API_Actualizar",
     "version": "1.0"
   },
   "paths": {
-    "/api/Clients/client": {
+    "/api/Client": {
       "get": {
-        "tags": ["Clients"],
+        "tags": ["Client"],
         "parameters": [
           {
             "name": "ip",
@@ -22,6 +22,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -30,17 +37,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClientDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClientDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClientDTO"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               }
             }
@@ -48,7 +64,7 @@
         }
       },
       "put": {
-        "tags": ["Clients"],
+        "tags": ["Client"],
         "parameters": [
           {
             "name": "company",
@@ -70,35 +86,68 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientUpdateDTO"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientUpdateDTO"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientUpdateDTO"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "tags": ["Clients"],
+        "tags": ["Client"],
         "parameters": [
           {
             "name": "ip",
@@ -113,23 +162,30 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientCreateDTO"
+                "$ref": "#/components/schemas/ClientCreateParams"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientCreateDTO"
+                "$ref": "#/components/schemas/ClientCreateParams"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ClientCreateDTO"
+                "$ref": "#/components/schemas/ClientCreateParams"
               }
             }
           }
@@ -141,9 +197,9 @@
         }
       }
     },
-    "/api/Clients/provinces": {
+    "/api/Client/provinces": {
       "get": {
-        "tags": ["Clients"],
+        "tags": ["Client"],
         "parameters": [
           {
             "name": "ip",
@@ -161,7 +217,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TblProvincia"
+                    "$ref": "#/components/schemas/GetProvincesDTO"
                   }
                 }
               },
@@ -169,7 +225,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TblProvincia"
+                    "$ref": "#/components/schemas/GetProvincesDTO"
                   }
                 }
               },
@@ -177,7 +233,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TblProvincia"
+                    "$ref": "#/components/schemas/GetProvincesDTO"
                   }
                 }
               }
@@ -186,9 +242,9 @@
         }
       }
     },
-    "/api/Clients/citys": {
+    "/api/Client/cities": {
       "get": {
-        "tags": ["Clients"],
+        "tags": ["Client"],
         "parameters": [
           {
             "name": "ip",
@@ -211,17 +267,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TblCiudad"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TblCiudad"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TblCiudad"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
                 }
               }
             }
@@ -277,71 +342,17 @@
   },
   "components": {
     "schemas": {
-      "ClientCreateDTO": {
-        "required": ["cliFechaNacimiento", "cliIdLugarReferencia", "cliSexo", "eMail", "nombreRazon", "tipoIdcliente"],
+      "ClientCreateParams": {
         "type": "object",
         "properties": {
-          "numeroIdcliente": {
+          "compania": {
             "type": "string",
             "nullable": true
           },
           "tipoIdcliente": {
-            "type": "string"
-          },
-          "nombreRazon": {
-            "maxLength": 70,
-            "minLength": 3,
-            "type": "string"
-          },
-          "eMail": {
-            "type": "string",
-            "format": "email"
-          },
-          "cliFechaNacimiento": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "cliSexo": {
-            "type": "string"
-          },
-          "cliIdLugarReferencia": {
-            "type": "string"
-          },
-          "ciudad": {
             "type": "string",
             "nullable": true
           },
-          "cveIdEstadoValidacion": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "idDireccion": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "direccion": {
-            "type": "string",
-            "nullable": true
-          },
-          "numFono1": {
-            "type": "string",
-            "nullable": true
-          },
-          "numFono2": {
-            "type": "string",
-            "nullable": true
-          },
-          "userCreation": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ClientDTO": {
-        "type": "object",
-        "properties": {
           "numeroIdcliente": {
             "type": "string",
             "nullable": true
@@ -354,19 +365,41 @@
             "type": "string",
             "nullable": true
           },
+          "tipoCliente": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "fechaIngresocliente": {
             "type": "string",
             "nullable": true
           },
-          "sexo": {
+          "codigoVendedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          },
+          "esproveedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoIdgrupo": {
+            "type": "string",
+            "nullable": true
+          },
+          "esgrupo": {
             "type": "string",
             "nullable": true
           },
           "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "tipoIdcliente": {
             "type": "string",
             "nullable": true
           },
@@ -378,10 +411,40 @@
             "type": "string",
             "nullable": true
           },
-          "fechaNacimiento": {
+          "usuarioCreacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaCreacion": {
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "cliFechaNacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cliSexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "cveIdEstadoValidacion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cliIdLugarReferencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ciudad": {
+            "type": "string",
+            "nullable": true
+          },
+          "idDireccion": {
+            "type": "integer",
+            "format": "int32"
           },
           "nombreDireccion": {
             "type": "string",
@@ -399,84 +462,57 @@
             "type": "string",
             "nullable": true
           },
-          "eMailD": {
+          "envioPos": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ClientUpdateDTO": {
+      "ClientParamsUpdate": {
         "type": "object",
         "properties": {
-          "nombreRazon": {
-            "maxLength": 70,
-            "minLength": 0,
+          "nombre_Razon": {
             "type": "string",
             "nullable": true
           },
-          "nombreComercial": {
-            "maxLength": 70,
-            "minLength": 0,
+          "nombre_Comercial": {
             "type": "string",
             "nullable": true
           },
           "email": {
-            "maxLength": 100,
-            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "cli_Fecha_Nacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "esempleado": {
             "type": "string",
             "nullable": true
           },
           "direccion": {
-            "maxLength": 200,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
-          "esempleado": {
-            "maxLength": 1,
-            "minLength": 0,
+          "num_Fono1": {
             "type": "string",
             "nullable": true
           },
-          "numFono1": {
-            "maxLength": 20,
-            "minLength": 0,
+          "num_Fono2": {
             "type": "string",
             "nullable": true
           },
-          "numFono2": {
-            "maxLength": 20,
-            "minLength": 0,
+          "usuario_Modificacion": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "OfficesDTO": {
-        "type": "object",
-        "properties": {
-          "ipRed": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "office": {
-            "type": "string",
-            "nullable": true
-          },
-          "companyInternalCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TblCiudad": {
+      "GetCitiesDTO": {
         "type": "object",
         "properties": {
           "ciudad": {
@@ -491,26 +527,78 @@
             "type": "string",
             "nullable": true
           },
-          "codigoSucursal": {
-            "type": "string",
-            "nullable": true
-          },
-          "envioPos": {
-            "type": "string",
-            "nullable": true
-          },
-          "geCodigoDinardap": {
-            "type": "string",
-            "nullable": true
-          },
-          "ciuCodigoInternoEmpresa": {
+          "codigo_Sucursal": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "TblProvincia": {
+      "GetClientDTO": {
+        "type": "object",
+        "properties": {
+          "tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Razon": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Comercial": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "cli_Fecha_Nacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cli_Sexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "esempleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_Creacion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nombre_Direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono1": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono2": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetProvincesDTO": {
         "type": "object",
         "properties": {
           "zona": {
@@ -524,8 +612,26 @@
           "pais": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfficesDTO": {
+        "type": "object",
+        "properties": {
+          "ip_Red": {
+            "type": "string",
+            "nullable": true
           },
-          "envioPos": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "ofi_Codigo_Interno_Empresa": {
             "type": "string",
             "nullable": true
           }

@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <label htmlFor="documentNumber" [class.text-red-500]="documentNumberControl.invalid && documentNumberControl.dirty">Número de indentificación</label>
-    <input (keypress)="clearClient()" pInputText id="documentNumber" formControlName="documentNumber" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
+    <input (keydown)="clearClient($event)" pInputText id="documentNumber" formControlName="documentNumber" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
     <div *ngIf="documentNumberControl.invalid && documentNumberControl.dirty">
       <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('required')">Este campo es requerido.</span>
       <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('minlength') || documentNumberControl.hasError('maxlength')">

@@ -3,15 +3,20 @@ import { CalledHttpService } from "./called-http.service";
 import { BehaviorSubject, Observable, Subject, catchError } from "rxjs";
 import { OfficesService } from "src/app/api/api_actualizar/services";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
-import { DataOffice } from "../models/objects";
+import { DataCompany, DataOffice } from "../models/objects";
+import { ICompany } from "../models/offices.interface";
+import { ClientComponentService } from "src/app/client/service/client-component.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class OfficesHttpService {
-  private offices = new BehaviorSubject<OfficesDto>(DataOffice);
-  public offices$ = this.offices.asObservable();
+  private company = new BehaviorSubject<ICompany>(DataCompany);
+  private offices = new BehaviorSubject<OfficesDto | null>(null);
   private validFindOffice = new Subject<boolean>();
+
+  public company$ = this.company.asObservable();
+  public offices$ = this.offices.asObservable();
   public validFindOffice$ = this.validFindOffice.asObservable();
 
   constructor(private calledHttpService: CalledHttpService, private officesService: OfficesService) {}
@@ -23,10 +28,12 @@ export class OfficesHttpService {
       })
     );
   }
-  public setOffice(office: OfficesDto): void {
+  public setOffice(office: OfficesDto | null): void {
     this.offices.next(office);
   }
-
+  public setCompany(company: ICompany): void {
+    this.company.next(company);
+  }
   public setValidFindOffice(): void {
     this.validFindOffice.next(true);
   }

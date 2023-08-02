@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Message, MessageService } from "primeng/api";
 
 export type ItypeSeverity = "success" | "info" | "warn" | "error";
-export type Iposition = "tl" | "tr" | "tc" | "bl" | "bc" | "bc";
+export type Iposition = "tl" | "tr" | "tc" | "bl" | "bc" | "bc" | "cf";
 
 @Injectable({
   providedIn: "root",
@@ -19,6 +19,7 @@ export class ToastMessagesService {
       summary: summaryMessage,
       detail: detailMessage,
       life: time,
+      icon: this.getIcon(severity, summaryMessage),
     });
   }
 
@@ -55,5 +56,15 @@ export class ToastMessagesService {
     this.msgs = [];
     this.msgs.push({ severity: error.severity, summary: error.summary, detail: error.detail });
     return this.msgs;
+  }
+
+  private getIcon(severity: string, other: string): string {
+    if (other === "Actualización realizada") return "pi pi-file-edit";
+    if (other === "Creación realizada") return "pi pi-save";
+    if (severity === "success") return "pi pi-check-circle";
+    if (severity === "warn") return "pi pi-exclamation-triangle";
+    if (severity === "error") return "pi pi-times-circle";
+    if (severity === "info") return "pi pi-info-circle";
+    return "pi-hashtag";
   }
 }

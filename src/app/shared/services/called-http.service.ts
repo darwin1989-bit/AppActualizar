@@ -14,11 +14,11 @@ export class CalledHttpService {
 
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 404) {
-      this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada", error.error.message, 4000);
+      this.toastMesagge.showToast("cf", "warn", "Búsqueda no encontrada", `${error.error.message}`, 8000);
       return throwError(() => error);
     }
 
-    this.toastMesagge.showToast("tc", "error", "Error", error.error.message ? error.error.message : "Se tuvo un error intente nuevamente", 4000);
+    this.toastMesagge.showToast("tc", "error", "Hubo un error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 4000);
     return throwError(() => error);
   }
 

@@ -5,10 +5,24 @@ import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from "./app.topbar.component";
 import { ThemeService } from "../shared/services/theme.service";
+import { MessageService } from "primeng/api";
+import { SharedService } from "../shared/services/shared.service";
 
 @Component({
   selector: "app-layout",
   templateUrl: "./app.layout.component.html",
+  styles: [
+    `
+      :host ::ng-deep .p-toast {
+        position: fixed;
+        width: auto;
+        opacity: 1;
+      }
+      :host ::ng-deep .p-component {
+        font-family: "Quicksand", sans-serif;
+      }
+    `,
+  ],
 })
 export class AppLayoutComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
@@ -21,12 +35,19 @@ export class AppLayoutComponent implements OnDestroy {
 
   @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
-  constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private themeService: ThemeService) {
+  constructor(
+    public layoutService: LayoutService,
+    public renderer: Renderer2,
+    public router: Router,
+    private themeService: ThemeService,
+    private messageService: MessageService,
+    private sharedService: SharedService
+  ) {
     let themeSesionStorage: string | null = sessionStorage.getItem("theme");
 
     if (themeSesionStorage) this.themeService.switchTheme(themeSesionStorage);
 
-    document.documentElement.style.fontSize = 12 + "px";
+    document.documentElement.style.fontSize = 13 + "px";
 
     this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
       if (!this.menuOutsideClickListener) {
@@ -127,5 +148,13 @@ export class AppLayoutComponent implements OnDestroy {
     if (this.menuOutsideClickListener) {
       this.menuOutsideClickListener();
     }
+  }
+  onConfirm() {
+    this.onReject();
+    this.sharedService.showDialog();
+  }
+
+  onReject() {
+    this.messageService.clear("cf");
   }
 }

@@ -9,10 +9,10 @@ export interface userData {
 }
 
 export const DataOffice: OfficesDto = {
-  ipRed: "",
-  office: "",
-  companyInternalCode: "",
-  name: "",
+  ip_Red: "",
+  oficina: "",
+  ofi_Codigo_Interno_Empresa: "",
+  nombre: "",
 };
 export const DataCompany: ICompany = {
   name: "",
