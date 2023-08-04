@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observer } from "rxjs";
+import { Observer, Subscription } from "rxjs";
 import { ClientComponentService } from "../../service/client-component.service";
 
 @Component({
@@ -9,6 +9,7 @@ import { ClientComponentService } from "../../service/client-component.service";
   providers: [ClientComponentService],
 })
 export class PageUpdateClientComponent implements OnInit {
-  constructor() {}
+  constructor(public clientService: ClientComponentService) {}
+
   ngOnInit(): void {}
 }

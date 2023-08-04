@@ -6,60 +6,79 @@
         <div *ngIf="(clientService.clientFound$ | async)![0].numero_Idcliente !== ''" class="flex justify-content-end align-items-center">
           <p-divider layout="vertical"></p-divider>
           <button (click)="showDialog()" icon="pi pi-user-edit" class="p-button-raised p-button-warning mr-2" pButton pRipple label="Editar"></button>
-          <button *ngIf="(clientService.clientFound$ | async)![0].tipo_Idcliente == 'R'" icon="pi pi-file" class="p-button-raised p-button-secondary" pButton pRipple label="Retencion"></button>
+          <button
+            (click)="showRetencion()"
+            *ngIf="(clientService.clientFound$ | async)![0].tipo_Idcliente == 'R'"
+            icon="pi pi-file"
+            class="p-button-raised p-button-secondary"
+            pButton
+            pRipple
+            label="Retencion"
+          ></button>
         </div>
       </div>
       <hr />
       <div class="p-fluid p-formgrid grid">
         <div class="field col-12 md:col-2">
           <label>Documento</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].numero_Idcliente }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].numero_Idcliente" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Tipo Documento</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].tipo_Idcliente }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].tipo_Idcliente" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Contribuyente Especial</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].contribuyente_Especial }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="clientService.specialTaxpayer$ | async" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <label>Es Empleado</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].esempleado }}" disabled class="opacity-100" />
+          <input
+            *ngIf="(clientService.clientFound$ | async)![0].esempleado; else inputElse"
+            pInputText
+            id="document"
+            type="text"
+            [value]="(clientService.clientFound$ | async)![0].esempleado == 'S' ? 'SI' : 'NO'"
+            disabled
+            class="opacity-100"
+          />
+          <ng-template #inputElse>
+            <input pInputText id="document" type="text" disabled class="opacity-100" />
+          </ng-template>
         </div>
         <div class="field col-12 md:col-2">
           <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis mb-2">
             <label>Fecha nacimiento</label>
           </div>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].cli_Fecha_Nacimiento | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].cli_Fecha_Nacimiento | date : 'yyyy/MM/dd'" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-2">
           <label>Fecha creación</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].fecha_Creacion | date : 'yyyy/MM/dd' }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].fecha_Creacion | date : 'yyyy/MM/dd'" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
           <label>Nombre / Razón Social </label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].nombre_Razon }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].nombre_Razon" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
           <label>Correo Electrónico</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].email }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].email" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-6">
           <label>Dirección</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].direccion }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].direccion" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
           <label>Telefono</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].num_Fono1 }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].num_Fono1" disabled class="opacity-100" />
         </div>
         <div class="field col-12 md:col-3">
           <label>Celular</label>
-          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].num_Fono2 }}" disabled class="opacity-100" />
+          <input pInputText id="document" type="text" [value]="(clientService.clientFound$ | async)![0].num_Fono2" disabled class="opacity-100" />
         </div>
       </div>
     </div>
@@ -75,9 +94,9 @@
       <div class="py-0 border-top-1 border-bottom-1 surface-border">
         <div class="p-fluid p-formgrid grid py-4">
           <div class="field col-12 md:col-12">
-            <label htmlFor="name" [class.text-red-500]="nameControl.invalid && nameControl.touched">Nombre / Razón Social</label>
-            <input formControlName="name" pInputText [pKeyFilter]="onlyAlphabetic" class="uppercase" autocomplete="off" [class.ng-touched]="nameControl.touched" />
-            <div *ngIf="nameControl.invalid && nameControl.touched">
+            <label htmlFor="name" [class.text-red-500]="(nameControl.invalid && nameControl.dirty) || (nameControl.touched && nameControl.invalid)">Nombre / Razón Social</label>
+            <input formControlName="name" pInputText [pKeyFilter]="onlyAlphabetic" class="uppercase" autocomplete="off" [class.ng-dirty]="nameControl.dirty || nameControl.touched" />
+            <div *ngIf="(nameControl.invalid && nameControl.dirty) || nameControl.touched">
               <span class="text-red-500 text-sm" *ngIf="nameControl.hasError('required')">Este campo es requerido.</span>
               <span class="text-red-500 text-sm" *ngIf="nameControl.hasError('minlength') || nameControl.hasError('maxlength')">El nombre / razón social es incorrecto.</span>
             </div>
@@ -91,33 +110,29 @@
             <p-dropdown formControlName="isEmployed" [options]="employed" optionLabel="name"></p-dropdown>
           </div>
           <div class="field col-12 md:col-12">
-            <label htmlFor="address" [class.text-red-500]="addressControl.invalid && addressControl.touched">Dirección</label>
-            <input formControlName="address" pInputText class="uppercase" autocomplete="off" [class.ng-touched]="addressControl.touched" />
-            <div *ngIf="addressControl.invalid && addressControl.touched">
+            <label htmlFor="address" [class.text-red-500]="(addressControl.invalid && addressControl.dirty) || (addressControl.touched && addressControl.invalid)">Dirección</label>
+            <input formControlName="address" pInputText class="uppercase" autocomplete="off" [class.ng-dirty]="addressControl.dirty || addressControl.touched" />
+            <div *ngIf="(addressControl.invalid && addressControl.dirty) || addressControl.touched">
               <span class="text-red-500 text-sm" *ngIf="addressControl.hasError('required')">Este campo es requerido.</span>
               <span class="text-red-500 text-sm" *ngIf="addressControl.hasError('minlength') || addressControl.hasError('maxlength')">La dirección es incorrecto.</span>
             </div>
           </div>
           <div class="field col-12 md:col-12">
-            <label htmlFor="email" [class.text-red-500]="emailControl.invalid && emailControl.touched">Correo</label>
-            <input formControlName="email" pInputText type="email" email="true" [class.ng-touched]="emailControl.touched" />
-            <div *ngIf="emailControl.invalid && emailControl.touched">
+            <label htmlFor="email" [class.text-red-500]="(emailControl.invalid && emailControl.dirty) || (emailControl.touched && emailControl.invalid)">Correo</label>
+            <input formControlName="email" pInputText type="email" email="true" [class.ng-dirty]="emailControl.dirty || emailControl.touched" />
+            <div *ngIf="(emailControl.invalid && emailControl.dirty) || emailControl.touched">
               <span class="text-red-500 text-sm" *ngIf="emailControl.hasError('required')">Este campo es requerido.</span>
               <span class="text-red-500 text-sm" *ngIf="emailControl.hasError('email')">El correo incorrecto.</span>
             </div>
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="phone" [class.text-red-500]="phoneControl.invalid && phoneControl.touched">Teléfono Convencional</label>
-            <input formControlName="phone" pInputText type="text" pKeyFilter="int" [class.ng-touched]="phoneControl.touched" />
-            <div *ngIf="phoneControl.invalid && phoneControl.touched">
-              <span class="text-red-500 text-sm" *ngIf="phoneControl.hasError('required')">Este campo es requerido.</span>
-              <span class="text-red-500 text-sm" *ngIf="phoneControl.hasError('minlength') || phoneControl.hasError('maxlength')">El teléfono convencional es incorrecto.</span>
-            </div>
+            <label htmlFor="phone">Teléfono Convencional</label>
+            <input formControlName="phone" pInputText type="text" pKeyFilter="int" />
           </div>
           <div class="field col-6 md:col-6">
-            <label htmlFor="cellPhone" [class.text-red-500]="cellPhoneControl.invalid && cellPhoneControl.touched">Teléfono Celular</label>
-            <input formControlName="cellPhone" pInputText type="text" pKeyFilter="int" [class.ng-touched]="cellPhoneControl.touched" />
-            <div *ngIf="cellPhoneControl.invalid && cellPhoneControl.touched">
+            <label htmlFor="cellPhone" [class.text-red-500]="(cellPhoneControl.invalid && cellPhoneControl.dirty) || (cellPhoneControl.touched && cellPhoneControl.invalid)">Teléfono Celular</label>
+            <input formControlName="cellPhone" pInputText type="text" pKeyFilter="int" [class.ng-dirty]="cellPhoneControl.dirty || cellPhoneControl.touched" />
+            <div *ngIf="(cellPhoneControl.invalid && cellPhoneControl.dirty) || cellPhoneControl.touched">
               <span class="text-red-500 text-sm" *ngIf="cellPhoneControl.hasError('required')">Este campo es requerido.</span>
               <span class="text-red-500 text-sm" *ngIf="cellPhoneControl.hasError('minlength') || cellPhoneControl.hasError('maxlength')">El teléfono celular es incorrecto.</span>
             </div>
@@ -127,7 +142,7 @@
     </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-save" label="Guardar" (onClick)="save()" [disabled]="clientForm.pristine || !clientForm.invalid"></p-button>
+    <p-button icon="pi pi-save" label="Guardar" (onClick)="save()" [disabled]="clientForm.pristine || clientForm.invalid"></p-button>
   </ng-template>
 </p-dialog>
 <p-dialog [(visible)]="dialogCreate" [modal]="true" [style]="{ width: '600px' }" [resizable]="false">
@@ -262,6 +277,6 @@
     </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p-button (onClick)="saveCreate()" icon="pi pi-save" label="Guardar"></p-button>
+    <p-button (onClick)="saveCreate()" icon="pi pi-save" label="Guardar" [disabled]="clientCreateForm.invalid"></p-button>
   </ng-template>
 </p-dialog>

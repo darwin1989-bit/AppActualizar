@@ -1,0 +1,55 @@
+<p-dialog [(visible)]="dialog" [modal]="true" [style]="{ width: '600px' }" [resizable]="false" (onHide)="ngOnDestroy()">
+  <ng-template pTemplate="header">
+    <i class="pi pi-calculator" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Retención</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="py-0 border-top-1 border-bottom-1 surface-border">
+      <div class="p-fluid p-formgrid grid py-4">
+        <div class="field col-12 md:col-3">
+          <label>Documento</label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].numero_Idcliente }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-9">
+          <label>Nombre / Razón Social </label>
+          <input pInputText id="document" type="text" value="{{ (clientService.clientFound$ | async)![0].nombre_Razon }}" disabled class="opacity-100" />
+        </div>
+        <div class="field col-12 md:col-12 border-top-1 surface-border">
+          <div class="flex justify-content-center align-items-center mt-2">
+            <div class="flex align-items-center justify-content-start font-bold mr-4 w-16rem">Contibuyente especial</div>
+            <div *ngFor="let item of rdRetention" class="field-checkbox">
+              <p-radioButton name="item" [value]="item" [(ngModel)]="selectedTaxpayer" (onFocus)="changeRdButton()" [disabled]="taxpayer"></p-radioButton>
+              <label [for]="item.key" class="ml-2 mr-4">{{ item.name }}</label>
+            </div>
+          </div>
+          <div class="flex justify-content-center align-items-center mt-4">
+            <div class="flex align-items-center justify-content-start font-bold mr-4 w-16rem">Exportador</div>
+            <div *ngFor="let item of rdRetention" class="field-checkbox">
+              <p-radioButton name="item" [value]="item" [(ngModel)]="selectedExporter" (onFocus)="changeRdButton()" [disabled]="exporter"></p-radioButton>
+              <label [for]="item.key" class="ml-2 mr-4">{{ item.name }}</label>
+            </div>
+          </div>
+          <div class="flex justify-content-center align-items-center mt-4">
+            <div class="flex align-items-center justify-content-start font-bold mr-4 w-16rem">Obligado a llevar contabilidad</div>
+            <div *ngFor="let item of rdRetention" class="field-checkbox">
+              <p-radioButton name="item" [value]="item" [(ngModel)]="selectedAccounting" (onFocus)="changeRdButton()" [disabled]="accounting"></p-radioButton>
+              <label [for]="item.key" class="ml-2 mr-4">{{ item.name }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button (click)="save()" icon="pi pi-save" label="Guardar"></p-button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog #cd>
+  <ng-template pTemplate="header">
+    <h4 class="m-0">Confirmación</h4>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button class="p-button-danger" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>

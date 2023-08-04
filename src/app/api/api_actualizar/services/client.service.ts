@@ -14,6 +14,8 @@ import { ClientParamsUpdate } from '../models/client-params-update';
 import { GetCitiesDto } from '../models/get-cities-dto';
 import { GetClientDto } from '../models/get-client-dto';
 import { GetProvincesDto } from '../models/get-provinces-dto';
+import { GetRetentionDto } from '../models/get-retention-dto';
+import { RetentionParams } from '../models/retention-params';
 
 @Injectable({
   providedIn: 'root',
@@ -531,6 +533,175 @@ export class ClientService extends BaseService {
 
     return this.apiClientCitiesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<GetCitiesDto>>) => r.body as Array<GetCitiesDto>)
+    );
+  }
+
+  /**
+   * Path part for operation apiClientRetentionGet
+   */
+  static readonly ApiClientRetentionGetPath = '/api/Client/retention';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiClientRetentionGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiClientRetentionGet$Plain$Response(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<GetRetentionDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ClientService.ApiClientRetentionGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('numberId', params.numberId, {});
+      rb.query('typeIdClient', params.typeIdClient, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<GetRetentionDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiClientRetentionGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiClientRetentionGet$Plain(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+  },
+  context?: HttpContext
+
+): Observable<Array<GetRetentionDto>> {
+
+    return this.apiClientRetentionGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<GetRetentionDto>>) => r.body as Array<GetRetentionDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiClientRetentionGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiClientRetentionGet$Json$Response(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<GetRetentionDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ClientService.ApiClientRetentionGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('numberId', params.numberId, {});
+      rb.query('typeIdClient', params.typeIdClient, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<GetRetentionDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiClientRetentionGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiClientRetentionGet$Json(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+  },
+  context?: HttpContext
+
+): Observable<Array<GetRetentionDto>> {
+
+    return this.apiClientRetentionGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<GetRetentionDto>>) => r.body as Array<GetRetentionDto>)
+    );
+  }
+
+  /**
+   * Path part for operation apiClientRetentionPut
+   */
+  static readonly ApiClientRetentionPutPath = '/api/Client/retention';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiClientRetentionPut()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiClientRetentionPut$Response(params?: {
+    ip?: string;
+    body?: RetentionParams
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ClientService.ApiClientRetentionPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiClientRetentionPut$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiClientRetentionPut(params?: {
+    ip?: string;
+    body?: RetentionParams
+  },
+  context?: HttpContext
+
+): Observable<void> {
+
+    return this.apiClientRetentionPut$Response(params,context).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

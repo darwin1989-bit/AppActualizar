@@ -89,6 +89,6 @@ export class FindClientComponent {
     }
   }
   public clearClient(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete") this.clientService.clearClientFound();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control") this.clientService.clearClientFound();
   }
 }

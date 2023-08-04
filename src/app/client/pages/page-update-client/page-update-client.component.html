@@ -8,3 +8,4 @@
   </div>
 </div>
 <app-update-client></app-update-client>
+<app-retention *ngIf="clientService.retention$ | async"></app-retention>

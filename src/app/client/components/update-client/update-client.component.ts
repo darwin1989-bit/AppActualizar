@@ -38,8 +38,8 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
     isEmployed: [this.selectedEmployed],
     address: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     email: ["", Validators.required],
-    phone: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-    cellPhone: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+    phone: [""],
+    cellPhone: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
   });
 
   get nameControl(): FormControl {
@@ -177,9 +177,10 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
       this.clientForm.controls.birthdate.patchValue(res[0].cli_Fecha_Nacimiento ? res[0].cli_Fecha_Nacimiento!.substring(0, 10) : "");
       this.clientForm.controls.isEmployed.patchValue(this.returnValueEmployed(res[0].esempleado!));
       this.clientForm.controls.address.patchValue(res[0].direccion!);
-      this.clientForm.controls.email.patchValue(res[0].email!);
+      this.clientForm.controls.email.patchValue(res[0].email! == null ? "example@exmaple.com" : res[0].email!);
       this.clientForm.controls.phone.patchValue(res[0].num_Fono1!);
-      this.clientForm.controls.cellPhone.patchValue(res[0].num_Fono2!);
+      this.clientForm.controls.cellPhone.patchValue(res[0].num_Fono2! == null ? "9999999999" : res[0].num_Fono2!);
+
       if (res[0].tipo_Idcliente == "R") {
         this.birthdateControl.disable();
         this.isEmployedControl.disable();
@@ -239,5 +240,8 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
 
       this.clientService.createClient(office.ip_Red!, this.clientNotFound.numberID, this.clientNotFound.typedDocument.type, clientCreate).subscribe();
     }
+  }
+  public showRetencion(): void {
+    this.clientService.showRetention();
   }
 }

@@ -1,5 +1,5 @@
 import { GetClientDto } from "src/app/api/api_actualizar/models";
-import { IEmployee, IGender, ITypeDocument } from "./clients-interface";
+import { IEmployee, IGender, IRetention, ITypeDocument } from "./clients-interface";
 
 export const TypeDocumentObj: ITypeDocument[] = [
   { name: "CÉDULA", type: "C" },
@@ -42,5 +42,12 @@ export const GenderObj: IGender[] = [
   {
     name: "FEMENINO",
     code: "F",
+  },
+];
+export const RetentionObj: IRetention[] = [
+  {
+    taxpayer: "",
+    accounting: "",
+    exporter: "",
   },
 ];

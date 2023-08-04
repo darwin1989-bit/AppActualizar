@@ -294,6 +294,101 @@
         }
       }
     },
+    "/api/Client/retention": {
+      "get": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Offices": {
       "get": {
         "tags": ["Offices"],
@@ -616,6 +711,36 @@
         },
         "additionalProperties": false
       },
+      "GetRetentionDTO": {
+        "type": "object",
+        "properties": {
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Exportador": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_No": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_Si": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "OfficesDTO": {
         "type": "object",
         "properties": {
@@ -633,6 +758,36 @@
           },
           "ofi_Codigo_Interno_Empresa": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RetentionParams": {
+        "type": "object",
+        "properties": {
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Exportador": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_No": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_Si": {
+            "type": "boolean",
             "nullable": true
           }
         },
