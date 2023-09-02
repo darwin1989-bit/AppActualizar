@@ -12,7 +12,6 @@ export interface ClientCreateParams {
   cveIdEstadoValidacion?: null | number;
   direccion?: null | string;
   email?: null | string;
-  envioPos?: null | string;
   esempleado?: null | string;
   esgrupo?: null | string;
   esproveedor?: null | string;

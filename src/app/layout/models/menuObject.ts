@@ -7,9 +7,10 @@ export const itemsObj: any[] = [
     label: "Clientes",
     items: [
       { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["/app/client/update-client"] },
-      { label: "Facturas", icon: "pi pi-fw pi-file", routerLink: ["/uikit/input"] },
-      { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/uikit/floatlabel"] },
-      { label: "Transacciones", icon: "pi pi-fw pi-mobile", routerLink: ["/uikit/button"], class: "rotated-icon" },
+      { label: "Facturas", icon: "pi pi-fw pi-file", routerLink: ["/app/client/invoices"] },
+      { label: "Pagos", icon: "pi pi-fw pi-money-bill", routerLink: ["/app/client/payments"] },
+      { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/app/client/credit-service"] },
+      { label: "Transacciones", icon: "pi pi-fw pi-mobile", routerLink: ["/app/client/transactions"] },
     ],
   },
   {

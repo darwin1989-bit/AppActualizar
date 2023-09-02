@@ -273,11 +273,11 @@ export class ClientService extends BaseService {
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiClientPost()` instead.
+   * To access only the response body, use `apiClientPost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientPost$Response(params?: {
+  apiClientPost$Plain$Response(params?: {
     ip?: string;
     numberId?: string;
     typeIdClient?: string;
@@ -285,7 +285,7 @@ export class ClientService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<void>> {
+): Observable<StrictHttpResponse<Array<GetClientDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, ClientService.ApiClientPostPath, 'post');
     if (params) {
@@ -297,23 +297,23 @@ export class ClientService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
+      accept: 'text/plain',
       context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<Array<GetClientDto>>;
       })
     );
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiClientPost$Response()` instead.
+   * To access the full response (for headers, for example), `apiClientPost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiClientPost(params?: {
+  apiClientPost$Plain(params?: {
     ip?: string;
     numberId?: string;
     typeIdClient?: string;
@@ -321,10 +321,67 @@ export class ClientService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<void> {
+): Observable<Array<GetClientDto>> {
 
-    return this.apiClientPost$Response(params,context).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiClientPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<GetClientDto>>) => r.body as Array<GetClientDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiClientPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiClientPost$Json$Response(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+    body?: ClientCreateParams
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<GetClientDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ClientService.ApiClientPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('numberId', params.numberId, {});
+      rb.query('typeIdClient', params.typeIdClient, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<GetClientDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiClientPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiClientPost$Json(params?: {
+    ip?: string;
+    numberId?: string;
+    typeIdClient?: string;
+    body?: ClientCreateParams
+  },
+  context?: HttpContext
+
+): Observable<Array<GetClientDto>> {
+
+    return this.apiClientPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<GetClientDto>>) => r.body as Array<GetClientDto>)
     );
   }
 

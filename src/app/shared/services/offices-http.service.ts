@@ -3,9 +3,8 @@ import { CalledHttpService } from "./called-http.service";
 import { BehaviorSubject, Observable, Subject, catchError } from "rxjs";
 import { OfficesService } from "src/app/api/api_actualizar/services";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
-import { DataCompany, DataOffice } from "../models/objects";
+import { DataCompany } from "../models/objects";
 import { ICompany } from "../models/offices.interface";
-import { ClientComponentService } from "src/app/client/service/client-component.service";
 
 @Injectable({
   providedIn: "root",

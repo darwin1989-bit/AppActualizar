@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
+import { SharedService } from "../../services/shared.service";
 
 @Component({
   selector: "app-find-offices",
@@ -33,10 +34,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     return this.officesForm.get("officeInput") as FormControl;
   }
 
-  constructor(public officesHttpService: OfficesHttpService, private fb: FormBuilder, private clienteService: ClientComponentService) {}
+  constructor(public officesHttpService: OfficesHttpService, private fb: FormBuilder, private clienteService: ClientComponentService, private sharedService: SharedService) {}
 
   ngOnDestroy(): void {
-    this.officesHttpService.setOffice({});
+    this.officesHttpService.setOffice(null);
     this.subcription.unsubscribe();
   }
 
@@ -73,12 +74,14 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.companyControl.untouched;
     this.officesHttpService.setOffice(this.officeControl.value);
     this.clienteService.clearClientFound();
+    this.sharedService.setClearInvoiceFrom();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
     this.offices = [];
     this.officesHttpService.setOffice(null);
     this.clienteService.clearClientFound();
+    this.sharedService.setClearInvoiceFrom();
   }
 
   public toggle() {

@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { IClientNotFound, ITypeDocument } from "../../models/clients-interface";
-import { TypeDocumentObj } from "../../models/clients-object";
+import { IClientNotFound, ITypeDocument } from "../../../models/clients-interface";
+import { TypeDocumentObj } from "../../../models/clients-object";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
 import { Subscription } from "rxjs";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
-import { ClientComponentService } from "../../service/client-component.service";
+import { ClientComponentService } from "../../../service/client-component.service";
 import { SharedService } from "src/app/shared/services/shared.service";
 
 @Component({
@@ -69,6 +69,7 @@ export class FindClientComponent {
     }
   }
   public findclient(): void {
+    this.clientService.clearClientFound();
     const clientData: IClientNotFound = {
       typedDocument: this.documentTypeControl.value,
       numberID: this.documentNumberControl.value,
@@ -89,6 +90,6 @@ export class FindClientComponent {
     }
   }
   public clearClient(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control") this.clientService.clearClientFound();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.clientService.clearClientFound();
   }
 }

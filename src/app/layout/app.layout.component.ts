@@ -21,6 +21,11 @@ import { SharedService } from "../shared/services/shared.service";
       :host ::ng-deep .p-component {
         font-family: "Quicksand", sans-serif;
       }
+      :host ::ng-deep.layout-menu ul a.active-route {
+        font-weight: 600;
+        color: var(--primary-color);
+        border-left: 4px solid var(--primary-color);
+      }
     `,
   ],
 })

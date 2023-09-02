@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ClientComponentService } from "../../service/client-component.service";
+import { ClientComponentService } from "../../../service/client-component.service";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { IClientNotFound, IEmployee, IGender } from "../../models/clients-interface";
-import { GenderObj, IsEmployedObj } from "../../models/clients-object";
+import { IClientNotFound, IEmployee, IGender } from "../../../models/clients-interface";
+import { GenderObj, IsEmployedObj } from "../../../models/clients-object";
 import { Subscription } from "rxjs";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { ICompany } from "src/app/shared/models/offices.interface";
@@ -236,6 +236,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
         direccion: this.addressCreateControl.value.toUpperCase().trim(),
         numFono2: this.cellPhoneCreateControl.value,
         numFono1: this.phoneCreateControl.value,
+        cliIdLugarReferencia: this.provincesCreateControl.value.zona,
       };
 
       this.clientService.createClient(office.ip_Red!, this.clientNotFound.numberID, this.clientNotFound.typedDocument.type, clientCreate).subscribe();

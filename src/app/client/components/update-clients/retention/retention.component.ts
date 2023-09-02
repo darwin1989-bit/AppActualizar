@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ClientComponentService } from "../../service/client-component.service";
+import { ClientComponentService } from "../../../service/client-component.service";
 import { ConfirmationService } from "primeng/api";
 import { Subscription } from "rxjs";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { GetClientDto, OfficesDto, RetentionParams } from "src/app/api/api_actualizar/models";
-import { IRbRetention, IRetention } from "../../models/clients-interface";
-import { RetentionObj } from "../../models/clients-object";
+import { IRbRetention, IRetention } from "../../../models/clients-interface";
+import { RetentionObj } from "../../../models/clients-object";
 
 @Component({
   selector: "app-retention",

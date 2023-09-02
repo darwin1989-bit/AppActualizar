@@ -1,0 +1,30 @@
+<h4>Buscar facturas</h4>
+<hr />
+<form [formGroup]="invoicesForm">
+  <div class="field">
+    <label [class.text-red-500]="!invoiceTypeControl.dirty && invoiceTypeControl.touched">Tipo de búsqueda</label>
+    <p-dropdown
+      (onChange)="changeDropDown()"
+      [options]="dropdownInvoiceType"
+      optionLabel="name"
+      placeholder="Selecciona el tipo"
+      formControlName="invoiceType"
+      [class.ng-dirty]="invoiceTypeControl.touched"
+    ></p-dropdown>
+    <div *ngIf="invoiceTypeControl.touched">
+      <span class="text-red-500 text-sm" *ngIf="invoiceTypeControl.hasError('required')">Este campo es requerido.</span>
+    </div>
+  </div>
+  <div class="field">
+    <label htmlFor="documentNumber" [class.text-red-500]="invoiceNumberControl.invalid && invoiceNumberControl.dirty">{{ labelName }}</label>
+    <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="invoiceNumber" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
+    <div *ngIf="invoiceNumberControl.invalid && invoiceNumberControl.dirty">
+      <span class="text-red-500 text-sm" *ngIf="invoiceNumberControl.hasError('required')">Este campo es requerido.</span>
+      <span class="text-red-500 text-sm" *ngIf="invoiceNumberControl.hasError('minlength') || invoiceNumberControl.hasError('maxlength')"> {{ labelName }} es incorrecta.</span>
+    </div>
+  </div>
+  <hr />
+  <div class="field">
+    <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar facturas"></button>
+  </div>
+</form>

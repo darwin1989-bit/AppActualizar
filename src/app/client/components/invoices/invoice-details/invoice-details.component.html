@@ -1,0 +1,52 @@
+<h5 class="mt-2">Forma de pago</h5>
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" styleClass="p-datatable-sm p-datatable-gridlines">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Serie factura</th>
+      <th>Forma pago</th>
+      <th>Descripción</th>
+      <th>Valor</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-invoice>
+    <tr>
+      <td>{{ invoice.serie_Factura }}</td>
+      <td>{{ invoice.forma_Pago }}</td>
+      <td>{{ invoice.descripcion }}</td>
+      <td>{{ invoice.valor | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="4" class="font-normal">No existen datos que mostrar.</td>
+    </tr>
+  </ng-template>
+</p-table>
+<h5 class="mt-4">Detalle</h5>
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoicesDet!" styleClass="p-datatable-sm p-datatable-gridlines">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Material</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Descuento</th>
+      <th>Precio Total</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-invoice>
+    <tr>
+      <td>{{ invoice.codigo_Producto }}</td>
+      <td>{{ invoice.descripcion }}</td>
+      <td>{{ invoice.cantidad | number }}</td>
+      <td>{{ invoice.precio | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.descuento | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.precio_Total | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6" class="font-normal">No existen datos que mostrar.</td>
+    </tr>
+  </ng-template>
+</p-table>

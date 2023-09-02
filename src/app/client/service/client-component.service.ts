@@ -42,9 +42,11 @@ export class ClientComponentService {
       })
     );
   }
-  public createClient(ip: string, numberId: string, typeIdClient: string, clientParams: ClientCreateParams): Observable<void> {
-    return this.clientService.apiClientPost({ ip, numberId, typeIdClient, body: clientParams }).pipe(
-      tap(() => {
+  public createClient(ip: string, numberId: string, typeIdClient: string, clientParams: ClientCreateParams): Observable<GetClientDto[]> {
+    return this.clientService.apiClientPost$Json({ ip, numberId, typeIdClient, body: clientParams }).pipe(
+      tap((res) => {
+        this.clientFound.next(res);
+        this.specialTaxpayer.next(res[0].contribuyente_Especial == "0" ? "NO" : "SI");
         this.toastMesagge.showToast("tc", "success", "Creación realizada", "Se ha creado el cliente correctamente.", 4000);
         this.sharedService.hideDialog();
       }),

@@ -44,6 +44,7 @@ import { OverlayPanelModule } from "primeng/overlaypanel";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { OverlayModule } from "primeng/overlay";
 import { PanelModule } from "primeng/panel";
+import { BadgeModule } from "primeng/badge";
 
 const myModules = [
   CommonModule,
@@ -92,6 +93,7 @@ const myModules = [
   AutoCompleteModule,
   OverlayModule,
   PanelModule,
+  BadgeModule,
 ];
 
 @NgModule({

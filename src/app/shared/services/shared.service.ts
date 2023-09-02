@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { IClientNotFound } from "src/app/client/models/clients-interface";
+import { InvoicesComponentService } from "src/app/client/service/invoices-component.service";
 
 @Injectable({
   providedIn: "root",
@@ -11,6 +12,9 @@ export class SharedService {
 
   private clientNotFound = new Subject<IClientNotFound>();
   public clientNotFound$ = this.clientNotFound.asObservable();
+
+  private clearInvoiceForm = new Subject<void>();
+  public clearInvoiceForm$ = this.clearInvoiceForm.asObservable();
 
   constructor() {}
 
@@ -23,5 +27,9 @@ export class SharedService {
   }
   public hideDialog(): void {
     this.dialogCreateClient.next(false);
+  }
+
+  public setClearInvoiceFrom(): void {
+    this.clearInvoiceForm.next();
   }
 }

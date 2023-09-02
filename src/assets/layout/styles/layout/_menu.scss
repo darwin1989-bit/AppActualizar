@@ -1,6 +1,6 @@
 .layout-sidebar {
   position: fixed;
-  width: 300px;
+  width: 250px;
   height: 100%;
   z-index: 999;
   overflow-y: auto;
@@ -64,7 +64,7 @@
       color: var(--text-color);
       cursor: pointer;
       padding: 0.75rem 1rem;
-      border-radius: $borderRadius;
+      // border-radius: $borderRadius;
       transition: background-color $transitionDuration, box-shadow $transitionDuration;
 
       .layout-menuitem-icon {
