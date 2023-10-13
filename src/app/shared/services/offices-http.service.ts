@@ -14,6 +14,9 @@ export class OfficesHttpService {
   private offices = new BehaviorSubject<OfficesDto | null>(null);
   private validFindOffice = new Subject<boolean>();
 
+  private moneyLocale = new Subject<{ money: string; locale: string }>();
+  public moneyLocale$ = this.moneyLocale.asObservable();
+
   public company$ = this.company.asObservable();
   public offices$ = this.offices.asObservable();
   public validFindOffice$ = this.validFindOffice.asObservable();
@@ -35,5 +38,8 @@ export class OfficesHttpService {
   }
   public setValidFindOffice(): void {
     this.validFindOffice.next(true);
+  }
+  public setMoney(money: string): void {
+    this.moneyLocale.next({ money: money, locale: money == "CRC" ? "es-CR" : "es-EC" });
   }
 }

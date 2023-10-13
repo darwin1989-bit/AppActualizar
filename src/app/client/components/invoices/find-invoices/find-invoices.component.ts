@@ -14,7 +14,7 @@ import { OfficesDto } from "src/app/api/api_actualizar/models";
   styleUrls: ["./find-invoices.component.scss"],
 })
 export class FindInvoicesComponent implements OnInit, OnDestroy {
-  public selectedInvoceType!: ITypeInvoice;
+  public selectedInvoiceType!: ITypeInvoice;
 
   public dropdownInvoiceType = TypeInvoiceObj;
 
@@ -27,7 +27,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
   private office!: OfficesDto;
 
   public invoicesForm = this.fb.group({
-    invoiceType: [this.selectedInvoceType, Validators.required],
+    invoiceType: [this.selectedInvoiceType, Validators.required],
     invoiceNumber: ["", Validators.required],
   });
 
@@ -82,7 +82,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
     if (this.invoicesForm.valid) {
       if (this.invoiceTypeControl.value.type == "NF") this.invoiceService.getInvoiceNumber(this.office.ip_Red!, this.invoiceNumberControl.value);
       if (this.invoiceTypeControl.value.type == "NC") this.invoiceService.getInvoiceIdentification(this.office.ip_Red!, this.invoiceNumberControl.value);
-      if (this.invoiceTypeControl.value.type == "FT") this.invoiceService.getAllInvoices(this.office.ip_Red!);
+      if (this.invoiceTypeControl.value.type == "FT") this.invoiceService.getAllInvoices(this.office.ip_Red!, this.office.oficina!);
     }
   }
 

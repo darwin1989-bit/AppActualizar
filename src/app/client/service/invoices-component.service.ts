@@ -103,7 +103,7 @@ export class InvoicesComponentService {
       )
       .subscribe();
   }
-  public getAllInvoices(ip: string): void {
+  public getAllInvoices(ip: string, office: string): void {
     let moneda!: string;
     this.invoiceService
       .apiInvoicesAllInvoicesGet$Json({ ip })
@@ -123,7 +123,7 @@ export class InvoicesComponentService {
         }),
         finalize(() => {
           this.invoiceService
-            .apiInvoicesAllInvoicesMainGet$Json({ ip })
+            .apiInvoicesAllInvoicesMainGet$Json({ ip, office })
             .pipe(
               tap((invoices) => {
                 const invoiceMap = invoices.map((res) => {

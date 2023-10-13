@@ -9,4 +9,6 @@ export { InvoiceDetDto } from './models/invoice-det-dto';
 export { InvoiceDetailsDto } from './models/invoice-details-dto';
 export { MethodPaymentDto } from './models/method-payment-dto';
 export { OfficesDto } from './models/offices-dto';
+export { PaymentsDto } from './models/payments-dto';
+export { ResponseDto } from './models/response-dto';
 export { RetentionParams } from './models/retention-params';

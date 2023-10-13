@@ -5,9 +5,10 @@ import { ICompany } from "../../models/offices.interface";
 import { CompanyObj, DataCompany } from "../../models/objects";
 import { environment } from "src/environments/environment";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
 import { SharedService } from "../../services/shared.service";
+import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
 
 @Component({
   selector: "app-find-offices",
@@ -34,7 +35,13 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     return this.officesForm.get("officeInput") as FormControl;
   }
 
-  constructor(public officesHttpService: OfficesHttpService, private fb: FormBuilder, private clienteService: ClientComponentService, private sharedService: SharedService) {}
+  constructor(
+    public officesHttpService: OfficesHttpService,
+    private fb: FormBuilder,
+    private clienteService: ClientComponentService,
+    private sharedService: SharedService,
+    private paymentsService: PaymentsComponentService
+  ) {}
 
   ngOnDestroy(): void {
     this.officesHttpService.setOffice(null);
@@ -60,6 +67,13 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     const companyControl = this.officesForm.controls.companyInput;
     this.officesHttpService.setCompany(companyControl.value!);
     if (companyControl.value) {
+      var typeCompany = this.companyControl.value;
+      if (typeCompany.code.includes("cr")) {
+        this.officesHttpService.setMoney("CRC");
+      } else {
+        this.officesHttpService.setMoney("USD");
+      }
+
       this.officesHttpService.getOffices(companyControl.value?.code!).subscribe((offices) => {
         this.offices = offices.map((office) => {
           return {
@@ -75,6 +89,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.officesHttpService.setOffice(this.officeControl.value);
     this.clienteService.clearClientFound();
     this.sharedService.setClearInvoiceFrom();
+    this.paymentsService.clearPayments();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -82,6 +97,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.officesHttpService.setOffice(null);
     this.clienteService.clearClientFound();
     this.sharedService.setClearInvoiceFrom();
+    this.paymentsService.clearPayments();
   }
 
   public toggle() {

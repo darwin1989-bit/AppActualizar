@@ -565,6 +565,7 @@ export class InvoicesService extends BaseService {
    */
   apiInvoicesAllInvoicesMainGet$Plain$Response(params?: {
     ip?: string;
+    office?: string;
   },
   context?: HttpContext
 
@@ -573,6 +574,7 @@ export class InvoicesService extends BaseService {
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
+      rb.query('office', params.office, {});
     }
 
     return this.http.request(rb.build({
@@ -595,6 +597,7 @@ export class InvoicesService extends BaseService {
    */
   apiInvoicesAllInvoicesMainGet$Plain(params?: {
     ip?: string;
+    office?: string;
   },
   context?: HttpContext
 
@@ -613,6 +616,7 @@ export class InvoicesService extends BaseService {
    */
   apiInvoicesAllInvoicesMainGet$Json$Response(params?: {
     ip?: string;
+    office?: string;
   },
   context?: HttpContext
 
@@ -621,6 +625,7 @@ export class InvoicesService extends BaseService {
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
+      rb.query('office', params.office, {});
     }
 
     return this.http.request(rb.build({
@@ -643,6 +648,7 @@ export class InvoicesService extends BaseService {
    */
   apiInvoicesAllInvoicesMainGet$Json(params?: {
     ip?: string;
+    office?: string;
   },
   context?: HttpContext
 

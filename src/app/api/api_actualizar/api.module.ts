@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { ClientService } from './services/client.service';
 import { InvoicesService } from './services/invoices.service';
 import { OfficesService } from './services/offices.service';
+import { PaymentsService } from './services/payments.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,6 +20,7 @@ import { OfficesService } from './services/offices.service';
     ClientService,
     InvoicesService,
     OfficesService,
+    PaymentsService,
     ApiConfiguration
   ],
 })
