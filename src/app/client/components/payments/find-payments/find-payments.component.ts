@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormControl } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
@@ -13,7 +13,7 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
   templateUrl: "./find-payments.component.html",
   styleUrls: ["./find-payments.component.scss"],
 })
-export class FindPaymentsComponent implements OnInit {
+export class FindPaymentsComponent implements OnInit, OnDestroy {
   public selectedType!: ITypePayment;
 
   public labelName: string = "Selecciona el tipo";
@@ -40,6 +40,12 @@ export class FindPaymentsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, private paymentService: PaymentsComponentService) {}
 
+  ngOnDestroy(): void {
+    if (this.subcription) {
+      this.subcription.unsubscribe();
+    }
+  }
+
   ngOnInit(): void {
     this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.numberIdControl.disable();
@@ -63,7 +69,7 @@ export class FindPaymentsComponent implements OnInit {
     this.officeService.setValidFindOffice();
     this.paymentService.clearPayments();
     this.paymentForm.markAllAsTouched();
-    if (this.paymentForm.valid) {
+    if (Boolean(this.office) && this.paymentForm.valid) {
       let typeForm = this.paymentTypeControl.value.type;
 
       if (typeForm.includes("TP")) this.paymentService.getPaymentsAll(this.office.ip_Red!);

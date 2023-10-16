@@ -14,9 +14,12 @@ import { FindInvoicesComponent } from "./components/invoices/find-invoices/find-
 import { InvoicesComponent } from "./components/invoices/invoices/invoices.component";
 import { InvoicesStoreComponent } from "./components/invoices/invoices-store/invoices-store.component";
 import { InvoiceDetailsComponent } from "./components/invoices/invoice-details/invoice-details.component";
-import { FindPaymentsComponent } from './components/payments/find-payments/find-payments.component';
-import { PagePaymentsComponent } from './pages/page-payments/page-payments.component';
-import { PaymentsComponent } from './components/payments/payments/payments.component';
+import { FindPaymentsComponent } from "./components/payments/find-payments/find-payments.component";
+import { PagePaymentsComponent } from "./pages/page-payments/page-payments.component";
+import { PaymentsComponent } from "./components/payments/payments/payments.component";
+import { PageCreditServiceComponent } from "./pages/page-credit-service/page-credit-service.component";
+import { FindClientCreditComponent } from "./components/service-credit/find-client-credit/find-client-credit.component";
+import { ClientCreditComponent } from "./components/service-credit/client-credit/client-credit.component";
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { PaymentsComponent } from './components/payments/payments/payments.compo
     FindPaymentsComponent,
     PagePaymentsComponent,
     PaymentsComponent,
+    PageCreditServiceComponent,
+    FindClientCreditComponent,
+    ClientCreditComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, SharedModule],
   providers: [ClientComponentService, InvoicesComponentService],

@@ -1,0 +1,18 @@
+<h4>Buscar cliente</h4>
+<hr />
+<form [formGroup]="clientCreditForm">
+  <div class="field">
+    <label htmlFor="documentNumber" [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">Número de identificación</label>
+    <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" pKeyFilter="num" class="uppercase" />
+    <div *ngIf="numberIdControl.invalid && numberIdControl.dirty">
+      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('required')">Este campo es requerido.</span>
+      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('minlength') || numberIdControl.hasError('maxlength')"> El número de identificación es incorrecto.</span>
+    </div>
+  </div>
+  <div class="mt-4 mb-4">
+    <p-divider></p-divider>
+  </div>
+  <div class="field">
+    <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar cliente"></button>
+  </div>
+</form>

@@ -5,6 +5,7 @@ import { OfficesService } from "src/app/api/api_actualizar/services";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
 import { DataCompany } from "../models/objects";
 import { ICompany } from "../models/offices.interface";
+import { deleteList } from "../models/types";
 
 @Injectable({
   providedIn: "root",
@@ -16,6 +17,9 @@ export class OfficesHttpService {
 
   private moneyLocale = new Subject<{ money: string; locale: string }>();
   public moneyLocale$ = this.moneyLocale.asObservable();
+
+  private deleteList = new Subject<string>();
+  public deleteList$ = this.deleteList.asObservable();
 
   public company$ = this.company.asObservable();
   public offices$ = this.offices.asObservable();
@@ -29,6 +33,9 @@ export class OfficesHttpService {
         return this.calledHttpService.errorHandler(error);
       })
     );
+  }
+  public setDeleteList(company: deleteList): void {
+    this.deleteList.next(company);
   }
   public setOffice(office: OfficesDto | null): void {
     this.offices.next(office);

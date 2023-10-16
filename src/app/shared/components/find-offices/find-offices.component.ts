@@ -9,6 +9,7 @@ import { Subject, Subscription } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
 import { SharedService } from "../../services/shared.service";
 import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
+import { ClientCreditComponentService } from "src/app/client/service/client-credit-component.service";
 
 @Component({
   selector: "app-find-offices",
@@ -40,7 +41,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private clienteService: ClientComponentService,
     private sharedService: SharedService,
-    private paymentsService: PaymentsComponentService
+    private paymentsService: PaymentsComponentService,
+    private clientCreditService: ClientCreditComponentService
   ) {}
 
   ngOnDestroy(): void {
@@ -55,10 +57,22 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
     this.company = structuredClone(CompanyObj);
 
+    //note delete in production
     if (!environment.production) {
       this.company.splice(0, 2);
       this.company.push({ name: "PRUEBAS", code: "prb" });
     }
+
+    // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
+    //   if (!environment.production) {
+    //     this.company.splice(0, 2);
+    //     this.company.push({ name: "PRUEBAS", code: "prb" });
+    //   } else {
+    //     if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
+    //     if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
+    //     if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
+    //   }
+    // });
   }
 
   public changeCompany(): void {
@@ -90,6 +104,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.clienteService.clearClientFound();
     this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
+    this.clientCreditService.clearCreditClient();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -98,6 +113,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.clienteService.clearClientFound();
     this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
+    this.clientCreditService.clearCreditClient();
   }
 
   public toggle() {

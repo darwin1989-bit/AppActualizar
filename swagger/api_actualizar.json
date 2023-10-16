@@ -929,6 +929,56 @@
           }
         }
       }
+    },
+    "/api/ServiceCredit": {
+      "get": {
+        "tags": ["ServiceCredit"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codSap",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1050,6 +1100,124 @@
             "nullable": true
           },
           "numFono2": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientCreditDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "codRespuesta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dispon": {
+            "type": "string",
+            "nullable": true
+          },
+          "preCan": {
+            "type": "string",
+            "nullable": true
+          },
+          "apagar": {
+            "type": "string",
+            "nullable": true
+          },
+          "vencido": {
+            "type": "string",
+            "nullable": true
+          },
+          "estCliCod": {
+            "type": "string",
+            "nullable": true
+          },
+          "estEspCod": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuotaMedia": {
+            "type": "string",
+            "nullable": true
+          },
+          "conv": {
+            "type": "string",
+            "nullable": true
+          },
+          "sobregiro": {
+            "type": "string",
+            "nullable": true
+          },
+          "diasMora": {
+            "type": "string",
+            "nullable": true
+          },
+          "codDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "descDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "porcDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "diaPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDeuda": {
+            "type": "string",
+            "nullable": true
+          },
+          "pagoMinimo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaAprobacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombres": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteCompra": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteRecaudo": {
+            "type": "string",
+            "nullable": true
+          },
+          "mensaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoValidacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
             "type": "string",
             "nullable": true
           }
@@ -1446,6 +1614,19 @@
           },
           "horaProceso": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResClientCreditDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientCreditDto"
+            },
             "nullable": true
           }
         },

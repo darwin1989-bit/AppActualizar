@@ -79,7 +79,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
     this.invoicesForm.markAllAsTouched();
     this.invoiceNumberControl.markAsDirty();
     this.officeService.setValidFindOffice();
-    if (this.invoicesForm.valid) {
+    if (Boolean(this.office) && this.invoicesForm.valid) {
       if (this.invoiceTypeControl.value.type == "NF") this.invoiceService.getInvoiceNumber(this.office.ip_Red!, this.invoiceNumberControl.value);
       if (this.invoiceTypeControl.value.type == "NC") this.invoiceService.getInvoiceIdentification(this.office.ip_Red!, this.invoiceNumberControl.value);
       if (this.invoiceTypeControl.value.type == "FT") this.invoiceService.getAllInvoices(this.office.ip_Red!, this.office.oficina!);

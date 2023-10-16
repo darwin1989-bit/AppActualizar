@@ -1,0 +1,57 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card border-1 border-400">
+      <div class="flex align-items-center justify-content-between">
+        <h4 class="my-0">Resultados servicio crédito</h4>
+      </div>
+      <hr />
+      <p-table [value]="(clientCreditComponentService.clientCredit$ | async)!" [tableStyle]="{ width: '115rem' }" styleClass="p-datatable-sm p-datatable-gridlines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nombres</th>
+            <th>Estado</th>
+            <th>Valor disponible</th>
+            <th>Valor precan.</th>
+            <th>Valor pagar</th>
+            <th>Valor vencido</th>
+            <th>Cuota media</th>
+            <th>Sobregiro</th>
+            <th>Días mora</th>
+            <th>Descuento</th>
+            <th>Porcentaje Des.</th>
+            <th>Fecha pago</th>
+            <th>Día pago</th>
+            <th>Valor deuda</th>
+            <th>Pago mínimo</th>
+            <th>Obsevación</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-clientCredit>
+          <tr>
+            <td>{{ clientCredit.nombres }}</td>
+            <td>{{ clientCredit.estado }}</td>
+            <td>{{ clientCredit.dispon | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.preCan | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.apagar | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.vencido | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.cuotaMedia | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.sobregiro | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.diasMora }}</td>
+            <td>{{ clientCredit.descDescuento == "" ? "N/A" : clientCredit.descDescuento }}</td>
+            <td>{{ clientCredit.porcDescuento | number }}%</td>
+            <td>{{ clientCredit.fechaPago }}</td>
+            <td>{{ clientCredit.diaPago }}</td>
+            <td>{{ clientCredit.totalDeuda | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.pagoMinimo | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.mensaje }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="15" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
