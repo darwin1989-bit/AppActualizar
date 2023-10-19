@@ -20,6 +20,10 @@ import { PaymentsComponent } from "./components/payments/payments/payments.compo
 import { PageCreditServiceComponent } from "./pages/page-credit-service/page-credit-service.component";
 import { FindClientCreditComponent } from "./components/service-credit/find-client-credit/find-client-credit.component";
 import { ClientCreditComponent } from "./components/service-credit/client-credit/client-credit.component";
+import { PageTransactionsComponent } from "./pages/page-transactions/page-transactions.component";
+import FindTransactionsComponent from "./components/transactions/find-transactions/find-transactions.component";
+import { TransactionsComponent } from "./components/transactions/transactions/transactions.component";
+import { TransactionsOfflineComponent } from './components/transactions/transactions-offline/transactions-offline.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,10 @@ import { ClientCreditComponent } from "./components/service-credit/client-credit
     PageCreditServiceComponent,
     FindClientCreditComponent,
     ClientCreditComponent,
+    PageTransactionsComponent,
+    FindTransactionsComponent,
+    TransactionsComponent,
+    TransactionsOfflineComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, SharedModule],
   providers: [ClientComponentService, InvoicesComponentService],

@@ -10,7 +10,7 @@ export const itemsObj: any[] = [
       { label: "Facturas", icon: "pi pi-fw pi-file", routerLink: ["/app/client/invoices"], preventExact: false },
       { label: "Pagos", icon: "pi pi-fw pi-money-bill", routerLink: ["/app/client/payments"] },
       { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/app/client/credit-service"] },
-      { label: "Transacciones", icon: "pi pi-fw pi-mobile", routerLink: ["/app/client/transactions"] },
+      { label: "Transacciones", icon: "pi pi-arrow-right-arrow-left", routerLink: ["/app/client/transactions"] },
     ],
   },
   {
@@ -74,7 +74,7 @@ export const itemsObj: any[] = [
       },
 
       {
-        label: "Espacio discos",
+        label: "Tamaño bases de datos",
         icon: "pi pi-fw pi-database",
         routerLink: ["/pages/crud"],
       },

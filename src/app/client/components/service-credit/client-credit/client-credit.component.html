@@ -5,7 +5,7 @@
         <h4 class="my-0">Resultados servicio crédito</h4>
       </div>
       <hr />
-      <p-table [value]="(clientCreditComponentService.clientCredit$ | async)!" [tableStyle]="{ width: '115rem' }" styleClass="p-datatable-sm p-datatable-gridlines">
+      <p-table [value]="(clientCreditComponentService.clientCredit$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines" [breakpoint]="'960px'" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
             <th>Nombres</th>
@@ -48,7 +48,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="15" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="16" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

@@ -10,6 +10,7 @@ import { ClientComponentService } from "src/app/client/service/client-component.
 import { SharedService } from "../../services/shared.service";
 import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
 import { ClientCreditComponentService } from "src/app/client/service/client-credit-component.service";
+import { TransactionsComponentService } from "src/app/client/service/transactions-component.service";
 
 @Component({
   selector: "app-find-offices",
@@ -42,7 +43,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private clienteService: ClientComponentService,
     private sharedService: SharedService,
     private paymentsService: PaymentsComponentService,
-    private clientCreditService: ClientCreditComponentService
+    private clientCreditService: ClientCreditComponentService,
+    private transactionsService: TransactionsComponentService
   ) {}
 
   ngOnDestroy(): void {
@@ -58,10 +60,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.company = structuredClone(CompanyObj);
 
     //note delete in production
-    if (!environment.production) {
-      this.company.splice(0, 2);
-      this.company.push({ name: "PRUEBAS", code: "prb" });
-    }
+    // if (!environment.production) {
+    //   this.company.splice(0, 2);
+    //   this.company.push({ name: "PRUEBAS", code: "prb" });
+    // }
 
     // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
     //   if (!environment.production) {
@@ -105,6 +107,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
+    this.transactionsService.clearTransactions();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -114,6 +117,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
+    this.transactionsService.clearTransactions();
   }
 
   public toggle() {

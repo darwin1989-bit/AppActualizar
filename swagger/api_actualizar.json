@@ -979,6 +979,149 @@
           }
         }
       }
+    },
+    "/api/Transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transactions/offline_payments": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberDoc",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transactions/offline_purchase": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberDoc",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1569,6 +1712,102 @@
         },
         "additionalProperties": false
       },
+      "OfflinePaymentDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "caja": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "recaudo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "string",
+            "nullable": true
+          },
+          "numDoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "numAut": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfflinePurchaseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "caja": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "string",
+            "nullable": true
+          },
+          "numDoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "numAut": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PaymentsDTO": {
         "type": "object",
         "properties": {
@@ -1632,6 +1871,37 @@
         },
         "additionalProperties": false
       },
+      "ResOfflinePaymentDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OfflinePaymentDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResOfflinePurchaseDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OfflinePurchaseDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResTransactionsDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseDTO": {
         "type": "object",
         "properties": {
@@ -1671,6 +1941,65 @@
           "cda_Contabilida_Si": {
             "type": "boolean",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionsDTO": {
+        "type": "object",
+        "properties": {
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "idMovimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "agencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "valorEfectivo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "valorCHQ": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tipoTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenciaTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaProceso": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "offlinePayments": {
+            "$ref": "#/components/schemas/OfflinePaymentDTO"
+          },
+          "offlinePurchases": {
+            "$ref": "#/components/schemas/OfflinePurchaseDTO"
           }
         },
         "additionalProperties": false

@@ -9,6 +9,7 @@ import { InvoicesService } from './services/invoices.service';
 import { OfficesService } from './services/offices.service';
 import { PaymentsService } from './services/payments.service';
 import { ServiceCreditService } from './services/service-credit.service';
+import { TransactionsService } from './services/transactions.service';
 
 /**
  * Module that provides all services and configuration.
@@ -23,6 +24,7 @@ import { ServiceCreditService } from './services/service-credit.service';
     OfficesService,
     PaymentsService,
     ServiceCreditService,
+    TransactionsService,
     ApiConfiguration
   ],
 })
