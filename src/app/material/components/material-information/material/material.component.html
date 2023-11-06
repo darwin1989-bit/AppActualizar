@@ -1,0 +1,66 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card border-1 border-400">
+      <div class="flex align-items-center justify-content-between">
+        <h4 class="my-0">Resultados materiales</h4>
+      </div>
+      <hr />
+      <p-table
+        [value]="(materialService.materials$ | async)!"
+        [breakpoint]="'960px'"
+        [tableStyle]="{ 'min-width': '80rem' }"
+        [alwaysShowPaginator]="false"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [paginator]="true"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        rowGroupMode="rowspan"
+        groupRowsBy="codigo"
+        [groupRowsByOrder]="0"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th style="width: 5%">Rest. desc.</th>
+            <th>Precio</th>
+            <th>Lista precio</th>
+            <th>Estado</th>
+            <th>Marca</th>
+            <th>Código Barra</th>
+            <th>Principal</th>
+            <th>Orden</th>
+            <th style="width: 2%">Estado cod. barra</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-materials let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.codigo }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.descripcion }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.restringidoDesc }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.sucursal }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.estado }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.marca }}</td>
+            <td [class.font-italic]="!materials.codBarra">{{ materials.codBarra ? materials.codBarra : "NULL" }}</td>
+            <td [class.font-italic]="!materials.codBarra">{{ materials.esPrincipal ? materials.esPrincipal : "NULL" }}</td>
+            <td [class.font-italic]="!materials.codBarra">{{ materials.orden ? materials.orden : "NULL" }}</td>
+            <td [class.font-italic]="!materials.codBarra">{{ materials.estadoCodBarra ? materials.estadoCodBarra : "NULL" }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info mr-2" pTooltip="Información" tooltipPosition="bottom"></button>
+              <button pButton pRipple icon="pi pi-tag" class="p-button-secondary" pTooltip="Promoción" tooltipPosition="bottom"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

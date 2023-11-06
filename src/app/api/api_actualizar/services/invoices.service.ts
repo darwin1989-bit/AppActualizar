@@ -9,8 +9,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { InvoiceDto } from '../models/invoice-dto';
 import { InvoiceDetailsDto } from '../models/invoice-details-dto';
+import { ResponseInvoiceDto } from '../models/response-invoice-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberGetPath, 'get');
     if (params) {
@@ -55,7 +55,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -72,10 +72,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesNumberGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -91,7 +91,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberGetPath, 'get');
     if (params) {
@@ -106,7 +106,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -123,10 +123,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesNumberGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -147,7 +147,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationGetPath, 'get');
     if (params) {
@@ -162,7 +162,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -179,10 +179,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesIdentificationGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -198,7 +198,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationGetPath, 'get');
     if (params) {
@@ -213,7 +213,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -230,10 +230,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesIdentificationGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -253,7 +253,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesGetPath, 'get');
     if (params) {
@@ -267,7 +267,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -283,10 +283,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesAllInvoicesGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -301,7 +301,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesGetPath, 'get');
     if (params) {
@@ -315,7 +315,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -331,10 +331,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesAllInvoicesGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -355,7 +355,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberMainGetPath, 'get');
     if (params) {
@@ -370,7 +370,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -387,10 +387,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesNumberMainGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -406,7 +406,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberMainGetPath, 'get');
     if (params) {
@@ -421,7 +421,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -438,10 +438,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesNumberMainGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -462,7 +462,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationMainGetPath, 'get');
     if (params) {
@@ -477,7 +477,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -494,10 +494,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesIdentificationMainGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -513,7 +513,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationMainGetPath, 'get');
     if (params) {
@@ -528,7 +528,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -545,10 +545,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesIdentificationMainGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -569,7 +569,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
     if (params) {
@@ -584,7 +584,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -601,10 +601,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesAllInvoicesMainGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -620,7 +620,7 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<InvoiceDto>>> {
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
     if (params) {
@@ -635,7 +635,7 @@ export class InvoicesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<InvoiceDto>>;
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
       })
     );
   }
@@ -652,10 +652,10 @@ export class InvoicesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<InvoiceDto>> {
+): Observable<ResponseInvoiceDto> {
 
     return this.apiInvoicesAllInvoicesMainGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<InvoiceDto>>) => r.body as Array<InvoiceDto>)
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
@@ -870,6 +870,113 @@ export class InvoicesService extends BaseService {
 
     return this.apiInvoicesMainDetailsGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<InvoiceDetailsDto>) => r.body as InvoiceDetailsDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiInvoicesNotecreditapplyGet
+   */
+  static readonly ApiInvoicesNotecreditapplyGetPath = '/api/Invoices/notecreditapply';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesNotecreditapplyGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesNotecreditapplyGet$Plain$Response(params?: {
+    ip?: string;
+    numberInvoice?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNotecreditapplyGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('numberInvoice', params.numberInvoice, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesNotecreditapplyGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesNotecreditapplyGet$Plain(params?: {
+    ip?: string;
+    numberInvoice?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesNotecreditapplyGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesNotecreditapplyGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesNotecreditapplyGet$Json$Response(params?: {
+    ip?: string;
+    numberInvoice?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNotecreditapplyGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('numberInvoice', params.numberInvoice, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesNotecreditapplyGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesNotecreditapplyGet$Json(params?: {
+    ip?: string;
+    numberInvoice?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesNotecreditapplyGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 

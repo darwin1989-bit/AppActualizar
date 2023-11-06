@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
-import { OfflinePaymentDto, OfflinePurchaseDto, PaymentsDto, TransactionsDto } from "src/app/api/api_actualizar/models";
+import { OfflinePaymentDto, TransactionsDto } from "src/app/api/api_actualizar/models";
 import { TransactionsService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 

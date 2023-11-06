@@ -52,7 +52,7 @@ export class AppLayoutComponent implements OnDestroy {
 
     if (themeSesionStorage) this.themeService.switchTheme(themeSesionStorage);
 
-    document.documentElement.style.fontSize = 13 + "px";
+    document.documentElement.style.fontSize = 12 + "px";
 
     this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
       if (!this.menuOutsideClickListener) {

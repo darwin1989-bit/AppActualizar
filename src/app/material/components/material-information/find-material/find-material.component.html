@@ -1,0 +1,39 @@
+<h4>Buscar material</h4>
+<hr />
+<form [formGroup]="materialForm">
+  <div class="field">
+    <label [class.text-red-500]="!materialTypeControl.dirty && materialTypeControl.touched">Tipo de búsqueda</label>
+    <p-dropdown
+      (onChange)="changeDropDown()"
+      [options]="dropdownMaterial"
+      optionLabel="name"
+      placeholder="Selecciona el tipo"
+      formControlName="materialType"
+      [class.ng-dirty]="materialTypeControl.touched"
+    ></p-dropdown>
+    <div *ngIf="materialTypeControl.touched">
+      <span class="text-red-500 text-sm" *ngIf="materialTypeControl.hasError('required')">Este campo es requerido.</span>
+    </div>
+  </div>
+  <div class="field">
+    <label htmlFor="documentNumber" [class.text-red-500]="materialCodeControl.invalid && materialCodeControl.dirty">{{ labelName }}</label>
+    <input (keydown)="codeMaterialInput($event)" pInputText formControlName="codeMaterial" autocomplete="off" pKeyFilter="int" />
+    <div *ngIf="materialCodeControl.invalid && materialCodeControl.dirty">
+      <span class="text-red-500 text-sm" *ngIf="materialCodeControl.hasError('required')">Este campo es requerido.</span>
+      <span class="text-red-500 text-sm" *ngIf="materialCodeControl.errors?.['minlength']"> El código ingresado es incorrecto</span>
+      <span class="text-red-500 text-sm" *ngIf="materialCodeControl.errors?.['maxlength']"> El código ingresado es incorrecto</span>
+      <span class="text-red-500 text-sm" *ngIf="!(materialCodeControl.errors?.['minlength'] || materialCodeControl.errors?.['maxlength']) && materialCodeControl.errors?.['barcode']">
+        El código de barras es incorrecto
+      </span>
+      <span class="text-red-500 text-sm" *ngIf="!(materialCodeControl.errors?.['minlength'] || materialCodeControl.errors?.['maxlength']) && materialCodeControl.errors?.['codeMaterial']">
+        El código del material es incorrecto.
+      </span>
+    </div>
+  </div>
+  <div class="mt-4 mb-4">
+    <p-divider></p-divider>
+  </div>
+  <div class="field">
+    <button (click)="findMaterial()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar material"></button>
+  </div>
+</form>

@@ -13,12 +13,12 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '120rem' }"
         [alwaysShowPaginator]="false"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pFrozenColumn>Serie factura</th>
+            <th>Serie factura</th>
             <th>Oficina</th>
             <th>Tienda</th>
             <th>Tipo Doc.</th>
@@ -35,7 +35,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
           <tr>
-            <td pFrozenColumn>{{ invoice.serie_Factura }}</td>
+            <td>{{ invoice.serie_Factura }}</td>
             <td>{{ invoice.oficina }}</td>
             <td>{{ invoice.nombre }}</td>
             <td>{{ invoice.tipo_Documento }}</td>
@@ -50,16 +50,7 @@
             <td>{{ invoice.descuento | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
             <td>{{ invoice.totalfactura | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
             <td>
-              <button
-                pTooltip="Mas información"
-                tooltipPosition="bottom"
-                type="button"
-                pButton
-                pRipple
-                icon="pi pi-info-circle"
-                class="p-button-sm p-button-info"
-                (click)="selectInvoice(invoice)"
-              ></button>
+              <button pTooltip="Detalle" tooltipPosition="bottom" type="button" pButton pRipple label="Detalle" class="p-button-sm p-button-info" (click)="selectInvoice(invoice)"></button>
             </td>
           </tr>
         </ng-template>

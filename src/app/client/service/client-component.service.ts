@@ -7,7 +7,9 @@ import { ClientCreateParams, ClientParamsUpdate, GetCitiesDto, GetClientDto, Get
 import { ClientService } from "src/app/api/api_actualizar/services";
 import { SharedService } from "src/app/shared/services/shared.service";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class ClientComponentService {
   private clientFound = new BehaviorSubject<GetClientDto[]>([ClientObj]);
   public clientFound$ = this.clientFound.asObservable();

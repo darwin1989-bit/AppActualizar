@@ -23,7 +23,8 @@ import { ClientCreditComponent } from "./components/service-credit/client-credit
 import { PageTransactionsComponent } from "./pages/page-transactions/page-transactions.component";
 import FindTransactionsComponent from "./components/transactions/find-transactions/find-transactions.component";
 import { TransactionsComponent } from "./components/transactions/transactions/transactions.component";
-import { TransactionsOfflineComponent } from './components/transactions/transactions-offline/transactions-offline.component';
+import { TransactionsOfflineComponent } from "./components/transactions/transactions-offline/transactions-offline.component";
+import { CreditNoteComponent } from './components/invoices/credit-note/credit-note.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +47,8 @@ import { TransactionsOfflineComponent } from './components/transactions/transact
     FindTransactionsComponent,
     TransactionsComponent,
     TransactionsOfflineComponent,
+    CreditNoteComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, SharedModule],
-  providers: [ClientComponentService, InvoicesComponentService],
 })
 export class ClientModule {}

@@ -29,7 +29,7 @@ export class LayoutService {
     menuMode: "static",
     colorScheme: "light",
     theme: "bootstrap4-light-blue",
-    scale: 13,
+    scale: 12,
   };
 
   state: LayoutState = {

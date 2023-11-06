@@ -440,26 +440,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -492,26 +483,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -537,26 +519,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -589,26 +562,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -641,26 +605,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -693,26 +648,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/InvoiceDTO"
-                  }
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
                 }
               }
             }
@@ -799,6 +745,307 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/notecreditapply": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/generic": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/variant": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialVariant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/barcode": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/generic": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/variant": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialVariant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/barcode": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
                 }
               }
             }
@@ -1410,6 +1657,44 @@
         },
         "additionalProperties": false
       },
+      "CreditNoteDTO": {
+        "type": "object",
+        "properties": {
+          "serieFactura": {
+            "type": "string",
+            "nullable": true
+          },
+          "serieFacturaOriginal": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GetCitiesDTO": {
         "type": "object",
         "properties": {
@@ -1614,6 +1899,17 @@
           "estacionId": {
             "type": "string",
             "nullable": true
+          },
+          "notaCredito": {
+            "type": "string",
+            "nullable": true
+          },
+          "data_CreditNote": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditNoteDTO"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1668,10 +1964,84 @@
         },
         "additionalProperties": false
       },
+      "MaterialsDTO": {
+        "type": "object",
+        "properties": {
+          "restringidoDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "generico": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuarioIngreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "iva": {
+            "type": "string",
+            "nullable": true
+          },
+          "moneda": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "sucursal": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio": {
+            "type": "string",
+            "nullable": true
+          },
+          "codBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "esPrincipal": {
+            "type": "string",
+            "nullable": true
+          },
+          "estadoCodBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "orden": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MethodPaymentDTO": {
         "type": "object",
         "properties": {
           "serie_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreTransporte": {
             "type": "string",
             "nullable": true
           },
@@ -1909,6 +2279,32 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PaymentsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseInvoiceDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseMaterialDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialsDTO"
             },
             "nullable": true
           }

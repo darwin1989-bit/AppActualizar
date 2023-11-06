@@ -2,18 +2,18 @@
 <p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" styleClass="p-datatable-sm p-datatable-gridlines">
   <ng-template pTemplate="header">
     <tr>
-      <th>Serie factura</th>
       <th>Forma pago</th>
       <th>Descripción</th>
       <th>Valor + iva</th>
+      <th>Observación</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-invoice>
     <tr>
-      <td>{{ invoice.serie_Factura }}</td>
       <td>{{ invoice.forma_Pago }}</td>
       <td>{{ invoice.descripcion }}</td>
       <td>{{ invoice.valor | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.forma_Pago == "10" ? "Serie nota crédito: " + invoice.nombreTransporte : "Sin observación" }}</td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">

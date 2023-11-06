@@ -15,8 +15,10 @@ export class FindClientCreditComponent implements OnInit, OnDestroy {
 
   private office!: OfficesDto;
 
+  public moneyLocale!: { money: string; locale: string };
+
   public clientCreditForm = this.fb.group({
-    numberId: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    numberId: ["", [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
   });
 
   get numberIdControl(): FormControl {
@@ -33,14 +35,19 @@ export class FindClientCreditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
-    this.officeService.setDeleteList("CR");
+    this.subcription = this.officeService.moneyLocale$.subscribe((res) => {
+      this.moneyLocale = res;
+      this.numberIdControl.markAsUntouched();
+    });
   }
 
   public find(): void {
     this.clientCreditForm.markAllAsTouched();
     this.numberIdControl.markAsDirty();
     this.officeService.setValidFindOffice();
-    if (Boolean(this.office) && this.clientCreditForm.valid) return this.clientCreditService.getClientCredit(this.office.ip_Red!, this.numberIdControl.value, this.office.ofi_Codigo_Interno_Empresa!);
+    if (Boolean(this.office) && this.clientCreditForm.valid) {
+      this.clientCreditService.getClientCredit(this.office.ip_Red!, this.numberIdControl.value, this.office.ofi_Codigo_Interno_Empresa!);
+    }
   }
 
   public clearInvoiceInput(event: KeyboardEvent): void {

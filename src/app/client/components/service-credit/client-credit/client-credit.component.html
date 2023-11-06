@@ -5,10 +5,16 @@
         <h4 class="my-0">Resultados servicio crédito</h4>
       </div>
       <hr />
-      <p-table [value]="(clientCreditComponentService.clientCredit$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines" [breakpoint]="'960px'" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table
+        [value]="(clientCreditComponentService.clientCredit$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [breakpoint]="'960px'"
+        [tableStyle]="{ 'min-width': '100rem' }"
+        scrollHeight="flex"
+      >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nombres</th>
+            <th style="width: 10%">Nombres</th>
             <th>Estado</th>
             <th>Valor disponible</th>
             <th>Valor precan.</th>
@@ -30,19 +36,19 @@
           <tr>
             <td>{{ clientCredit.nombres }}</td>
             <td>{{ clientCredit.estado }}</td>
-            <td>{{ clientCredit.dispon | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.preCan | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.apagar | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.vencido | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.cuotaMedia | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.sobregiro | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.dispon | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.preCan | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.apagar | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.vencido | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.cuotaMedia | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.sobregiro | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ clientCredit.diasMora }}</td>
             <td>{{ clientCredit.descDescuento == "" ? "N/A" : clientCredit.descDescuento }}</td>
             <td>{{ clientCredit.porcDescuento | number }}%</td>
             <td>{{ clientCredit.fechaPago }}</td>
             <td>{{ clientCredit.diaPago }}</td>
-            <td>{{ clientCredit.totalDeuda | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
-            <td>{{ clientCredit.pagoMinimo | currency : "USD" : "symbol" : "" : "es-EC" }}</td>
+            <td>{{ clientCredit.totalDeuda | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ clientCredit.pagoMinimo | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ clientCredit.mensaje }}</td>
           </tr>
         </ng-template>

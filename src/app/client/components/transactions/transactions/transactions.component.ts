@@ -1,11 +1,11 @@
 import { registerLocaleData } from "@angular/common";
 import { Component, LOCALE_ID, OnDestroy, OnInit } from "@angular/core";
 import { TransactionsComponentService } from "src/app/client/service/transactions-component.service";
-import localeEsEC from "@angular/common/locales/es-EC";
-import localeEsCrc from "@angular/common/locales/es-CR";
 import { Subscription } from "rxjs";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { OfficesDto, TransactionsDto } from "src/app/api/api_actualizar/models";
+import localeEsEC from "@angular/common/locales/es-EC";
+import localeEsCrc from "@angular/common/locales/es-CR";
 
 registerLocaleData(localeEsEC);
 registerLocaleData(localeEsCrc);

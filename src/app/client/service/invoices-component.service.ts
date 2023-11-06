@@ -1,14 +1,22 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, finalize, tap } from "rxjs";
-import { InvoiceDetailsDto, InvoiceDto } from "src/app/api/api_actualizar/models";
+import { InvoiceDetailsDto, InvoiceDto, ResponseInvoiceDto } from "src/app/api/api_actualizar/models";
 import { InvoicesService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { InvoiceDetailsObj } from "../models/invoices-objects";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class InvoicesComponentService {
   private invoicesStore = new Subject<InvoiceDto[]>();
   public invoicesStore$ = this.invoicesStore.asObservable();
+
+  private dialogCreditNote = new Subject<boolean>();
+  public dialogCreditNote$ = this.dialogCreditNote.asObservable();
+
+  private invoiceCreditNote = new BehaviorSubject<InvoiceDto>({});
+  public invoiceCreditNote$ = this.invoiceCreditNote.asObservable();
 
   private invoicesMain = new Subject<InvoiceDto[]>();
   public invoicesMain$ = this.invoicesMain.asObservable();
@@ -27,8 +35,8 @@ export class InvoicesComponentService {
       .apiInvoicesNumberGet$Json({ ip, numberInvoice })
       .pipe(
         tap((invoices) => {
-          moneda = invoices[0].moneda!;
-          const invoiceMap = invoices.map((res) => {
+          moneda = invoices.data![0].moneda!;
+          const invoiceMap = invoices.data!.map((res) => {
             return {
               ...res,
               locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
@@ -44,7 +52,7 @@ export class InvoicesComponentService {
             .apiInvoicesNumberMainGet$Json({ ip, numberInvoice })
             .pipe(
               tap((invoices) => {
-                const invoiceMap = invoices.map((res) => {
+                const invoiceMap = invoices.data!.map((res) => {
                   return {
                     ...res,
                     locale: moneda == "CRC" ? "es-CR" : "es-EC",
@@ -68,8 +76,8 @@ export class InvoicesComponentService {
       .apiInvoicesIdentificationGet$Json({ ip, identification })
       .pipe(
         tap((invoices) => {
-          moneda = invoices[0].moneda!;
-          const invoiceMap = invoices.map((res) => {
+          moneda = invoices.data![0].moneda!;
+          const invoiceMap = invoices.data!.map((res) => {
             return {
               ...res,
               locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
@@ -85,7 +93,7 @@ export class InvoicesComponentService {
             .apiInvoicesIdentificationMainGet$Json({ ip, identification })
             .pipe(
               tap((invoices) => {
-                const invoiceMap = invoices.map((res) => {
+                const invoiceMap = invoices.data!.map((res) => {
                   return {
                     ...res,
                     locale: moneda == "CRC" ? "es-CR" : "es-EC",
@@ -109,8 +117,8 @@ export class InvoicesComponentService {
       .apiInvoicesAllInvoicesGet$Json({ ip })
       .pipe(
         tap((invoices) => {
-          moneda = invoices[0].moneda!;
-          const invoiceMap = invoices.map((res) => {
+          moneda = invoices.data![0].moneda!;
+          const invoiceMap = invoices.data!.map((res) => {
             return {
               ...res,
               locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
@@ -126,7 +134,7 @@ export class InvoicesComponentService {
             .apiInvoicesAllInvoicesMainGet$Json({ ip, office })
             .pipe(
               tap((invoices) => {
-                const invoiceMap = invoices.map((res) => {
+                const invoiceMap = invoices.data!.map((res) => {
                   return {
                     ...res,
                     locale: moneda == "CRC" ? "es-CR" : "es-EC",
@@ -168,6 +176,11 @@ export class InvoicesComponentService {
         })
       )
       .subscribe();
+  }
+
+  public invoiceCreditNoteSelect(selectInvoice: InvoiceDto): void {
+    this.dialogCreditNote.next(true);
+    this.invoiceCreditNote.next(selectInvoice);
   }
 
   public clearInvoices(): void {

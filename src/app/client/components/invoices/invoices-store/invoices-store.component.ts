@@ -24,6 +24,8 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
 
   public visible: boolean = false;
 
+  public visibleCredtiNote: boolean = false;
+
   private office!: OfficesDto;
 
   private subcription!: Subscription;
@@ -38,6 +40,7 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subcription = this.invoiceService.dialogCreditNote$.subscribe((res) => (this.visibleCredtiNote = res!));
   }
 
   public selectInvoice(invoice: InvoiceDto) {

@@ -59,8 +59,8 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
       case "NF":
         this.invoiceNumberControl.enable();
         this.invoiceNumberControl.setValidators([Validators.required, Validators.minLength(15), Validators.maxLength(19)]);
-        this.labelName = "Número de factura";
-        this.regDocumentNumber = /[F0-9]+/;
+        this.labelName = "Serie de factura";
+        this.regDocumentNumber = /[0-9]+$/;
         break;
       case "NC":
         this.regDocumentNumber = /^[0-9]+$/;
