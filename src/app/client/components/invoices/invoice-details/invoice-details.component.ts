@@ -4,6 +4,7 @@ import localeEsCrc from "@angular/common/locales/es-CR";
 import localeEsEC from "@angular/common/locales/es-EC";
 import { registerLocaleData } from "@angular/common";
 import { Subscription } from "rxjs";
+import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 
 registerLocaleData(localeEsEC);
 registerLocaleData(localeEsCrc);
@@ -18,13 +19,13 @@ registerLocaleData(localeEsCrc);
   ],
 })
 export class InvoiceDetailsComponent implements OnInit, OnDestroy {
-  public moneyLocale!: { moneda: string; locale: string };
+  public moneyLocale!: { money: string; locale: string };
 
   private subscription!: Subscription;
 
-  constructor(public invoiceService: InvoicesComponentService) {}
+  constructor(public invoiceService: InvoicesComponentService, public officeService: OfficesHttpService) {}
   ngOnInit(): void {
-    this.subscription = this.invoiceService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+    this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
   }
   ngOnDestroy(): void {
     this.invoiceService.clearDetails();

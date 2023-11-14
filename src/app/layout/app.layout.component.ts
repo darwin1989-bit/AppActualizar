@@ -15,8 +15,9 @@ import { SharedService } from "../shared/services/shared.service";
     `
       :host ::ng-deep .p-toast {
         position: fixed;
-        width: auto;
+        width: 100%;
         opacity: 1;
+        top: 0px;
       }
       :host ::ng-deep .p-component {
         font-family: "Quicksand", sans-serif;

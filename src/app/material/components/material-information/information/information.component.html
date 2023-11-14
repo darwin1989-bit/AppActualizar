@@ -1,0 +1,45 @@
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [style]="{ width: '900px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-info-circle" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Detalle del material</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p-table [value]="(materialService.materialsInformation$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Código</th>
+          <th>Descripción</th>
+          <th>Cod. Nivel 1</th>
+          <th>Nivel 1</th>
+          <th>Cod. Nivel 2</th>
+          <th>Nivel 2</th>
+          <th>Cod. Nivel 3</th>
+          <th>Nivel 3</th>
+          <th>Cod. Nivel 4</th>
+          <th>Nivel 4</th>
+          <th>Nivel segmento</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-materialInfo>
+        <tr>
+          <td>{{ materialInfo.codigo }}</td>
+          <td>{{ materialInfo.descripcion }}</td>
+          <td>{{ materialInfo.codN1 }}</td>
+          <td>{{ materialInfo.n1 }}</td>
+          <td>{{ materialInfo.codN2 }}</td>
+          <td>{{ materialInfo.n2 }}</td>
+          <td>{{ materialInfo.codN3 }}</td>
+          <td>{{ materialInfo.n3 }}</td>
+          <td>{{ materialInfo.codN4 }}</td>
+          <td>{{ materialInfo.n4 }}</td>
+          <td>{{ materialInfo.nivelSegmento }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="11" class="font-normal">No existen datos que mostrar.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+</p-dialog>

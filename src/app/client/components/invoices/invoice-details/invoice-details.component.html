@@ -12,8 +12,8 @@
     <tr>
       <td>{{ invoice.forma_Pago }}</td>
       <td>{{ invoice.descripcion }}</td>
-      <td>{{ invoice.valor | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
-      <td>{{ invoice.forma_Pago == "10" ? "Serie nota crédito: " + invoice.nombreTransporte : "Sin observación" }}</td>
+      <td>{{ invoice.valor | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.forma_Pago == "10" ? "Serie nota crédito: " + invoice.nombreTransporte : "Sin observaciones" }}</td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">
@@ -39,9 +39,9 @@
       <td>{{ invoice.codigo_Producto }}</td>
       <td>{{ invoice.descripcion }}</td>
       <td>{{ invoice.cantidad | number }}</td>
-      <td>{{ invoice.precio | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
-      <td>{{ invoice.descuento | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
-      <td>{{ invoice.precio_Total | currency : moneyLocale.moneda : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.descuento | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+      <td>{{ invoice.precio_Total | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
     </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">

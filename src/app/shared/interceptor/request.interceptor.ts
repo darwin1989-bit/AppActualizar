@@ -5,6 +5,8 @@ import { CalledHttpService } from "../services/called-http.service";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
+  private countRequest: number = 0;
+
   constructor(private callHttp: CalledHttpService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -19,10 +21,12 @@ export class RequestInterceptor implements HttpInterceptor {
     });
 
     if (!req.url.includes("es.json")) {
+      this.countRequest++;
+      this.callHttp.showLoad();
       return next.handle(requestClone).pipe(
-        finalize(() => this.callHttp.hideLoad()),
-        tap({
-          next: () => this.callHttp.showLoad(),
+        finalize(() => {
+          this.countRequest--;
+          if (this.countRequest == 0) this.callHttp.hideLoad();
         })
       );
     } else {

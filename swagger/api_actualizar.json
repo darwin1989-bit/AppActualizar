@@ -1053,6 +1053,49 @@
         }
       }
     },
+    "/api/Materials/information": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Offices": {
       "get": {
         "tags": ["Offices"],
@@ -1829,6 +1872,56 @@
         },
         "additionalProperties": false
       },
+      "InformationMaterialDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN1": {
+            "type": "string",
+            "nullable": true
+          },
+          "n1": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN2": {
+            "type": "string",
+            "nullable": true
+          },
+          "n2": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN3": {
+            "type": "string",
+            "nullable": true
+          },
+          "n3": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN4": {
+            "type": "string",
+            "nullable": true
+          },
+          "n4": {
+            "type": "string",
+            "nullable": true
+          },
+          "nivelSegmento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceDTO": {
         "type": "object",
         "properties": {
@@ -2305,6 +2398,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MaterialsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseMaterialInfoDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InformationMaterialDTO"
             },
             "nullable": true
           }

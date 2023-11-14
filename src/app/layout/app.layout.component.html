@@ -1,10 +1,10 @@
-<p-toast position="top-center" key="tc">
+<p-toast position="top-center" key="tc" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">
     <div class="flex flex-column" style="flex: 1">
-      <div class="text-center">
+      <div class="text-center flex justify-content-center align-items-center">
         <i [class]="message.icon" style="font-size: 2rem"></i>
-        <p class="font-bold text-lg my-1">{{ message.summary }}</p>
-        <p class="text-lg">{{ message.detail }}</p>
+        <p class="font-bold text-lg my-1 ml-2">{{ message.summary }}</p>
+        <p class="text-lg ml-3">{{ message.detail }}</p>
       </div>
     </div>
   </ng-template>

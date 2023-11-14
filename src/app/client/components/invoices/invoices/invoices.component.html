@@ -6,15 +6,13 @@
       </div>
       <hr />
       <p-table
+        #dt
         [value]="(invoiceService.invoicesMain$ | async)!"
         styleClass="p-datatable-sm p-datatable-gridlines"
-        [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '120rem' }"
-        [alwaysShowPaginator]="false"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -30,7 +28,7 @@
             <th>Valor iva</th>
             <th>Descuento</th>
             <th>Total factura</th>
-            <th></th>
+            <th style="width: 2%">Detalle</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
@@ -44,13 +42,13 @@
               {{ invoice.numero_Idcliente }}
             </td>
             <td>{{ invoice.fecha_Factura | date : "yyyy/MM/dd HH:mm" }}</td>
-            <td>{{ invoice.subtotal | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
+            <td>{{ invoice.subtotal | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ invoice.iva | number }}%</td>
-            <td>{{ invoice.valoriva | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
-            <td>{{ invoice.descuento | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
-            <td>{{ invoice.totalfactura | currency : invoice.moneda : "symbol" : "" : invoice.locale }}</td>
+            <td>{{ invoice.valoriva | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ invoice.descuento | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>{{ invoice.totalfactura | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>
-              <button pTooltip="Detalle" tooltipPosition="bottom" type="button" pButton pRipple label="Detalle" class="p-button-sm p-button-info" (click)="selectInvoice(invoice)"></button>
+              <button type="button" pButton pRipple icon="pi pi-list" class="p-button-info" (click)="selectInvoice(invoice)"></button>
             </td>
           </tr>
         </ng-template>

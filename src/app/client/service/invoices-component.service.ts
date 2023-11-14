@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject, catchError, finalize, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subject, catchError, finalize, tap } from "rxjs";
 import { InvoiceDetailsDto, InvoiceDto, ResponseInvoiceDto } from "src/app/api/api_actualizar/models";
 import { InvoicesService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
@@ -12,167 +12,87 @@ export class InvoicesComponentService {
   private invoicesStore = new Subject<InvoiceDto[]>();
   public invoicesStore$ = this.invoicesStore.asObservable();
 
-  private dialogCreditNote = new Subject<boolean>();
+  private invoicesMain = new Subject<InvoiceDto[]>();
+  public invoicesMain$ = this.invoicesMain.asObservable();
+
+  private dialogCreditNote = new BehaviorSubject<boolean>(false);
   public dialogCreditNote$ = this.dialogCreditNote.asObservable();
 
   private invoiceCreditNote = new BehaviorSubject<InvoiceDto>({});
   public invoiceCreditNote$ = this.invoiceCreditNote.asObservable();
 
-  private invoicesMain = new Subject<InvoiceDto[]>();
-  public invoicesMain$ = this.invoicesMain.asObservable();
+  private visibleDetails = new Subject<boolean>();
+  public visibleDetails$ = this.visibleDetails.asObservable();
+
+  private visibleDetailsMain = new Subject<boolean>();
+  public visibleDetailsMain$ = this.visibleDetailsMain.asObservable();
 
   private invoiceDetails = new BehaviorSubject<InvoiceDetailsDto>(InvoiceDetailsObj);
   public invoiceDetails$ = this.invoiceDetails.asObservable();
 
-  private moneyLocale = new BehaviorSubject<{ moneda: string; locale: string }>({ moneda: "", locale: "" });
-  public moneyLocale$ = this.moneyLocale.asObservable();
-
   constructor(private invoiceService: InvoicesService, private calledHttpService: CalledHttpService) {}
 
   public getInvoiceNumber(ip: string, numberInvoice: string): void {
-    let moneda!: string;
-    this.invoiceService
-      .apiInvoicesNumberGet$Json({ ip, numberInvoice })
-      .pipe(
-        tap((invoices) => {
-          moneda = invoices.data![0].moneda!;
-          const invoiceMap = invoices.data!.map((res) => {
-            return {
-              ...res,
-              locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
-            };
-          });
-          this.invoicesStore.next(invoiceMap);
-        }),
-        catchError((error) => {
-          return this.calledHttpService.errorHandler(error);
-        }),
-        finalize(() => {
-          this.invoiceService
-            .apiInvoicesNumberMainGet$Json({ ip, numberInvoice })
-            .pipe(
-              tap((invoices) => {
-                const invoiceMap = invoices.data!.map((res) => {
-                  return {
-                    ...res,
-                    locale: moneda == "CRC" ? "es-CR" : "es-EC",
-                    moneda: moneda,
-                  };
-                });
-                this.invoicesMain.next(invoiceMap);
-              }),
-              catchError((error) => {
-                return this.calledHttpService.errorHandler(error);
-              })
-            )
-            .subscribe();
-        })
-      )
-      .subscribe();
+    this.invoiceNumber(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
+    this.invoiceNumberMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
   }
-  public getInvoiceIdentification(ip: string, identification: string): void {
-    let moneda!: string;
-    this.invoiceService
-      .apiInvoicesIdentificationGet$Json({ ip, identification })
-      .pipe(
-        tap((invoices) => {
-          moneda = invoices.data![0].moneda!;
-          const invoiceMap = invoices.data!.map((res) => {
-            return {
-              ...res,
-              locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
-            };
-          });
-          this.invoicesStore.next(invoiceMap);
-        }),
-        catchError((error) => {
-          return this.calledHttpService.errorHandler(error);
-        }),
-        finalize(() => {
-          this.invoiceService
-            .apiInvoicesIdentificationMainGet$Json({ ip, identification })
-            .pipe(
-              tap((invoices) => {
-                const invoiceMap = invoices.data!.map((res) => {
-                  return {
-                    ...res,
-                    locale: moneda == "CRC" ? "es-CR" : "es-EC",
-                    moneda: moneda,
-                  };
-                });
-                this.invoicesMain.next(invoiceMap);
-              }),
-              catchError((error) => {
-                return this.calledHttpService.errorHandler(error);
-              })
-            )
-            .subscribe();
-        })
-      )
-      .subscribe();
+
+  public getInvoiceIdentification(ip: string, numberInvoice: string): void {
+    this.invoiceIdentification(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
+    this.invoiceIdentificationMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
   }
-  public getAllInvoices(ip: string, office: string): void {
-    let moneda!: string;
-    this.invoiceService
-      .apiInvoicesAllInvoicesGet$Json({ ip })
-      .pipe(
-        tap((invoices) => {
-          moneda = invoices.data![0].moneda!;
-          const invoiceMap = invoices.data!.map((res) => {
-            return {
-              ...res,
-              locale: res.moneda == "CRC" ? "es-CR" : "es-EC",
-            };
-          });
-          this.invoicesStore.next(invoiceMap);
-        }),
-        catchError((error) => {
-          return this.calledHttpService.errorHandler(error);
-        }),
-        finalize(() => {
-          this.invoiceService
-            .apiInvoicesAllInvoicesMainGet$Json({ ip, office })
-            .pipe(
-              tap((invoices) => {
-                const invoiceMap = invoices.data!.map((res) => {
-                  return {
-                    ...res,
-                    locale: moneda == "CRC" ? "es-CR" : "es-EC",
-                    moneda: moneda,
-                  };
-                });
-                this.invoicesMain.next(invoiceMap);
-              }),
-              catchError((error) => {
-                return this.calledHttpService.errorHandler(error);
-              })
-            )
-            .subscribe();
-        })
-      )
-      .subscribe();
+
+  public getAllInvoices(ip: string, numberInvoice: string): void {
+    this.allInvoices(ip).subscribe((res) => this.invoicesStore.next(res.data!));
+    this.allInvoicesMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
   }
-  public getInvoiceDetails(ip: string, numberInvoice: string, money: string): void {
-    this.moneyLocale.next({ moneda: money, locale: money == "CRC" ? "es-CR" : "es-EC" });
+
+  private invoiceNumber(ip: string, numberInvoice: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesNumberGet$Json({ ip, numberInvoice }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+  }
+
+  private invoiceNumberMain(ip: string, numberInvoice: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesNumberMainGet$Json({ ip, numberInvoice }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+  }
+
+  private invoiceIdentification(ip: string, identification: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesIdentificationGet$Json({ ip, identification }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+  }
+
+  private invoiceIdentificationMain(ip: string, identification: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesIdentificationMainGet$Json({ ip, identification }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+  }
+
+  private allInvoices(ip: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesAllInvoicesGet$Json({ ip }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+  }
+
+  private allInvoicesMain(ip: string, office: string): Observable<ResponseInvoiceDto> {
+    return this.invoiceService.apiInvoicesAllInvoicesMainGet$Json({ ip, office }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+  }
+
+  public getInvoiceDetails(ip: string, numberInvoice: string): void {
     this.invoiceService
       .apiInvoicesDetailsGet$Json({ ip, numberInvoice })
       .pipe(
-        tap((res) => this.invoiceDetails.next(res)),
-        catchError((error) => {
-          return this.calledHttpService.errorHandler(error);
-        })
+        tap((res) => {
+          this.invoiceDetails.next(res);
+          this.visibleDetails.next(true);
+        }),
+        catchError((error) => this.calledHttpService.errorHandler(error))
       )
       .subscribe();
   }
   public getInvoiceDetailsMain(ip: string, numberInvoice: string, money: string): void {
-    this.moneyLocale.next({ moneda: money, locale: money == "CRC" ? "es-CR" : "es-EC" });
-
     this.invoiceService
       .apiInvoicesMainDetailsGet$Json({ ip, numberInvoice })
       .pipe(
-        tap((res) => this.invoiceDetails.next(res)),
+        tap((res) => {
+          this.visibleDetailsMain.next(true);
+          this.invoiceDetails.next(res);
+        }),
         catchError((error) => {
-          return this.calledHttpService.errorHandler(error);
+          return this.calledHttpService.errorHandlerMain(error);
         })
       )
       .subscribe();

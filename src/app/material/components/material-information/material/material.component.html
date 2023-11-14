@@ -8,9 +8,9 @@
       <p-table
         [value]="(materialService.materials$ | async)!"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '80rem' }"
-        [alwaysShowPaginator]="false"
+        [tableStyle]="{ 'min-width': '90rem' }"
         styleClass="p-datatable-sm p-datatable-gridlines"
+        [alwaysShowPaginator]="true"
         [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
@@ -23,7 +23,7 @@
           <tr>
             <th>Código</th>
             <th>Descripción</th>
-            <th style="width: 5%">Rest. desc.</th>
+            <th>Rest. desc.</th>
             <th>Precio</th>
             <th>Lista precio</th>
             <th>Estado</th>
@@ -31,26 +31,27 @@
             <th>Código Barra</th>
             <th>Principal</th>
             <th>Orden</th>
-            <th style="width: 2%">Estado cod. barra</th>
-            <th></th>
+            <th>Prom.</th>
+            <th>Info.</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-materials let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
+        <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.codigo }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.descripcion }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.restringidoDesc }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.sucursal }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.estado }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ materials.marca }}</td>
-            <td [class.font-italic]="!materials.codBarra">{{ materials.codBarra ? materials.codBarra : "NULL" }}</td>
-            <td [class.font-italic]="!materials.codBarra">{{ materials.esPrincipal ? materials.esPrincipal : "NULL" }}</td>
-            <td [class.font-italic]="!materials.codBarra">{{ materials.orden ? materials.orden : "NULL" }}</td>
-            <td [class.font-italic]="!materials.codBarra">{{ materials.estadoCodBarra ? materials.estadoCodBarra : "NULL" }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.sucursal }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
+            <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
+            <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? material.esPrincipal : "NULL" }}</td>
+            <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info mr-2" pTooltip="Información" tooltipPosition="bottom"></button>
-              <button pButton pRipple icon="pi pi-tag" class="p-button-secondary" pTooltip="Promoción" tooltipPosition="bottom"></button>
+              <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm"></button>
+            </td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" (click)="information(material)"></button>
             </td>
           </tr>
         </ng-template>

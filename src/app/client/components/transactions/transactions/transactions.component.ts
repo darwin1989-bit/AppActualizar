@@ -20,19 +20,19 @@ registerLocaleData(localeEsCrc);
   ],
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
-  private subcription!: Subscription;
+  private subscription!: Subscription;
   public moneyLocale!: { money: string; locale: string };
   private office!: OfficesDto;
 
   constructor(public transactionsService: TransactionsComponentService, public officeService: OfficesHttpService) {}
 
   ngOnDestroy(): void {
-    this.subcription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
-    this.subcription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
   }
   public transactionOffline(transaction: TransactionsDto): void {
     this.transactionsService.openOffline(transaction);

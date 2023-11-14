@@ -1,7 +1,7 @@
 import { registerLocaleData } from "@angular/common";
 import { Component, LOCALE_ID, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { OfficesDto } from "src/app/api/api_actualizar/models";
+import { MaterialsDto, OfficesDto } from "src/app/api/api_actualizar/models";
 import { MaterialInformationService } from "src/app/material/service/material-information.service";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import localeEsEC from "@angular/common/locales/es-EC";
@@ -34,5 +34,10 @@ export class MaterialComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subcription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+  }
+
+  public information(materials: MaterialsDto): void {
+    this.materialService.getMaterialInformation(this.office.ip_Red!, materials.codigo!);
+    this.materialService.setDialog();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, OnDestroy, OnInit } from "@angular/core";
+import { Component, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { InvoiceDto, OfficesDto } from "src/app/api/api_actualizar/models";
 import { registerLocaleData } from "@angular/common";
 import localeEsCrc from "@angular/common/locales/es-CR";
@@ -6,6 +6,7 @@ import localeEsEC from "@angular/common/locales/es-EC";
 import { InvoicesComponentService } from "src/app/client/service/invoices-component.service";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { Subscription } from "rxjs";
+import { Table } from "primeng/table/table";
 
 registerLocaleData(localeEsEC);
 registerLocaleData(localeEsCrc);
@@ -20,6 +21,8 @@ registerLocaleData(localeEsCrc);
   ],
 })
 export class InvoicesStoreComponent implements OnInit, OnDestroy {
+  @ViewChild("dt") tableComponent!: Table;
+
   public selectedInvoice!: InvoiceDto;
 
   public visible: boolean = false;
@@ -28,23 +31,38 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
 
   private office!: OfficesDto;
 
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
-  constructor(public invoiceService: InvoicesComponentService, private officeService: OfficesHttpService) {}
+  public moneyLocale!: { money: string; locale: string };
+
+  constructor(public invoiceService: InvoicesComponentService, private officeService: OfficesHttpService, private renderer: Renderer2) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
-    this.subcription = this.invoiceService.dialogCreditNote$.subscribe((res) => (this.visibleCredtiNote = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+    this.subscription = this.invoiceService.visibleDetails$.subscribe((res) => (this.visible = res!));
+    this.subscription = this.invoiceService.dialogCreditNote$.subscribe((res) => (this.visibleCredtiNote = res!));
+    this.subscription = this.invoiceService.invoicesStore$.subscribe((res) => {
+      this.tableComponent.tableStyle = { "min-width": "10rem" };
+      this.tableComponent.paginator = false;
+      if (res.length > 0) this.refreshTable();
+    });
   }
 
   public selectInvoice(invoice: InvoiceDto) {
-    this.visible = true;
-    this.invoiceService.getInvoiceDetails(this.office.ip_Red!, invoice.serie_Factura!, invoice.moneda!);
+    this.invoiceService.getInvoiceDetails(this.office.ip_Red!, invoice.serie_Factura!);
+  }
+
+  private refreshTable() {
+    this.tableComponent.reset();
+    this.tableComponent.rows = 5;
+    this.tableComponent.tableStyle = { "min-width": "120rem" };
+    this.tableComponent.paginator = true;
   }
 }

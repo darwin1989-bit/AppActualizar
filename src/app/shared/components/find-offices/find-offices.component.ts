@@ -5,7 +5,7 @@ import { ICompany } from "../../models/offices.interface";
 import { CompanyObj, DataCompany } from "../../models/objects";
 import { environment } from "src/environments/environment";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Subject, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
 import { SharedService } from "../../services/shared.service";
 import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
@@ -62,10 +62,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.company = structuredClone(CompanyObj);
 
     //note delete in production
-    // if (!environment.production) {
-    //   this.company.splice(0, 2);
-    //   this.company.push({ name: "PRUEBAS", code: "prb" });
-    // }
+    if (!environment.production) {
+      this.company.splice(0, 2);
+      this.company.push({ name: "PRUEBAS", code: "prb" });
+    }
 
     // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
     //   if (!environment.production) {

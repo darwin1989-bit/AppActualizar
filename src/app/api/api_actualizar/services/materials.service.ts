@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { ResponseMaterialDto } from '../models/response-material-dto';
+import { ResponseMaterialInfoDto } from '../models/response-material-info-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -661,6 +662,113 @@ export class MaterialsService extends BaseService {
 
     return this.apiMaterialsMainBarcodeGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialDto>) => r.body as ResponseMaterialDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiMaterialsInformationGet
+   */
+  static readonly ApiMaterialsInformationGetPath = '/api/Materials/information';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsInformationGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsInformationGet$Plain$Response(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMaterialInfoDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsInformationGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('code', params.code, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMaterialInfoDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsInformationGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsInformationGet$Plain(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseMaterialInfoDto> {
+
+    return this.apiMaterialsInformationGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMaterialInfoDto>) => r.body as ResponseMaterialInfoDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsInformationGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsInformationGet$Json$Response(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMaterialInfoDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsInformationGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('code', params.code, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMaterialInfoDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsInformationGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsInformationGet$Json(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseMaterialInfoDto> {
+
+    return this.apiMaterialsInformationGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMaterialInfoDto>) => r.body as ResponseMaterialInfoDto)
     );
   }
 

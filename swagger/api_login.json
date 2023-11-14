@@ -1,28 +1,115 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Api_Login",
+    "title": "API_Actualizar",
     "version": "1.0"
   },
   "paths": {
-    "/api/Login/authenticate": {
-      "post": {
-        "tags": ["Login"],
+    "/api/Client": {
+      "get": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MLogin"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MLogin"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MLogin"
+                "$ref": "#/components/schemas/ClientParamsUpdate"
               }
             }
           }
@@ -33,17 +120,102 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientCreateParams"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientCreateParams"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientCreateParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetClientDTO"
+                  }
                 }
               }
             }
@@ -51,28 +223,12 @@
         }
       }
     },
-    "/api/Login/update-theme/{id}": {
-      "put": {
-        "tags": ["Login"],
+    "/api/Client/provinces": {
+      "get": {
+        "tags": ["Client"],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "theme",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "colorScheme",
+            "name": "ip",
             "in": "query",
             "schema": {
               "type": "string"
@@ -81,7 +237,1178 @@
         ],
         "responses": {
           "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetProvincesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetProvincesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetProvincesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Client/cities": {
+      "get": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCitiesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Client/retention": {
+      "get": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "typeIdClient",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetRetentionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetentionParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Invoices/number": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/identification": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identification",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/all_invoices": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/number/main": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/identification/main": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identification",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/all_invoices/main": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "office",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/details": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/main/details": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceDetailsDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoices/notecreditapply": {
+      "get": {
+        "tags": ["Invoices"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberInvoice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInvoiceDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/generic": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/variant": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialVariant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/barcode": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/generic": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/variant": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "materialVariant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/barcode": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/information": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialInfoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Offices": {
+      "get": {
+        "tags": ["Offices"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficesDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficesDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Payments": {
+      "get": {
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Payments/all_payments": {
+      "get": {
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ServiceCredit": {
+      "get": {
+        "tags": ["ServiceCredit"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codSap",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResClientCreditDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transactions": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResTransactionsDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transactions/offline_payments": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberDoc",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePaymentDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transactions/offline_purchase": {
+      "get": {
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberDoc",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResOfflinePurchaseDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -89,55 +1416,1096 @@
   },
   "components": {
     "schemas": {
-      "MLogin": {
-        "required": ["password", "userName"],
+      "ClientCreateParams": {
         "type": "object",
         "properties": {
-          "userName": {
-            "minLength": 1,
-            "type": "string"
+          "compania": {
+            "type": "string",
+            "nullable": true
           },
-          "password": {
-            "minLength": 1,
-            "type": "string"
+          "tipoIdcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroIdcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreRazon": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreComercial": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoCliente": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fechaIngresocliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoVendedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          },
+          "esproveedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoIdgrupo": {
+            "type": "string",
+            "nullable": true
+          },
+          "esgrupo": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "contribuyenteEspecial": {
+            "type": "string",
+            "nullable": true
+          },
+          "esempleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuarioCreacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cliFechaNacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cliSexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "cveIdEstadoValidacion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cliIdLugarReferencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ciudad": {
+            "type": "string",
+            "nullable": true
+          },
+          "idDireccion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreDireccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "numFono1": {
+            "type": "string",
+            "nullable": true
+          },
+          "numFono2": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "User": {
+      "ClientCreditDto": {
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "codRespuesta": {
             "type": "integer",
             "format": "int32"
           },
-          "name": {
+          "dispon": {
             "type": "string",
             "nullable": true
           },
-          "userName": {
+          "preCan": {
             "type": "string",
             "nullable": true
           },
-          "roles": {
+          "apagar": {
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "vencido": {
+            "type": "string",
+            "nullable": true
+          },
+          "estCliCod": {
+            "type": "string",
+            "nullable": true
+          },
+          "estEspCod": {
+            "type": "string",
+            "nullable": true
+          },
+          "cuotaMedia": {
+            "type": "string",
+            "nullable": true
+          },
+          "conv": {
+            "type": "string",
+            "nullable": true
+          },
+          "sobregiro": {
+            "type": "string",
+            "nullable": true
+          },
+          "diasMora": {
+            "type": "string",
+            "nullable": true
+          },
+          "codDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "descDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "porcDescuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "diaPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalDeuda": {
+            "type": "string",
+            "nullable": true
+          },
+          "pagoMinimo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaAprobacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombres": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteCompra": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteRecaudo": {
+            "type": "string",
+            "nullable": true
+          },
+          "mensaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "montoValidacion": {
             "type": "string",
             "nullable": true
           },
           "token": {
             "type": "string",
             "nullable": true
-          },
-          "theme": {
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientParamsUpdate": {
+        "type": "object",
+        "properties": {
+          "nombre_Razon": {
             "type": "string",
             "nullable": true
           },
-          "colorScheme": {
+          "nombre_Comercial": {
             "type": "string",
             "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "cli_Fecha_Nacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "esempleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono1": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono2": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario_Modificacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreditNoteDTO": {
+        "type": "object",
+        "properties": {
+          "serieFactura": {
+            "type": "string",
+            "nullable": true
+          },
+          "serieFacturaOriginal": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "total": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCitiesDTO": {
+        "type": "object",
+        "properties": {
+          "ciudad": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_Sucursal": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetClientDTO": {
+        "type": "object",
+        "properties": {
+          "tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Razon": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Comercial": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "cli_Fecha_Nacimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cli_Sexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "esempleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_Creacion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nombre_Direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono1": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Fono2": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetProvincesDTO": {
+        "type": "object",
+        "properties": {
+          "zona": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "pais": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetRetentionDTO": {
+        "type": "object",
+        "properties": {
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Exportador": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_No": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_Si": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InformationMaterialDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN1": {
+            "type": "string",
+            "nullable": true
+          },
+          "n1": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN2": {
+            "type": "string",
+            "nullable": true
+          },
+          "n2": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN3": {
+            "type": "string",
+            "nullable": true
+          },
+          "n3": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN4": {
+            "type": "string",
+            "nullable": true
+          },
+          "n4": {
+            "type": "string",
+            "nullable": true
+          },
+          "codNivel": {
+            "type": "string",
+            "nullable": true
+          },
+          "nivelSegmento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo_Documento": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Razon": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "string",
+            "nullable": true
+          },
+          "iva": {
+            "type": "string",
+            "nullable": true
+          },
+          "valoriva": {
+            "type": "string",
+            "nullable": true
+          },
+          "descuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalfactura": {
+            "type": "string",
+            "nullable": true
+          },
+          "userid": {
+            "type": "string",
+            "nullable": true
+          },
+          "serie_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "moneda": {
+            "type": "string",
+            "nullable": true
+          },
+          "estacionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "notaCredito": {
+            "type": "string",
+            "nullable": true
+          },
+          "data_CreditNote": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditNoteDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceDetDTO": {
+        "type": "object",
+        "properties": {
+          "codigo_Producto": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cantidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio": {
+            "type": "string",
+            "nullable": true
+          },
+          "descuento": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio_Total": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceDetailsDTO": {
+        "type": "object",
+        "properties": {
+          "invoiceMethodPayment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MethodPaymentDTO"
+            },
+            "nullable": true
+          },
+          "invoicesDet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDetDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaterialsDTO": {
+        "type": "object",
+        "properties": {
+          "restringidoDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "generico": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuarioIngreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "iva": {
+            "type": "string",
+            "nullable": true
+          },
+          "moneda": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "sucursal": {
+            "type": "string",
+            "nullable": true
+          },
+          "precio": {
+            "type": "string",
+            "nullable": true
+          },
+          "codBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "esPrincipal": {
+            "type": "string",
+            "nullable": true
+          },
+          "estadoCodBarra": {
+            "type": "string",
+            "nullable": true
+          },
+          "orden": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MethodPaymentDTO": {
+        "type": "object",
+        "properties": {
+          "serie_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreTransporte": {
+            "type": "string",
+            "nullable": true
+          },
+          "forma_Pago": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfficesDTO": {
+        "type": "object",
+        "properties": {
+          "ip_Red": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "ofi_Codigo_Interno_Empresa": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfflinePaymentDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "caja": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "recaudo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "string",
+            "nullable": true
+          },
+          "numDoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "numAut": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfflinePurchaseDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "caja": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "string",
+            "nullable": true
+          },
+          "numDoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "numAut": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentsDTO": {
+        "type": "object",
+        "properties": {
+          "id_Movimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "userID": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorEfectivo": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorCHQ": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorOtros": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenciaTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "horaProceso": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResClientCreditDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientCreditDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResOfflinePaymentDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OfflinePaymentDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResOfflinePurchaseDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OfflinePurchaseDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResTransactionsDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseInvoiceDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseMaterialDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MaterialsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseMaterialInfoDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InformationMaterialDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RetentionParams": {
+        "type": "object",
+        "properties": {
+          "contribuyente_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Tipo_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Numero_Idcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "cda_Exportador": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_No": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cda_Contabilida_Si": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionsDTO": {
+        "type": "object",
+        "properties": {
+          "cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "idMovimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "agencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "valorEfectivo": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "valorCHQ": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tipoTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenciaTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaProceso": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "offlinePayments": {
+            "$ref": "#/components/schemas/OfflinePaymentDTO"
+          },
+          "offlinePurchases": {
+            "$ref": "#/components/schemas/OfflinePurchaseDTO"
           }
         },
         "additionalProperties": false

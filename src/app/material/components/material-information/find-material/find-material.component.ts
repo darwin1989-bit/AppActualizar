@@ -53,7 +53,6 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
     this.materialForm.markAllAsTouched();
     this.materialCodeControl.markAsDirty();
     this.officeService.setValidFindOffice();
-    console.log("🚀 ~ file: find-material.component.ts:57 ~ FindMaterialComponent ~ findMaterial ~ his.materialForm.vali:", this.materialForm.valid);
     if (Boolean(this.office) && this.materialForm.valid) {
       if (this.materialTypeControl.value.type == "CG") this.materialService.getMaterialsGenerics(this.office.ip_Red!, this.materialCodeControl.value);
       if (this.materialTypeControl.value.type == "CV") this.materialService.getMaterialVariant(this.office.ip_Red!, this.materialCodeControl.value);
@@ -80,9 +79,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
   }
 
   public codeMaterialInput(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") {
-      this.materialService.clearMaterials();
-    }
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.materialService.clearMaterials();
   }
   private barcodeValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

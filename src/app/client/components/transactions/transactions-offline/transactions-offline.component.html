@@ -12,7 +12,7 @@
       [value]="[
         (transactionsService.transaction$ | async)!.offlinePurchases ? (transactionsService.transaction$ | async)!.offlinePurchases : (transactionsService.transaction$ | async)!.offlinePayments
       ]"
-      [alwaysShowPaginator]="false"
+      [alwaysShowPaginator]="true"
       styleClass="p-datatable-sm p-datatable-gridlines"
       [paginator]="true"
       [rows]="5"
@@ -57,7 +57,7 @@
     <hr />
     <p-table
       [value]="[(transactionsService.offlineMain$ | async)!]"
-      [alwaysShowPaginator]="false"
+      [alwaysShowPaginator]="true"
       styleClass="p-datatable-sm p-datatable-gridlines"
       [paginator]="true"
       [rows]="5"
