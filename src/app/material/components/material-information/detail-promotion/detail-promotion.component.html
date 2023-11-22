@@ -1,0 +1,41 @@
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [style]="{ width: '900px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-tag" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Detalle de la promoción</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p-table #dt [value]="(detailPromotionService.materialPromotion$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id log</th>
+          <th>Fecha</th>
+          <th>Serie factura</th>
+          <th>Cantidad</th>
+          <th>Código</th>
+          <th>Descuento</th>
+          <th>Id promoción</th>
+          <th>Descripción</th>
+          <th>Procentaje</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-materialPromotion>
+        <tr>
+          <td>{{ materialPromotion.id }}</td>
+          <td>{{ materialPromotion.fecha | date : "yyyy/MM/dd HH:mm" }}</td>
+          <td>{{ materialPromotion.transactionID }}</td>
+          <td>{{ materialPromotion.quantity }}</td>
+          <td>{{ materialPromotion.itemID }}</td>
+          <td>{{ materialPromotion.extendedDiscountAmount | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+          <td>{{ materialPromotion.externalPromotionID }}</td>
+          <td>{{ materialPromotion.promotionDescription }}</td>
+          <td>{{ materialPromotion.percent }}%</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9" class="font-normal">No existen datos que mostrar.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+</p-dialog>

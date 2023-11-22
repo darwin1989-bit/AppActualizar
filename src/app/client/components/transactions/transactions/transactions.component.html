@@ -6,15 +6,13 @@
       </div>
       <hr />
       <p-table
+        #dt
         [value]="(transactionsService.transactions$ | async)!"
-        [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        [alwaysShowPaginator]="true"
         styleClass="p-datatable-sm p-datatable-gridlines"
-        [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
+        [breakpoint]="'960px'"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -27,7 +25,7 @@
             <th>Tipo transacción</th>
             <th>Número documento</th>
             <th>Referencia trans.</th>
-            <th></th>
+            <th>Offline</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-transactions>
@@ -47,7 +45,6 @@
                 pRipple
                 icon="pi pi-info-circle"
                 class="p-button-secondary"
-                pTooltip="Offline"
                 [disabled]="!transactions.offlinePayments && !transactions.offlinePurchases"
                 (click)="transactionOffline(transactions)"
               ></button>

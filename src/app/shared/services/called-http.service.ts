@@ -20,7 +20,7 @@ export class CalledHttpService {
       this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada", error.error.message, 6000);
       return NEVER;
     }
-    this.toastMesagge.showToast("tc", "error", "Hubo un error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 4000);
+    this.toastMesagge.showToast("tc", "error", "Hubo un error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 8000);
     return NEVER;
   }
   errorHandlerMain(error: HttpErrorResponse) {
@@ -28,7 +28,7 @@ export class CalledHttpService {
       this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada matriz", error.error.message, 6000);
       return NEVER;
     }
-    this.toastMesagge.showToast("tc", "error", "Hubo un error en matriz", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 4000);
+    this.toastMesagge.showToast("tc", "error", "Hubo un error en matriz", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 8000);
     return NEVER;
   }
 

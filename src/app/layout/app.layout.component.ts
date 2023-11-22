@@ -13,7 +13,21 @@ import { SharedService } from "../shared/services/shared.service";
   templateUrl: "./app.layout.component.html",
   styles: [
     `
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+        border-width: 0px;
+      }
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+        border-width: 0px;
+      }
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
+        border-width: 0px;
+      }
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-info {
+        border-width: 0px;
+      }
+
       :host ::ng-deep .p-toast {
+        border: 0px;
         position: fixed;
         width: 100%;
         opacity: 1;

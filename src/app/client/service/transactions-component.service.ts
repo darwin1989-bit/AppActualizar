@@ -37,7 +37,10 @@ export class TransactionsComponentService {
     this.transactionsService
       .apiTransactionsOfflinePaymentsGet$Json({ ip, numberId, numberDoc })
       .pipe(
-        tap((res) => this.offlineMain.next(res.data!)),
+        tap((res) => {
+          this.dialogOffline.next(true);
+          this.offlineMain.next(res.data!);
+        }),
         catchError((error) => {
           return this.calledHttpService.errorHandler(error);
         })
@@ -48,7 +51,10 @@ export class TransactionsComponentService {
     this.transactionsService
       .apiTransactionsOfflinePurchaseGet$Json({ ip, numberId, numberDoc })
       .pipe(
-        tap((res) => this.offlineMain.next(res.data!)),
+        tap((res) => {
+          this.dialogOffline.next(true);
+          this.offlineMain.next(res.data!);
+        }),
         catchError((error) => {
           return this.calledHttpService.errorHandler(error);
         })
@@ -57,7 +63,6 @@ export class TransactionsComponentService {
   }
 
   public openOffline(transaction: TransactionsDto): void {
-    this.dialogOffline.next(true);
     this.transaction.next(transaction);
   }
 

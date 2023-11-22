@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import { InformationMaterialDto } from './information-material-dto';
+import { MaterialInfoDto } from './material-info-dto';
 export interface ResponseMaterialInfoDto {
-  data?: null | Array<InformationMaterialDto>;
+  data?: null | Array<MaterialInfoDto>;
 }

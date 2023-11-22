@@ -1,6 +1,6 @@
 <p-dialog [(visible)]="dialogOffline" [modal]="true" [style]="{ width: '800px' }" [resizable]="false">
   <ng-template pTemplate="header">
-    <i class="pi pi-arrow-right-arrow-left" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <i class="pi pi-info-circle" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Transacciones fuera de línea</h4>
   </ng-template>
   <ng-template pTemplate="content">
@@ -12,11 +12,7 @@
       [value]="[
         (transactionsService.transaction$ | async)!.offlinePurchases ? (transactionsService.transaction$ | async)!.offlinePurchases : (transactionsService.transaction$ | async)!.offlinePayments
       ]"
-      [alwaysShowPaginator]="true"
       styleClass="p-datatable-sm p-datatable-gridlines"
-      [paginator]="true"
-      [rows]="5"
-      [rowsPerPageOptions]="[5, 10, 25, 50]"
       [scrollable]="true"
     >
       <ng-template pTemplate="header">
@@ -55,15 +51,7 @@
       <h4 class="my-0">Resultados matriz</h4>
     </div>
     <hr />
-    <p-table
-      [value]="[(transactionsService.offlineMain$ | async)!]"
-      [alwaysShowPaginator]="true"
-      styleClass="p-datatable-sm p-datatable-gridlines"
-      [paginator]="true"
-      [rows]="5"
-      [rowsPerPageOptions]="[5, 10, 25, 50]"
-      [scrollable]="true"
-    >
+    <p-table [value]="[(transactionsService.offlineMain$ | async)!]" styleClass="p-datatable-sm p-datatable-gridlines">
       <ng-template pTemplate="header">
         <tr>
           <th>Id</th>

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface InformationMaterialDto {
+export interface MaterialInfoDto {
   codN1?: null | string;
   codN2?: null | string;
   codN3?: null | string;

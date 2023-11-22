@@ -35,12 +35,10 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
 
   public moneyLocale!: { money: string; locale: string };
 
-  constructor(public invoiceService: InvoicesComponentService, private officeService: OfficesHttpService, private renderer: Renderer2) {}
+  constructor(public invoiceService: InvoicesComponentService, private officeService: OfficesHttpService) {}
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {

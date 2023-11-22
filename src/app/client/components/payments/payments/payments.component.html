@@ -6,15 +6,13 @@
       </div>
       <hr />
       <p-table
+        #dt
         [value]="(paymentsService.payments$ | async)!"
         styleClass="p-datatable-sm p-datatable-gridlines"
-        [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        [alwaysShowPaginator]="true"
       >
         <ng-template pTemplate="header">
           <tr>

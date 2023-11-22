@@ -1096,6 +1096,49 @@
         }
       }
     },
+    "/api/Materials/promotion": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialPromotionDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialPromotionDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMaterialPromotionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Offices": {
       "get": {
         "tags": ["Offices"],
@@ -1416,6 +1459,73 @@
   },
   "components": {
     "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Artsheader": {
+        "type": "object",
+        "properties": {
+          "messageID": {
+            "$ref": "#/components/schemas/Messageid"
+          },
+          "dateTime": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Datetime"
+            },
+            "nullable": true
+          },
+          "response": {
+            "$ref": "#/components/schemas/Response"
+          },
+          "businessUnit": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Businessunit"
+            },
+            "nullable": true
+          },
+          "actionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Businessunit": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "typeCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ClientCreateParams": {
         "type": "object",
         "properties": {
@@ -1700,6 +1810,39 @@
         },
         "additionalProperties": false
       },
+      "Computationbaseamount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Coupon": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "$ref": "#/components/schemas/Quantity2"
+          },
+          "primaryLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "appliedQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreditNoteDTO": {
         "type": "object",
         "properties": {
@@ -1732,6 +1875,99 @@
             "nullable": true
           },
           "comentario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataPromotion": {
+        "type": "object",
+        "properties": {
+          "artsHeader": {
+            "$ref": "#/components/schemas/Artsheader"
+          },
+          "priceCalculateBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pricecalculatebody"
+            },
+            "nullable": true
+          },
+          "internalMajorVersion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "internalMinorVersion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Datetime": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Datetime1": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Extendedamount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Extendeddiscountamount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Extraamount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
             "type": "string",
             "nullable": true
           }
@@ -1872,56 +2108,6 @@
         },
         "additionalProperties": false
       },
-      "InformationMaterialDTO": {
-        "type": "object",
-        "properties": {
-          "codigo": {
-            "type": "string",
-            "nullable": true
-          },
-          "descripcion": {
-            "type": "string",
-            "nullable": true
-          },
-          "codN1": {
-            "type": "string",
-            "nullable": true
-          },
-          "n1": {
-            "type": "string",
-            "nullable": true
-          },
-          "codN2": {
-            "type": "string",
-            "nullable": true
-          },
-          "n2": {
-            "type": "string",
-            "nullable": true
-          },
-          "codN3": {
-            "type": "string",
-            "nullable": true
-          },
-          "n3": {
-            "type": "string",
-            "nullable": true
-          },
-          "codN4": {
-            "type": "string",
-            "nullable": true
-          },
-          "n4": {
-            "type": "string",
-            "nullable": true
-          },
-          "nivelSegmento": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "InvoiceDTO": {
         "type": "object",
         "properties": {
@@ -2057,6 +2243,125 @@
         },
         "additionalProperties": false
       },
+      "Itemid": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Lineitem": {
+        "type": "object",
+        "properties": {
+          "sale": {
+            "$ref": "#/components/schemas/Sale"
+          },
+          "sequenceNumber": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "merchandiseHierarchy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Merchandisehierarchy"
+            },
+            "nullable": true
+          },
+          "coupon": {
+            "$ref": "#/components/schemas/Coupon"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaterialInfoDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN1": {
+            "type": "string",
+            "nullable": true
+          },
+          "n1": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN2": {
+            "type": "string",
+            "nullable": true
+          },
+          "n2": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN3": {
+            "type": "string",
+            "nullable": true
+          },
+          "n3": {
+            "type": "string",
+            "nullable": true
+          },
+          "codN4": {
+            "type": "string",
+            "nullable": true
+          },
+          "n4": {
+            "type": "string",
+            "nullable": true
+          },
+          "nivelSegmento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MaterialPromotionDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "mensaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "respuestaPromocion": {
+            "$ref": "#/components/schemas/DataPromotion"
+          },
+          "responsePromotion": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponsePromotion"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MaterialsDTO": {
         "type": "object",
         "properties": {
@@ -2127,6 +2432,30 @@
         },
         "additionalProperties": false
       },
+      "Merchandisehierarchy": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Messageid": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MethodPaymentDTO": {
         "type": "object",
         "properties": {
@@ -2147,6 +2476,21 @@
             "nullable": true
           },
           "valor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Newprice": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
             "type": "string",
             "nullable": true
           }
@@ -2321,6 +2665,280 @@
         },
         "additionalProperties": false
       },
+      "Percent": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pointsconversionamount": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Previousprice": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pricecalculatebody": {
+        "type": "object",
+        "properties": {
+          "transactionID": {
+            "$ref": "#/components/schemas/Transactionid"
+          },
+          "dateTime": {
+            "$ref": "#/components/schemas/Datetime1"
+          },
+          "shoppingBasket": {
+            "$ref": "#/components/schemas/Shoppingbasket"
+          },
+          "transactionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "netPriceFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "calculationMode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pricederivationrule": {
+        "type": "object",
+        "properties": {
+          "priceDerivationRuleID": {
+            "type": "string",
+            "nullable": true
+          },
+          "promotionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "promotionDescriptionMultiLanguage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Promotiondescriptionmultilanguage"
+            },
+            "nullable": true
+          },
+          "promotionPriceDerivationRuleSequence": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "promotionPriceDerivationRuleResolution": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "transactionControlBreakCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "promotionOriginatorTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "triggerQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "discountMethodCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "frequentShopperPointsFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "customerGroupLoyaltyPointsDefaultQuantity": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "prohibitPrintFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "pointsConversionAmount": {
+            "$ref": "#/components/schemas/Pointsconversionamount"
+          },
+          "noEffectOnSubsequentPriceDerivationRulesFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "prohibitTransactionRelatedPriceDerivationRulesFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "exclusiveFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "appliedCount": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "externalPromotionID": {
+            "type": "string",
+            "nullable": true
+          },
+          "printoutValidityPeriod": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "promotionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "calculationBaseSequence": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Promotiondescriptionmultilanguage": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Promotionid": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Promotionpricederivationrulereference": {
+        "type": "object",
+        "properties": {
+          "promotionID": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceDerivationRuleID": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceQuantity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quantity": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "units": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitOfMeasureCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quantity1": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Quantity2": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Regularsalesunitprice": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResClientCreditDTO": {
         "type": "object",
         "properties": {
@@ -2360,6 +2978,20 @@
             "items": {
               "$ref": "#/components/schemas/TransactionsDTO"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Response": {
+        "type": "object",
+        "properties": {
+          "requestID": {
+            "type": "string",
+            "nullable": true
+          },
+          "responseCode": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2410,9 +3042,121 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InformationMaterialDTO"
+              "$ref": "#/components/schemas/MaterialInfoDTO"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseMaterialPromotionDTO": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MaterialPromotionDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponsePromotion": {
+        "type": "object",
+        "properties": {
+          "transactionID": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemID": {
+            "type": "string",
+            "nullable": true
+          },
+          "regularSalesUnitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "extendedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "extendedDiscountAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "promotionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalPromotionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "previousPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "newPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Retailpricemodifier": {
+        "type": "object",
+        "properties": {
+          "priceDerivationRule": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pricederivationrule"
+            },
+            "nullable": true
+          },
+          "extraAmount": {
+            "$ref": "#/components/schemas/Extraamount"
+          },
+          "externalSystemOriginatorFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sequenceNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "percent": {
+            "$ref": "#/components/schemas/Percent"
+          },
+          "previousPrice": {
+            "$ref": "#/components/schemas/Previousprice"
+          },
+          "newPrice": {
+            "$ref": "#/components/schemas/Newprice"
+          },
+          "promotionID": {
+            "$ref": "#/components/schemas/Promotionid"
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/Quantity1"
+          },
+          "rounding": {
+            "$ref": "#/components/schemas/Rounding"
+          },
+          "computationBaseAmount": {
+            "$ref": "#/components/schemas/Computationbaseamount"
           }
         },
         "additionalProperties": false
@@ -2442,6 +3186,117 @@
           },
           "cda_Contabilida_Si": {
             "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Rounding": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "float",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "roundingDirection": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Sale": {
+        "type": "object",
+        "properties": {
+          "itemID": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Itemid"
+            },
+            "nullable": true
+          },
+          "regularSalesUnitPrice": {
+            "$ref": "#/components/schemas/Regularsalesunitprice"
+          },
+          "extendedAmount": {
+            "$ref": "#/components/schemas/Extendedamount"
+          },
+          "extendedDiscountAmount": {
+            "$ref": "#/components/schemas/Extendeddiscountamount"
+          },
+          "quantity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Quantity"
+            },
+            "nullable": true
+          },
+          "retailPriceModifier": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Retailpricemodifier"
+            },
+            "nullable": true
+          },
+          "itemType": {
+            "type": "string",
+            "nullable": true
+          },
+          "nonDiscountableFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "fixedPriceFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "nonPieceGoodFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "frequentShopperPointsEligibilityFlag": {
+            "type": "boolean"
+          },
+          "priceTypeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "notConsideredByPriceEngineFlag": {
+            "type": "boolean"
+          },
+          "promotionPriceDerivationRuleReference": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Promotionpricederivationrulereference"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Shoppingbasket": {
+        "type": "object",
+        "properties": {
+          "lineItem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lineitem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Transactionid": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
             "nullable": true
           }
         },

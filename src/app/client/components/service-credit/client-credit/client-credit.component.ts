@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Table } from "primeng/table/table";
 import { Subscription } from "rxjs";
 import { ClientCreditComponentService } from "src/app/client/service/client-credit-component.service";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
@@ -9,17 +10,28 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
   styleUrls: ["./client-credit.component.scss"],
 })
 export class ClientCreditComponent implements OnInit, OnDestroy {
+  @ViewChild("dt") tableComponent!: Table;
+
   public moneyLocale!: { money: string; locale: string };
-  private subcription!: Subscription;
+
+  private subscription!: Subscription;
 
   constructor(public clientCreditComponentService: ClientCreditComponentService, private officeService: OfficesHttpService) {}
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
-    }
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+    this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
+    this.subscription = this.clientCreditComponentService.clientCredit$.subscribe((res) => {
+      this.tableComponent.tableStyle = { "min-width": "10rem" };
+      this.tableComponent.paginator = false;
+      if (res) {
+        if (res.length > 0) {
+          this.tableComponent.reset();
+          this.tableComponent.tableStyle = { "min-width": "150rem" };
+        }
+      }
+    });
   }
 }

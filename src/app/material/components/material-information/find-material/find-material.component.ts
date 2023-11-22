@@ -54,8 +54,8 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
     this.materialCodeControl.markAsDirty();
     this.officeService.setValidFindOffice();
     if (Boolean(this.office) && this.materialForm.valid) {
-      if (this.materialTypeControl.value.type == "CG") this.materialService.getMaterialsGenerics(this.office.ip_Red!, this.materialCodeControl.value);
-      if (this.materialTypeControl.value.type == "CV") this.materialService.getMaterialVariant(this.office.ip_Red!, this.materialCodeControl.value);
+      if (this.materialTypeControl.value.type == "CG") this.materialService.getMaterialGenerics(this.office.ip_Red!, this.materialCodeControl.value);
+      if (this.materialTypeControl.value.type == "CV") this.materialService.getMaterialVariants(this.office.ip_Red!, this.materialCodeControl.value);
       if (this.materialTypeControl.value.type == "CB") this.materialService.getMaterialBarcode(this.office.ip_Red!, this.materialCodeControl.value);
     }
   }

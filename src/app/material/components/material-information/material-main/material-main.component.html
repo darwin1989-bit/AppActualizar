@@ -6,15 +6,13 @@
       </div>
       <hr />
       <p-table
+        #dt
         [value]="(materialService.materialsMain$ | async)!"
-        [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '90rem' }"
         styleClass="p-datatable-sm p-datatable-gridlines"
-        [alwaysShowPaginator]="true"
-        [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
+        [breakpoint]="'960px'"
         rowGroupMode="rowspan"
         groupRowsBy="codigo"
         [groupRowsByOrder]="0"
@@ -30,7 +28,7 @@
             <th>Código Barra</th>
             <th>Principal</th>
             <th>Orden</th>
-            <th>Com.</th>
+            <th>Mat.Nuevo</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
