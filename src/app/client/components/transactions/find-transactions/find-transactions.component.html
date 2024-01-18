@@ -1,16 +1,16 @@
-<h4>Buscar transacción</h4>
-<hr />
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar transacción</span>
+</div>
 <form [formGroup]="transactionsForm">
-  <div class="field">
-    <label [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">Número de identificación</label>
-    <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" pKeyFilter="num" />
-    <div *ngIf="numberIdControl.invalid && numberIdControl.dirty">
-      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('required')">Este campo es requerido.</span>
-      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('minlength') || numberIdControl.hasError('maxlength')"> El número de identificación es incorrecto.</span>
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">Número de identificación</label>
+      <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" pKeyFilter="num" />
+      <div *ngIf="numberIdControl.invalid && numberIdControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('required')">Este campo es requerido.</span>
+        <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('minlength') || numberIdControl.hasError('maxlength')"> El número de identificación es incorrecto.</span>
+      </div>
     </div>
-  </div>
-  <div class="mt-4 mb-4">
-    <p-divider></p-divider>
   </div>
   <div class="field">
     <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar transacción"></button>

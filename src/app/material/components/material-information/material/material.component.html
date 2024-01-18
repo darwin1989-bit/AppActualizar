@@ -1,10 +1,10 @@
+<hr />
+<div class="flex align-items-center justify-content-between">
+  <h4 class="my-0 font-bold">Resultados materiales</h4>
+</div>
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card border-1 border-400">
-      <div class="flex align-items-center justify-content-between">
-        <h4 class="my-0">Resultados materiales</h4>
-      </div>
-      <hr />
+    <div class="card surface-card">
       <p-table
         #dt
         [value]="(materialService.materials$ | async)!"
@@ -19,15 +19,15 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Código</th>
+            <th pFrozenColumn>Código</th>
             <th>Descripción</th>
-            <th>Rest. desc.</th>
+            <th style="width: 2%">Rest. desc.</th>
             <th>Precio</th>
             <th>Lista precio</th>
             <th>Estado</th>
             <th>Marca</th>
             <th>Código Barra</th>
-            <th>Principal</th>
+            <th style="width: 2%">Principal</th>
             <th>Orden</th>
             <th>Prom.</th>
             <th>Info.</th>
@@ -35,7 +35,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
+            <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>

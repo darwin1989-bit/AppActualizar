@@ -1,31 +1,33 @@
-<h4>Buscar cliente</h4>
-<hr />
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar cliente</span>
+</div>
 <form [formGroup]="documentForm">
-  <div class="field">
-    <label htmlFor="documentType" [class.text-red-500]="!documentTypeControl.dirty && documentTypeControl.touched">Tipo documento</label>
-    <p-dropdown
-      (onChange)="changeDropDown()"
-      [options]="dropdownDocumentType"
-      optionLabel="name"
-      placeholder="Selecciona el tipo"
-      formControlName="documentType"
-      [class.ng-dirty]="documentTypeControl.touched"
-    ></p-dropdown>
-    <div *ngIf="documentTypeControl.touched">
-      <span id="documentType-help" class="text-red-500 text-sm" *ngIf="documentTypeControl.hasError('required')">Este campo es requerido.</span>
+  <div class="card">
+    <div class="field">
+      <label htmlFor="documentType" [class.text-red-500]="!documentTypeControl.dirty && documentTypeControl.touched">Tipo documento</label>
+      <p-dropdown
+        (onChange)="changeDropDown()"
+        [options]="dropdownDocumentType"
+        optionLabel="name"
+        placeholder="Selecciona el tipo"
+        formControlName="documentType"
+        [class.ng-dirty]="documentTypeControl.touched"
+      ></p-dropdown>
+      <div *ngIf="documentTypeControl.touched">
+        <span id="documentType-help" class="text-red-500 text-sm" *ngIf="documentTypeControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label htmlFor="documentNumber" [class.text-red-500]="documentNumberControl.invalid && documentNumberControl.dirty">Número de indentificación</label>
+      <input (keydown)="clearClient($event)" pInputText id="documentNumber" formControlName="documentNumber" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
+      <div *ngIf="documentNumberControl.invalid && documentNumberControl.dirty">
+        <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('required')">Este campo es requerido.</span>
+        <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('minlength') || documentNumberControl.hasError('maxlength')">
+          {{ messageName | titlecase }} es incorrecta.</span
+        >
+      </div>
     </div>
   </div>
-  <div class="field">
-    <label htmlFor="documentNumber" [class.text-red-500]="documentNumberControl.invalid && documentNumberControl.dirty">Número de indentificación</label>
-    <input (keydown)="clearClient($event)" pInputText id="documentNumber" formControlName="documentNumber" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
-    <div *ngIf="documentNumberControl.invalid && documentNumberControl.dirty">
-      <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('required')">Este campo es requerido.</span>
-      <span id="documentNumberControl-help" class="text-red-500 text-sm" *ngIf="documentNumberControl.hasError('minlength') || documentNumberControl.hasError('maxlength')">
-        {{ messageName | titlecase }} es incorrecta.</span
-      >
-    </div>
-  </div>
-  <hr />
   <div class="field">
     <button (click)="findclient()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar cliente"></button>
   </div>

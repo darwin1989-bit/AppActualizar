@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { ResponseComunicationMaterial } from '../models/response-comunication-material';
 import { ResponseMaterialDto } from '../models/response-material-dto';
 import { ResponseMaterialInfoDto } from '../models/response-material-info-dto';
 import { ResponseMaterialPromotionDto } from '../models/response-material-promotion-dto';
@@ -877,6 +878,113 @@ export class MaterialsService extends BaseService {
 
     return this.apiMaterialsPromotionGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialPromotionDto>) => r.body as ResponseMaterialPromotionDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiMaterialsComunicateGet
+   */
+  static readonly ApiMaterialsComunicateGetPath = '/api/Materials/comunicate';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsComunicateGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsComunicateGet$Plain$Response(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsComunicateGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('code', params.code, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsComunicateGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsComunicateGet$Plain(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsComunicateGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsComunicateGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsComunicateGet$Json$Response(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsComunicateGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('code', params.code, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsComunicateGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsComunicateGet$Json(params?: {
+    ip?: string;
+    code?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsComunicateGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
     );
   }
 

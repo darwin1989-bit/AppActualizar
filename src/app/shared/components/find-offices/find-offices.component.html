@@ -1,6 +1,6 @@
 <div class="flex align-items-center justify-content-between mb-3">
-  <div class="flex justify-content-start align-items-center">
-    <h4 class="m-0">Selección tienda</h4>
+  <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full">
+    <span class="m-0 text-2xl font-bold">Selección tienda</span>
   </div>
   <div class="dropdown cursor-pointer scalein animation-duration-500 connect" *ngIf="officesHttpService.offices$ | async">
     <div class="label-badge-success flex align-items-center text-sm font-semibold"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>Conectado</div>
@@ -17,41 +17,41 @@
     </div>
   </div>
 </div>
-<hr />
-<form [formGroup]="officesForm">
-  <div class="field">
-    <label htmlFor="companyInput" [class.text-red-500]="companyControl.touched && companyControl.hasError('required')">Empresa</label>
-    <p-dropdown
-      [options]="company"
-      [class.ng-dirty]="companyControl.touched"
-      optionLabel="name"
-      [showClear]="true"
-      placeholder="Selecciona la empresa"
-      (onChange)="changeCompany()"
-      formControlName="companyInput"
-    >
-    </p-dropdown>
-    <div *ngIf="companyControl.touched">
-      <span class="text-red-500 text-sm" *ngIf="companyControl.hasError('required')">Este campo es requerido.</span>
+<div class="card">
+  <form [formGroup]="officesForm">
+    <div class="field">
+      <label htmlFor="companyInput" [class.text-red-500]="companyControl.touched && companyControl.hasError('required')">Empresa</label>
+      <p-dropdown
+        [options]="company"
+        [class.ng-dirty]="companyControl.touched"
+        optionLabel="name"
+        [showClear]="true"
+        placeholder="Selecciona la empresa"
+        (onChange)="changeCompany()"
+        formControlName="companyInput"
+      >
+      </p-dropdown>
+      <div *ngIf="companyControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="companyControl.hasError('required')">Este campo es requerido.</span>
+      </div>
     </div>
-  </div>
-
-  <div class="field">
-    <label htmlFor="officeInput" [class.text-red-500]="officeControl.touched && officeControl.hasError('required')">Tienda</label>
-    <p-dropdown
-      [options]="offices"
-      [class.ng-dirty]="officeControl.touched"
-      optionLabel="nombre"
-      [filter]="true"
-      filterBy="nombre"
-      [showClear]="true"
-      placeholder="Selecciona la oficina"
-      formControlName="officeInput"
-      (onChange)="changeOffice()"
-    >
-    </p-dropdown>
-    <div *ngIf="officeControl.touched">
-      <span class="text-red-500 text-sm" *ngIf="officeControl.hasError('required')">Este campo es requerido.</span>
+    <div class="field">
+      <label htmlFor="officeInput" [class.text-red-500]="officeControl.touched && officeControl.hasError('required')">Tienda</label>
+      <p-dropdown
+        [options]="offices"
+        [class.ng-dirty]="officeControl.touched"
+        optionLabel="nombre"
+        [filter]="true"
+        filterBy="nombre"
+        [showClear]="true"
+        placeholder="Selecciona la oficina"
+        formControlName="officeInput"
+        (onChange)="changeOffice()"
+      >
+      </p-dropdown>
+      <div *ngIf="officeControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="officeControl.hasError('required')">Este campo es requerido.</span>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>

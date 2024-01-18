@@ -50,6 +50,7 @@ export { ResOfflinePaymentDto } from './models/res-offline-payment-dto';
 export { ResOfflinePurchaseDto } from './models/res-offline-purchase-dto';
 export { ResTransactionsDto } from './models/res-transactions-dto';
 export { Response } from './models/response';
+export { ResponseComunicationMaterial } from './models/response-comunication-material';
 export { ResponseDto } from './models/response-dto';
 export { ResponseInvoiceDto } from './models/response-invoice-dto';
 export { ResponseMaterialDto } from './models/response-material-dto';

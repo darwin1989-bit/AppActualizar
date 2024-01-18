@@ -26,7 +26,7 @@ export class ClientComponentService {
     return this.clientService.apiClientGet$Json({ ip: ip, numberId: numberId, typeIdClient: typeIdClient }).pipe(
       tap((res: GetClientDto[]) => {
         this.specialTaxpayer.next(res[0].contribuyente_Especial == "0" ? "NO" : "SI");
-        if (res.length > 0) this.toastMesagge.showToast("tc", "success", "Consulta realizada", `Información del cliente ${res[0].nombre_Razon?.toUpperCase()}.`, 4000);
+        if (res.length > 0) this.toastMesagge.showToast("tc", "success", "Éxito", `Información del cliente ${res[0].nombre_Razon?.toUpperCase()}.`);
       }),
       catchError((error) => {
         return this.calledHttpService.errorHandler(error);
@@ -37,7 +37,7 @@ export class ClientComponentService {
     return this.clientService.apiClientPut$Json({ company: company, ip: ip, numberId: numberId, typeIdClient: typeIdClient, body: clientParamsUpdate }).pipe(
       tap((res) => {
         this.clientFound.next(res);
-        this.toastMesagge.showToast("tc", "success", "Actualización realizada", "Se ha actualizado el cliente corretamente.", 4000);
+        this.toastMesagge.showToast("tc", "success", "Éxito", "Se ha actualizado el cliente corretamente.");
       }),
       catchError((error) => {
         return this.calledHttpService.errorHandler(error);
@@ -49,7 +49,7 @@ export class ClientComponentService {
       tap((res) => {
         this.clientFound.next(res);
         this.specialTaxpayer.next(res[0].contribuyente_Especial == "0" ? "NO" : "SI");
-        this.toastMesagge.showToast("tc", "success", "Creación realizada", "Se ha creado el cliente correctamente.", 4000);
+        this.toastMesagge.showToast("tc", "success", "Éxito", "Se ha creado el cliente correctamente.");
         this.sharedService.hideDialog();
       }),
       catchError((error) => {
@@ -83,7 +83,7 @@ export class ClientComponentService {
   public updateRetention(ip: string, retentionParams: RetentionParams): Observable<void> {
     return this.clientService.apiClientRetentionPut({ ip, body: retentionParams }).pipe(
       tap(() => {
-        this.toastMesagge.showToast("tc", "success", "Actualización realizada", "Se ha actualizado los datos de la retención.", 4000);
+        this.toastMesagge.showToast("tc", "success", "Éxito", "Se ha actualizado los datos de la retención.");
         this.hideRetention();
       }),
       catchError((error) => {

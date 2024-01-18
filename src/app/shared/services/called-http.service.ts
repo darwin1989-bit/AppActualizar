@@ -14,21 +14,21 @@ export class CalledHttpService {
 
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 404 && error.url?.includes("/api/Client")) {
-      this.toastMesagge.showToast("cf", "warn", "Búsqueda no encontrada", `${error.error.message}`, 8000);
+      this.toastMesagge.showToast("cf", "warn", "Advertencia", `${error.error.message}`);
       return NEVER;
     } else if (error.status === 404) {
-      this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada", error.error.message, 6000);
+      this.toastMesagge.showToast("tc", "warn", "Advertencia", error.error.message);
       return NEVER;
     }
-    this.toastMesagge.showToast("tc", "error", "Hubo un error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 8000);
+    this.toastMesagge.showToast("tc", "error", "Error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente");
     return NEVER;
   }
   errorHandlerMain(error: HttpErrorResponse) {
     if (error.status === 404) {
-      this.toastMesagge.showToast("tc", "warn", "Búsqueda no encontrada matriz", error.error.message, 6000);
+      this.toastMesagge.showToast("tc", "warn", "Advertencia matriz", error.error.message);
       return NEVER;
     }
-    this.toastMesagge.showToast("tc", "error", "Hubo un error en matriz", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente", 8000);
+    this.toastMesagge.showToast("tc", "error", "Error matriz", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente");
     return NEVER;
   }
 

@@ -47,6 +47,11 @@ export class InvoicesComponentService {
     this.allInvoicesMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
   }
 
+  public getCreditNote(ip: string, numberInvoice: string): void {
+    this.creditNote(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
+    this.creditNoteMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
+  }
+
   private invoiceNumber(ip: string, numberInvoice: string): Observable<ResponseInvoiceDto> {
     return this.invoiceService.apiInvoicesNumberGet$Json({ ip, numberInvoice }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
   }
@@ -69,6 +74,14 @@ export class InvoicesComponentService {
 
   private allInvoicesMain(ip: string, office: string): Observable<ResponseInvoiceDto> {
     return this.invoiceService.apiInvoicesAllInvoicesMainGet$Json({ ip, office }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+  }
+
+  private creditNote(ip: string, creditNoteNumber: string) {
+    return this.invoiceService.apiInvoicesCreditNoteGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+  }
+
+  private creditNoteMain(ip: string, creditNoteNumber: string) {
+    return this.invoiceService.apiInvoicesCreditNoteMainGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
   }
 
   public getInvoiceDetails(ip: string, numberInvoice: string): void {

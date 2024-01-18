@@ -14,3 +14,6 @@
   border-color: transparent;
   background: var(--red-200);
 }
+:host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+  padding: 1rem 1rem;
+}

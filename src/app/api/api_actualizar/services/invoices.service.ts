@@ -980,4 +980,218 @@ export class InvoicesService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation apiInvoicesCreditNoteGet
+   */
+  static readonly ApiInvoicesCreditNoteGetPath = '/api/Invoices/credit_note';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesCreditNoteGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteGet$Plain$Response(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('creditNoteNumber', params.creditNoteNumber, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNoteGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteGet$Plain(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesCreditNoteGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesCreditNoteGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteGet$Json$Response(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('creditNoteNumber', params.creditNoteNumber, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNoteGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteGet$Json(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesCreditNoteGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiInvoicesCreditNoteMainGet
+   */
+  static readonly ApiInvoicesCreditNoteMainGetPath = '/api/Invoices/credit_note/main';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesCreditNoteMainGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteMainGet$Plain$Response(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteMainGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('creditNoteNumber', params.creditNoteNumber, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNoteMainGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteMainGet$Plain(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesCreditNoteMainGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiInvoicesCreditNoteMainGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteMainGet$Json$Response(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteMainGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('creditNoteNumber', params.creditNoteNumber, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInvoiceDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNoteMainGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiInvoicesCreditNoteMainGet$Json(params?: {
+    ip?: string;
+    creditNoteNumber?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInvoiceDto> {
+
+    return this.apiInvoicesCreditNoteMainGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
+    );
+  }
+
 }

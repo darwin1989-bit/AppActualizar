@@ -1,10 +1,10 @@
+<hr />
+<div class="flex align-items-center justify-content-between">
+  <h4 class="my-0 font-bold">Resultados tienda</h4>
+</div>
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card border-1 border-400">
-      <div class="flex align-items-center justify-content-between">
-        <h4 class="my-0">Resultados tienda</h4>
-      </div>
-      <hr />
+    <div class="card surface-card">
       <p-table
         #dt
         [value]="(invoiceService.invoicesStore$ | async)!"
@@ -31,7 +31,6 @@
             <th>Usuario cajero</th>
             <th>Núm. caja</th>
             <th>Detalle</th>
-            <th style="width: 2%">Nota credito</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
@@ -54,17 +53,6 @@
             <td>{{ invoice.estacionId }}</td>
             <td>
               <button icon="pi pi-list" type="button" pButton pRipple class="p-button-sm p-button-info" (click)="selectInvoice(invoice)"></button>
-            </td>
-            <td>
-              <button
-                icon="pi pi-file"
-                [disabled]="!(invoice.data_CreditNote.length > 0)"
-                type="button"
-                pButton
-                pRipple
-                class="p-button-sm p-button-secondary"
-                (click)="invoiceService.invoiceCreditNoteSelect(invoice)"
-              ></button>
             </td>
           </tr>
         </ng-template>

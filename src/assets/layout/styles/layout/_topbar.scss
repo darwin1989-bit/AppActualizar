@@ -1,12 +1,13 @@
 .layout-topbar {
-  // position: fixed;
-  // height: 5rem;
+  position: fixed;
+  height: 5rem;
   z-index: 997;
   left: 0;
   top: 0;
   width: 100%;
-  // padding: 0 2rem;
+  padding: 0 2rem;
   // background-color: var(--surface-card);
+  backdrop-filter: blur(8px);
   transition: left $transitionDuration;
   display: flex;
   align-items: center;
@@ -37,7 +38,7 @@
     align-items: center;
     position: relative;
     color: var(--text-color-secondary);
-    border-radius: 50%;
+    border-radius: 100%;
     width: 3rem;
     height: 3rem;
     cursor: pointer;

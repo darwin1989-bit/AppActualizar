@@ -3,13 +3,20 @@ import { BehaviorSubject, Observable, Subject, catchError, concatMap, tap } from
 import { MaterialInfoDto, MaterialsDto, ResponseMaterialDto } from "src/app/api/api_actualizar/models";
 import { MaterialsService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
+import { ITypeMaterials } from "../models/material-interface";
+import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class MaterialInformationService {
+  private typeMat!: ITypeMaterials;
+  private findCode!: string;
   private materials = new Subject<MaterialsDto[]>();
   public materials$ = this.materials.asObservable();
+
+  private typeMaterial = new Subject<ITypeMaterials>();
+  public typeMaterial$ = this.typeMaterial.asObservable();
 
   private materialsMain = new Subject<MaterialsDto[]>();
   public materialsMain$ = this.materialsMain.asObservable();
@@ -20,7 +27,9 @@ export class MaterialInformationService {
   private dialogInformation = new Subject<boolean>();
   public dialogInformation$ = this.dialogInformation.asObservable();
 
-  constructor(private materialService: MaterialsService, private calledHttpService: CalledHttpService) {}
+  constructor(private materialService: MaterialsService, private calledHttpService: CalledHttpService, private toastMesagge: ToastMessagesService) {
+    this.typeMaterial$.subscribe((res) => (this.typeMat = res));
+  }
 
   public getMaterialGenerics(ip: string, materialCode: string): void {
     this.materialsGenerics(ip, materialCode)
@@ -48,7 +57,7 @@ export class MaterialInformationService {
       .subscribe();
   }
   public getMaterialBarcode(ip: string, materialVariant: string): void {
-    this.materialVariants(ip, materialVariant)
+    this.materialBarcode(ip, materialVariant)
       .pipe(
         tap((res) => this.materials.next(res.data!)),
         concatMap((val) => this.mainMaterialBarcode(ip, materialVariant, val)),
@@ -131,11 +140,29 @@ export class MaterialInformationService {
       .subscribe();
   }
 
+  public ComunicateMaterial(ip: string, code: string): void {
+    this.materialService
+      .apiMaterialsComunicateGet$Json({ ip, code })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
+          this.findCode;
+
+          if (this.typeMat.type == "CG") this.getMaterialGenerics(ip, this.findCode);
+          if (this.typeMat.type == "CV") this.getMaterialVariants(ip, this.findCode);
+          if (this.typeMat.type == "CB") this.getMaterialBarcode(ip, this.findCode);
+        }),
+        catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
+  }
+
   public clearMaterials(): void {
     this.materials.next([]);
     this.materialsMain.next([]);
   }
-}
-function complete(arg0: () => void): import("rxjs").OperatorFunction<ResponseMaterialDto, unknown> {
-  throw new Error("Function not implemented.");
+  public setTypeMaterial(type: ITypeMaterials, code: string) {
+    this.typeMaterial.next(type);
+    this.findCode = code;
+  }
 }

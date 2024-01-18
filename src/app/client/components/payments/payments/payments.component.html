@@ -1,10 +1,10 @@
+<hr />
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full">
+  <span class="m-0 text-2xl font-bold">Resultados</span>
+</div>
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card border-1 border-400">
-      <div class="flex align-items-center justify-content-between">
-        <h4 class="my-0">Resultados</h4>
-      </div>
-      <hr />
+    <div class="card surface-card">
       <p-table
         #dt
         [value]="(paymentsService.payments$ | async)!"
@@ -22,9 +22,9 @@
             <th>Número transacción</th>
             <th>Valor</th>
             <th>Valor efectivo</th>
-            <th>Valor Chq</th>
+            <th>Valor Chq.</th>
             <th>Valor otros</th>
-            <th>Tipo transacción</th>
+            <th>T. transacción</th>
             <th>Referencia transacción</th>
             <th>Observación</th>
           </tr>

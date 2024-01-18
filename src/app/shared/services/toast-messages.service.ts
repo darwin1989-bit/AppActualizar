@@ -12,13 +12,13 @@ export class ToastMessagesService {
 
   constructor(private messageService: MessageService) {}
 
-  showToast(position: Iposition, severity: ItypeSeverity, summaryMessage: string, detailMessage: string, time: number): void {
+  showToast(position: Iposition, severity: ItypeSeverity, summaryMessage: string, detailMessage: string): void {
     this.messageService.add({
       key: position,
       severity: severity,
       summary: summaryMessage,
       detail: detailMessage,
-      life: time,
+      life: 6000,
       icon: this.getIcon(severity, summaryMessage),
     });
   }

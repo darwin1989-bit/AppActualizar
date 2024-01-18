@@ -1,29 +1,31 @@
-<h4>Buscar pagos</h4>
-<hr />
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar pagos</span>
+</div>
 <form [formGroup]="paymentForm">
-  <div class="field">
-    <label [class.text-red-500]="!paymentTypeControl.dirty && paymentTypeControl.touched">Tipo de búsqueda</label>
-    <p-dropdown
-      (onChange)="changeDropDown()"
-      [options]="dropdownPaymentType"
-      optionLabel="name"
-      placeholder="Selecciona el tipo"
-      formControlName="paymentsType"
-      [class.ng-dirty]="paymentTypeControl.touched"
-    ></p-dropdown>
-    <div *ngIf="paymentTypeControl.touched">
-      <span class="text-red-500 text-sm" *ngIf="paymentTypeControl.hasError('required')">Este campo es requerido.</span>
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!paymentTypeControl.dirty && paymentTypeControl.touched">Tipo de búsqueda</label>
+      <p-dropdown
+        (onChange)="changeDropDown()"
+        [options]="dropdownPaymentType"
+        optionLabel="name"
+        placeholder="Selecciona el tipo"
+        formControlName="paymentsType"
+        [class.ng-dirty]="paymentTypeControl.touched"
+      ></p-dropdown>
+      <div *ngIf="paymentTypeControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="paymentTypeControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label htmlFor="documentNumber" [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">{{ labelName }}</label>
+      <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
+      <div *ngIf="numberIdControl.invalid && numberIdControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('required')">Este campo es requerido.</span>
+        <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('minlength') || numberIdControl.hasError('maxlength')"> {{ labelName }} es incorrecta.</span>
+      </div>
     </div>
   </div>
-  <div class="field">
-    <label htmlFor="documentNumber" [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">{{ labelName }}</label>
-    <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" [pKeyFilter]="regDocumentNumber" class="uppercase" />
-    <div *ngIf="numberIdControl.invalid && numberIdControl.dirty">
-      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('required')">Este campo es requerido.</span>
-      <span class="text-red-500 text-sm" *ngIf="numberIdControl.hasError('minlength') || numberIdControl.hasError('maxlength')"> {{ labelName }} es incorrecta.</span>
-    </div>
-  </div>
-  <hr />
   <div class="field">
     <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar pagos"></button>
   </div>
