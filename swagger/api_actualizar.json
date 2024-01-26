@@ -1268,6 +1268,111 @@
         }
       }
     },
+    "/api/Materials/edit/barcode": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBarCode"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBarCode"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBarCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/update": {
+      "put": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Offices": {
       "get": {
         "tags": ["Offices"],
@@ -1635,6 +1740,58 @@
             "nullable": true
           },
           "messageType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BarCodeDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoBarras": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "principal": {
+            "type": "string",
+            "nullable": true
+          },
+          "orden": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BarCodeUpdate": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoBarras": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "esPrincipal": {
+            "type": "string",
+            "nullable": true
+          },
+          "abcOrden": {
             "type": "string",
             "nullable": true
           }
@@ -3126,6 +3283,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseBarCode": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BarCodeDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseComunicationMaterial": {
         "type": "object",
         "properties": {
@@ -3496,6 +3666,31 @@
           },
           "offlinePurchases": {
             "$ref": "#/components/schemas/OfflinePurchaseDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateMaterial": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "restringidoDsctos": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "barCode": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BarCodeUpdate"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

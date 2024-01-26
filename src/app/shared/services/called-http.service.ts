@@ -20,6 +20,7 @@ export class CalledHttpService {
       this.toastMesagge.showToast("tc", "warn", "Advertencia", error.error.message);
       return NEVER;
     }
+
     this.toastMesagge.showToast("tc", "error", "Error", error.error.message ? error.error.message : "No se pudo obtener los datos, intente nuevamente");
     return NEVER;
   }

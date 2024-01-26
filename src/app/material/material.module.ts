@@ -11,9 +11,10 @@ import { MaterialMainComponent } from './components/material-information/materia
 import { InformationComponent } from './components/material-information/information/information.component';
 import { PromotionComponent } from './components/material-information/promotion/promotion.component';
 import { DetailPromotionComponent } from './components/material-information/detail-promotion/detail-promotion.component';
+import { MaterialEditComponent } from './components/material-information/material-edit/material-edit/material-edit.component';
 
 @NgModule({
-  declarations: [PageMaterialInformationComponent, FindMaterialComponent, MaterialPromotionComponent, MaterialComponent, MaterialMainComponent, InformationComponent, PromotionComponent, DetailPromotionComponent],
+  declarations: [PageMaterialInformationComponent, FindMaterialComponent, MaterialPromotionComponent, MaterialComponent, MaterialMainComponent, InformationComponent, PromotionComponent, DetailPromotionComponent, MaterialEditComponent],
   imports: [CommonModule, MaterialRoutingModule, SharedModule],
 })
 export class MaterialModule {}

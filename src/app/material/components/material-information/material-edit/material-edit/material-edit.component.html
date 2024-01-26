@@ -1,0 +1,81 @@
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [style]="{ width: '600px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-pencil" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Editar material</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="py-0 border-top-1 border-bottom-1 surface-border">
+      <div class="p-fluid p-formgrid grid py-4">
+        <div class="field col-3 md:col-3">
+          <label htmlFor="codigo">Código material</label>
+          <input pInputText id="codigo" type="text" [value]="material.codigo" disabled class="opacity-100" />
+        </div>
+        <div class="field col-9 md:col-9">
+          <label htmlFor="descripcion">Descripción</label>
+          <input pInputText id="descripcion" type="text" [value]="material.descripcion" disabled class="opacity-100" />
+        </div>
+        <div class="field col-6 md:col-6">
+          <label htmlFor="restringido">Restringido descuento</label>
+          <p-dropdown (onChange)="changeDropdown()" [options]="dropDownResDesc" [(ngModel)]="selectedResDesc" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="field col-6 md:col-6">
+          <label htmlFor="estado">Estado</label>
+          <p-dropdown (onChange)="changeDropdown()" [options]="dropDownStatus" [(ngModel)]="selectedStatus" optionLabel="name"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <p-table #dt [value]="materialBarCode" styleClass="p-datatable-sm p-datatable-gridlines" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pFrozenColumn>Código de Barras</th>
+          <th>Estado</th>
+          <th>Principal</th>
+          <th>Orden</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-material let-editing="editing">
+        <tr>
+          <td>{{ material.codigoBarras }}</td>
+          <td [pEditableColumn]="material.estado" pEditableColumnField="estado" class="cursor-pointer">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownStatus" appendTo="body" [(ngModel)]="material.estado" optionLabel="name" placeholder="Selección"></p-dropdown>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ material.estado.name ? material.estado.name : material.estado == "A" ? "ACTIVO" : "INACTIVO" }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td [pEditableColumn]="material.principal" pEditableColumnField="principal" class="cursor-pointer">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownResDesc" appendTo="body" [(ngModel)]="material.principal" optionLabel="name" placeholder="Selección"></p-dropdown>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ material.principal.name ? material.principal.name : material.principal == "S" ? "SI" : "NO" }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td [pEditableColumn]="material.orden" pEditableColumnField="orden" class="cursor-pointer">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownOrden" appendTo="body" [(ngModel)]="material.orden" optionLabel="name" placeholder="Selección"></p-dropdown>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ material.orden.name ? material.orden.name : material.orden }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button (onClick)="saveEditMaterial()" icon="pi pi-save" label="Guardar" [disabled]="disabledSave"></p-button>
+  </ng-template>
+</p-dialog>

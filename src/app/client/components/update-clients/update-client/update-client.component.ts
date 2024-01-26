@@ -20,7 +20,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
   public visible: boolean = false;
   public employed: IEmployee[] = IsEmployedObj;
   public gender: IGender[] = GenderObj;
-  private subcription!: Subscription;
+  private subscription!: Subscription;
   private selectedEmployed!: IEmployee;
   private selectedGender!: IGender;
   public onlyAlphabetic: RegExp = /^[a-zA-Z\s]+$/;
@@ -121,14 +121,14 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.subcription = this.menuService.userData.subscribe((user: userData) => (this.user = user));
-    this.subcription = this.sharedService.dialogCreateClient$.subscribe((res: boolean) => {
+    this.subscription = this.menuService.userData.subscribe((user: userData) => (this.user = user));
+    this.subscription = this.sharedService.dialogCreateClient$.subscribe((res: boolean) => {
       if (res) {
         this.showDialogCreate();
         this.getProvince();
@@ -136,17 +136,17 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
         this.dialogCreate = res;
       }
     });
-    this.subcription = this.sharedService.clientNotFound$.subscribe((client) => (this.clientNotFound = client));
+    this.subscription = this.sharedService.clientNotFound$.subscribe((client) => (this.clientNotFound = client));
   }
 
   public getProvince(): void {
     let office!: OfficesDto;
-    this.subcription = this.officeService.offices$.subscribe((res) => (office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
     this.clientService.getProvinces(office.ip_Red!).subscribe((provinces) => (this.provinces = provinces));
   }
   public getCities(): void {
     let office!: OfficesDto;
-    this.subcription = this.officeService.offices$.subscribe((res) => (office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
     const province: GetProvincesDto = this.provincesCreateControl.value;
     this.clientService.getCities(office.ip_Red!, province.zona!).subscribe((city) => (this.cities = city));
   }
@@ -171,13 +171,14 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
     this.clientForm.reset();
     this.visible = true;
 
-    this.subcription = this.clientService.clientFound$.subscribe((res: GetClientDto[]) => {
+    this.subscription = this.clientService.clientFound$.subscribe((res: GetClientDto[]) => {
       this.client = res[0];
+      console.log(res[0].cli_Fecha_Nacimiento);
       this.clientForm.controls.name.patchValue(res[0].nombre_Razon!);
-      this.clientForm.controls.birthdate.patchValue(res[0].cli_Fecha_Nacimiento ? res[0].cli_Fecha_Nacimiento!.substring(0, 10) : "");
+      this.clientForm.controls.birthdate.patchValue(res[0].cli_Fecha_Nacimiento ? res[0].cli_Fecha_Nacimiento?.replace("-", "/").replace("-", "/").replace("-", "/").substring(0, 10) : "");
       this.clientForm.controls.isEmployed.patchValue(this.returnValueEmployed(res[0].esempleado!));
       this.clientForm.controls.address.patchValue(res[0].direccion!);
-      this.clientForm.controls.email.patchValue(res[0].email! == null ? "example@exmaple.com" : res[0].email!);
+      this.clientForm.controls.email.patchValue(res[0].email! == null ? "example@example.com" : res[0].email!);
       this.clientForm.controls.phone.patchValue(res[0].num_Fono1!);
       this.clientForm.controls.cellPhone.patchValue(res[0].num_Fono2! == null ? "9999999999" : res[0].num_Fono2!);
 
@@ -194,7 +195,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
   private returnValueEmployed(code: string): IEmployee {
     return this.employed.find((r) => r.code === code)!;
   }
-  public save(): void {
+  public saveEdit(): void {
     if (!this.clientForm.pristine) {
       const employee = this.clientForm.controls.isEmployed.value;
       let company!: ICompany;
@@ -212,14 +213,14 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
         usuario_Modificacion: this.user.UserName,
       };
 
-      this.subcription = this.officeService.company$.subscribe((res) => (company = res));
-      this.subcription = this.officeService.offices$.subscribe((res) => (office = res!));
+      this.subscription = this.officeService.company$.subscribe((res) => (company = res));
+      this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
       this.clientService.updateClient(company.code, office.ip_Red!, this.client.numero_Idcliente!, this.client.tipo_Idcliente!, clientEdit).subscribe(() => (this.visible = false));
     }
   }
   public saveCreate(): void {
     let office!: OfficesDto;
-    this.subcription = this.officeService.offices$.subscribe((res) => (office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
 
     this.clientCreateForm.markAllAsTouched();
     if (this.clientCreateForm.valid) {

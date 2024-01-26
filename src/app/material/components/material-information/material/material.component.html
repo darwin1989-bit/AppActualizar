@@ -21,29 +21,31 @@
           <tr>
             <th pFrozenColumn>Código</th>
             <th>Descripción</th>
-            <th style="width: 2%">Rest. desc.</th>
+            <th>Rest. desc.</th>
             <th>Precio</th>
             <th>Lista precio</th>
             <th>Estado</th>
             <th>Marca</th>
             <th>Código Barra</th>
+            <th style="width: 8%">Estado cod. barras</th>
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
-            <th>Prom.</th>
-            <th>Info.</th>
+            <th style="width: 8%">Promoción</th>
+            <th style="width: 8%">Información</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
             <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.sucursal }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
-            <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? material.esPrincipal : "NULL" }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
+            <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
               <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm" (click)="promotion(material)"></button>

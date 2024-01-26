@@ -30,14 +30,6 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
 
   public moneyLocale!: { money: string; locale: string };
 
-  public statuses!: SelectItem[];
-
-  public statusesDesc!: SelectItem[];
-
-  public statusesCod!: SelectItem[];
-
-  public statusesEsPrincipal!: SelectItem[];
-
   public materials!: MaterialsDto[];
 
   public clonedProducts: { [s: string]: MaterialsDto } = {};
@@ -49,23 +41,6 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.statuses = [
-      { label: "Activo", value: "A" },
-      { label: "Inactivo", value: "I" },
-    ];
-    this.statusesCod = [
-      { label: "Activo", value: "A" },
-      { label: "Inactivo", value: "I" },
-    ];
-    this.statusesDesc = [
-      { label: "No", value: "N" },
-      { label: "Si", value: "S" },
-    ];
-    this.statusesEsPrincipal = [
-      { label: "No", value: "N" },
-      { label: "Si", value: "S" },
-    ];
-
     this.subscription = this.materialService.materialsMain$.subscribe((res) => (this.materials = res));
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
@@ -76,7 +51,10 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
     });
   }
 
-  public procedure(materials: MaterialsDto): void {
+  public procedureMaterial(materials: MaterialsDto): void {
+    this.materialService.ComunicateMaterial(this.office.ip_Red!, materials.codigo!);
+  }
+  public procedurePrice(materials: MaterialsDto): void {
     this.materialService.ComunicateMaterial(this.office.ip_Red!, materials.codigo!);
   }
 
@@ -87,16 +65,8 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
     this.tableComponent.paginator = true;
   }
 
-  onRowEditInit(material: MaterialsDto) {
+  public editMaterial(material: MaterialsDto) {
     this.clonedProducts[material.codBarra as string] = { ...material };
-  }
-
-  onRowEditSave(material: MaterialsDto) {
-    console.log("🚀 ~ file: material-main.component.ts:76 ~ MaterialMainComponent ~ onRowEditSave ~ material:", material.estadoCodBarra);
-  }
-
-  onRowEditCancel(material: MaterialsDto, index: number) {
-    this.materials[index] = this.clonedProducts[material.codBarra as string];
-    delete this.clonedProducts[material.codBarra as string];
+    this.materialService.setDialogEdit(this.office.ip_Red!, material);
   }
 }

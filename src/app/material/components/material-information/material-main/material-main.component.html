@@ -5,10 +5,6 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
-      <div class="flex align-items-center justify-content-between">
-        <h4 class="my-0">Resultados materiales matriz</h4>
-      </div>
-      <hr />
       <p-table
         #dt
         [value]="materials"
@@ -32,74 +28,35 @@
             <th>Estado</th>
             <th>Marca</th>
             <th>Código Barra</th>
+            <th style="width: 8%">Estado cod. barras</th>
             <th>Principal</th>
             <th>Orden</th>
-            <th style="width: 8%">Estado cod. barras</th>
-            <th>Editar</th>
-            <th>Comun.</th>
+            <th style="width: 8%">Editar material</th>
+            <th style="width: 8%">Comunicar material</th>
+            <th style="width: 8%">Comunicar Precio</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan" let-editing="editing">
-          <tr [pEditableRow]="material">
+        <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
             <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.border-red-200]="editing" [class.border-1]="editing">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <p-dropdown [options]="statusesDesc" appendTo="body" [(ngModel)]="material.restringidoDesc" [style]="{ width: '100%' }"></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ material.restringidoDesc == "N" ? "No " : "Si" }}
-                </ng-template>
-              </p-cellEditor>
-            </td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.border-red-200]="editing" [class.border-1]="editing">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <p-dropdown [options]="statusesCod" appendTo="body" [(ngModel)]="material.estado" [style]="{ width: '100%' }"></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ material.estado == "A" ? "Activo" : "Inactivo" }}
-                </ng-template>
-              </p-cellEditor>
-            </td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
-            <td [class.font-italic]="!material.codBarra" [class.border-red-200]="editing" [class.border-1]="editing">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <p-dropdown [options]="statusesEsPrincipal" appendTo="body" [(ngModel)]="material.esPrincipal" [style]="{ width: '100%' }"></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ material.esPrincipal == "S" ? "Si" : "No" }}
-                </ng-template>
-              </p-cellEditor>
-            </td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
+            <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal == "N" ? "NO" : "SI" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
-            <td [class.border-red-200]="editing" [class.border-1]="editing">
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="material.estadoCodBarra" [style]="{ width: '100%' }"></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ material.estadoCodBarra == "A" ? "Activo" : "Inactivo" }}
-                </ng-template>
-              </p-cellEditor>
-            </td>
-            <td>
-              <div class="flex align-items-center gap-2">
-                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(material)" class="p-button-warning"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(material)" class="p-button-success mr-2"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(material, rowIndex)" class="p-button-danger"></button>
-              </div>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan"><button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning"></button></td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+              <button pButton pRipple icon="pi pi-sync" class="p-button-info p-button-sm" (click)="procedureMaterial(material)" [disabled]="material.spDisabled"></button>
             </td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-sync" class="p-button-info p-button-sm" (click)="procedure(material)" [disabled]="material.spDisabled"></button>
+              <button pButton pRipple icon="pi pi-dollar" class="p-button-success p-button-sm" (click)="procedurePrice(material)" [disabled]="material.spDisabled"></button>
             </td>
           </tr>
         </ng-template>
-
         <ng-template pTemplate="emptymessage">
           <tr>
             <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
@@ -109,3 +66,4 @@
     </div>
   </div>
 </div>
+<app-material-edit></app-material-edit>

@@ -32,6 +32,7 @@ import { SharedService } from "../shared/services/shared.service";
         width: 50%;
         opacity: 1;
         top: 0px;
+        margin-top: 10px;
       }
       :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
         align-items: center;

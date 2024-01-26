@@ -13,7 +13,7 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
   styleUrls: ["./find-material.component.scss"],
 })
 export class FindMaterialComponent implements OnInit, OnDestroy {
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
   private office!: OfficesDto;
 
@@ -39,13 +39,16 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private materialService: MaterialInformationService, private officeService: OfficesHttpService) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.materialService.loadMaterial$.subscribe((res) => {
+      if (res) this.findMaterial();
+    });
   }
 
   public findMaterial(): void {
