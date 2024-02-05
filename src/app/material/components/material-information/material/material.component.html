@@ -20,7 +20,7 @@
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Código</th>
-            <th>Descripción</th>
+            <th style="width: 15%">Descripción</th>
             <th>Rest. desc.</th>
             <th>Precio</th>
             <th>Lista precio</th>
@@ -44,7 +44,7 @@
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
+            <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
@@ -58,7 +58,7 @@
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="13" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

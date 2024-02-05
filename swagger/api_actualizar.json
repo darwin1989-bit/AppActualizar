@@ -1373,6 +1373,49 @@
         }
       }
     },
+    "/api/Materials/comunicate/price": {
+      "get": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Offices": {
       "get": {
         "tags": ["Offices"],

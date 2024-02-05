@@ -22,14 +22,14 @@
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Código</th>
-            <th>Descripción</th>
+            <th style="width: 15%">Descripción</th>
             <th>Rest. desc.</th>
             <th>Precio</th>
             <th>Estado</th>
             <th>Marca</th>
             <th>Código Barra</th>
             <th style="width: 8%">Estado cod. barras</th>
-            <th>Principal</th>
+            <th style="width: 2%">Principal</th>
             <th>Orden</th>
             <th style="width: 8%">Editar material</th>
             <th style="width: 8%">Comunicar material</th>
@@ -41,25 +41,36 @@
             <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.materials-null]="material.precio == null">
+              {{ material.precio == null ? "NULL" : (material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale) }}
+            </td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.materials-null]="material.marca == null || material.marca == ''">
+              {{ material.marca == "" || material.marca == null ? "NULL" : material.marca }}
+            </td>
             <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
+            <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal == "N" ? "NO" : "SI" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan"><button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning"></button></td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-sync" class="p-button-info p-button-sm" (click)="procedureMaterial(material)" [disabled]="material.spDisabled"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-sync"
+                class="p-button-info p-button-sm"
+                (click)="procedureMaterial(material)"
+                [disabled]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
+              ></button>
             </td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-dollar" class="p-button-success p-button-sm" (click)="procedurePrice(material)" [disabled]="material.spDisabled"></button>
+              <button pButton pRipple icon="pi pi-dollar" class="p-button-success p-button-sm" (click)="procedurePrice(material)" [disabled]="material.spPriceDisabled"></button>
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="13" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

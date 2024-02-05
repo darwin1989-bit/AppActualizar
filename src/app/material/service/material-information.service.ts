@@ -11,7 +11,6 @@ import { ToastMessagesService } from "src/app/shared/services/toast-messages.ser
 })
 export class MaterialInformationService {
   private typeMat!: ITypeMaterials;
-  private findCode!: string;
 
   private materials = new Subject<MaterialsDto[]>();
   public materials$ = this.materials.asObservable();
@@ -86,9 +85,16 @@ export class MaterialInformationService {
     return this.materialService.apiMaterialsMainGenericGet$Json({ ip, materialCode }).pipe(
       tap((res) => {
         const resMap = res.data?.map((r) => {
+          let validatePrecio = val?.data?.find((f) => f.codigo == r.codigo);
+          let spPrice: boolean = true;
+          if (validatePrecio) {
+            if (Number(validatePrecio.precio) == Number(r.precio) || r.precio == null) spPrice = true;
+            else spPrice = false;
+          }
           return {
             ...r,
             spDisabled: val?.data?.some((s) => s.codigo == r.codigo),
+            spPriceDisabled: spPrice,
           };
         });
         this.materialsMain.next(resMap!);
@@ -103,9 +109,16 @@ export class MaterialInformationService {
     return this.materialService.apiMaterialsMainVariantGet$Json({ ip, materialVariant }).pipe(
       tap((res) => {
         const resMap = res.data?.map((r) => {
+          let validatePrecio = val?.data?.find((f) => f.codigo == r.codigo);
+          let spPrice: boolean = true;
+          if (validatePrecio) {
+            if (Number(validatePrecio.precio) == Number(r.precio) || r.precio == null) spPrice = true;
+            else spPrice = false;
+          }
           return {
             ...r,
             spDisabled: val?.data?.some((s) => s.codigo == r.codigo),
+            spPriceDisabled: spPrice,
           };
         });
         this.materialsMain.next(resMap!);
@@ -120,9 +133,16 @@ export class MaterialInformationService {
     return this.materialService.apiMaterialsMainBarcodeGet$Json({ ip, barcode }).pipe(
       tap((res) => {
         const resMap = res.data?.map((r) => {
+          let validatePrecio = val?.data?.find((f) => f.codigo == r.codigo);
+          let spPrice: boolean = true;
+          if (validatePrecio) {
+            if (Number(validatePrecio.precio) == Number(r.precio) || r.precio == null) spPrice = true;
+            else spPrice = false;
+          }
           return {
             ...r,
             spDisabled: val?.data?.some((s) => s.codigo == r.codigo),
+            spPriceDisabled: spPrice,
           };
         });
         this.materialsMain.next(resMap!);
@@ -150,11 +170,7 @@ export class MaterialInformationService {
       .pipe(
         tap((res) => {
           this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
-          this.findCode;
-
-          if (this.typeMat.type == "CG") this.getMaterialGenerics(ip, this.findCode);
-          if (this.typeMat.type == "CV") this.getMaterialVariants(ip, this.findCode);
-          if (this.typeMat.type == "CB") this.getMaterialBarcode(ip, this.findCode);
+          this.loadMaterial.next(true);
         }),
         catchError((error) => this.calledHttpService.errorHandler(error))
       )
@@ -166,7 +182,6 @@ export class MaterialInformationService {
   }
   public setTypeMaterial(type: ITypeMaterials, code: string) {
     this.typeMaterial.next(type);
-    this.findCode = code;
   }
   private getBarcode(ip: string, code: string): void {
     this.materialService
@@ -185,7 +200,6 @@ export class MaterialInformationService {
     this.editMaterial.next(materialClone);
     this.getBarcode(ip, material.codigo!);
   }
-
   public putMaterial(company: string, ip: string, materialUpdate: UpdateMaterial): void {
     this.materialService
       .apiMaterialsUpdatePut$Json({ company, ip, body: materialUpdate })
@@ -202,5 +216,17 @@ export class MaterialInformationService {
       .subscribe({
         complete: () => this.dialogEditMaterial.next(false),
       });
+  }
+  public Sp_Comunicate_Price(ip: string, code: string): void {
+    this.materialService
+      .apiMaterialsComunicatePriceGet$Json({ ip, code })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
+          this.loadMaterial.next(true);
+        }),
+        catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
   }
 }

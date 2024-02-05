@@ -61,8 +61,8 @@ export class MaterialEditComponent implements OnInit, OnDestroy {
     let barcode: BarCodeUpdate[] = [];
 
     this.saveMaterial.codigo = this.material.codigo;
-    this.saveMaterial.restringidoDsctos = this.selectedResDesc?.name;
-    this.saveMaterial.status = this.selectedStatus?.name;
+    this.saveMaterial.restringidoDsctos = this.selectedResDesc?.type;
+    this.saveMaterial.status = this.selectedStatus?.type;
 
     for (let item of this.tableComponent.value) {
       barcode.push({
