@@ -36,6 +36,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
   get materialCodeControl(): FormControl {
     return this.materialForm.get("codeMaterial") as FormControl;
   }
+
   constructor(private fb: FormBuilder, private materialService: MaterialInformationService, private officeService: OfficesHttpService) {}
 
   ngOnDestroy(): void {

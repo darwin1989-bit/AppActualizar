@@ -12,6 +12,7 @@ import { PaymentsComponentService } from "src/app/client/service/payments-compon
 import { ClientCreditComponentService } from "src/app/client/service/client-credit-component.service";
 import { TransactionsComponentService } from "src/app/client/service/transactions-component.service";
 import { MaterialInformationService } from "src/app/material/service/material-information.service";
+import { DetailPromotionService } from "src/app/material/service/detail-promotion.service";
 
 @Component({
   selector: "app-find-offices",
@@ -46,7 +47,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private paymentsService: PaymentsComponentService,
     private clientCreditService: ClientCreditComponentService,
     private transactionsService: TransactionsComponentService,
-    private materialService: MaterialInformationService
+    private materialService: MaterialInformationService,
+    private detailPromotionService: DetailPromotionService
   ) {}
 
   ngOnDestroy(): void {
@@ -111,6 +113,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
     this.materialService.clearMaterials();
+    this.detailPromotionService.clearPromotions();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -122,6 +125,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
     this.materialService.clearMaterials();
+    this.detailPromotionService.clearPromotions();
   }
 
   public toggle() {

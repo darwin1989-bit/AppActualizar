@@ -1,0 +1,68 @@
+<hr />
+<div class="flex align-items-center justify-content-between mt-5">
+  <h4 class="my-0 font-bold">Resultados promociones</h4>
+</div>
+<div class="grid mt-3">
+  <div *ngFor="let promotion of promotions; let i = index" class="col-4 md:col-12">
+    <div class="card surface-card">
+      <div class="flex justify-content-end">
+        <h5 *ngIf="promotions.length == 1; else result">Resultado 0 de 0</h5>
+        <ng-template #result>
+          <h5>Resultado {{ i + 1 }} de {{ promotions.length }}</h5>
+        </ng-template>
+      </div>
+      <div class="p-fluid p-formgrid grid py-2">
+        <div class="field col-3 md:col-4">
+          <label htmlFor="id" class="font-bold">Id log</label>
+          <input [value]="promotion.id" pInputText id="codigo" type="text" disabled class="opacity-100" />
+        </div>
+        <div class="field col-9 md:col-4">
+          <label htmlFor="fecha" class="font-bold">Fecha</label>
+          <input [value]="promotion.fecha" pInputText id="descripcion" type="text" disabled class="opacity-100" />
+        </div>
+        <div class="field col-6 md:col-4">
+          <label htmlFor="oficina" class="font-bold">Oficina</label>
+          <input [value]="promotion.oficina" pInputText id="descripcion" type="text" disabled class="opacity-100" />
+        </div>
+      </div>
+      <p-table #dt [value]="promotion.responsePromotion!" styleClass="p-datatable-sm p-datatable-gridlines" responsiveLayout="stack">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Serie factura</th>
+            <th>Cantidad</th>
+            <th>Código</th>
+            <th>Descuento</th>
+            <th>Id promoción</th>
+            <th>Descripción</th>
+            <th>Procentaje</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-promotionResponse let-columns="columns">
+          <tr>
+            <td><span class="p-column-title font-bold">Serie factura</span>{{ promotionResponse.transactionID }}</td>
+            <td><span class="p-column-title font-bold">Cantidad</span>{{ promotionResponse.quantity }}</td>
+            <td><span class="p-column-title font-bold">Código</span>{{ promotionResponse.itemID }}</td>
+            <td [class.promotion-null]="promotionResponse.promotionDescription == null">
+              <span class="p-column-title font-bold">Descuento</span>{{ promotionResponse.promotionDescription != null ? (promotionResponse.amount | currency) : "Sin promoción" }}
+            </td>
+            <td [class.promotion-null]="promotionResponse.promotionDescription == null">
+              <span class="p-column-title font-bold">Id promoción</span>{{ promotionResponse.promotionDescription != null ? promotionResponse.externalPromotionID : "Sin promoción" }}
+            </td>
+            <td [class.promotion-null]="promotionResponse.promotionDescription == null">
+              <span class="p-column-title font-bold">Descripción</span>{{ promotionResponse.promotionDescription != null ? promotionResponse.promotionDescription : "Sin promoción" }}
+            </td>
+            <td><span class="p-column-title font-bold">Procentaje</span>{{ promotionResponse.percent }}%</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <hr />
+  </div>
+  <p-scrollTop></p-scrollTop>
+</div>
+<app-material-edit></app-material-edit>

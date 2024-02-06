@@ -1,4 +1,4 @@
-import { UpdateMaterial } from "src/app/api/api_actualizar/models";
+import { MaterialPromotionDto, UpdateMaterial } from "src/app/api/api_actualizar/models";
 import { ITypeMaterials } from "./material-interface";
 
 export interface ISelect {
@@ -32,3 +32,14 @@ export const SaveMaterialObj: UpdateMaterial = {
   status: "",
   barCode: null,
 };
+
+export const PromotionsObj: MaterialPromotionDto[] = [
+  {
+    fecha: null,
+    id: null,
+    mensaje: null,
+    oficina: null,
+    responsePromotion: null,
+    respuestaPromocion: undefined,
+  },
+];

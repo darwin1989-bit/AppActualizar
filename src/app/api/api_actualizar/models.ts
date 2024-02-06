@@ -60,6 +60,7 @@ export { ResponseMaterialDto } from './models/response-material-dto';
 export { ResponseMaterialInfoDto } from './models/response-material-info-dto';
 export { ResponseMaterialPromotionDto } from './models/response-material-promotion-dto';
 export { ResponsePromotion } from './models/response-promotion';
+export { ResponsePromotionStoreDto } from './models/response-promotion-store-dto';
 export { Retailpricemodifier } from './models/retailpricemodifier';
 export { RetentionParams } from './models/retention-params';
 export { Rounding } from './models/rounding';
