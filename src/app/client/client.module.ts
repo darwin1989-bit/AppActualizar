@@ -8,8 +8,6 @@ import { SharedModule } from "../shared/shared.module";
 import { FindClientComponent } from "./components/update-clients/find-client/find-client.component";
 import { RetentionComponent } from "./components/update-clients/retention/retention.component";
 import { PageInvoicesComponent } from "./pages/page-invoices/page-invoices.component";
-import { ClientComponentService } from "./service/client-component.service";
-import { InvoicesComponentService } from "./service/invoices-component.service";
 import { FindInvoicesComponent } from "./components/invoices/find-invoices/find-invoices.component";
 import { InvoicesComponent } from "./components/invoices/invoices/invoices.component";
 import { InvoicesStoreComponent } from "./components/invoices/invoices-store/invoices-store.component";
@@ -24,7 +22,7 @@ import { PageTransactionsComponent } from "./pages/page-transactions/page-transa
 import FindTransactionsComponent from "./components/transactions/find-transactions/find-transactions.component";
 import { TransactionsComponent } from "./components/transactions/transactions/transactions.component";
 import { TransactionsOfflineComponent } from "./components/transactions/transactions-offline/transactions-offline.component";
-import { CreditNoteComponent } from './components/invoices/credit-note/credit-note.component';
+import { CreditNoteComponent } from "./components/invoices/credit-note/credit-note.component";
 
 @NgModule({
   declarations: [

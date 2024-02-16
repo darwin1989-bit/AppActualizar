@@ -39,7 +39,7 @@
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
             <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcioxn }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.materials-null]="material.precio == null">
               {{ material.precio == null ? "NULL" : (material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale) }}
@@ -52,7 +52,9 @@
             <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal == "N" ? "NO" : "SI" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan"><button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning"></button></td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+              <button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning"></button>
+            </td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
               <button
                 pButton

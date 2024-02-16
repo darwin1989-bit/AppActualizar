@@ -1,0 +1,11 @@
+<div class="grid mt-4 mx-0 p-fluid flex justify-content-center">
+  <div class="col-12 md:col-4">
+    <app-find-offices></app-find-offices>
+  </div>
+  <div class="vl lg:rotate-180 md:rotate-180 sm:md:rotate-180"></div>
+  <div class="col-12 md:col-4">
+    <app-find-users (visbleMain)="getVisible($event)"></app-find-users>
+  </div>
+</div>
+<app-result-store-users></app-result-store-users>
+<app-result-main-users *ngIf="visibleMain"></app-result-main-users>

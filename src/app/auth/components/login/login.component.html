@@ -18,9 +18,11 @@
               formControlName="username"
               id="username"
               type="text"
-              pinputtext=""
               class="p-inputtext p-component p-element w-full"
               autocomplete="off"
+              pAutoFocus
+              [autofocus]="true"
+              id="myFocus"
             />
           </span>
           <div *ngIf="usernameControl.invalid && usernameControl.dirty">
@@ -31,7 +33,7 @@
           <label for="password" class="block mb-2 mt-3">Constraseña</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-lock"></i>
-            <input (keydown)="msgs = ''" formControlName="password" type="password" pinputtext="" class="p-inputtext p-component p-element w-full" autocomplete="off" />
+            <input (keydown)="msgs = ''" formControlName="password" type="password" class="p-inputtext p-component p-element w-full" autocomplete="off" />
           </span>
           <div *ngIf="passwordControl.invalid && passwordControl.dirty">
             <small id="username-help" *ngIf="passwordControl.hasError('required')" class="text-red-500">Este campo es requerido.</small>

@@ -1,0 +1,34 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar usuarios</span>
+</div>
+
+<form [formGroup]="userForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!userTypeControl.dirty && userTypeControl.touched">Tipo de búsqueda</label>
+      <p-dropdown
+        (onChange)="changeDropDown()"
+        [options]="dropdownUsers"
+        optionLabel="name"
+        placeholder="Selecciona el tipo"
+        formControlName="userType"
+        [class.ng-dirty]="userTypeControl.touched"
+      ></p-dropdown>
+      <div *ngIf="userTypeControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="userTypeControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label htmlFor="documentNumber" [class.text-red-500]="userCodeControl.invalid && userCodeControl.dirty">{{ labelName }}</label>
+      <input (keydown)="codeMaterialInput($event)" pInputText formControlName="userCode" autocomplete="off" [pKeyFilter]="userBlock" />
+      <div *ngIf="userCodeControl.invalid && userCodeControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="userCodeControl.hasError('required')">Este campo es requerido.</span>
+        <span class="text-red-500 text-sm" *ngIf="userCodeControl.errors?.['minlength']"> {{ labelError }}</span>
+        <span class="text-red-500 text-sm" *ngIf="userCodeControl.errors?.['maxlength']"> {{ labelError }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="findUsers()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

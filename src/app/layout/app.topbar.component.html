@@ -1,7 +1,9 @@
 <div class="layout-topbar">
-  <button #menubutton class="p-link layout-menu-button layout-topbar-button mr-4" (click)="layoutService.onMenuToggle()" pTooltip="MENU" tooltipPosition="right">
-    <i class="pi pi-bars"></i>
-  </button>
+  <div class="mr-4">
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+      <i class="pi pi-bars"></i>
+    </button>
+  </div>
   <div class="layout-topbar-logo">
     <div class="text-600">{{ model[(menuService.indexMenu$ | async)!].label }} / {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].label }}</div>
   </div>
@@ -21,9 +23,10 @@
     </div>
   </div>
   <div #topbarmenu class="layout-topbar-menu" [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">
-    <button class="p-link layout-topbar-button" (click)="onConfigButtonClick()" pTooltip="CONFIGURACIÓN" tooltipPosition="left">
-      <i class="pi pi-cog"></i>
-      <span>Configuración</span>
-    </button>
+    <div>
+      <button class="p-link layout-topbar-button ml-4" (click)="onConfigButtonClick()">
+        <i class="pi pi-cog"></i>
+      </button>
+    </div>
   </div>
 </div>

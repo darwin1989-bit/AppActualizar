@@ -1,0 +1,58 @@
+<hr />
+<div class="flex align-items-center justify-content-between mt-5">
+  <h4 class="my-0 font-bold">Resultados usuarios matriz</h4>
+</div>
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(usersService.usersMain$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pFrozenColumn>Usuario</th>
+            <th>Contraseña</th>
+            <th>Cédula</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Perfil</th>
+            <th>Tienda</th>
+            <th>Oficina</th>
+            <th>Estado</th>
+            <th>Ip Pos Mobile</th>
+            <th style="width: 8%">Editar usuario</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-users>
+          <tr>
+            <td class="select-all" pFrozenColumn>{{ users.nombreCorto }}</td>
+            <td class="select-all">{{ users.contrasena }}</td>
+            <td class="select-all" [class.field-null]="users.cedula == ''">{{ users.cedula == "" ? "NULL" : users.cedula }}</td>
+            <td>{{ users.nombre }}</td>
+            <td>{{ users.apellido }}</td>
+            <td>{{ users.perfilReferencia }}</td>
+            <td>{{ users.tienda }}</td>
+            <td>{{ users.oficina }}</td>
+            <td>{{ users.estado }}</td>
+            <td [class.field-null]="users.ipPosmobile == ''">{{ users.ipPosmobile == "" ? "NULL" : users.ipPosmobile }}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-user-edit" class="p-button-warning" (click)="editUser(users)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="11" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<app-edit-user></app-edit-user>

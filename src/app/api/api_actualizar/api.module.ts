@@ -11,6 +11,7 @@ import { OfficesService } from './services/offices.service';
 import { PaymentsService } from './services/payments.service';
 import { ServiceCreditService } from './services/service-credit.service';
 import { TransactionsService } from './services/transactions.service';
+import { UserService } from './services/user.service';
 
 /**
  * Module that provides all services and configuration.
@@ -27,6 +28,7 @@ import { TransactionsService } from './services/transactions.service';
     PaymentsService,
     ServiceCreditService,
     TransactionsService,
+    UserService,
     ApiConfiguration
   ],
 })

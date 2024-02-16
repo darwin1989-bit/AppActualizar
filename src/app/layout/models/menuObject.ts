@@ -23,9 +23,9 @@ export const itemsObj: any[] = [
   {
     label: "Usuarios",
     items: [
-      { label: "Usuarios", icon: "pi pi-fw pi-users", routerLink: ["/utilities/icons"] },
-      { label: "Autorizador", icon: "pi pi-fw pi-user", url: ["https://www.primefaces.org/primeflex/"], target: "_blank" },
-      { label: "Usuarios registrados", icon: "pi pi-fw pi-user-edit", routerLink: ["/utilities/icons"] },
+      { label: "Usuarios tienda", icon: "pi pi-fw pi-users", routerLink: ["/app/users/users"] },
+      { label: "Usuarios autorizador", icon: "pi pi-fw pi-user", routerLink: ["/app/users/authorizing-user"] },
+      { label: "Usuarios registrados", icon: "pi pi-fw pi-user-edit", routerLink: ["/app/users/registered-users"] },
     ],
   },
   {

@@ -13,6 +13,7 @@ import { ClientCreditComponentService } from "src/app/client/service/client-cred
 import { TransactionsComponentService } from "src/app/client/service/transactions-component.service";
 import { MaterialInformationService } from "src/app/material/service/material-information.service";
 import { DetailPromotionService } from "src/app/material/service/detail-promotion.service";
+import { UsersService } from "src/app/users/service/users.service";
 
 @Component({
   selector: "app-find-offices",
@@ -48,7 +49,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private clientCreditService: ClientCreditComponentService,
     private transactionsService: TransactionsComponentService,
     private materialService: MaterialInformationService,
-    private detailPromotionService: DetailPromotionService
+    private detailPromotionService: DetailPromotionService,
+    private usersService: UsersService
   ) {}
 
   ngOnDestroy(): void {
@@ -69,16 +71,16 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
       this.company.push({ name: "PRUEBAS", code: "prb" });
     }
 
-    // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
-    //   if (!environment.production) {
-    //     this.company.splice(0, 2);
-    //     this.company.push({ name: "PRUEBAS", code: "prb" });
-    //   } else {
-    //     if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
-    //     if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
-    //     if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
-    //   }
-    // });
+    /*     this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
+      if (!environment.production) {
+        this.company.splice(0, 2);
+        this.company.push({ name: "PRUEBAS", code: "prb" });
+      } else {
+        if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
+        if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
+        if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
+      }
+    }); */
   }
 
   public changeCompany(): void {
@@ -114,6 +116,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.transactionsService.clearTransactions();
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
+    this.usersService.clearUsers();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -126,6 +129,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.transactionsService.clearTransactions();
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
+    this.usersService.clearUsers();
   }
 
   public toggle() {

@@ -16,6 +16,7 @@ const routes: Routes = [
       },
       { path: "client", loadChildren: () => import("../client/client.module").then((m) => m.ClientModule) },
       { path: "material", loadChildren: () => import("../material/material.module").then((m) => m.MaterialModule) },
+      { path: "users", loadChildren: () => import("../users/users.module").then((m) => m.UsersModule) },
       {
         path: "",
         redirectTo: "/app/home",

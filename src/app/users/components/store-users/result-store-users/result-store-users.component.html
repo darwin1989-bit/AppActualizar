@@ -1,0 +1,61 @@
+<hr />
+<div class="flex align-items-center justify-content-between mt-5">
+  <h4 class="my-0 font-bold">Resultados usuarios</h4>
+</div>
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(usersService.users$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(usersService.users$ | async)!.length > 1 ? true : false"
+        [globalFilterFields]="['nombreCorto', 'cedula', 'nombre', 'apellido', 'perfilReferencia']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex" *ngIf="(usersService.users$ | async)!.length! > 1">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pFrozenColumn>Usuario</th>
+            <th>Contraseña</th>
+            <th>Cédula</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Perfil</th>
+            <th>Tienda</th>
+            <th>Oficina</th>
+            <th>Estado</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-users>
+          <tr>
+            <td class="select-all" pFrozenColumn>{{ users.nombreCorto }}</td>
+            <td class="select-all" [class.field-null]="users.contrasena == ''">{{ users.contrasena == "" ? "NULL" : users.contrasena }}</td>
+            <td class="select-all" [class.field-null]="users.cedula == ''">{{ users.cedula != "" ? users.cedula : "NULL" }}</td>
+            <td>{{ users.nombre }}</td>
+            <td>{{ users.apellido }}</td>
+            <td>{{ users.perfilReferencia }}</td>
+            <td>{{ users.tienda }}</td>
+            <td>{{ users.oficina }}</td>
+            <td>{{ users.estado }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="9" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

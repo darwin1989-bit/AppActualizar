@@ -31,9 +31,10 @@ export class LoginComponent {
     const credentials: any = this.loginForm.value;
     this.authService.logIn(credentials).subscribe({
       error: (err) => {
-        this.loginForm.reset();
+        this.passwordControl.reset();
         this.msgs = err;
         this.loginForm.setErrors({ invalidCredentials: false });
+        document.getElementById("myFocus")!.focus();
       },
     });
   }

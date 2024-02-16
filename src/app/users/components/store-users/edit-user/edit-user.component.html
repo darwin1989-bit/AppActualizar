@@ -1,0 +1,37 @@
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [style]="{ width: '600px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-user-edit" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Editar usuario</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <form [formGroup]="userForm">
+      <div class="py-0 border-top-1 border-bottom-1 surface-border">
+        <div class="p-fluid p-formgrid grid py-4">
+          <div class="field col-6 md:col-6">
+            <label htmlFor="nombreCorto">Usuario</label>
+            <input pInputText id="nombreCorto" type="text" formControlName="nombreCorto" class="opacity-100" />
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="cedula" [class.text-red-500]="(cedulaControl.invalid && cedulaControl.dirty) || (cedulaControl.touched && cedulaControl.invalid)">Cédula</label>
+            <input pInputText id="cedula" type="text" formControlName="cedula" class="opacity-100" [pKeyFilter]="onlyNumber" />
+            <div *ngIf="(cedulaControl.invalid && cedulaControl.dirty) || cedulaControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="cedulaControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="cedulaControl.hasError('minlength') || cedulaControl.hasError('maxlength')">El número de cédula es incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="estado">Estado</label>
+            <p-dropdown formControlName="estado" [options]="statusUser" optionLabel="name" placeholder="Selecciona el estado" appendTo="body"></p-dropdown>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label htmlFor="ipPosMobile">Ip PosMobile</label>
+            <p-dropdown formControlName="ipPosMobileUser" [options]="ipPosMobileUser" optionLabel="ipCliente" placeholder="Selecciona una Ip" appendTo="body"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-save" label="Guardar" (onClick)="saveEditUser()"></p-button>
+  </ng-template>
+</p-dialog>
