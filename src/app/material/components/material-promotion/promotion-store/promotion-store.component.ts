@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MaterialPromotionDto } from "src/app/api/api_actualizar/models";
-import { PromotionsObj } from "src/app/material/models/material-objects";
+import { ResponsePromotionStore } from "src/app/api/api_actualizar/models";
 import { DetailPromotionService } from "src/app/material/service/detail-promotion.service";
 
 @Component({
@@ -9,7 +8,7 @@ import { DetailPromotionService } from "src/app/material/service/detail-promotio
   styleUrls: ["./promotion-store.component.scss"],
 })
 export class PromotionStoreComponent implements OnInit {
-  public promotions: MaterialPromotionDto[] = PromotionsObj;
+  public promotions!: ResponsePromotionStore[];
 
   constructor(public detailPromotionService: DetailPromotionService) {}
 

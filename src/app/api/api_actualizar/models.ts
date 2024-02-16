@@ -63,6 +63,7 @@ export { ResponseMaterialInfoDto } from './models/response-material-info-dto';
 export { ResponseMaterialPromotionDto } from './models/response-material-promotion-dto';
 export { ResponseMessage } from './models/response-message';
 export { ResponsePromotion } from './models/response-promotion';
+export { ResponsePromotionStore } from './models/response-promotion-store';
 export { ResponsePromotionStoreDto } from './models/response-promotion-store-dto';
 export { ResponseUsers } from './models/response-users';
 export { Retailpricemodifier } from './models/retailpricemodifier';

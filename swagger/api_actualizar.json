@@ -3836,13 +3836,83 @@
         },
         "additionalProperties": false
       },
+      "ResponsePromotionStore": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "mensaje": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionID": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemID": {
+            "type": "string",
+            "nullable": true
+          },
+          "regularSalesUnitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "extendedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "extendedDiscountAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "promotionDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalPromotionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "percent": {
+            "type": "number",
+            "format": "double"
+          },
+          "previousPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "newPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponsePromotionStoreDTO": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MaterialPromotionDTO"
+              "$ref": "#/components/schemas/ResponsePromotionStore"
             },
             "nullable": true
           }

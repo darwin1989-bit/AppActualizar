@@ -71,16 +71,16 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
       this.company.push({ name: "PRUEBAS", code: "prb" });
     }
 
-    /*     this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
-      if (!environment.production) {
-        this.company.splice(0, 2);
-        this.company.push({ name: "PRUEBAS", code: "prb" });
-      } else {
-        if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
-        if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
-        if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
-      }
-    }); */
+    // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
+    //   if (!environment.production) {
+    //     this.company.splice(0, 2);
+    //     this.company.push({ name: "PRUEBAS", code: "prb" });
+    //   } else {
+    //     if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
+    //     if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
+    //     if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
+    //   }
+    // });
   }
 
   public changeCompany(): void {

@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
-import { MaterialPromotionDto, ResponseMaterialPromotionDto, ResponsePromotion } from "src/app/api/api_actualizar/models";
+import { ResponsePromotion, ResponsePromotionStore } from "src/app/api/api_actualizar/models";
 import { MaterialsService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { __values } from "tslib";
-import { PromotionsObj } from "../models/material-objects";
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +15,7 @@ export class DetailPromotionService {
   private materialPromotion = new BehaviorSubject<ResponsePromotion[]>([]);
   public materialPromotion$ = this.materialPromotion.asObservable();
 
-  private PromotionStore = new Subject<MaterialPromotionDto[]>();
+  private PromotionStore = new Subject<ResponsePromotionStore[]>();
   public PromotionStore$ = this.PromotionStore.asObservable();
 
   constructor(private materialService: MaterialsService, private calledHttpService: CalledHttpService) {}
@@ -54,6 +53,6 @@ export class DetailPromotionService {
       .subscribe();
   }
   public clearPromotions(): void {
-    this.PromotionStore.next(PromotionsObj);
+    this.PromotionStore.next([]);
   }
 }
