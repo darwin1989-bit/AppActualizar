@@ -9,6 +9,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { AuthorizingUserDto } from '../models/authorizing-user-dto';
+import { ResponseAuthorizingUser } from '../models/response-authorizing-user';
 import { ResponseIpPosMobile } from '../models/response-ip-pos-mobile';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseUsers } from '../models/response-users';
@@ -758,6 +760,214 @@ export class UserService extends BaseService {
 ): Observable<ResponseMessage> {
 
     return this.apiUserPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserAuthorizingUserGet
+   */
+  static readonly ApiUserAuthorizingUserGetPath = '/api/User/authorizing_user';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizingUserGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizingUserGet$Plain$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizingUser>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizingUserGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizingUser>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizingUserGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizingUserGet$Plain(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizingUser> {
+
+    return this.apiUserAuthorizingUserGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizingUser>) => r.body as ResponseAuthorizingUser)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizingUserGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizingUserGet$Json$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizingUser>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizingUserGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizingUser>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizingUserGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizingUserGet$Json(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizingUser> {
+
+    return this.apiUserAuthorizingUserGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizingUser>) => r.body as ResponseAuthorizingUser)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserUpdateDayPut
+   */
+  static readonly ApiUserUpdateDayPutPath = '/api/User/update_day';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserUpdateDayPut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateDayPut$Plain$Response(params?: {
+    ip?: string;
+    body?: AuthorizingUserDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserUpdateDayPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserUpdateDayPut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateDayPut$Plain(params?: {
+    ip?: string;
+    body?: AuthorizingUserDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiUserUpdateDayPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserUpdateDayPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateDayPut$Json$Response(params?: {
+    ip?: string;
+    body?: AuthorizingUserDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserUpdateDayPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserUpdateDayPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserUpdateDayPut$Json(params?: {
+    ip?: string;
+    body?: AuthorizingUserDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiUserUpdateDayPut$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
     );
   }

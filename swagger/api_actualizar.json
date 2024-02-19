@@ -2067,6 +2067,97 @@
           }
         }
       }
+    },
+    "/api/User/authorizing_user": {
+      "get": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizingUser"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizingUser"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizingUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/update_day": {
+      "put": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorizingUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorizingUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorizingUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2120,6 +2211,31 @@
           "messageType": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthorizingUserDto": {
+        "type": "object",
+        "properties": {
+          "rol": {
+            "type": "string",
+            "nullable": true
+          },
+          "desde": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameterization": {
+            "$ref": "#/components/schemas/Parameterization_Days"
           }
         },
         "additionalProperties": false
@@ -3293,6 +3409,20 @@
         },
         "additionalProperties": false
       },
+      "Parameterization_Days": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "until": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "PaymentsDTO": {
         "type": "object",
         "properties": {
@@ -3670,6 +3800,19 @@
           },
           "responseCode": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseAuthorizingUser": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuthorizingUserDto"
+            },
             "nullable": true
           }
         },
