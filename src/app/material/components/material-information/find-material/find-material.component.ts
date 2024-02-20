@@ -23,7 +23,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
 
   public selectedDropdown!: ITypeMaterials;
 
-  public labelName: string = "Código del material";
+  public labelName: string = "Selecciona el tipo";
 
   public materialForm = this.fb.group({
     materialType: [this.selectedDropdown, Validators.required],
@@ -46,6 +46,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.materialCodeControl.disable();
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subscription = this.materialService.loadMaterial$.subscribe((res) => {
       if (res) this.findMaterial();
@@ -65,6 +66,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
     }
   }
   public changeDropDown(): void {
+    this.materialCodeControl.enable();
     this.materialCodeControl.reset();
     this.materialService.clearMaterials();
     switch (this.materialTypeControl.value.type) {

@@ -11,9 +11,11 @@ import { ResultStoreUsersComponent } from './components/store-users/result-store
 import { ResultMainUsersComponent } from './components/store-users/result-main-users/result-main-users.component';
 import { EditUserComponent } from './components/store-users/edit-user/edit-user.component';
 import { ResultUsersAuthorizingComponent } from './components/authorizing-users/result-users-authorizing/result-users-authorizing.component';
+import { FindRegisteredUsersComponent } from './components/registered-users/find-registered-users/find-registered-users.component';
+import { ResultRegisteredUsersComponent } from './components/registered-users/result-registered-users/result-registered-users.component';
 
 @NgModule({
-  declarations: [PageUsersComponent, PageAuthorizingUserComponent, PageRegisteredUsersComponent, FindUsersComponent, ResultStoreUsersComponent, ResultMainUsersComponent, EditUserComponent, ResultUsersAuthorizingComponent],
+  declarations: [PageUsersComponent, PageAuthorizingUserComponent, PageRegisteredUsersComponent, FindUsersComponent, ResultStoreUsersComponent, ResultMainUsersComponent, EditUserComponent, ResultUsersAuthorizingComponent, FindRegisteredUsersComponent, ResultRegisteredUsersComponent],
   imports: [CommonModule, UsersRoutingModule, SharedModule],
 })
 export class UsersModule {}

@@ -35,6 +35,7 @@ export class MaterialEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    this.materialService.closeDialog();
   }
 
   ngOnInit(): void {

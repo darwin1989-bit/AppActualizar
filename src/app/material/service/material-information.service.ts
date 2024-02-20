@@ -229,4 +229,7 @@ export class MaterialInformationService {
       )
       .subscribe();
   }
+  public closeDialog(): void {
+    this.dialogEditMaterial.next(false);
+  }
 }

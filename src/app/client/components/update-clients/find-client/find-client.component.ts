@@ -14,6 +14,7 @@ import { SharedService } from "src/app/shared/services/shared.service";
   styleUrls: ["./find-client.component.scss"],
 })
 export class FindClientComponent {
+  public label: string = "Selecciona el tipo";
   public selectedDocumentType!: ITypeDocument;
 
   public inputDisable: boolean = true;
@@ -46,9 +47,12 @@ export class FindClientComponent {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.documentNumberControl.disable();
+  }
 
   public changeDropDown(): void {
+    this.documentNumberControl.enable();
     this.clientService.clearClientFound();
     this.documentForm.controls.documentNumber.reset();
     const form = this.documentForm.value;
@@ -58,13 +62,16 @@ export class FindClientComponent {
     switch (typeControl!.type) {
       case "C":
         this.documentForm.controls.documentNumber.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+        this.label = "Número de indentificación";
         break;
       case "R":
         this.documentForm.controls.documentNumber.setValidators([Validators.required, Validators.minLength(13), Validators.maxLength(13)]);
+        this.label = "Número de ruc";
         break;
       case "P":
         this.regDocumentNumber = /^[a-zA-Z0-9]+$/;
         this.documentForm.controls.documentNumber.setValidators([Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
+        this.label = "Número de pasaporte";
         break;
     }
   }

@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { OfficesHttpService } from "../../services/offices-http.service";
 import { OfficesDto } from "src/app/api/api_actualizar/models/offices-dto";
 import { ICompany } from "../../models/offices.interface";
-import { CompanyObj, DataCompany } from "../../models/objects";
+import { CompanyObj, DataCompany, OfficesMatriz } from "../../models/objects";
 import { environment } from "src/environments/environment";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { BehaviorSubject, Subject, Subscription, catchError } from "rxjs";
+import { BehaviorSubject, Subscription, catchError } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
 import { SharedService } from "../../services/shared.service";
 import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
@@ -15,6 +15,8 @@ import { MaterialInformationService } from "src/app/material/service/material-in
 import { DetailPromotionService } from "src/app/material/service/detail-promotion.service";
 import { UsersService } from "src/app/users/service/users.service";
 import { CalledHttpService } from "../../services/called-http.service";
+import { UsersAuthorizingService } from "src/app/users/service/users-authorizing.service";
+import { RegisteredUsersService } from "src/app/users/service/registered-users.service";
 
 @Component({
   selector: "app-find-offices",
@@ -28,6 +30,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
   public selectedOffice!: OfficesDto;
   private subcription!: Subscription;
   public overlayVisible: boolean = false;
+  private pushOffices!: boolean;
 
   private officesGet = new BehaviorSubject<boolean>(false);
   public officesGet$ = this.officesGet.asObservable();
@@ -55,7 +58,9 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private materialService: MaterialInformationService,
     private detailPromotionService: DetailPromotionService,
     private usersService: UsersService,
-    private calledHttpService: CalledHttpService
+    private calledHttpService: CalledHttpService,
+    private usersAuthorizingService: UsersAuthorizingService,
+    private registeredUsersService: RegisteredUsersService
   ) {}
 
   ngOnDestroy(): void {
@@ -64,6 +69,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subcription = this.registeredUsersService.OfficesMatriz$.subscribe((res) => (this.pushOffices = res));
     this.subcription = this.officesHttpService.validFindOffice$.subscribe((res: boolean) => {
       if (res) {
         this.officesForm.markAllAsTouched();
@@ -73,22 +79,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
     this.company = structuredClone(CompanyObj);
 
-    //note delete in production
     if (!environment.production) {
       this.company.splice(0, 2);
       this.company.push({ name: "PRUEBAS", code: "prb" });
     }
-
-    // this.subcription = this.officesHttpService.deleteList$.subscribe((res: string) => {
-    //   if (!environment.production) {
-    //     this.company.splice(0, 2);
-    //     this.company.push({ name: "PRUEBAS", code: "prb" });
-    //   } else {
-    //     if (res.includes("ETA")) this.company.splice(0, 1); //note delete ETAFASHION
-    //     if (res.includes("RM")) this.company.splice(1, 1); //note delete MODARM
-    //     if (res.includes("CR")) this.company.splice(2, 1); //note delete ETAFASHION CR
-    //   }
-    // });
   }
 
   public changeCompany(): void {
@@ -103,7 +97,6 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
       } else {
         this.officesHttpService.setMoney("USD");
       }
-
       this.officesHttpService
         .getOffices(companyControl.value?.code!)
         .pipe(
@@ -114,6 +107,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
           })
         )
         .subscribe((offices) => {
+          if (this.pushOffices) offices.unshift(OfficesMatriz.find((f) => f.nombre?.includes(typeCompany.name))!);
           this.officesGet.next(true);
           this.offices = offices.map((office) => {
             return {
@@ -135,6 +129,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();
+    this.usersAuthorizingService.clearUserAuthorizing();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -148,9 +143,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();
+    this.usersAuthorizingService.clearUserAuthorizing();
   }
 
-  public toggle() {
+  public toggle(): void {
     this.overlayVisible = !this.overlayVisible;
   }
 }

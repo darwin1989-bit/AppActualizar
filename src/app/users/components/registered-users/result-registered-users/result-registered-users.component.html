@@ -1,0 +1,35 @@
+<div class="grid mt-3 justify-content-center">
+  <div class="col-12 md:col-8">
+    <div class="card surface-card">
+      <p-table #dt styleClass="p-datatable-sm p-datatable-gridlines" [scrollable]="true" [breakpoint]="'960px'">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Empresa</th>
+            <th>Oficina</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Ip máquina</th>
+            <th>Accciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-userAuthorizing>
+          <tr>
+            <td>{{ userAuthorizing.rol }}</td>
+            <td>{{ userAuthorizing.desde }}</td>
+            <td>{{ userAuthorizing.hasta }}</td>
+            <td>{{ userAuthorizing.estado }}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-plus" class="p-button-success"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

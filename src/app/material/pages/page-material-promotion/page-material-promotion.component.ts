@@ -31,8 +31,6 @@ export class PageMaterialPromotionComponent implements OnInit {
   public findMaterial(): void {
     this.materialService.clearMaterials();
     this.officeService.setValidFindOffice();
-    if (Boolean(this.office)) {
-      this.detailPromotionService.getPromotionStore(this.office.ip_Red!);
-    }
+    if (Boolean(this.office)) this.detailPromotionService.getPromotionStore(this.office.ip_Red!);
   }
 }

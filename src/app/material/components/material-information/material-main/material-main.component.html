@@ -1,10 +1,7 @@
-<hr />
-<div class="flex align-items-center justify-content-between mt-5">
-  <h4 class="my-0 font-bold">Resultados materiales matriz</h4>
-</div>
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
+      <h5 class="opacity-50">Matriz</h5>
       <p-table
         #dt
         [value]="materials"
@@ -39,7 +36,7 @@
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
             <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcioxn }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.materials-null]="material.precio == null">
               {{ material.precio == null ? "NULL" : (material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale) }}

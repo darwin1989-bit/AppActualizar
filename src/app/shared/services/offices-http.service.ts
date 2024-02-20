@@ -13,9 +13,6 @@ export class OfficesHttpService {
   private moneyLocale = new BehaviorSubject<{ money: string; locale: string }>({ money: "", locale: "" });
   public moneyLocale$ = this.moneyLocale.asObservable();
 
-  private deleteList = new Subject<string>();
-  public deleteList$ = this.deleteList.asObservable();
-
   private company = new BehaviorSubject<ICompany>(DataCompany);
   public company$ = this.company.asObservable();
 
@@ -29,9 +26,6 @@ export class OfficesHttpService {
 
   public getOffices(company: string): Observable<OfficesDto[]> {
     return this.officesService.apiOfficesGet$Json({ company: company });
-  }
-  public setDeleteList(company: deleteList): void {
-    this.deleteList.next(company);
   }
   public setOffice(office: OfficesDto | null): void {
     this.offices.next(office);
