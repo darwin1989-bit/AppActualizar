@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CalledHttpService } from "./called-http.service";
-import { BehaviorSubject, Observable, Subject, catchError } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { OfficesService } from "src/app/api/api_actualizar/services";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
 import { DataCompany } from "../models/objects";
@@ -11,28 +10,25 @@ import { deleteList } from "../models/types";
   providedIn: "root",
 })
 export class OfficesHttpService {
-  private company = new BehaviorSubject<ICompany>(DataCompany);
-  private offices = new BehaviorSubject<OfficesDto | null>(null);
-  private validFindOffice = new Subject<boolean>();
-
   private moneyLocale = new BehaviorSubject<{ money: string; locale: string }>({ money: "", locale: "" });
   public moneyLocale$ = this.moneyLocale.asObservable();
 
   private deleteList = new Subject<string>();
   public deleteList$ = this.deleteList.asObservable();
 
+  private company = new BehaviorSubject<ICompany>(DataCompany);
   public company$ = this.company.asObservable();
+
+  private offices = new BehaviorSubject<OfficesDto | null>(null);
   public offices$ = this.offices.asObservable();
+
+  private validFindOffice = new Subject<boolean>();
   public validFindOffice$ = this.validFindOffice.asObservable();
 
-  constructor(private calledHttpService: CalledHttpService, private officesService: OfficesService) {}
+  constructor(private officesService: OfficesService) {}
 
   public getOffices(company: string): Observable<OfficesDto[]> {
-    return this.officesService.apiOfficesGet$Json({ company: company }).pipe(
-      catchError((error) => {
-        return this.calledHttpService.errorHandler(error);
-      })
-    );
+    return this.officesService.apiOfficesGet$Json({ company: company });
   }
   public setDeleteList(company: deleteList): void {
     this.deleteList.next(company);

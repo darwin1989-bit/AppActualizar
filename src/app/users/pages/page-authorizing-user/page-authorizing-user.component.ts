@@ -25,6 +25,7 @@ export class PageAuthorizingUserComponent implements OnInit, OnDestroy {
   }
 
   public findUserAuthorizing(): void {
+    this.officeService.setValidFindOffice();
     this.usersAuthorizingService.getAuthorizingUser(this.office.ip_Red!);
   }
 }

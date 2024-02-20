@@ -5,7 +5,7 @@ import { ICompany } from "../../models/offices.interface";
 import { CompanyObj, DataCompany } from "../../models/objects";
 import { environment } from "src/environments/environment";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { BehaviorSubject, Subject, Subscription, catchError } from "rxjs";
 import { ClientComponentService } from "src/app/client/service/client-component.service";
 import { SharedService } from "../../services/shared.service";
 import { PaymentsComponentService } from "src/app/client/service/payments-component.service";
@@ -14,6 +14,7 @@ import { TransactionsComponentService } from "src/app/client/service/transaction
 import { MaterialInformationService } from "src/app/material/service/material-information.service";
 import { DetailPromotionService } from "src/app/material/service/detail-promotion.service";
 import { UsersService } from "src/app/users/service/users.service";
+import { CalledHttpService } from "../../services/called-http.service";
 
 @Component({
   selector: "app-find-offices",
@@ -27,6 +28,9 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
   public selectedOffice!: OfficesDto;
   private subcription!: Subscription;
   public overlayVisible: boolean = false;
+
+  private officesGet = new BehaviorSubject<boolean>(false);
+  public officesGet$ = this.officesGet.asObservable();
 
   public officesForm = this.fb.group({
     companyInput: [this.selectedCompany, Validators.required],
@@ -50,7 +54,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private transactionsService: TransactionsComponentService,
     private materialService: MaterialInformationService,
     private detailPromotionService: DetailPromotionService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private calledHttpService: CalledHttpService
   ) {}
 
   ngOnDestroy(): void {
@@ -60,7 +65,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subcription = this.officesHttpService.validFindOffice$.subscribe((res: boolean) => {
-      if (res) this.officesForm.markAllAsTouched();
+      if (res) {
+        this.officesForm.markAllAsTouched();
+        this.companyControl.addValidators(Validators.required);
+      }
     });
 
     this.company = structuredClone(CompanyObj);
@@ -96,14 +104,24 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
         this.officesHttpService.setMoney("USD");
       }
 
-      this.officesHttpService.getOffices(companyControl.value?.code!).subscribe((offices) => {
-        this.offices = offices.map((office) => {
-          return {
-            ...office,
-            nombre: office.nombre?.toUpperCase(),
-          };
+      this.officesHttpService
+        .getOffices(companyControl.value?.code!)
+        .pipe(
+          catchError((error) => {
+            this.companyControl.reset();
+            this.companyControl.clearValidators();
+            return this.calledHttpService.errorHandler(error);
+          })
+        )
+        .subscribe((offices) => {
+          this.officesGet.next(true);
+          this.offices = offices.map((office) => {
+            return {
+              ...office,
+              nombre: office.nombre?.toUpperCase(),
+            };
+          });
         });
-      });
     }
   }
   public changeOffice(): void {
