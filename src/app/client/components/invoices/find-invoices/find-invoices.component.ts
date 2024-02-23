@@ -60,7 +60,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
         this.regDocumentNumber = /[F0-9]+/;
         this.invoiceNumberControl.enable();
         this.invoiceNumberControl.setValidators([Validators.required, this.invoicesValidator()]);
-        this.labelName = "Serie    factura";
+        this.labelName = "Serie factura";
         break;
       case "NC":
         this.regDocumentNumber = /^[R|D0-9]+$/;
@@ -76,7 +76,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
         break;
       case "FT":
         this.invoiceNumberControl.disable();
-        this.labelName = "";
+        this.labelName = "Todos los documentos";
         break;
     }
   }

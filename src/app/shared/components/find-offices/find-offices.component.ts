@@ -130,6 +130,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();
     this.usersAuthorizingService.clearUserAuthorizing();
+    this.registeredUsersService.clearRegisteredUser();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -144,6 +145,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();
     this.usersAuthorizingService.clearUserAuthorizing();
+    this.registeredUsersService.clearRegisteredUser();
   }
 
   public toggle(): void {

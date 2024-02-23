@@ -19,8 +19,8 @@
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Código</th>
-            <th style="width: 15%">Descripción</th>
-            <th>Rest. desc.</th>
+            <th>Descripción</th>
+            <th style="width: 2%">Rest. desc.</th>
             <th>Precio</th>
             <th>Estado</th>
             <th>Marca</th>
@@ -28,9 +28,7 @@
             <th style="width: 8%">Estado cod. barras</th>
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
-            <th style="width: 8%">Editar material</th>
-            <th style="width: 8%">Comunicar material</th>
-            <th style="width: 8%">Comunicar Precio</th>
+            <th style="width: 8%"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
@@ -49,21 +47,28 @@
             <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal == "N" ? "NO" : "SI" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning"></button>
-            </td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" class="flex justify-content-center align-items-center">
+              <button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning p-button-sm mr-1" pTooltip="Editar" tooltipPosition="bottom"></button>
               <button
                 pButton
                 pRipple
                 icon="pi pi-sync"
-                class="p-button-info p-button-sm"
+                class="p-button-info p-button-sm mr-1"
                 (click)="procedureMaterial(material)"
                 [disabled]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
+                pTooltip="Comunicar"
+                tooltipPosition="bottom"
               ></button>
-            </td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-dollar" class="p-button-success p-button-sm" (click)="procedurePrice(material)" [disabled]="material.spPriceDisabled"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-dollar"
+                class="p-button-success p-button-sm"
+                (click)="procedurePrice(material)"
+                [disabled]="material.spPriceDisabled"
+                pTooltip="Comunicar precio"
+                tooltipPosition="bottom"
+              ></button>
             </td>
           </tr>
         </ng-template>

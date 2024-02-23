@@ -2158,6 +2158,188 @@
           }
         }
       }
+    },
+    "/api/User/registered_user": {
+      "get": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/update_registered_user": {
+      "put": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/main/registered_user": {
+      "get": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRegisteredUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/main/update_registered_user": {
+      "put": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisteredUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3732,6 +3914,39 @@
         },
         "additionalProperties": false
       },
+      "RegisteredUserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "compania": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Regularsalesunitprice": {
         "type": "object",
         "properties": {
@@ -4056,6 +4271,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ResponsePromotionStore"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseRegisteredUserDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegisteredUserDto"
             },
             "nullable": true
           }

@@ -23,7 +23,7 @@
             <th>Oficina</th>
             <th>Estado</th>
             <th>Ip Pos Mobile</th>
-            <th style="width: 8%">Editar usuario</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-users>
@@ -39,7 +39,7 @@
             <td>{{ users.estado }}</td>
             <td [class.field-null]="users.ipPosmobile == ''">{{ users.ipPosmobile == "" ? "NULL" : users.ipPosmobile }}</td>
             <td>
-              <button pButton pRipple icon="pi pi-user-edit" class="p-button-warning" (click)="editUser(users)"></button>
+              <button pButton pRipple icon="pi pi-user-edit" class="p-button-warning p-button-sm" (click)="editUser(users)" pTooltip="Editar usuario" tooltipPosition="bottom"></button>
             </td>
           </tr>
         </ng-template>

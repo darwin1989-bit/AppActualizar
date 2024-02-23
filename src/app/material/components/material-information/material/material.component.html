@@ -16,8 +16,8 @@
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Código</th>
-            <th style="width: 15%">Descripción</th>
-            <th>Rest. desc.</th>
+            <th>Descripción</th>
+            <th style="width: 2%">Rest. desc.</th>
             <th>Precio</th>
             <th>Lista precio</th>
             <th>Estado</th>
@@ -26,8 +26,7 @@
             <th style="width: 8%">Estado cod. barras</th>
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
-            <th style="width: 8%">Promoción</th>
-            <th style="width: 8%">Información</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
@@ -43,18 +42,16 @@
             <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}</td>
             <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm" (click)="promotion(material)"></button>
-            </td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
-              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" (click)="information(material)"></button>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" class="flex justify-content-center align-items-center">
+              <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm mr-1" (click)="promotion(material)" pTooltip="Promociones" tooltipPosition="bottom"></button>
+              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" (click)="information(material)" pTooltip="Información" tooltipPosition="bottom"></button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="13" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

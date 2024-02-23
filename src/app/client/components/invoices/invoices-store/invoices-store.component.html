@@ -15,8 +15,8 @@
             <th pFrozenColumn>Serie factura</th>
             <th>Oficina</th>
             <th>Tienda</th>
-            <th>Tipo Doc.</th>
-            <th>Tipo cliente</th>
+            <th style="width: 2%">Tipo Doc.</th>
+            <th style="width: 2%">Tipo cliente</th>
             <th>Número cliente</th>
             <th>Fecha factura</th>
             <th>Subtotal</th>
@@ -26,7 +26,7 @@
             <th>Total factura</th>
             <th>Usuario cajero</th>
             <th>Núm. caja</th>
-            <th>Detalle</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
@@ -48,13 +48,13 @@
             <td>{{ invoice.userid }}</td>
             <td>{{ invoice.estacionId }}</td>
             <td>
-              <button icon="pi pi-list" type="button" pButton pRipple class="p-button-sm p-button-info" (click)="selectInvoice(invoice)"></button>
+              <button icon="pi pi-list" type="button" pButton pRipple class="p-button-sm p-button-info" (click)="selectInvoice(invoice)" pTooltip="Detalle" tooltipPosition="bottom"></button>
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="16" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="15" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

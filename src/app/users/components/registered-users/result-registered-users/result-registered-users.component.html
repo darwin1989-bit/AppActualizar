@@ -1,7 +1,25 @@
 <div class="grid mt-3 justify-content-center">
   <div class="col-12 md:col-8">
     <div class="card surface-card">
-      <p-table #dt styleClass="p-datatable-sm p-datatable-gridlines" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table
+        #dt
+        [value]="(registeredUsersService.registeredUsers$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(registeredUsersService.registeredUsers$ | async)!.length > 5 ? true : false"
+        [globalFilterFields]="['nombreUsuario']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex" *ngIf="(registeredUsersService.registeredUsers$ | async)!.length! > 5">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+            </span>
+          </div>
+        </ng-template>
         <ng-template pTemplate="header">
           <tr>
             <th>Id</th>
@@ -10,17 +28,19 @@
             <th>Usuario</th>
             <th>Estado</th>
             <th>Ip máquina</th>
-            <th>Accciones</th>
+            <th></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-userAuthorizing>
+        <ng-template pTemplate="body" let-userRegistered>
           <tr>
-            <td>{{ userAuthorizing.rol }}</td>
-            <td>{{ userAuthorizing.desde }}</td>
-            <td>{{ userAuthorizing.hasta }}</td>
-            <td>{{ userAuthorizing.estado }}</td>
+            <td>{{ userRegistered.id }}</td>
+            <td>{{ userRegistered.compania }}</td>
+            <td>{{ userRegistered.oficina }}</td>
+            <td>{{ userRegistered.nombreUsuario }}</td>
+            <td>{{ userRegistered.estado }}</td>
+            <td>{{ userRegistered.ip }}</td>
             <td>
-              <button pButton pRipple icon="pi pi-plus" class="p-button-success"></button>
+              <button pButton pRipple icon="pi pi-sign-out" class="p-button-danger p-button-sm" pTooltip="Salir" tooltipPosition="bottom" (click)="logOut(userRegistered)"></button>
             </td>
           </tr>
         </ng-template>

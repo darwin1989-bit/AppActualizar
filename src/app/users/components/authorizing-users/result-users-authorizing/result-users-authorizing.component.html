@@ -8,7 +8,7 @@
             <th>Desde (días)</th>
             <th>Hasta (días)</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-userAuthorizing>
@@ -23,11 +23,21 @@
                 pButton
                 pRipple
                 icon="pi pi-plus"
-                class="p-button-success"
+                class="p-button-success p-button-sm"
                 (click)="changeDayAuthorizing(userAuthorizing, true)"
+                pTooltip="Sumar días"
+                tooltipPosition="bottom"
               ></button>
               <ng-template #minus>
-                <button pButton pRipple icon="pi pi-minus" class="p-button-danger" (click)="changeDayAuthorizing(userAuthorizing, false)"></button>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-minus"
+                  class="p-button-danger p-button-sm"
+                  (click)="changeDayAuthorizing(userAuthorizing, false)"
+                  pTooltip="Disminuir días"
+                  tooltipPosition="bottom"
+                ></button>
               </ng-template>
             </td>
           </tr>

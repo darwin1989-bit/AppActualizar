@@ -49,6 +49,7 @@ export { Promotionpricederivationrulereference } from './models/promotionpricede
 export { Quantity } from './models/quantity';
 export { Quantity1 } from './models/quantity-1';
 export { Quantity2 } from './models/quantity-2';
+export { RegisteredUserDto } from './models/registered-user-dto';
 export { Regularsalesunitprice } from './models/regularsalesunitprice';
 export { ResClientCreditDto } from './models/res-client-credit-dto';
 export { ResOfflinePaymentDto } from './models/res-offline-payment-dto';
@@ -68,6 +69,7 @@ export { ResponseMessage } from './models/response-message';
 export { ResponsePromotion } from './models/response-promotion';
 export { ResponsePromotionStore } from './models/response-promotion-store';
 export { ResponsePromotionStoreDto } from './models/response-promotion-store-dto';
+export { ResponseRegisteredUserDto } from './models/response-registered-user-dto';
 export { ResponseUsers } from './models/response-users';
 export { Retailpricemodifier } from './models/retailpricemodifier';
 export { RetentionParams } from './models/retention-params';
