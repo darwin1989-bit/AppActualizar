@@ -10,6 +10,7 @@ import { MaterialsService } from './services/materials.service';
 import { OfficesService } from './services/offices.service';
 import { PaymentsService } from './services/payments.service';
 import { ServiceCreditService } from './services/service-credit.service';
+import { StoreService } from './services/store.service';
 import { TransactionsService } from './services/transactions.service';
 import { UserService } from './services/user.service';
 
@@ -27,6 +28,7 @@ import { UserService } from './services/user.service';
     OfficesService,
     PaymentsService,
     ServiceCreditService,
+    StoreService,
     TransactionsService,
     UserService,
     ApiConfiguration

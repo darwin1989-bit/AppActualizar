@@ -1626,6 +1626,42 @@
         }
       }
     },
+    "/api/Store": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOpenBoxes"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOpenBoxes"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOpenBoxes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -3591,6 +3627,56 @@
         },
         "additionalProperties": false
       },
+      "OpenBoxDto": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "estadoCierre": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaHoraApertura": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipCaja": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "perfilReferencia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Parameterization_Days": {
         "type": "object",
         "properties": {
@@ -4140,6 +4226,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseOpenBoxes": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OpenBoxDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponsePromotion": {
         "type": "object",
         "properties": {
@@ -4592,14 +4691,14 @@
             "nullable": true
           },
           "cedula": {
-            "maxLength": 13,
+            "maxLength": 10,
             "minLength": 10,
             "type": "string",
             "nullable": true
           },
           "ipPosMobile": {
             "maxLength": 25,
-            "minLength": 13,
+            "minLength": 12,
             "type": "string",
             "nullable": true
           }

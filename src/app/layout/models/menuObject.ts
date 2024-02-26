@@ -34,7 +34,7 @@ export const itemsObj: any[] = [
       {
         label: "Cajas abiertas",
         icon: "pi pi-fw pi-lock-open",
-        routerLink: ["/landing"],
+        routerLink: ["/app/store/open-boxes"],
       },
 
       {

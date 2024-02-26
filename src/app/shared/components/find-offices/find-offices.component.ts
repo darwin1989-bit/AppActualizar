@@ -17,6 +17,7 @@ import { UsersService } from "src/app/users/service/users.service";
 import { CalledHttpService } from "../../services/called-http.service";
 import { UsersAuthorizingService } from "src/app/users/service/users-authorizing.service";
 import { RegisteredUsersService } from "src/app/users/service/registered-users.service";
+import { OpenBoxesService } from "src/app/store/services/open-boxes.service";
 
 @Component({
   selector: "app-find-offices",
@@ -60,7 +61,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private calledHttpService: CalledHttpService,
     private usersAuthorizingService: UsersAuthorizingService,
-    private registeredUsersService: RegisteredUsersService
+    private registeredUsersService: RegisteredUsersService,
+    public openBoxesService: OpenBoxesService
   ) {}
 
   ngOnDestroy(): void {
@@ -131,6 +133,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.usersService.clearUsers();
     this.usersAuthorizingService.clearUserAuthorizing();
     this.registeredUsersService.clearRegisteredUser();
+    this.openBoxesService.clearOpenBoxes();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -146,6 +149,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.usersService.clearUsers();
     this.usersAuthorizingService.clearUserAuthorizing();
     this.registeredUsersService.clearRegisteredUser();
+    this.openBoxesService.clearOpenBoxes();
   }
 
   public toggle(): void {

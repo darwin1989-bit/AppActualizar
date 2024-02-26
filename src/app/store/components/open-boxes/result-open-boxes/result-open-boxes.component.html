@@ -1,0 +1,62 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(openBoxesService.openBoxes$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(openBoxesService.openBoxes$ | async)!.length > 5 ? true : false"
+        [globalFilterFields]="['tienda', 'ipTienda']"
+        rowGroupMode="rowspan"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex" *ngIf="(openBoxesService.openBoxes$ | async)!.length! > 5">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Tienda</th>
+            <th>Ip tienda</th>
+            <th>Apertura</th>
+            <th>Fecha y ahora apertura</th>
+            <th>Ip apertura</th>
+            <th>Estado logueo</th>
+            <th>Usuario</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Cédula</th>
+            <th>Perfil</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-openBox let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ openBox.tienda }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ openBox.ipTienda }}</td>
+            <td>{{ openBox.estadoCierre }}</td>
+            <td>{{ openBox.fechaHoraApertura | date : "yyyy/MM/dd HH:mm" }}</td>
+            <td>{{ openBox.ipCaja }}</td>
+            <td>{{ openBox.estado }}</td>
+            <td>{{ openBox.nombreCorto }}</td>
+            <td>{{ openBox.nombre | uppercase }}</td>
+            <td>{{ openBox.apellido | uppercase }}</td>
+            <td [class.identification-null]="openBox.cedula == ''">{{ openBox.cedula == "" ? "NULL" : openBox.cedula }}</td>
+            <td>{{ openBox.perfilReferencia }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="11" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

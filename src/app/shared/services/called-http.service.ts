@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { BehaviorSubject, NEVER } from "rxjs";
 import { ToastMessagesService } from "./toast-messages.service";
 
@@ -10,7 +9,7 @@ import { ToastMessagesService } from "./toast-messages.service";
 export class CalledHttpService {
   isLoading$ = new BehaviorSubject<boolean>(true);
 
-  constructor(private toastMesagge: ToastMessagesService, private router: Router) {}
+  constructor(private toastMesagge: ToastMessagesService) {}
 
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 404 && error.url?.includes("/api/Client")) {

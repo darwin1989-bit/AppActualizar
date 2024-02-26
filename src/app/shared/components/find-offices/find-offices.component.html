@@ -35,7 +35,7 @@
         <span class="text-red-500 text-sm" *ngIf="companyControl.hasError('required')">Este campo es requerido.</span>
       </div>
     </div>
-    <div class="field">
+    <div class="field" *ngIf="(openBoxesService.officesOpenBox$ | async)!">
       <label htmlFor="officeInput" [class.text-red-500]="officeControl.touched && officeControl.hasError('required')">Tienda</label>
       <p-dropdown
         [options]="offices"
