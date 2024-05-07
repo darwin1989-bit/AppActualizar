@@ -1,0 +1,51 @@
+<p-dialog [(visible)]="dialog" [modal]="true" [draggable]="true" [style]="{ width: '600px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-server" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Nueva Ip</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <form [formGroup]="ipClientForm">
+      <div class="py-0 border-top-1 border-bottom-1 surface-border">
+        <div class="p-fluid p-formgrid grid py-4">
+          <div class="field col-6 md:col-6">
+            <label [class.text-red-500]="numberIpControl.invalid && (numberIpControl.dirty || numberIpControl.touched)">Número de IP</label>
+            <input pInputText [pKeyFilter]="entryIp" formControlName="numberIp" [class.ng-dirty]="numberIpControl.touched" />
+            <div *ngIf="(numberIpControl.invalid && numberIpControl.dirty) || numberIpControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="numberIpControl.hasError('required')">Este campo es requerido.</span>
+              <span
+                class="text-red-500 text-sm"
+                *ngIf="numberIpControl.dirty && (numberIpControl.hasError('minlength') || numberIpControl.hasError('maxlength') || numberIpControl.errors?.['ipValidator'])"
+                >El número de ip es incorrecto.</span
+              >
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label [class.text-red-500]="numberBoxControl.invalid && (numberBoxControl.dirty || numberBoxControl.touched)">Número de caja</label>
+            <input pInputText pKeyFilter="int" formControlName="numberBox" [class.ng-dirty]="numberBoxControl.touched" />
+            <div *ngIf="(numberBoxControl.invalid && numberBoxControl.dirty) || numberBoxControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="numberBoxControl.hasError('required')">Este campo es requerido.</span>
+              <span class="text-red-500 text-sm" *ngIf="numberBoxControl.hasError('minlength') || numberBoxControl.hasError('maxlength')">El número de caja es incorrecto.</span>
+            </div>
+          </div>
+          <div class="field col-6 md:col-6">
+            <label [class.text-red-500]="typePrinterControl.invalid && typePrinterControl.touched">Tipo de impresora</label>
+            <p-dropdown
+              formControlName="typePrinter"
+              optionLabel="label"
+              placeholder="Selecciona una opción"
+              appendTo="body"
+              [options]="dropdownTypeImpresora"
+              [class.ng-dirty]="typePrinterControl.touched"
+            ></p-dropdown>
+            <div *ngIf="(typePrinterControl.invalid && typePrinterControl.dirty) || typePrinterControl.touched">
+              <span class="text-red-500 text-sm" *ngIf="typePrinterControl.hasError('required')">Este campo es requerido.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-save" label="Guardar" (onClick)="saveIpClient()"></p-button>
+  </ng-template>
+</p-dialog>

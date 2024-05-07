@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { MaterialInformationService } from "../../service/material-information.service";
 import { ITypeMaterials } from "../../models/material-interface";
@@ -19,7 +18,7 @@ export class PageMaterialPromotionComponent implements OnInit {
 
   private subscription!: Subscription;
 
-  constructor(private fb: FormBuilder, private materialService: MaterialInformationService, private officeService: OfficesHttpService, private detailPromotionService: DetailPromotionService) {}
+  constructor(private materialService: MaterialInformationService, private officeService: OfficesHttpService, private detailPromotionService: DetailPromotionService) {}
 
   ngOnInit(): void {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));

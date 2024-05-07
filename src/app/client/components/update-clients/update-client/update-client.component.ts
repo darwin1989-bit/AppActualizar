@@ -213,7 +213,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
         usuario_Modificacion: this.user.UserName,
       };
 
-      this.subscription = this.officeService.company$.subscribe((res) => (company = res));
+      this.subscription = this.officeService.company$.subscribe((res) => (company = res!));
       this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
       this.clientService.updateClient(company.code, office.ip_Red!, this.client.numero_Idcliente!, this.client.tipo_Idcliente!, clientEdit).subscribe(() => (this.visible = false));
     }

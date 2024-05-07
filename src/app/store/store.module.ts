@@ -6,9 +6,14 @@ import { FindOpenBoxesComponent } from "./components/open-boxes/find-open-boxes/
 import { ResultOpenBoxesComponent } from "./components/open-boxes/result-open-boxes/result-open-boxes.component";
 import { PageOpenBoxesComponent } from "./pages/page-open-boxes/page-open-boxes.component";
 import { SharedModule } from "../shared/shared.module";
+import { FindIpBoxesComponent } from './components/ip-boxes/find-ip-boxes/find-ip-boxes.component';
+import { ResultIpBoxesComponent } from './components/ip-boxes/result-ip-boxes/result-ip-boxes.component';
+import { EditIpBoxesComponent } from './components/ip-boxes/edit-ip-boxes/edit-ip-boxes.component';
+import { NewIpBoxesComponent } from './components/ip-boxes/new-ip-boxes/new-ip-boxes.component';
+import { PageIpBoxesComponent } from './pages/page-ip-boxes/page-ip-boxes.component';
 
 @NgModule({
-  declarations: [FindOpenBoxesComponent, ResultOpenBoxesComponent, PageOpenBoxesComponent],
+  declarations: [FindOpenBoxesComponent, ResultOpenBoxesComponent, PageOpenBoxesComponent, FindIpBoxesComponent, ResultIpBoxesComponent, EditIpBoxesComponent, NewIpBoxesComponent, PageIpBoxesComponent],
   imports: [CommonModule, StoreRoutingModule, SharedModule],
 })
 export class StoreModule {}

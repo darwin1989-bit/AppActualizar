@@ -20,6 +20,34 @@ import { itemsObj } from "./models/menuObject";
       .connected {
         visibility: hidden;
       }
+      .w3-badge {
+        background-color: #000;
+        color: #fff;
+        display: inline-block;
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: center;
+      }
+      .w3-badge {
+        border-radius: 100%;
+      }
+      .w3-red,
+      .w3-hover-red:hover {
+        color: #f44336 !important;
+        background-color: #f44336 !important;
+      }
+      .w3-tiny {
+        font-size: 6px !important;
+      }
+      .w3-small {
+        font-size: 12px !important;
+      }
+      .w3-medium {
+        font-size: 15px !important;
+      }
+      .w3-large {
+        font-size: 18px !important;
+      }
     `,
   ],
   providers: [ConfirmationService],

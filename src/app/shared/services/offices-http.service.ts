@@ -13,7 +13,7 @@ export class OfficesHttpService {
   private moneyLocale = new BehaviorSubject<{ money: string; locale: string }>({ money: "", locale: "" });
   public moneyLocale$ = this.moneyLocale.asObservable();
 
-  private company = new BehaviorSubject<ICompany>(DataCompany);
+  private company = new BehaviorSubject<ICompany | null>(DataCompany);
   public company$ = this.company.asObservable();
 
   private offices = new BehaviorSubject<OfficesDto | null>(null);
@@ -30,7 +30,7 @@ export class OfficesHttpService {
   public setOffice(office: OfficesDto | null): void {
     this.offices.next(office);
   }
-  public setCompany(company: ICompany): void {
+  public setCompany(company: ICompany | null): void {
     this.company.next(company);
   }
   public setValidFindOffice(): void {

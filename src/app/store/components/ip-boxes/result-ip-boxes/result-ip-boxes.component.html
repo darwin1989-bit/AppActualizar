@@ -1,0 +1,48 @@
+<div class="grid mt-3 flex justify-content-center">
+  <div class="sm:col-12 md:col-10 lg:col-6">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(ipBoxesService.ipClient$ | async)!"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(ipBoxesService.ipClient$ | async)!.length > 5 ? true : false"
+        [sortOrder]="0"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-end">
+            <span class="p-input-icon-left" [class.hidden]="(ipBoxesService.ipClient$ | async)!.length > 0 ? false : true">
+              <i class="pi pi-search"></i>
+              <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-secondary mr-2" (click)="newIp()"></button>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Ip servidor</th>
+            <th pSortableColumn="ipCliente">Ip caja<p-sortIcon field="ipCliente"></p-sortIcon></th>
+            <th pSortableColumn="numeroCaja">Número caja <p-sortIcon field="numeroCaja"></p-sortIcon></th>
+            <th>Tipo impresora</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ipClient>
+          <tr>
+            <td>{{ ipClient.ipServidor }}</td>
+            <td>{{ ipClient.ipCliente }}</td>
+            <td>{{ ipClient.numeroCaja }}</td>
+            <td>{{ ipClient.tipoImpresora }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<app-new-ip-boxes></app-new-ip-boxes>

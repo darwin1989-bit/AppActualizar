@@ -14,14 +14,13 @@ export class PageAuthorizingUserComponent implements OnInit, OnDestroy {
 
   private subscription!: Subscription;
 
-  constructor(private usersAuthorizingService: UsersAuthorizingService, private officeService: OfficesHttpService) {}
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
-  }
+  constructor(private officeService: OfficesHttpService, private usersAuthorizingService: UsersAuthorizingService) {}
 
   ngOnInit(): void {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+  }
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   public findUserAuthorizing(): void {

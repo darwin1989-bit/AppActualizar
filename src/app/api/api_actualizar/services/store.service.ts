@@ -9,6 +9,9 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { IpClientDto } from '../models/ip-client-dto';
+import { ResponseIpClient } from '../models/response-ip-client';
+import { ResponseMessage } from '../models/response-message';
 import { ResponseOpenBoxes } from '../models/response-open-boxes';
 
 @Injectable({
@@ -23,24 +26,24 @@ export class StoreService extends BaseService {
   }
 
   /**
-   * Path part for operation apiStoreGet
+   * Path part for operation apiStoreOpenBoxesGet
    */
-  static readonly ApiStoreGetPath = '/api/Store';
+  static readonly ApiStoreOpenBoxesGetPath = '/api/Store/open_boxes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiStoreGet$Plain()` instead.
+   * To access only the response body, use `apiStoreOpenBoxesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiStoreGet$Plain$Response(params?: {
+  apiStoreOpenBoxesGet$Plain$Response(params?: {
     company?: string;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<ResponseOpenBoxes>> {
 
-    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreOpenBoxesGetPath, 'get');
     if (params) {
       rb.query('company', params.company, {});
     }
@@ -59,36 +62,36 @@ export class StoreService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiStoreGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiStoreOpenBoxesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiStoreGet$Plain(params?: {
+  apiStoreOpenBoxesGet$Plain(params?: {
     company?: string;
   },
   context?: HttpContext
 
 ): Observable<ResponseOpenBoxes> {
 
-    return this.apiStoreGet$Plain$Response(params,context).pipe(
+    return this.apiStoreOpenBoxesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseOpenBoxes>) => r.body as ResponseOpenBoxes)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiStoreGet$Json()` instead.
+   * To access only the response body, use `apiStoreOpenBoxesGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiStoreGet$Json$Response(params?: {
+  apiStoreOpenBoxesGet$Json$Response(params?: {
     company?: string;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<ResponseOpenBoxes>> {
 
-    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreOpenBoxesGetPath, 'get');
     if (params) {
       rb.query('company', params.company, {});
     }
@@ -107,19 +110,227 @@ export class StoreService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiStoreGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiStoreOpenBoxesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiStoreGet$Json(params?: {
+  apiStoreOpenBoxesGet$Json(params?: {
     company?: string;
   },
   context?: HttpContext
 
 ): Observable<ResponseOpenBoxes> {
 
-    return this.apiStoreGet$Json$Response(params,context).pipe(
+    return this.apiStoreOpenBoxesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseOpenBoxes>) => r.body as ResponseOpenBoxes)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreIpClientGet
+   */
+  static readonly ApiStoreIpClientGetPath = '/api/Store/ip_client';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreIpClientGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreIpClientGet$Plain$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseIpClient>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreIpClientGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseIpClient>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreIpClientGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreIpClientGet$Plain(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseIpClient> {
+
+    return this.apiStoreIpClientGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseIpClient>) => r.body as ResponseIpClient)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreIpClientGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreIpClientGet$Json$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseIpClient>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreIpClientGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseIpClient>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreIpClientGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreIpClientGet$Json(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseIpClient> {
+
+    return this.apiStoreIpClientGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseIpClient>) => r.body as ResponseIpClient)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreInsertIpClientPost
+   */
+  static readonly ApiStoreInsertIpClientPostPath = '/api/Store/insert/ipClient';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreInsertIpClientPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreInsertIpClientPost$Plain$Response(params?: {
+    ip?: string;
+    body?: IpClientDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreInsertIpClientPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreInsertIpClientPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreInsertIpClientPost$Plain(params?: {
+    ip?: string;
+    body?: IpClientDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiStoreInsertIpClientPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreInsertIpClientPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreInsertIpClientPost$Json$Response(params?: {
+    ip?: string;
+    body?: IpClientDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreInsertIpClientPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreInsertIpClientPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreInsertIpClientPost$Json(params?: {
+    ip?: string;
+    body?: IpClientDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiStoreInsertIpClientPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
     );
   }
 

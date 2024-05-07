@@ -12,18 +12,19 @@ import { OpenBoxesService } from "src/app/store/services/open-boxes.service";
 export class FindOpenBoxesComponent implements OnInit, OnDestroy {
   public company!: ICompany;
 
-  public subcription!: Subscription;
+  private subscription!: Subscription;
 
   constructor(private officeService: OfficesHttpService, private openBoxesService: OpenBoxesService) {}
 
   ngOnInit(): void {
-    this.subcription = this.officeService.company$.subscribe((res) => (this.company = res));
+    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res!));
   }
   ngOnDestroy(): void {
-    if (this.subcription) this.subcription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   public findOpenBoxes(): void {
+    this.openBoxesService.clearOpenBoxes();
     this.officeService.setValidFindOffice();
     if (this.company.name != "") this.openBoxesService.getOpenBoxes(this.company.code);
   }

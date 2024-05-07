@@ -20,6 +20,7 @@ export class ResultUsersAuthorizingComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    this.usersAuthorizingService.clearUserAuthorizing();
   }
 
   public changeDayAuthorizing(userAuthorizing: AuthorizingUserDto, minusAndPlus: boolean): void {

@@ -1626,7 +1626,7 @@
         }
       }
     },
-    "/api/Store": {
+    "/api/Store/open_boxes": {
       "get": {
         "tags": ["Store"],
         "parameters": [
@@ -1655,6 +1655,97 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseOpenBoxes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Store/ip_client": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseIpClient"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseIpClient"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseIpClient"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Store/insert/ipClient": {
+      "post": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IpClientDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IpClientDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IpClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
                 }
               }
             }
@@ -3241,6 +3332,28 @@
         },
         "additionalProperties": false
       },
+      "IpClientDto": {
+        "type": "object",
+        "properties": {
+          "ipServidor": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroCaja": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoImpresora": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "IpPosMobileDTO": {
         "type": "object",
         "properties": {
@@ -3503,6 +3616,20 @@
             "nullable": true
           },
           "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NoConnectionOpenBox": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
             "type": "string",
             "nullable": true
           }
@@ -4168,6 +4295,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseIpClient": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IpClientDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseIpPosMobile": {
         "type": "object",
         "properties": {
@@ -4233,6 +4373,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OpenBoxDto"
+            },
+            "nullable": true
+          },
+          "dataError": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoConnectionOpenBox"
             },
             "nullable": true
           }

@@ -40,7 +40,7 @@ export const itemsObj: any[] = [
       {
         label: "Ip cajas",
         icon: "pi pi-fw pi-desktop",
-        routerLink: ["/pages/crud"],
+        routerLink: ["/app/store/ip-boxes"],
       },
       {
         label: "Oficinas",

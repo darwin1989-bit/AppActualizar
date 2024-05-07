@@ -48,7 +48,7 @@ export class MaterialEditComponent implements OnInit, OnDestroy {
       this.selectedStatus = this.dropDownStatus.find((f) => f.type == res.estado!);
     });
     this.subscription = this.materialService.editMaterialBarcode$.subscribe((res) => (this.materialBarCode = res));
-    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res));
+    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res!));
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
   }
 

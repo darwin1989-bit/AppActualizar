@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { IpPosMobileDto, OfficesDto, UpdateUserDto } from "src/app/api/api_actualizar/models";
+import { IpPosMobileDto, UpdateUserDto } from "src/app/api/api_actualizar/models";
 import { ICompany } from "src/app/shared/models/offices.interface";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
-import { ISelect, SelectIpPosMobile, SelectStatus } from "src/app/users/models/user-models";
+import { ISelect, SelectStatus } from "src/app/users/models/user-models";
 import { UsersService } from "src/app/users/service/users.service";
 
 @Component({
@@ -71,7 +71,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         this.userForm.controls.ipPosMobileUser.patchValue(this.ipPosMobileUser.find((f) => f.ipCliente == res.ipPosmobile!)!);
       });
     });
-    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res));
+    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res!));
   }
 
   saveEditUser(): void {

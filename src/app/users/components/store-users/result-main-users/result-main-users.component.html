@@ -39,7 +39,16 @@
             <td>{{ users.estado }}</td>
             <td [class.field-null]="users.ipPosmobile == ''">{{ users.ipPosmobile == "" ? "NULL" : users.ipPosmobile }}</td>
             <td>
-              <button pButton pRipple icon="pi pi-user-edit" class="p-button-warning p-button-sm" (click)="editUser(users)" pTooltip="Editar usuario" tooltipPosition="bottom"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-user-edit"
+                class="p-button-warning p-button-sm"
+                (click)="editUser(users)"
+                pTooltip="Editar usuario"
+                tooltipPosition="bottom"
+                [disabled]="users.tienda == 'MATRIZ'"
+              ></button>
             </td>
           </tr>
         </ng-template>

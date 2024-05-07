@@ -18,6 +18,7 @@ import { CalledHttpService } from "../../services/called-http.service";
 import { UsersAuthorizingService } from "src/app/users/service/users-authorizing.service";
 import { RegisteredUsersService } from "src/app/users/service/registered-users.service";
 import { OpenBoxesService } from "src/app/store/services/open-boxes.service";
+import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
 
 @Component({
   selector: "app-find-offices",
@@ -62,11 +63,13 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private calledHttpService: CalledHttpService,
     private usersAuthorizingService: UsersAuthorizingService,
     private registeredUsersService: RegisteredUsersService,
-    public openBoxesService: OpenBoxesService
+    public openBoxesService: OpenBoxesService,
+    private ipBoxesService: IpBoxesService
   ) {}
 
   ngOnDestroy(): void {
     this.officesHttpService.setOffice(null);
+    this.officesHttpService.setCompany(null);
     this.subcription.unsubscribe();
   }
 
@@ -134,6 +137,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.usersAuthorizingService.clearUserAuthorizing();
     this.registeredUsersService.clearRegisteredUser();
     this.openBoxesService.clearOpenBoxes();
+    this.ipBoxesService.clearIpBoxes();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -150,6 +154,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.usersAuthorizingService.clearUserAuthorizing();
     this.registeredUsersService.clearRegisteredUser();
     this.openBoxesService.clearOpenBoxes();
+    this.ipBoxesService.clearIpBoxes();
   }
 
   public toggle(): void {

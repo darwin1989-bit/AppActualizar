@@ -29,7 +29,7 @@ export class ResultRegisteredUsersComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
-    this.reset();
+    this.registeredUsersService.clearRegisteredUser();
   }
 
   public logOut(userRegistered: RegisteredUserDto): void {

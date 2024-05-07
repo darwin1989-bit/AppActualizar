@@ -12,6 +12,7 @@
         [paginator]="(openBoxesService.openBoxes$ | async)!.length > 5 ? true : false"
         [globalFilterFields]="['tienda', 'ipTienda']"
         rowGroupMode="rowspan"
+        groupRowsBy="tienda"
       >
         <ng-template pTemplate="caption">
           <div class="flex" *ngIf="(openBoxesService.openBoxes$ | async)!.length! > 5">
@@ -26,7 +27,7 @@
             <th>Tienda</th>
             <th>Ip tienda</th>
             <th>Apertura</th>
-            <th>Fecha y ahora apertura</th>
+            <th>Fecha y hora apertura</th>
             <th>Ip apertura</th>
             <th>Estado logueo</th>
             <th>Usuario</th>

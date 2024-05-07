@@ -9,7 +9,7 @@ import { ToastMessagesService } from "src/app/shared/services/toast-messages.ser
   providedIn: "root",
 })
 export class OpenBoxesService {
-  private officesOpenBox = new BehaviorSubject<boolean>(false);
+  private officesOpenBox = new BehaviorSubject<boolean>(true);
   public officesOpenBox$ = this.officesOpenBox.asObservable();
 
   private openBoxes = new BehaviorSubject<OpenBoxDto[]>([]);
@@ -26,9 +26,17 @@ export class OpenBoxesService {
 
   public getOpenBoxes(company: string): void {
     this.storeService
-      .apiStoreGet$Json({ company })
+      .apiStoreOpenBoxesGet$Json({ company })
       .pipe(
-        tap((res) => this.openBoxes.next(res.data!)),
+        tap((res) => {
+          this.openBoxes.next(res.data! == null ? [] : res.data!);
+
+          if (res.dataError != null) {
+            res.dataError.forEach((item) => {
+              this.toastMesagge.showToast("tc", "error", "Error", `No se tiene conexión con la tienda ${item.tienda}.`);
+            });
+          }
+        }),
         catchError((error) => this.calledHttpService.errorHandler(error))
       )
       .subscribe();

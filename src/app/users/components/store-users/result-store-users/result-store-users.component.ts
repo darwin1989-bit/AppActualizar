@@ -26,6 +26,7 @@ export class ResultStoreUsersComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.usersService.clearUsers();
   }
 
   public onGlobalFilter(table: Table, event: Event) {
@@ -35,7 +36,9 @@ export class ResultStoreUsersComponent implements OnInit, OnDestroy {
   private reset(): void {
     if (this.Input) this.Input.nativeElement.value = "";
     if (this.Input) this.tableComponent.filterGlobal("", "");
-    this.tableComponent.reset();
-    this.tableComponent.rows = 5;
+    if (this.tableComponent) {
+      this.tableComponent.reset();
+      this.tableComponent.rows = 5;
+    }
   }
 }
