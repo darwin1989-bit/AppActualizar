@@ -17,7 +17,7 @@ export const itemsObj: any[] = [
     label: "Materiales",
     items: [
       { label: "Consulta", icon: "pi pi-fw pi-shopping-bag", routerLink: ["/app/material/material-information"] },
-      { label: "Promociones tienda", icon: "pi pi-fw pi-tags", routerLink: ["/app/material/material-promotion"] },
+      { label: "Promociones", icon: "pi pi-fw pi-tags", routerLink: ["/app/material/material-promotion"] },
     ],
   },
   {

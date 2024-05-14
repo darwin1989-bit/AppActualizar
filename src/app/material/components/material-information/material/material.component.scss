@@ -1,0 +1,17 @@
+// :host ::ng-deep .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {
+//   border-bottom: 4px solid #e9ecef;
+// }
+.style_barcode {
+  // background-color: #e9ecef;
+  border: 1px solid black;
+  border-style: dotted;
+}
+
+// :host ::ng-deep .p-datatable-tbody > tr:nth-child(3n) {
+//   line-height: 50px;
+//   background-color: red;
+// }
+
+// :host ::ng-deep .p-datatable-tbody > tr:nth-child(even) {
+//   background-color: #d6eeee;
+// }

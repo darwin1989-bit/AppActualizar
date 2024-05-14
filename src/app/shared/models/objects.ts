@@ -28,7 +28,7 @@ export const UserDataObj: userData = {
 export const CompanyObj: ICompany[] = [
   { name: "ETAFASHION", code: "eta" },
   { name: "MODA RM", code: "rm" },
-  { name: "ETAFASHION CR", code: "cr" },
+  // { name: "ETAFASHION CR", code: "cr" },
 ];
 
 export const OfficesMatriz: OfficesDto[] = [

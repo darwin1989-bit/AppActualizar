@@ -4,19 +4,27 @@
       <i class="pi pi-bars"></i>
     </button>
   </div>
-  <div class="layout-topbar-logo">
+  <div class="layout-topbar-logo w-full">
     <div class="text-600">{{ model[(menuService.indexMenu$ | async)!].label }} / {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].label }}</div>
   </div>
   <div
     #topbarmenu
     *ngIf="officesHttpService.offices$ | async"
-    class="layout-topbar-menu scalein animation-duration-500"
+    class="layout-topbar-menu scalein animation-duration-500 lg:block md:block hidden"
     [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }"
   >
-    <div class="flex align-items-center w-30rem">
-      <a class="label-badge-success text-base font-semibold mr-2"> <i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ip_Red }} </a>
-      <a class="label-badge-success text-base font-semibold mr-2"> <i class="pi pi-building mr-2" style="font-size: 1rem"></i>OFICINA : {{ (officesHttpService.offices$ | async)!.oficina }} </a>
-      <a class="label-badge-success text-base font-semibold"> <i class="pi pi-table mr-2" style="font-size: 1rem"></i>SAP : {{ (officesHttpService.offices$ | async)!.ofi_Codigo_Interno_Empresa }} </a>
+    <div class="flex align-items-center connect">
+      <a class="label-badge-success text-base font-semibold mr-2 flex justify-content-center">
+        <i class="pi pi-database mr-2" style="font-size: 1rem; margin-top: 0.2rem"></i><a class="font-semibold mr-2" style="color: #256029">IP: </a>{{ (officesHttpService.offices$ | async)!.ip_Red }}
+      </a>
+      <a class="label-badge-success text-base font-semibold mr-2 flex justify-content-center">
+        <i class="pi pi-building mr-2" style="font-size: 1rem; margin-top: 0.2rem"></i><a class="font-semibold mr-2" style="color: #256029">OFICINA: </a>
+        {{ (officesHttpService.offices$ | async)!.oficina }}
+      </a>
+      <a class="label-badge-success text-base font-semibold flex justify-content-center">
+        <i class="pi pi-table mr-2" style="font-size: 1rem; margin-top: 0.2rem"></i><a class="font-semibold mr-2" style="color: #256029">SAP: </a>
+        {{ (officesHttpService.offices$ | async)!.ofi_Codigo_Interno_Empresa }}
+      </a>
     </div>
   </div>
   <div #topbarmenu class="layout-topbar-menu">

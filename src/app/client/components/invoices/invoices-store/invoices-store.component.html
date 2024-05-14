@@ -1,15 +1,7 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
-      <p-table
-        #dt
-        [value]="(invoiceService.invoicesStore$ | async)!"
-        styleClass="p-datatable-sm p-datatable-gridlines"
-        [rows]="5"
-        [rowsPerPageOptions]="[5, 10, 25, 50]"
-        [scrollable]="true"
-        [breakpoint]="'960px'"
-      >
+      <p-table #dt [value]="(invoiceService.invoicesStore$ | async)!" styleClass="p-datatable-sm" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Serie factura</th>
@@ -31,7 +23,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
           <tr>
-            <td pFrozenColumn>{{ invoice.serie_Factura }}</td>
+            <td class="select-all" pFrozenColumn>{{ invoice.serie_Factura }}</td>
             <td>{{ invoice.oficina }}</td>
             <td>{{ invoice.nombre }}</td>
             <td>{{ invoice.tipo_Documento }}</td>
@@ -47,8 +39,20 @@
             <td>{{ invoice.totalfactura | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ invoice.userid }}</td>
             <td>{{ invoice.estacionId }}</td>
-            <td>
-              <button icon="pi pi-list" type="button" pButton pRipple class="p-button-sm p-button-info" (click)="selectInvoice(invoice)" pTooltip="Detalle" tooltipPosition="bottom"></button>
+            <td class="flex justify-content-center align-items-center">
+              <button type="button" pButton pRipple icon="pi pi-list" class="p-button-sm p-button-info mr-1" (click)="selectInvoice(invoice)" pTooltip="Detalle" tooltipPosition="bottom"></button>
+              <button
+                [class.hidden]="(invoiceService.hideButtonCreditN$ | async)!"
+                icon="pi pi-file"
+                [disabled]="!(invoice.data_CreditNote ? invoice.data_CreditNote.length > 0 : false)"
+                type="button"
+                pButton
+                pRipple
+                class="p-button-sm p-button-secondary"
+                (click)="invoiceService.invoiceCreditNoteSelect(invoice)"
+                pTooltip="Nota de crédito"
+                tooltipPosition="bottom"
+              ></button>
             </td>
           </tr>
         </ng-template>

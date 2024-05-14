@@ -1,8 +1,8 @@
-<p-table [value]="(invoicesService.invoiceCreditNote$ | async)!.data_CreditNote!" styleClass="p-datatable-sm p-datatable-gridlines">
+<p-table [value]="(invoicesService.invoiceCreditNote$ | async)!.data_CreditNote!" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
-      <th>Serie nota crédito</th>
-      <th>Serie Fact. Original</th>
+      <th>Serie doc. nuevo</th>
+      <th>Serie doc. original</th>
       <th>Fecha</th>
       <th>Tipo</th>
       <th>Cliente</th>
@@ -13,13 +13,13 @@
   </ng-template>
   <ng-template pTemplate="body" let-noteCredit>
     <tr>
-      <td>{{ noteCredit.serieFactura }}</td>
-      <td>{{ noteCredit.serieFacturaOriginal == "" ? "N/A" : noteCredit.serieFacturaOriginal }}</td>
+      <td class="select-all">{{ noteCredit.serieFactura }}</td>
+      <td class="select-all">{{ noteCredit.serieFacturaOriginal == "" || noteCredit.serieFacturaOriginal == null ? "N/A" : noteCredit.serieFacturaOriginal }}</td>
       <td>{{ noteCredit.fecha | date : "yyyy/MM/dd HH:mm" }}</td>
       <td>{{ noteCredit.tipo }}</td>
       <td>{{ noteCredit.cliente }}</td>
       <td>{{ noteCredit.total | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
-      <td>{{ noteCredit.usuario }}</td>
+      <td>{{ noteCredit.usuario == null ? "N/A" : noteCredit.usuario }}</td>
       <td>{{ noteCredit.comentario ? noteCredit.comentario : "Nota de crédito aplicada: " + noteCredit.serieFactura }}</td>
     </tr>
   </ng-template>

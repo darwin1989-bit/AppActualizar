@@ -20,6 +20,7 @@
 
 :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
   text-align: center;
+  border-width: 0 0 1px #e2e8f0;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {

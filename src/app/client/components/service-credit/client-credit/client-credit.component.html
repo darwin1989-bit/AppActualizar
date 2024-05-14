@@ -1,7 +1,7 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
-      <p-table #dt [value]="(clientCreditComponentService.clientCredit$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table #dt [value]="(clientCreditComponentService.clientCredit$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 10%">Nombres</th>

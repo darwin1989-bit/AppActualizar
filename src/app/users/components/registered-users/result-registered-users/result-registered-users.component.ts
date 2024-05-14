@@ -8,7 +8,13 @@ import { RegisteredUsersService } from "src/app/users/service/registered-users.s
 @Component({
   selector: "app-result-registered-users",
   templateUrl: "./result-registered-users.component.html",
-  styles: [],
+  styles: [
+    `
+      :host ::ng-deep .p-input-filled .p-inputtext {
+        background-color: white;
+      }
+    `,
+  ],
 })
 export class ResultRegisteredUsersComponent implements OnInit, OnDestroy {
   @ViewChild("dt") tableComponent!: Table;

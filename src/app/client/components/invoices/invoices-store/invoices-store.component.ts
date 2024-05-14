@@ -39,6 +39,7 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    this.invoiceService.clossinvoiceCreditNoteSelect();
   }
 
   ngOnInit(): void {

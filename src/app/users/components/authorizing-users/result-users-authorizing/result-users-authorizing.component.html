@@ -1,7 +1,7 @@
 <div class="grid mt-3 justify-content-center">
   <div class="col-12 md:col-6">
     <div class="card surface-card">
-      <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" styleClass="p-datatable-sm p-datatable-gridlines" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
             <th>Rol</th>

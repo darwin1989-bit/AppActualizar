@@ -1,5 +1,5 @@
 <h5 class="mt-2">Forma de pago</h5>
-<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" styleClass="p-datatable-sm p-datatable-gridlines">
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>Forma pago</th>
@@ -23,7 +23,7 @@
   </ng-template>
 </p-table>
 <h5 class="mt-4">Detalle</h5>
-<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoicesDet!" styleClass="p-datatable-sm p-datatable-gridlines">
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoicesDet!" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>Material</th>
@@ -37,7 +37,7 @@
   <ng-template pTemplate="body" let-invoice>
     <tr>
       <td>{{ invoice.codigo_Producto }}</td>
-      <td>{{ invoice.descripcion }}</td>
+      <td [class.field-null]="invoice.descripcion == '' || invoice.descripcion == null">{{ invoice.descripcion == null ? "NULL" : invoice.descripcion }}</td>
       <td>{{ invoice.cantidad | number }}</td>
       <td>{{ invoice.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
       <td>{{ invoice.descuento | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>

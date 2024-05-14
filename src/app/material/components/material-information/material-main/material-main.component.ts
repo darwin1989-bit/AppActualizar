@@ -7,7 +7,6 @@ import localeEsCrc from "@angular/common/locales/es-CR";
 import { MaterialInformationService } from "src/app/material/service/material-information.service";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { Table } from "primeng/table/table";
-import { SelectItem } from "primeng/api";
 
 registerLocaleData(localeEsEC);
 registerLocaleData(localeEsCrc);
@@ -52,10 +51,10 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   }
 
   public procedureMaterial(materials: MaterialsDto): void {
-    this.materialService.ComunicateMaterial(this.office.ip_Red!, materials.codigo!);
+    this.materialService.SpComunicateMaterial(this.office.ip_Red!, materials.codigo!);
   }
   public procedurePrice(materials: MaterialsDto): void {
-    this.materialService.ComunicateMaterial(this.office.ip_Red!, materials.codigo!);
+    this.materialService.SpComunicatePrice(this.office.ip_Red!, materials.codigo!);
   }
 
   private refreshTable() {

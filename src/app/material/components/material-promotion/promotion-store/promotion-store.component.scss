@@ -3,3 +3,7 @@
   font-style: italic;
   font-weight: bold;
 }
+
+// :host ::ng-deep .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {
+//   border: 0.5px solid #dee2e6;
+// }

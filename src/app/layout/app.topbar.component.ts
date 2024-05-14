@@ -11,6 +11,12 @@ import { itemsObj } from "./models/menuObject";
   templateUrl: "./app.topbar.component.html",
   styles: [
     `
+      @media (max-width: 992px) {
+        .connect {
+          visibility: hidden;
+        }
+      }
+
       .label-badge-success {
         background: #c8e6c9;
         color: #256029;

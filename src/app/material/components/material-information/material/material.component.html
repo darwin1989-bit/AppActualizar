@@ -4,7 +4,7 @@
       <p-table
         #dt
         [value]="(materialService.materials$ | async)!"
-        styleClass="p-datatable-sm p-datatable-gridlines"
+        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -22,8 +22,8 @@
             <th>Lista precio</th>
             <th>Estado</th>
             <th>Marca</th>
-            <th>Código Barra</th>
-            <th style="width: 8%">Estado cod. barras</th>
+            <th>Código de barras</th>
+            <!-- <th style="width: 8%">Estado cod. barras</th> -->
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
             <th></th>
@@ -31,27 +31,46 @@
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
-            <td pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
+            <td class="select-all" pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.field-null]="material.precio == null || material.precio == ''">
+              {{ material.precio == null || material.precio == "" ? "NULL" : (material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale) }}
+            </td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.sucursal }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.marca }}</td>
-            <td [class.font-italic]="!material.codBarra">{{ material.codBarra ? material.codBarra : "NULL" }}</td>
-            <td>{{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}</td>
-            <td [class.font-italic]="!material.codBarra">{{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}</td>
-            <td [class.font-italic]="!material.codBarra">{{ material.orden ? material.orden : "NULL" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" class="flex justify-content-center align-items-center">
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.field-null]="material.marca == null || material.marca == ''">
+              {{ material.marca == "" || material.marca == null ? "NULL" : material.marca }}
+            </td>
+            <td [class.field-null]="!material.codBarra">
+              <div class="border-dotted border-1 select-all">
+                {{ material.codBarra ? material.codBarra : "NULL" }}
+              </div>
+            </td>
+            <!-- <td class="style_barcode">
+              <div class="border-dotted border-1">
+                {{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}
+              </div>
+            </td> -->
+            <td class="style_barcode" [class.font-italic]="!material.esPrincipal">
+              <div class="border-dotted border-1">
+                {{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}
+              </div>
+            </td>
+            <td class="style_barcode" [class.field-null]="material.orden == '' || material.orden == null">
+              <div class="border-dotted border-1">
+                {{ material.orden ? material.orden : "NULL" }}
+              </div>
+            </td>
+            <td class="style_barcode" *ngIf="rowgroup" [attr.rowspan]="rowspan">
               <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm mr-1" (click)="promotion(material)" pTooltip="Promociones" tooltipPosition="bottom"></button>
               <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" (click)="information(material)" pTooltip="Información" tooltipPosition="bottom"></button>
             </td>
           </tr>
         </ng-template>
-
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="11" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

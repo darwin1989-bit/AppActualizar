@@ -164,7 +164,7 @@ export class MaterialInformationService {
       )
       .subscribe();
   }
-  public ComunicateMaterial(ip: string, code: string): void {
+  public SpComunicateMaterial(ip: string, code: string): void {
     this.materialService
       .apiMaterialsComunicateGet$Json({ ip, code })
       .pipe(
@@ -217,7 +217,7 @@ export class MaterialInformationService {
         complete: () => this.dialogEditMaterial.next(false),
       });
   }
-  public Sp_Comunicate_Price(ip: string, code: string): void {
+  public SpComunicatePrice(ip: string, code: string): void {
     this.materialService
       .apiMaterialsComunicatePriceGet$Json({ ip, code })
       .pipe(

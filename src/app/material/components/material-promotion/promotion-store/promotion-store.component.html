@@ -4,7 +4,7 @@
       <p-table
         #dt
         [value]="promotions"
-        styleClass="p-datatable-sm p-datatable-gridlines"
+        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -12,6 +12,8 @@
         [paginator]="true"
         rowGroupMode="rowspan"
         groupRowsBy="id"
+        sortField="fecha"
+        [sortOrder]="-1"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -19,8 +21,8 @@
             <th>Oficina</th>
             <th>Fecha</th>
             <th>Serie factura</th>
-            <th>Cantidad</th>
             <th>Código</th>
+            <th>Cantidad</th>
             <th>Descuento</th>
             <th>Id promoción</th>
             <th>Descripción</th>
@@ -33,8 +35,8 @@
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ promotion.oficina }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ promotion.fecha | date : "yyyy/MM/dd HH:mm" }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan"><span class="p-column-title font-bold">Serie factura</span>{{ promotion.transactionID }}</td>
-            <td><span class="p-column-title font-bold">Cantidad</span>{{ promotion.quantity }}</td>
             <td><span class="p-column-title font-bold">Código</span>{{ promotion.itemID }}</td>
+            <td><span class="p-column-title font-bold">Cantidad</span>{{ promotion.quantity }}</td>
             <td [class.promotion-null]="promotion.promotionDescription == null">
               <span class="p-column-title font-bold">Descuento</span>{{ promotion.promotionDescription != null ? (promotion.amount | currency) : "Sin promoción" }}
             </td>

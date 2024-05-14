@@ -18,6 +18,9 @@ export class InvoicesComponentService {
   private dialogCreditNote = new BehaviorSubject<boolean>(false);
   public dialogCreditNote$ = this.dialogCreditNote.asObservable();
 
+  private hideButtonCreditN = new BehaviorSubject<boolean>(false);
+  public hideButtonCreditN$ = this.hideButtonCreditN.asObservable();
+
   private invoiceCreditNote = new BehaviorSubject<InvoiceDto>({});
   public invoiceCreditNote$ = this.invoiceCreditNote.asObservable();
 
@@ -35,21 +38,25 @@ export class InvoicesComponentService {
   public getInvoiceNumber(ip: string, numberInvoice: string): void {
     this.invoiceNumber(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
     this.invoiceNumberMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
+    this.hideButtonCreditN.next(false);
   }
 
   public getInvoiceIdentification(ip: string, numberInvoice: string): void {
     this.invoiceIdentification(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
     this.invoiceIdentificationMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
+    this.hideButtonCreditN.next(false);
   }
 
   public getAllInvoices(ip: string, numberInvoice: string): void {
     this.allInvoices(ip).subscribe((res) => this.invoicesStore.next(res.data!));
     this.allInvoicesMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
+    this.hideButtonCreditN.next(true);
   }
 
   public getCreditNote(ip: string, numberInvoice: string): void {
     this.creditNote(ip, numberInvoice).subscribe((res) => this.invoicesStore.next(res.data!));
     this.creditNoteMain(ip, numberInvoice).subscribe((res) => this.invoicesMain.next(res.data!));
+    this.hideButtonCreditN.next(false);
   }
 
   private invoiceNumber(ip: string, numberInvoice: string): Observable<ResponseInvoiceDto> {
@@ -114,6 +121,9 @@ export class InvoicesComponentService {
   public invoiceCreditNoteSelect(selectInvoice: InvoiceDto): void {
     this.dialogCreditNote.next(true);
     this.invoiceCreditNote.next(selectInvoice);
+  }
+  public clossinvoiceCreditNoteSelect(): void {
+    this.dialogCreditNote.next(false);
   }
 
   public clearInvoices(): void {

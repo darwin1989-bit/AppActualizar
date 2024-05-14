@@ -12,7 +12,7 @@
       [value]="[
         (transactionsService.transaction$ | async)!.offlinePurchases ? (transactionsService.transaction$ | async)!.offlinePurchases : (transactionsService.transaction$ | async)!.offlinePayments
       ]"
-      styleClass="p-datatable-sm p-datatable-gridlines"
+      styleClass="p-datatable-sm"
       [scrollable]="true"
     >
       <ng-template pTemplate="header">
@@ -51,7 +51,7 @@
       <h4 class="my-0">Resultados matriz</h4>
     </div>
     <hr />
-    <p-table [value]="[(transactionsService.offlineMain$ | async)!]" styleClass="p-datatable-sm p-datatable-gridlines">
+    <p-table [value]="[(transactionsService.offlineMain$ | async)!]" styleClass="p-datatable-sm">
       <ng-template pTemplate="header">
         <tr>
           <th>Id</th>

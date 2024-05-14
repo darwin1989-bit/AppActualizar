@@ -4,7 +4,7 @@
   </div>
   <div class="dropdown cursor-pointer scalein animation-duration-500 connect" *ngIf="officesHttpService.offices$ | async">
     <div class="label-badge-success flex align-items-center text-sm font-semibold"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>Conectado</div>
-    <div class="dropdown-content">
+    <div class="dropdown-content connectBlur">
       <a class="label-badge-success flex align-items-center text-sm font-semibold mt-2 mb-2">
         <i class="pi pi-database mr-2" style="font-size: 1rem"></i>IP : {{ (officesHttpService.offices$ | async)!.ip_Red }}
       </a>

@@ -24,32 +24,48 @@
         </div>
       </div>
     </div>
-    <p-table #dt [value]="materialBarCode" styleClass="p-datatable-sm p-datatable-gridlines" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
+    <p-table #dt [value]="materialBarCode" styleClass="p-datatable-sm" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
       <ng-template pTemplate="header">
         <tr>
           <th pFrozenColumn>Código de Barras</th>
-          <th>Estado</th>
+          <!-- <th>Estado</th> -->
           <th>Principal</th>
           <th>Orden</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-material let-editing="editing">
         <tr>
-          <td>{{ material.codigoBarras }}</td>
-          <td [pEditableColumn]="material.estado" pEditableColumnField="estado" class="cursor-pointer">
+          <td [class.field-null]="material.codigoBarras == null || material.codigoBarras == ''">{{ material.codigoBarras == null || material.codigoBarras == "" ? "NULL" : material.codigoBarras }}</td>
+          <!-- <td [pEditableColumn]="material.estado" pEditableColumnField="estado" class="cursor-pointer">
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownStatus" appendTo="body" [(ngModel)]="material.estado" optionLabel="name" placeholder="Selección"></p-dropdown>
+                <p-dropdown
+                  (onChange)="changeDropdown()"
+                  [options]="dropDownStatus"
+                  appendTo="body"
+                  [(ngModel)]="material.estado"
+                  optionLabel="name"
+                  placeholder="Selección"
+                  [disabled]="material.codigoBarras == null || material.codigoBarras == ''"
+                ></p-dropdown>
               </ng-template>
               <ng-template pTemplate="output">
                 {{ material.estado.name ? material.estado.name : material.estado == "A" ? "ACTIVO" : "INACTIVO" }}
               </ng-template>
             </p-cellEditor>
-          </td>
+          </td> -->
           <td [pEditableColumn]="material.principal" pEditableColumnField="principal" class="cursor-pointer">
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownResDesc" appendTo="body" [(ngModel)]="material.principal" optionLabel="name" placeholder="Selección"></p-dropdown>
+                <p-dropdown
+                  (onChange)="changeDropdown()"
+                  [options]="dropDownResDesc"
+                  appendTo="body"
+                  [(ngModel)]="material.principal"
+                  optionLabel="name"
+                  placeholder="Selección"
+                  [disabled]="material.codigoBarras == null || material.codigoBarras == ''"
+                ></p-dropdown>
               </ng-template>
               <ng-template pTemplate="output">
                 {{ material.principal.name ? material.principal.name : material.principal == "S" ? "SI" : "NO" }}
@@ -59,10 +75,20 @@
           <td [pEditableColumn]="material.orden" pEditableColumnField="orden" class="cursor-pointer">
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <p-dropdown (onChange)="changeDropdown()" [options]="dropDownOrden" appendTo="body" [(ngModel)]="material.orden" optionLabel="name" placeholder="Selección"></p-dropdown>
+                <p-dropdown
+                  (onChange)="changeDropdown()"
+                  [options]="dropDownOrden"
+                  appendTo="body"
+                  [(ngModel)]="material.orden"
+                  optionLabel="name"
+                  placeholder="Selección"
+                  [disabled]="material.codigoBarras == null || material.codigoBarras == ''"
+                ></p-dropdown>
               </ng-template>
               <ng-template pTemplate="output">
-                {{ material.orden.name ? material.orden.name : material.orden }}
+                <div [class.field-null]="material.orden == '' || material.orden == null">
+                  {{ material.orden == "" || material.orden == null ? "NULL" : material.orden }}
+                </div>
               </ng-template>
             </p-cellEditor>
           </td>
@@ -70,7 +96,7 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="12" class="font-normal py-4">No existen datos que mostrar.</td>
+          <td colspan="3" class="font-normal py-4">No existen datos que mostrar.</td>
         </tr>
       </ng-template>
     </p-table>

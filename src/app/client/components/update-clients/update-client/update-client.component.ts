@@ -173,7 +173,6 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
 
     this.subscription = this.clientService.clientFound$.subscribe((res: GetClientDto[]) => {
       this.client = res[0];
-      console.log(res[0].cli_Fecha_Nacimiento);
       this.clientForm.controls.name.patchValue(res[0].nombre_Razon!);
       this.clientForm.controls.birthdate.patchValue(res[0].cli_Fecha_Nacimiento ? res[0].cli_Fecha_Nacimiento?.replace("-", "/").replace("-", "/").replace("-", "/").substring(0, 10) : "");
       this.clientForm.controls.isEmployed.patchValue(this.returnValueEmployed(res[0].esempleado!));
