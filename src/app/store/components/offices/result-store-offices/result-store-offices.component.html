@@ -1,0 +1,67 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(storeOfficesService.storeOffices$ | async)!"
+        styleClass="p-datatable-sm"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(storeOfficesService.storeOffices$ | async)!.length > 5 ? true : false"
+        [globalFilterFields]="['oficina', 'codigoSap', 'nombre']"
+        rowGroupMode="rowspan"
+        groupRowsBy="tienda"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex" *ngIf="(storeOfficesService.storeOffices$ | async)!.length! > 5">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Oficina</th>
+            <th>Código sap</th>
+            <th>Establecimiento sri</th>
+            <th>Nombre</th>
+            <th>Ip servidor</th>
+            <th>Direccion</th>
+            <th>Lista precio</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-storeOffices>
+          <tr>
+            <td [class.field-null]="storeOffices.oficina == '' || storeOffices.oficina == null">{{ storeOffices.oficina == "" || storeOffices.oficina == null ? "NULL" : storeOffices.oficina }}</td>
+            <td [class.field-null]="storeOffices.codigoSap == '' || storeOffices.codigoSap == null">
+              {{ storeOffices.codigoSap == "" || storeOffices.codigoSap == null ? "NULL" : storeOffices.codigoSap }}
+            </td>
+            <td [class.field-null]="storeOffices.establecimientoSri == '' || storeOffices.establecimientoSri == null">
+              {{ storeOffices.establecimientoSri == "" || storeOffices.establecimientoSri == null ? "NULL" : storeOffices.establecimientoSri }}
+            </td>
+            <td [class.field-null]="storeOffices.nombre == '' || storeOffices.nombre == null">
+              {{ storeOffices.nombre == "" || storeOffices.nombre == null ? "NULL" : (storeOffices.nombre | uppercase) }}
+            </td>
+            <td [class.field-null]="storeOffices.ipServidor == '' || storeOffices.ipServidor == null">
+              {{ storeOffices.ipServidor == "" || storeOffices.ipServidor == null ? "NULL" : storeOffices.ipServidor }}
+            </td>
+            <td [class.field-null]="storeOffices.direccion1 == '' || storeOffices.direccion1 == null">
+              {{ storeOffices.direccion1 == "" || storeOffices.direccion1 == null ? "NULL" : (storeOffices.direccion1 | uppercase) }}
+            </td>
+            <td [class.field-null]="storeOffices.listaPrecio == '' || storeOffices.listaPrecio == null">
+              {{ storeOffices.listaPrecio == "" || storeOffices.listaPrecio == null ? "NULL" : storeOffices.listaPrecio }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

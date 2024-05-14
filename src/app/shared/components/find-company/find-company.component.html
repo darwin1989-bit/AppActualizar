@@ -1,0 +1,25 @@
+<div class="flex align-items-center justify-content-between mb-3">
+  <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full">
+    <span class="m-0 text-2xl font-bold">Selección empresa</span>
+  </div>
+</div>
+<div class="card">
+  <form [formGroup]="officesForm">
+    <div class="field">
+      <label htmlFor="companyInput" [class.text-red-500]="companyControl.touched && companyControl.hasError('required')">Empresa</label>
+      <p-dropdown
+        [options]="company"
+        [class.ng-dirty]="companyControl.touched"
+        optionLabel="name"
+        [showClear]="true"
+        placeholder="Selecciona la empresa"
+        (onChange)="changeCompany()"
+        formControlName="companyInput"
+      >
+      </p-dropdown>
+      <div *ngIf="companyControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="companyControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+  </form>
+</div>

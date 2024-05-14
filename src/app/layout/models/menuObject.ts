@@ -45,7 +45,7 @@ export const itemsObj: any[] = [
       {
         label: "Oficinas",
         icon: "pi pi-fw pi-building",
-        routerLink: ["/pages/timeline"],
+        routerLink: ["/app/store/offices"],
       },
       {
         label: "Voucher",

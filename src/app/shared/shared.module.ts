@@ -7,10 +7,11 @@ import { HomeModule } from "../home/home.module";
 import { LoadPanelComponent } from "./components/load-panel/load-panel.component";
 import { FindOfficesComponent } from "./components/find-offices/find-offices.component";
 import { ConnectedOfficeComponent } from "./components/connected-office/connected-office.component";
+import { FindCompanyComponent } from "./components/find-company/find-company.component";
 
 @NgModule({
-  declarations: [LoadPanelComponent, FindOfficesComponent, ConnectedOfficeComponent],
+  declarations: [LoadPanelComponent, FindOfficesComponent, ConnectedOfficeComponent, FindCompanyComponent],
   imports: [CommonModule, SharedRoutingModule, FormsModule, ReactiveFormsModule, PrimeModule, SharedRoutingModule, HomeModule],
-  exports: [LoadPanelComponent, PrimeModule, FindOfficesComponent],
+  exports: [LoadPanelComponent, PrimeModule, FindOfficesComponent, FindCompanyComponent],
 })
 export class SharedModule {}

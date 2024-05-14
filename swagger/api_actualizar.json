@@ -1753,6 +1753,42 @@
         }
       }
     },
+    "/api/Store/store_offices": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseStoreOffices"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseStoreOffices"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseStoreOffices"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -4536,6 +4572,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseStoreOffices": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StoreOfficesDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseUsers": {
         "type": "object",
         "properties": {
@@ -4724,6 +4773,40 @@
             "items": {
               "$ref": "#/components/schemas/Lineitem"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StoreOfficesDto": {
+        "type": "object",
+        "properties": {
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoSap": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipServidor": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion1": {
+            "type": "string",
+            "nullable": true
+          },
+          "establecimientoSri": {
+            "type": "string",
+            "nullable": true
+          },
+          "listaPrecio": {
+            "type": "string",
             "nullable": true
           }
         },

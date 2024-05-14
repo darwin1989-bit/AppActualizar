@@ -13,6 +13,7 @@ import { IpClientDto } from '../models/ip-client-dto';
 import { ResponseIpClient } from '../models/response-ip-client';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseOpenBoxes } from '../models/response-open-boxes';
+import { ResponseStoreOffices } from '../models/response-store-offices';
 
 @Injectable({
   providedIn: 'root',
@@ -331,6 +332,107 @@ export class StoreService extends BaseService {
 
     return this.apiStoreInsertIpClientPost$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreStoreOfficesGet
+   */
+  static readonly ApiStoreStoreOfficesGetPath = '/api/Store/store_offices';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreStoreOfficesGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreStoreOfficesGet$Plain$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseStoreOffices>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreStoreOfficesGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseStoreOffices>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreStoreOfficesGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreStoreOfficesGet$Plain(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseStoreOffices> {
+
+    return this.apiStoreStoreOfficesGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseStoreOffices>) => r.body as ResponseStoreOffices)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreStoreOfficesGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreStoreOfficesGet$Json$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseStoreOffices>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreStoreOfficesGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseStoreOffices>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreStoreOfficesGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreStoreOfficesGet$Json(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseStoreOffices> {
+
+    return this.apiStoreStoreOfficesGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseStoreOffices>) => r.body as ResponseStoreOffices)
     );
   }
 
