@@ -37,7 +37,7 @@ export class ClientComponentService {
     return this.clientService.apiClientPut$Json({ company: company, ip: ip, numberId: numberId, typeIdClient: typeIdClient, body: clientParamsUpdate }).pipe(
       tap((res) => {
         this.clientFound.next(res);
-        this.toastMesagge.showToast("tc", "success", "Éxito", "Se ha actualizado el cliente corretamente.");
+        this.toastMesagge.showToast("tc", "success", "Éxito", "Se ha actualizado el cliente correctamente.");
       }),
       catchError((error) => {
         return this.calledHttpService.errorHandler(error);

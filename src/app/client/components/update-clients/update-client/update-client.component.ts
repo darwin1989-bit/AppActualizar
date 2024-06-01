@@ -3,10 +3,10 @@ import { ClientComponentService } from "../../../service/client-component.servic
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { IClientNotFound, IEmployee, IGender } from "../../../models/clients-interface";
 import { GenderObj, IsEmployedObj } from "../../../models/clients-object";
-import { Subscription } from "rxjs";
+import { NEVER, Subscription } from "rxjs";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { ICompany } from "src/app/shared/models/offices.interface";
-import { ClientCreateParams, ClientParamsUpdate, GetCitiesDto, GetClientDto, GetProvincesDto, OfficesDto } from "src/app/api/api_actualizar/models";
+import { ClientCreateParams, ClientParamsUpdate, Datetime, GetCitiesDto, GetClientDto, GetProvincesDto, OfficesDto } from "src/app/api/api_actualizar/models";
 import { MenuService } from "src/app/layout/app.menu.service";
 import { userData } from "src/app/shared/models/objects";
 import { SharedService } from "src/app/shared/services/shared.service";
@@ -195,26 +195,35 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
     return this.employed.find((r) => r.code === code)!;
   }
   public saveEdit(): void {
-    if (!this.clientForm.pristine) {
-      const employee = this.clientForm.controls.isEmployed.value;
-      let company!: ICompany;
-      let office!: OfficesDto;
+    this.clientForm.markAllAsTouched();
+    this.clientForm.markAsDirty();
 
-      const clientEdit: ClientParamsUpdate = {
-        nombre_Razon: this.clientForm.controls.name.value!.toUpperCase().trim(),
-        nombre_Comercial: this.clientForm.controls.name.value!.toUpperCase().trim(),
-        direccion: this.clientForm.controls.address.value!.toUpperCase().trim(),
-        cli_Fecha_Nacimiento: this.birthdateControl.value == "" ? null : this.birthdateControl.value,
-        email: this.clientForm.controls.email.value?.trim(),
-        esempleado: employee?.code,
-        num_Fono1: this.clientForm.controls.phone.value == "" || null ? "" : this.clientForm.controls.phone.value,
-        num_Fono2: this.clientForm.controls.cellPhone.value == "" || null ? "" : this.clientForm.controls.cellPhone.value,
-        usuario_Modificacion: this.user.UserName,
-      };
+    if (this.clientForm.valid) {
+      if (!this.clientForm.pristine) {
+        const employee = this.clientForm.controls.isEmployed.value;
+        let company!: ICompany;
+        let office!: OfficesDto;
 
-      this.subscription = this.officeService.company$.subscribe((res) => (company = res!));
-      this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
-      this.clientService.updateClient(company.code, office.ip_Red!, this.client.numero_Idcliente!, this.client.tipo_Idcliente!, clientEdit).subscribe(() => (this.visible = false));
+        let birthdateEdit: Date = this.birthdateControl.value;
+
+        let date = new Date(birthdateEdit);
+
+        const clientEdit: ClientParamsUpdate = {
+          nombre_Razon: this.clientForm.controls.name.value!.toUpperCase().trim(),
+          nombre_Comercial: this.clientForm.controls.name.value!.toUpperCase().trim(),
+          direccion: this.clientForm.controls.address.value!.toUpperCase().trim(),
+          cli_Fecha_Nacimiento: date.toJSON(),
+          email: this.clientForm.controls.email.value?.trim(),
+          esempleado: employee?.code,
+          num_Fono1: this.clientForm.controls.phone.value == "" || null ? "" : this.clientForm.controls.phone.value,
+          num_Fono2: this.clientForm.controls.cellPhone.value == "" || null ? "" : this.clientForm.controls.cellPhone.value,
+          usuario_Modificacion: this.user.UserName,
+        };
+
+        this.subscription = this.officeService.company$.subscribe((res) => (company = res!));
+        this.subscription = this.officeService.offices$.subscribe((res) => (office = res!));
+        this.clientService.updateClient(company.code, office.ip_Red!, this.client.numero_Idcliente!, this.client.tipo_Idcliente!, clientEdit).subscribe(() => (this.visible = false));
+      }
     }
   }
   public saveCreate(): void {
