@@ -4,37 +4,3 @@
 @import "../node_modules/primeng/resources/primeng.min.css";
 @import "../node_modules/primeflex/primeflex.scss";
 @import "../node_modules/primeicons/primeicons.css";
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  font-family: "Quicksand", sans-serif;
-  color: var(--surface-900);
-}
-
-html,
-body {
-  height: 100%;
-}
-.field-null {
-  color: #ff6464;
-  font-style: italic;
-  font-weight: bold;
-}
-
-.p-datatable .p-datatable-header {
-  background: transparent;
-}
-
-.p-datatable .p-datatable-tbody > tr > td {
-  border: 5px solid darkgray;
-  border-width: 0 0 1px 0;
-}
-.p-datatable .p-datatable-thead > tr > th {
-  border: 5px solid darkgray;
-  border-width: 0 0 1px 0;
-}

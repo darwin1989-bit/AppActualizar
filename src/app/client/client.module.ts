@@ -23,7 +23,6 @@ import FindTransactionsComponent from "./components/transactions/find-transactio
 import { TransactionsComponent } from "./components/transactions/transactions/transactions.component";
 import { TransactionsOfflineComponent } from "./components/transactions/transactions-offline/transactions-offline.component";
 import { CreditNoteComponent } from "./components/invoices/credit-note/credit-note.component";
-import { EditClientComponent } from './components/update-clients/update-client/edit-client/edit-client.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,6 @@ import { EditClientComponent } from './components/update-clients/update-client/e
     TransactionsComponent,
     TransactionsOfflineComponent,
     CreditNoteComponent,
-    EditClientComponent,
   ],
   imports: [CommonModule, ClientRoutingModule, SharedModule],
 })

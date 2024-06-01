@@ -11,6 +11,14 @@ import { UserDataObj, userData } from "src/app/shared/models/objects";
 @Component({
   selector: "app-config",
   templateUrl: "./app.config.component.html",
+  styles: [
+    `
+      :host ::ng-deep .h-2rem {
+        height: 2rem !important;
+        border-radius: 5px;
+      }
+    `,
+  ],
 })
 export class AppConfigComponent implements OnInit {
   @Input() minimal: boolean = false;

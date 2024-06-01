@@ -4,12 +4,12 @@
 </span>
 <div class="flex justify-content-center">
   <div class="w-full h-full lg:w-5 h-screen text-center flex justify-content-center align-items-start">
-    <div class="z-5 w-full lg:w-8 px-6 text-center mt-8" style="max-width: 400px">
+    <div class="card z-5 w-full lg:w-8 px-6 text-center mt-8" style="max-width: 400px">
       <h1 class="text-4xl font-light mt-4 text-primary-500">Iniciar sesión</h1>
       <p>Bienvenido, utilice el formulario para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
       <div class="mt-5 text-left">
         <form [formGroup]="loginForm">
-          <label for="username" class="block mb-2">Usuario</label>
+          <label [class.text-red-500]="usernameControl.invalid && usernameControl.dirty" for="username" class="block mb-2">Usuario</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-user"></i>
             <input
@@ -30,7 +30,7 @@
             <small id="username-length-help" *ngIf="usernameControl.hasError('minlength')" class="text-red-500">Usuario incorrecto.</small>
             <small id="username-length-help" *ngIf="usernameControl.hasError('maxlength')" class="text-red-500">Usuario incorrecto.</small>
           </div>
-          <label for="password" class="block mb-2 mt-3">Constraseña</label>
+          <label [class.text-red-500]="passwordControl.invalid && passwordControl.dirty" for="password" class="block mb-2 mt-3">Constraseña</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-lock"></i>
             <input (keydown)="msgs = ''" formControlName="password" type="password" class="p-inputtext p-component p-element w-full" autocomplete="off" />

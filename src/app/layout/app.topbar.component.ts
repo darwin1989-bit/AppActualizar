@@ -21,7 +21,7 @@ import { itemsObj } from "./models/menuObject";
         background: #c8e6c9;
         color: #256029;
         padding: 6px;
-        border-radius: 4px;
+        border-radius: 8px;
       }
       .connected {
         visibility: hidden;

@@ -43,7 +43,12 @@ import { SharedService } from "../shared/services/shared.service";
       :host ::ng-deep.layout-menu ul a.active-route {
         font-weight: 600;
         color: var(--primary-color);
-        border-left: 4px solid var(--primary-color);
+        border-left: 2px solid var(--primary-color);
+      }
+
+      :host ::ng-deep .layout-menu ul a:hover {
+        // background-color: transparent;
+        border-left: 2px solid var(--primary-color);
       }
     `,
   ],
