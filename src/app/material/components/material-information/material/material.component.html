@@ -23,7 +23,6 @@
             <th>Estado</th>
             <th>Marca</th>
             <th>Código de barras</th>
-            <!-- <th style="width: 8%">Estado cod. barras</th> -->
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
             <th></th>
@@ -47,22 +46,17 @@
                 {{ material.codBarra ? material.codBarra : "NULL" }}
               </div>
             </td>
-            <!-- <td class="style_barcode">
-              <div class="border-dotted border-1">
-                {{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}
-              </div>
-            </td> -->
-            <td class="style_barcode" [class.font-italic]="!material.esPrincipal">
+            <td [class.font-italic]="!material.esPrincipal">
               <div class="border-dotted border-1">
                 {{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}
               </div>
             </td>
-            <td class="style_barcode" [class.field-null]="material.orden == '' || material.orden == null">
+            <td [class.field-null]="material.orden == '' || material.orden == null">
               <div class="border-dotted border-1">
                 {{ material.orden ? material.orden : "NULL" }}
               </div>
             </td>
-            <td class="style_barcode" *ngIf="rowgroup" [attr.rowspan]="rowspan">
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
               <button pButton pRipple icon="pi pi-tag" class="p-button-secondary p-button-sm mr-1" (click)="promotion(material)" pTooltip="Promociones" tooltipPosition="bottom"></button>
               <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" (click)="information(material)" pTooltip="Información" tooltipPosition="bottom"></button>
             </td>

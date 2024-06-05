@@ -6,7 +6,7 @@
   <div class="w-full h-full lg:w-5 h-screen text-center flex justify-content-center align-items-start">
     <div class="card z-5 w-full lg:w-8 px-6 text-center mt-8" style="max-width: 400px">
       <h1 class="text-4xl font-light mt-4 text-primary-500">Iniciar sesión</h1>
-      <p>Bienvenido, utilice el formulario para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
+      <p>Bienvenido, utilice sus credenciales para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
       <div class="mt-5 text-left">
         <form [formGroup]="loginForm">
           <label [class.text-red-500]="usernameControl.invalid && usernameControl.dirty" for="username" class="block mb-2">Usuario</label>
@@ -53,8 +53,9 @@
           </div>
         </form>
       </div>
-      <pre class="mb-0 text-xs text-black-alpha-30">Elaborado por DA</pre>
-      <pre class="text-xs mt-0 text-black-alpha-30">Versión 4.0</pre>
+
+      <pre class="mt-6 mb-0 text-xs text-black-alpha-60 flex justify-content-start">Versión 4.0</pre>
+      <pre class="mt-0 text-xs text-black-alpha-60 flex justify-content-start">Elaborado por DA</pre>
     </div>
   </div>
 </div>

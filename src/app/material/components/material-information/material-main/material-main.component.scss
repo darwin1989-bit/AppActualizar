@@ -7,3 +7,6 @@
 // :host ::ng-deep .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {
 //   border-bottom: 4px solid #e9ecef;
 // }
+:host ::ng-deep .border-1 {
+  border-radius: 5px;
+}

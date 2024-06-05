@@ -15,3 +15,7 @@
 // :host ::ng-deep .p-datatable-tbody > tr:nth-child(even) {
 //   background-color: #d6eeee;
 // }
+
+:host ::ng-deep .border-1 {
+  border-radius: 5px;
+}

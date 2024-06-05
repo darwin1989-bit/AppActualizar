@@ -76,7 +76,8 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
         break;
       case "FT":
         this.invoiceNumberControl.disable();
-        this.labelName = "Todos los documentos";
+
+        this.labelName = "";
         break;
     }
   }

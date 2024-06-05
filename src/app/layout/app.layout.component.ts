@@ -14,31 +14,30 @@ import { SharedService } from "../shared/services/shared.service";
   styles: [
     `
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
-        border-width: 0px;
+        border: solid 1px #dc2626;
       }
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
-        border-width: 0px;
+        border: solid 1px #16a34a;
       }
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
-        border-width: 0px;
+        border: solid 1px #ca8a04;
       }
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-info {
-        border-width: 0px;
+        border: solid 1px #2563eb;
       }
 
       :host ::ng-deep .p-toast {
-        border: 0px;
         position: fixed;
-        width: 50%;
+        width: 98%;
         opacity: 1;
         top: 0px;
-        margin-top: 10px;
+        margin-top: 5px;
       }
-      :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
-        align-items: center;
-      }
+      // :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
+      //   align-items: center;
+      // }
       :host ::ng-deep .p-component {
-        font-family: "Quicksand", sans-serif;
+        // font-family: "Quicksand", sans-serif;
       }
       :host ::ng-deep.layout-menu ul a.active-route {
         font-weight: 600;

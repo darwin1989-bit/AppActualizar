@@ -18,10 +18,11 @@ import { itemsObj } from "./models/menuObject";
       }
 
       .label-badge-success {
-        background: #c8e6c9;
-        color: #256029;
+        background: var(--primary-100);
+        color: var(--primary-700);
         padding: 6px;
         border-radius: 8px;
+        font-size: 10px;
       }
       .connected {
         visibility: hidden;

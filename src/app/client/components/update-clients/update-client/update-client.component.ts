@@ -121,6 +121,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
+    this.clientService.clearClientFound();
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

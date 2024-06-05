@@ -30,18 +30,18 @@
             "styles": [
               "src/styles.scss",
               {
-                "input": "src/theme-saga-green.scss",
-                "bundleName": "saga-green",
+                "input": "src/theme-saga-blue.scss",
+                "bundleName": "saga-blue",
                 "inject": false
               },
               {
-                "input": "src/theme-vela-green.scss",
-                "bundleName": "vela-green",
+                "input": "src/theme-vela-blue.scss",
+                "bundleName": "vela-blue",
                 "inject": false
               },
               {
-                "input": "src/theme-arya-green.scss",
-                "bundleName": "arya-green",
+                "input": "src/theme-arya-blue.scss",
+                "bundleName": "arya-blue",
                 "inject": false
               }
             ],

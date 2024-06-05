@@ -99,7 +99,7 @@ export class FindUsersComponent implements OnInit, OnDestroy {
         this.visbleMain.emit(true);
         break;
       case "tu":
-        this.labelName = "Usuarios tienda";
+        this.labelName = "";
         this.userCodeControl.disable();
         this.visbleMain.emit(false);
         break;

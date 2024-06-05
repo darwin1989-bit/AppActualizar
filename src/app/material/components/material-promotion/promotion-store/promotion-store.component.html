@@ -9,7 +9,7 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [paginator]="true"
+        [paginator]="promotions ? promotions.length > 5 : false"
         rowGroupMode="rowspan"
         groupRowsBy="id"
         sortField="fecha"
