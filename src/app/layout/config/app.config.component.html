@@ -20,29 +20,6 @@
     <button icon="pi pi-plus" type="button" pButton (click)="incrementScale()" class="p-button-text p-button-rounded w-2rem h-2rem ml-2" [disabled]="scale === scales[scales.length - 1]"></button>
   </div>
   <hr />
-  <span class="font-normal text-2xl">Temas</span>
-  <div class="grid flex align-items-center mt-2">
-    <div class="col-3" pTooltip="Saga blue" tooltipPosition="bottom">
-      <button class="p-link w-2rem h-2rem border-round-xl" (click)="changeTheme('saga-blue')">
-        <img src="assets/layout/images/themes/saga-blue.png" class="w-2rem h-2rem" alt="Saga blue" />
-      </button>
-    </div>
-    <div class="col-3" pTooltip="Vela blue" tooltipPosition="bottom">
-      <button class="p-link w-2rem h-2rem" (click)="changeTheme('vela-blue')">
-        <img src="assets/layout/images/themes/vela-blue.png" class="w-2rem h-2rem" alt="Vela blue" />
-      </button>
-    </div>
-    <div class="col-3" pTooltip="Arya blue Dark" tooltipPosition="bottom">
-      <button class="p-link w-2rem h-2rem" (click)="changeTheme('arya-blue')">
-        <img src="assets/layout/images/themes/arya-blue.png" class="w-2rem h-2rem" alt="Arya blue" />
-      </button>
-    </div>
-  </div>
-  <hr />
-  <!-- <div class="flex justify-content-between align-items-center">
-    <span class="font-normal text-2xl">Notificaciones</span>
-    <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
-  </div> -->
 </p-sidebar>
 <p-confirmDialog #cd key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false" [style]="{ width: '400px' }">
   <ng-template pTemplate="footer">

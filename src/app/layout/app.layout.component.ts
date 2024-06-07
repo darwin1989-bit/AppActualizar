@@ -25,20 +25,23 @@ import { SharedService } from "../shared/services/shared.service";
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-info {
         border: solid 1px #2563eb;
       }
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-secondary {
+        border: solid 1px #bfc2c5;
+      }
 
       :host ::ng-deep .p-toast {
         position: fixed;
-        width: 98%;
+        width: auto;
         opacity: 1;
         top: 0px;
         margin-top: 5px;
       }
-      // :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
-      //   align-items: center;
-      // }
-      :host ::ng-deep .p-component {
-        // font-family: "Quicksand", sans-serif;
+      :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
+        align-items: center;
+        font-size: 1rem;
+        justify-content: center;
       }
+
       :host ::ng-deep.layout-menu ul a.active-route {
         font-weight: 600;
         color: var(--primary-color);
@@ -46,8 +49,25 @@ import { SharedService } from "../shared/services/shared.service";
       }
 
       :host ::ng-deep .layout-menu ul a:hover {
-        // background-color: transparent;
         border-left: 2px solid var(--primary-color);
+      }
+
+      :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon {
+        margin-right: 0.8rem;
+        font-size: 1.5rem;
+      }
+
+      :host ::ng-deep .p-toast-icon-close {
+        margin-left: 1rem;
+      }
+
+      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-error .p-toast-detail {
+        /* color: #334155; */
       }
     `,
   ],

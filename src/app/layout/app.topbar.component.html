@@ -27,12 +27,26 @@
       </a>
     </div>
   </div>
+  <p-divider layout="vertical" *ngIf="officesHttpService.offices$ | async" class="connect"></p-divider>
   <div #topbarmenu class="layout-topbar-menu">
-    <div>
-      <button class="p-link ml-4" (click)="onConfigButtonClick()">
-        <i class="pi pi-cog opacity-50" style="font-size: 1.7rem"></i>
-        <p class="flex justify-content-end"><span class="w3-badge w3-red w3-tiny"></span></p>
+    <li>
+      <button
+        (click)="changeTheme()"
+        type="button"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary mr-2 cursor-pointer surface-ground"
+      >
+        <i class="pi pi-moon opacity-50" style="font-size: 1.3rem" *ngIf="moon"></i>
+        <i class="pi pi-sun opacity-50 font-bold" style="font-size: 1.3rem" *ngIf="sun"></i>
       </button>
-    </div>
+    </li>
+    <li>
+      <button
+        (click)="onConfigButtonClick()"
+        type="button"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer surface-ground"
+      >
+        <i class="pi pi-cog opacity-50" style="font-size: 1.3rem"></i>
+      </button>
+    </li>
   </div>
 </div>

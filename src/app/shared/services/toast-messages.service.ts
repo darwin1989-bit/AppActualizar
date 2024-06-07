@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Message, MessageService } from "primeng/api";
 
-export type ItypeSeverity = "success" | "info" | "warn" | "error";
+export type ItypeSeverity = "success" | "info" | "warn" | "error" | "secondary";
 export type Iposition = "tl" | "tr" | "tc" | "bl" | "bc" | "bc" | "cf";
 
 @Injectable({

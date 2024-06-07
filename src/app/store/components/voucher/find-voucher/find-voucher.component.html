@@ -1,0 +1,24 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar voucher</span>
+</div>
+<form [formGroup]="voucherForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!dateTransactionControl.dirty && dateTransactionControl.touched">Fecha transacción</label>
+      <p-calendar formControlName="dateTransaction" [showIcon]="true" selectionMode="range" />
+      <div *ngIf="dateTransactionControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="dateTransactionControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label htmlFor="documentNumber" [class.text-red-500]="amountTransactionControl.invalid && amountTransactionControl.dirty">Ingrese el monto</label>
+      <input pInputText formControlName="amountTransaction" autocomplete="off" pKeyFilter="int" />
+      <div *ngIf="amountTransactionControl.invalid && amountTransactionControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="amountTransactionControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="findVoucher()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

@@ -9,3 +9,8 @@ html,
 body {
   font-family: "Inter var", sans-serif;
 }
+.vl {
+  border-left: 1px solid var(--surface-border);
+  margin-left: 12px;
+  margin-right: 12px;
+}

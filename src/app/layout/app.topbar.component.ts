@@ -5,6 +5,10 @@ import { OfficesHttpService } from "../shared/services/offices-http.service";
 import { MenuService } from "./app.menu.service";
 import { Router } from "@angular/router";
 import { itemsObj } from "./models/menuObject";
+import { ThemeService } from "../shared/services/theme.service";
+import { LoginService } from "../api/api_login/services";
+import { UserDataObj, userData } from "../shared/models/objects";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: "app-topbar",
@@ -21,7 +25,7 @@ import { itemsObj } from "./models/menuObject";
         background: var(--primary-100);
         color: var(--primary-700);
         padding: 6px;
-        border-radius: 8px;
+        border-radius: 5px;
         font-size: 10px;
       }
       .connected {
@@ -67,20 +71,74 @@ export class AppTopBarComponent implements OnInit {
   @ViewChild("topbarmenu") menu!: ElementRef;
 
   public position!: string;
+  public moon!: boolean;
+  public sun!: boolean;
 
   public breadCrumb!: string[];
 
   model: any[] = [];
 
-  constructor(public layoutService: LayoutService, public officesHttpService: OfficesHttpService, public menuService: MenuService, private route: Router) {}
+  private helper = new JwtHelperService();
+
+  private _userApp: userData = UserDataObj;
+
+  public get userApp(): userData {
+    return this._userApp;
+  }
+  public set userApp(value: userData) {
+    this._userApp = value;
+  }
+
+  themeSession!: string;
+
+  constructor(
+    public layoutService: LayoutService,
+    public officesHttpService: OfficesHttpService,
+    public menuService: MenuService,
+    private route: Router,
+    private themeService: ThemeService,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     this.breadCrumb = this.route.url.split("/");
 
     this.model = itemsObj;
+
+    this.themeSession = sessionStorage.getItem("theme")!;
+
+    if (this.themeSession == "saga-blue") this.sun = true;
+    else this.moon = true;
   }
 
   onConfigButtonClick() {
     this.layoutService.showConfigSidebar();
+  }
+
+  public changeTheme(): void {
+    this.themeSession = sessionStorage.getItem("theme")!;
+    const token: any = sessionStorage.getItem("token");
+    const tokenDataDecode: any = this.helper.decodeToken(token);
+    this.userApp = tokenDataDecode;
+
+    if (this.themeSession == "saga-blue") this.sun = true;
+    else this.moon = true;
+
+    let theme: string = "";
+
+    if (this.themeSession == "saga-blue") {
+      theme = "vela-blue";
+      this.moon = true;
+      this.sun = false;
+    }
+    if (this.themeSession == "vela-blue") {
+      theme = "saga-blue";
+      this.sun = true;
+      this.moon = false;
+    }
+
+    this.themeService.switchTheme(theme);
+    sessionStorage.setItem("theme", theme);
+    this.loginService.apiLoginUpdateThemeIdPut({ id: Number(this.userApp.Id), theme: theme, colorScheme: "ligth" }).subscribe();
   }
 }

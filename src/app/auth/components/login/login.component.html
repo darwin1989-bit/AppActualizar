@@ -1,10 +1,7 @@
-<span *ngIf="msgs !== ''" class="w-full absolute flex justify-content-center h-3rem align-items-center z-5" style="background-color: #ffcdd2">
-  <span class="mr-2 flex align-items-center" style="color: #580c19"> <i style="color: #580c19; font-size: 1.3rem" class="pi pi-times-circle mr-1"></i></span>
-  <span style="color: #851427"> {{ msgs }}</span>
-</span>
+<p-toast position="top-center" key="tc" [baseZIndex]="5000"> </p-toast>
 <div class="flex justify-content-center">
-  <div class="w-full h-full lg:w-5 h-screen text-center flex justify-content-center align-items-start">
-    <div class="card z-5 w-full lg:w-8 px-6 text-center mt-8" style="max-width: 400px">
+  <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="z-5 w-full lg:w-8 px-6 text-center" style="max-width: 400px">
       <h1 class="text-4xl font-light mt-4 text-primary-500">Iniciar sesión</h1>
       <p>Bienvenido, utilice sus credenciales para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
       <div class="mt-5 text-left">
@@ -13,7 +10,6 @@
           <span class="p-input-icon-right block">
             <i class="pi pi-user"></i>
             <input
-              (keydown)="msgs = ''"
               [pKeyFilter]="regUserName"
               formControlName="username"
               id="username"
@@ -33,7 +29,7 @@
           <label [class.text-red-500]="passwordControl.invalid && passwordControl.dirty" for="password" class="block mb-2 mt-3">Constraseña</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-lock"></i>
-            <input (keydown)="msgs = ''" formControlName="password" type="password" class="p-inputtext p-component p-element w-full" autocomplete="off" />
+            <input formControlName="password" type="password" class="p-inputtext p-component p-element w-full" autocomplete="off" />
           </span>
           <div *ngIf="passwordControl.invalid && passwordControl.dirty">
             <small id="username-help" *ngIf="passwordControl.hasError('required')" class="text-red-500">Este campo es requerido.</small>
@@ -53,8 +49,7 @@
           </div>
         </form>
       </div>
-
-      <pre class="mt-6 mb-0 text-xs text-black-alpha-60 flex justify-content-start">Versión 4.0</pre>
+      <pre class="mt-2 mb-0 text-xs text-black-alpha-60 flex justify-content-start">Versión 4.0</pre>
       <pre class="mt-0 text-xs text-black-alpha-60 flex justify-content-start">Elaborado por DA</pre>
     </div>
   </div>

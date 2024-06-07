@@ -50,7 +50,7 @@ export const itemsObj: any[] = [
       {
         label: "Voucher",
         icon: "pi pi-fw pi-credit-card",
-        routerLink: ["/pages/notfound"],
+        routerLink: ["/app/store/voucher"],
       },
       {
         label: "Tarjeta regalo",

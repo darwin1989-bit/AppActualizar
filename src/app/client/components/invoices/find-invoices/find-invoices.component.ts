@@ -22,7 +22,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
 
   public labelName: string = "Selecciona el tipo";
 
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
   private office!: OfficesDto;
 
@@ -41,15 +41,15 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, private sharedService: SharedService, private invoiceService: InvoicesComponentService) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
     this.invoiceNumberControl.disable();
-    this.subcription = this.sharedService.clearInvoiceForm$.subscribe(() => this.clearInvoiceForm());
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.sharedService.clearInvoiceForm$.subscribe(() => this.clearInvoiceForm());
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
   }
 
   public changeDropDown(): void {

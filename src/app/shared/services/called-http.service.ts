@@ -13,7 +13,7 @@ export class CalledHttpService {
 
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 404 && error.url?.includes("/api/Client")) {
-      this.toastMesagge.showToast("cf", "warn", "Advertencia", `${error.error.message}`);
+      this.toastMesagge.showToast("cf", "secondary", "Mensaje", `${error.error.message}`);
       return NEVER;
     } else if (error.status === 404) {
       this.toastMesagge.showToast("tc", "warn", "Advertencia", error.error.message);
