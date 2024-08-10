@@ -2,7 +2,16 @@
   <div class="col-12 md:col-12">
     <div class="card surface-card">
       <h5 class="opacity-50">Matriz</h5>
-      <p-table #dt [value]="(invoiceService.invoicesMain$ | async)!" styleClass="p-datatable-sm" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table
+        #dt
+        [value]="(invoiceService.invoicesMain$ | async)!"
+        styleClass="p-datatable-sm"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [tableStyle]="{ 'min-width': '120rem' }"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th pFrozenColumn>Serie factura</th>

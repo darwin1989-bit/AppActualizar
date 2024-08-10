@@ -26,6 +26,6 @@ export class FindOpenBoxesComponent implements OnInit, OnDestroy {
   public findOpenBoxes(): void {
     this.openBoxesService.clearOpenBoxes();
     this.officeService.setValidFindOffice();
-    if (this.company.name != "") this.openBoxesService.getOpenBoxes(this.company.code);
+    if (this.company) if (this.company.name != "") this.openBoxesService.getOpenBoxes(this.company.code);
   }
 }

@@ -44,7 +44,6 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.materialService.materialsMain$.subscribe((res) => {
-      this.tableComponent.tableStyle = { "min-width": "10rem" };
       this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
@@ -60,7 +59,6 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   private refreshTable() {
     this.tableComponent.reset();
     this.tableComponent.rows = 5;
-    this.tableComponent.tableStyle = { "min-width": "90rem" };
     this.tableComponent.paginator = true;
   }
 

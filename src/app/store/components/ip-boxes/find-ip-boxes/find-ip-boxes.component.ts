@@ -24,7 +24,9 @@ export class FindIpBoxesComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    this.ipBoxesService.loadIpDisable();
   }
+
   public findIpBoxes(): void {
     this.officeService.setValidFindOffice();
     this.ipBoxesService.clearIpBoxes();

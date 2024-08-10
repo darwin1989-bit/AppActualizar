@@ -26,6 +26,8 @@ export class FindStoreOfficesComponent implements OnInit, OnDestroy {
   public findOffices(): void {
     this.storeOfficesService.clearStoreOffices();
     this.officeService.setValidFindOffice();
-    if (this.company.name != "") this.storeOfficesService.getStoreOffices(this.company.code);
+    if (this.company) {
+      if (this.company.name != "") this.storeOfficesService.getStoreOffices(this.company.code);
+    }
   }
 }

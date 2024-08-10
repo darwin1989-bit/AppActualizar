@@ -11,6 +11,7 @@
         [breakpoint]="'960px'"
         [paginator]="(usersService.users$ | async)!.length > 1 ? true : false"
         [globalFilterFields]="['nombreCorto', 'cedula', 'nombre', 'apellido', 'perfilReferencia']"
+        [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="caption">
           <div class="flex mb-2" *ngIf="(usersService.users$ | async)!.length! > 1">

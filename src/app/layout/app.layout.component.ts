@@ -28,7 +28,9 @@ import { SharedService } from "../shared/services/shared.service";
       :host ::ng-deep .p-toast .p-toast-message.p-toast-message-secondary {
         border: solid 1px #bfc2c5;
       }
-
+      :host ::ng-deep .p-toast .p-toast-message {
+        backdrop-filter: blur(20px);
+      }
       :host ::ng-deep .p-toast {
         position: fixed;
         width: auto;
@@ -36,20 +38,20 @@ import { SharedService } from "../shared/services/shared.service";
         top: 0px;
         margin-top: 5px;
       }
-      :host ::ng-deep.p-toast .p-toast-message .p-toast-message-content {
+      :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content {
         align-items: center;
         font-size: 1rem;
         justify-content: center;
       }
 
-      :host ::ng-deep.layout-menu ul a.active-route {
+      :host ::ng-deep .layout-menu ul a.active-route {
         font-weight: 600;
         color: var(--primary-color);
-        border-left: 2px solid var(--primary-color);
+        border-left: 1px solid var(--primary-color);
       }
 
       :host ::ng-deep .layout-menu ul a:hover {
-        border-left: 2px solid var(--primary-color);
+        border-left: 1px solid var(--primary-color);
       }
 
       :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
@@ -66,9 +68,24 @@ import { SharedService } from "../shared/services/shared.service";
         margin-left: 1rem;
       }
 
-      :host ::ng-deep .p-toast .p-toast-message.p-toast-message-error .p-toast-detail {
-        /* color: #334155; */
-      }
+      /*para poner bordes en los iconos del slidebar*/
+      // :host ::ng-deep .layout-menu ul a {
+      //   padding: 0.3rem 0.75rem;
+      // }
+
+      // :host ::ng-deep .layout-menu ul a .layout-menuitem-icon {
+      //   padding: 5px 5px 5px 5px;
+      //   border-radius: 4px;
+      //   background-color: var(--surface-ground);
+      //   border-color: var(--surface-border);
+      //   border-width: 1px;
+      //   border-style: solid;
+      //   border-radius: var(--border-radius);
+      // }
+
+      // :host ::ng-deep .pi-fw {
+      //   width: auto;
+      // }
     `,
   ],
 })

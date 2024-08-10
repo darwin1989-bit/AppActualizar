@@ -13,12 +13,13 @@
         [globalFilterFields]="['tienda', 'ipTienda']"
         rowGroupMode="rowspan"
         groupRowsBy="tienda"
+        [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="caption">
           <div class="flex" *ngIf="(openBoxesService.openBoxes$ | async)!.length! > 5">
             <span class="p-input-icon-left ml-auto">
               <i class="pi pi-search"></i>
-              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
             </span>
           </div>
         </ng-template>

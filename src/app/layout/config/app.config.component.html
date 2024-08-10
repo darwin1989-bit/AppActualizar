@@ -1,17 +1,17 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
   <button pButton label="Cerrar sesión" icon="pi pi-sign-out" pos="right" class="block w-full mb-4 p-button-raised" (click)="confirmLogOff('top', true)"></button>
   <hr />
-  <span class="font-normal text-2xl">Usuario</span>
+  <span class="font-bold text-lg">Usuario</span>
   <div class="flex align-items-center">
-    <p class="font-light">{{ userApp.Name | uppercase }}</p>
+    <p class="font-light text-sm">{{ userApp.Name | uppercase }}</p>
   </div>
   <hr />
-  <span class="font-normal text-2xl">Perfil</span>
+  <span class="font-bold text-lg">Perfil</span>
   <div class="flex align-items-center">
-    <p class="font-light">{{ userApp.UserRol | uppercase }}</p>
+    <p class="font-light text-sm">{{ userApp.UserRol | uppercase }}</p>
   </div>
   <hr />
-  <span class="font-normal text-2xl">Escala</span>
+  <span class="font-bold text-lg">Escala</span>
   <div class="flex align-items-center mt-2">
     <button icon="pi pi-minus" type="button" pButton (click)="decrementScale()" class="p-button-text p-button-rounded w-2rem h-2rem mr-2" [disabled]="scale === scales[0]"></button>
     <div class="flex gap-2 align-items-center">

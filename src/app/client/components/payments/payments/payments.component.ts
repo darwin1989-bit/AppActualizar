@@ -35,7 +35,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.paymentsService.payments$.subscribe((res) => {
-      this.tableComponent.tableStyle = { "min-width": "10rem" };
       this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
@@ -44,7 +43,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   private refreshTable() {
     this.tableComponent.reset();
     this.tableComponent.rows = 5;
-    this.tableComponent.tableStyle = { "min-width": "120rem" };
     this.tableComponent.paginator = true;
   }
 }

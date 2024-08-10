@@ -1,7 +1,16 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
-      <p-table #dt [value]="(transactionsService.transactions$ | async)!" styleClass="p-datatable-sm" [rows]="5" [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table
+        #dt
+        [value]="(transactionsService.transactions$ | async)!"
+        styleClass="p-datatable-sm"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [tableStyle]="{ 'min-width': '100rem' }"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Id</th>

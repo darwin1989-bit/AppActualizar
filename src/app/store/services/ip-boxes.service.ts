@@ -55,4 +55,7 @@ export class IpBoxesService {
   public openDialogNewIp(value: boolean): void {
     this.dialogNewIp.next(value);
   }
+  public loadIpDisable(): void {
+    this.loadNewIp.next(false);
+  }
 }

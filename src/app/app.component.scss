@@ -14,28 +14,35 @@
   border-color: transparent;
   background: var(--red-200);
 }
-// :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
-//   padding: 1rem 1rem;
-// }
-
-:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-  text-align: center;
-  // border-width: 0 0 1px #e2e8f0;
-}
 
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
   text-align: center;
 }
 
 :host ::ng-deep .p-button {
   border-radius: 6px;
 }
+
 :host ::ng-deep .p-inputtext.ng-dirty.ng-invalid {
   outline: 1px;
 }
+
 :host ::ng-deep .p-datatable-scrollable .p-frozen-column {
   background: var(--surface-card);
 }
+
 :host ::ng-deep .p-datatable .p-datatable-header {
   border: 0px solid #e2e8f0;
+}
+:host ::ng-deep .layout-menu ul a {
+  border-left: 1px solid var(--surface-200);
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+:host ::ng-deep .layout-sidebar {
+  padding: 1.5rem 1.5rem;
 }

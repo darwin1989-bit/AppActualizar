@@ -6,8 +6,8 @@ export const itemsObj: any[] = [
   {
     label: "Clientes",
     items: [
-      { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["/app/client/update-client"], preventExact: false },
-      { label: "Facturas - Nota Crédito", icon: "pi pi-fw pi-file", routerLink: ["/app/client/invoices"], preventExact: false },
+      { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["/app/client/update-client"] },
+      { label: "Facturas - Nota Crédito", icon: "pi pi-fw pi-file", routerLink: ["/app/client/invoices"] },
       { label: "Pagos", icon: "pi pi-fw pi-money-bill", routerLink: ["/app/client/payments"] },
       { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/app/client/credit-service"] },
       { label: "Transacciones", icon: "pi pi-arrow-right-arrow-left", routerLink: ["/app/client/transactions"] },

@@ -13,6 +13,7 @@
         [globalFilterFields]="['oficina', 'codigoSap', 'nombre']"
         rowGroupMode="rowspan"
         groupRowsBy="tienda"
+        [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="caption">
           <div class="flex" *ngIf="(storeOfficesService.storeOffices$ | async)!.length! > 5">

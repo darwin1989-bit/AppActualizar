@@ -45,7 +45,6 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     this.subscription = this.invoiceService.visibleDetailsMain$.subscribe((res) => (this.visible = res!));
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.invoiceService.invoicesMain$.subscribe((res) => {
-      this.tableComponent.tableStyle = { "min-width": "10rem" };
       this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
@@ -58,7 +57,6 @@ export class InvoicesComponent implements OnInit, OnDestroy {
   private refreshTable() {
     this.tableComponent.reset();
     this.tableComponent.rows = 5;
-    this.tableComponent.tableStyle = { "min-width": "120rem" };
     this.tableComponent.paginator = true;
   }
 }

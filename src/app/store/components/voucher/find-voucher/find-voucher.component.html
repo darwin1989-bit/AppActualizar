@@ -4,15 +4,23 @@
 <form [formGroup]="voucherForm">
   <div class="card">
     <div class="field">
-      <label [class.text-red-500]="!dateTransactionControl.dirty && dateTransactionControl.touched">Fecha transacción</label>
-      <p-calendar formControlName="dateTransaction" [showIcon]="true" selectionMode="range" />
+      <label [class.text-red-500]="dateTransactionControl.invalid">Fecha transacción</label>
+      <p-calendar
+        formControlName="dateTransaction"
+        [showIcon]="true"
+        [class.ng-dirty]="dateTransactionControl.touched"
+        [readonlyInput]="true"
+        [showButtonBar]="true"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+      />
       <div *ngIf="dateTransactionControl.touched">
         <span class="text-red-500 text-sm" *ngIf="dateTransactionControl.hasError('required')">Este campo es requerido.</span>
       </div>
     </div>
     <div class="field">
       <label htmlFor="documentNumber" [class.text-red-500]="amountTransactionControl.invalid && amountTransactionControl.dirty">Ingrese el monto</label>
-      <input pInputText formControlName="amountTransaction" autocomplete="off" pKeyFilter="int" />
+      <p-inputNumber formControlName="amountTransaction" inputId="currency-us" mode="currency" currency="USD" locale="en-US" autocomplete="off"> </p-inputNumber>
       <div *ngIf="amountTransactionControl.invalid && amountTransactionControl.dirty">
         <span class="text-red-500 text-sm" *ngIf="amountTransactionControl.hasError('required')">Este campo es requerido.</span>
       </div>
