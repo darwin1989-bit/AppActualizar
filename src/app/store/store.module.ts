@@ -19,6 +19,7 @@ import { FindVoucherComponent } from "./components/voucher/find-voucher/find-vou
 import { ResultInvoicesVoucherComponent } from "./components/voucher/result-invoices-voucher/result-invoices-voucher.component";
 import { ResultPaymentsVoucherComponent } from "./components/voucher/result-payments-voucher/result-payments-voucher.component";
 import { ResultPlotsVoucherComponent } from './components/voucher/result-plots-voucher/result-plots-voucher.component';
+import { InformationVoucherComponent } from './components/voucher/information-voucher/information-voucher.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ResultPlotsVoucherComponent } from './components/voucher/result-plots-v
     ResultInvoicesVoucherComponent,
     ResultPaymentsVoucherComponent,
     ResultPlotsVoucherComponent,
+    InformationVoucherComponent,
   ],
   imports: [CommonModule, StoreRoutingModule, SharedModule],
 })
