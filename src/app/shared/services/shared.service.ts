@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { IClientNotFound } from "src/app/client/models/clients-interface";
-import { InvoicesComponentService } from "src/app/client/service/invoices-component.service";
 
 @Injectable({
   providedIn: "root",

@@ -1,12 +1,12 @@
 <p-toast position="top-center" key="tc" [baseZIndex]="5000"> </p-toast>
 <div class="flex justify-content-center">
-  <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-    <div class="z-5 w-full lg:w-8 px-6 text-center" style="max-width: 400px">
-      <h1 class="text-4xl font-light mt-4 text-primary-500">Iniciar sesión</h1>
-      <p>Bienvenido, utilice sus credenciales para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
+  <div class="surface-ground flex align-items-center justify-content-center h-27rem min-w-screen overflow-hidden">
+    <div class="z-5 w-full lg:w-8 px-6 text-center" style="max-width: 370px">
+      <h1 class="text-xl font-light mt-4 text-primary-500">Iniciar sesión</h1>
+      <p class="text-sm">Bienvenido, utilice sus credenciales para iniciar sesión en la aplicación <span class="font-bold">actualizar</span></p>
       <div class="mt-5 text-left">
         <form [formGroup]="loginForm">
-          <label [class.text-red-500]="usernameControl.invalid && usernameControl.dirty" for="username" class="block mb-2">Usuario</label>
+          <label [class.text-red-500]="usernameControl.invalid && usernameControl.dirty" for="username" class="block mb-2 text-sm">Usuario</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-user"></i>
             <input
@@ -26,7 +26,7 @@
             <small id="username-length-help" *ngIf="usernameControl.hasError('minlength')" class="text-red-500">Usuario incorrecto.</small>
             <small id="username-length-help" *ngIf="usernameControl.hasError('maxlength')" class="text-red-500">Usuario incorrecto.</small>
           </div>
-          <label [class.text-red-500]="passwordControl.invalid && passwordControl.dirty" for="password" class="block mb-2 mt-3">Constraseña</label>
+          <label [class.text-red-500]="passwordControl.invalid && passwordControl.dirty" for="password" class="block mb-2 mt-3 text-sm">Contraseña</label>
           <span class="p-input-icon-right block">
             <i class="pi pi-lock"></i>
             <input formControlName="password" type="password" class="p-inputtext p-component p-element w-full" autocomplete="off" />
@@ -49,8 +49,8 @@
           </div>
         </form>
       </div>
-      <pre class="mt-2 mb-0 text-xs text-black-alpha-60 flex justify-content-start">Versión 4.0</pre>
-      <pre class="mt-0 text-xs text-black-alpha-60 flex justify-content-start">Elaborado por DA</pre>
+      <pre class="mt-2 mb-0 text-xxs text-black-alpha-60 flex justify-content-start">Versión 4.0</pre>
+      <pre class="mt-0 text-xxs text-black-alpha-60 flex justify-content-start">Elaborado por DA</pre>
     </div>
   </div>
 </div>

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { IpClientDto } from '../models/ip-client-dto';
+import { ResponseDataVoucher } from '../models/response-data-voucher';
 import { ResponseIpClient } from '../models/response-ip-client';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseOpenBoxes } from '../models/response-open-boxes';
@@ -433,6 +434,119 @@ export class StoreService extends BaseService {
 
     return this.apiStoreStoreOfficesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseStoreOffices>) => r.body as ResponseStoreOffices)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreCardPlotsGet
+   */
+  static readonly ApiStoreCardPlotsGetPath = '/api/Store/card_plots';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreCardPlotsGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreCardPlotsGet$Plain$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreCardPlotsGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreCardPlotsGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreCardPlotsGet$Plain(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreCardPlotsGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreCardPlotsGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreCardPlotsGet$Json$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreCardPlotsGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreCardPlotsGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreCardPlotsGet$Json(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreCardPlotsGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
     );
   }
 

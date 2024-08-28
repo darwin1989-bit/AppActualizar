@@ -1,1 +1,65 @@
-<p>result-plots-voucher works!</p>
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(plotsVoucherService.resultVoucher$ | async)!"
+        styleClass="p-datatable-sm"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(plotsVoucherService.resultVoucher$ | async)!.length > 5 ? true : false"
+        rowGroupMode="rowspan"
+        groupRowsBy="tienda"
+        [tableStyle]="{ 'min-width': '1rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th></th>
+            <th>Fecha y hora</th>
+            <th>Monto</th>
+            <th>Secuencial</th>
+            <th>Lote</th>
+            <th>Autorización</th>
+            <th>Respuesta</th>
+            <th>Número tarjeta</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-voucher let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
+            <td><p-chip [label]="getReference(voucher)"></p-chip></td>
+            <td>{{ voucher.fechaHora | date : "yyyy/MM/dd HH:mm" }}</td>
+            <td>{{ voucher.monto | currency }}</td>
+            <td>{{ voucher.secuencial }}</td>
+            <td>{{ voucher.lote }}</td>
+            <td *ngIf="voucher.autorizacion == 'EEE'"><p-tag severity="danger" [value]="voucher.autorizacion" /></td>
+            <td *ngIf="voucher.autorizacion != 'EEE'"><p-tag severity="success" [value]="voucher.autorizacion" /></td>
+            <td>{{ voucher.respuesta }}</td>
+            <td>{{ voucher.numero_Tarjeta }}</td>
+            <td><button pButton pRipple icon="pi pi-print" class="p-button-success p-button-sm" pTooltip="Cadena de impresión" tooltipPosition="bottom"></button></td>
+            <td>
+              <button pButton pRipple icon="pi pi-info" class="p-button-info p-button-sm" pTooltip="Mas información" tooltipPosition="bottom" (click)="moreInfoVoucher(voucher)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="18" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '35vw' }" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-info-circle" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Mas información</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <app-information-voucher></app-information-voucher>
+  </ng-template>
+  <p class="m-0"></p>
+</p-dialog>

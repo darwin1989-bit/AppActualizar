@@ -1,6 +1,4 @@
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
-  <button pButton label="Cerrar sesión" icon="pi pi-sign-out" pos="right" class="block w-full mb-4 p-button-raised" (click)="confirmLogOff('top', true)"></button>
-  <hr />
   <span class="font-bold text-lg">Usuario</span>
   <div class="flex align-items-center">
     <p class="font-light text-sm">{{ userApp.Name | uppercase }}</p>

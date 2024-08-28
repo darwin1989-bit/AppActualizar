@@ -48,5 +48,25 @@
         <i class="pi pi-cog opacity-50" style="font-size: 1.3rem"></i>
       </button>
     </li>
+    <li>
+      <button
+        (click)="confirmLogOff('top', true)"
+        type="button"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer surface-ground ml-2"
+      >
+        <i class="pi pi-sign-out opacity-50" style="font-size: 1rem"></i>
+      </button>
+    </li>
   </div>
 </div>
+<p-confirmDialog #cd key="positionDialog" [position]="position" [baseZIndex]="10000" [closable]="false" [style]="{ width: '400px' }">
+  <ng-template pTemplate="footer">
+    <div *ngIf="!confirm; else blockButton">
+      <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-check" label="Aceptar" (click)="cd.accept()"></button>
+    </div>
+    <ng-template #blockButton>
+      <button class="p-button-sm mr-2" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button>
+      <button class="p-button-danger p-button-sm" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    </ng-template>
+  </ng-template>
+</p-confirmDialog>

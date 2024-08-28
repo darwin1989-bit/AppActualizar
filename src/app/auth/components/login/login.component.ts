@@ -7,7 +7,13 @@ import { ToastMessagesService } from "src/app/shared/services/toast-messages.ser
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styles: [],
+  styles: [
+    `
+      .text-xxs {
+        font-size: 0.6rem;
+      }
+    `,
+  ],
 })
 export class LoginComponent {
   public regUserName: RegExp = /^[a-zA-Z.]+$/;

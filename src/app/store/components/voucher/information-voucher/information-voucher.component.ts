@@ -2,10 +2,10 @@ import { Component } from "@angular/core";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
 
 @Component({
-  selector: "app-result-payments-voucher",
-  templateUrl: "./result-payments-voucher.component.html",
+  selector: "app-information-voucher",
+  templateUrl: "./information-voucher.component.html",
   styles: [],
 })
-export class ResultPaymentsVoucherComponent {
+export class InformationVoucherComponent {
   constructor(public plotsVoucherService: PlotsVoucherService) {}
 }

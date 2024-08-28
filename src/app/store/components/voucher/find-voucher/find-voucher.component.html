@@ -13,6 +13,7 @@
         [showButtonBar]="true"
         [minDate]="minDate"
         [maxDate]="maxDate"
+        dateFormat="yy/mm/dd"
       />
       <div *ngIf="dateTransactionControl.touched">
         <span class="text-red-500 text-sm" *ngIf="dateTransactionControl.hasError('required')">Este campo es requerido.</span>

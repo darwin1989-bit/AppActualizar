@@ -1789,6 +1789,57 @@
         }
       }
     },
+    "/api/Store/card_plots": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -3233,6 +3284,48 @@
         },
         "additionalProperties": false
       },
+      "InvoiceCardPlotsDto": {
+        "type": "object",
+        "properties": {
+          "serie_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "num_Transcanc": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Documento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo_Documento": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "autorizacion_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "comentario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceDTO": {
         "type": "object",
         "properties": {
@@ -3904,6 +3997,44 @@
         },
         "additionalProperties": false
       },
+      "PaymentzCardPlots": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaProceso": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoServicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "rop_Datos_Voucher": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Percent": {
         "type": "object",
         "properties": {
@@ -4312,6 +4443,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PaymentsDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseDataVoucher": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VoucherDto"
             },
             "nullable": true
           }
@@ -4976,6 +5120,110 @@
           },
           "ipPosmobile": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VoucherDto": {
+        "type": "object",
+        "properties": {
+          "mid": {
+            "type": "string",
+            "nullable": true
+          },
+          "tid": {
+            "type": "string",
+            "nullable": true
+          },
+          "caja": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "pca_Ip_Pinpad": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_Tx": {
+            "type": "string",
+            "nullable": true
+          },
+          "hora_Tx": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo_Tx": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo_Credito": {
+            "type": "string",
+            "nullable": true
+          },
+          "plazo": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "autorizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "secuencial": {
+            "type": "string",
+            "nullable": true
+          },
+          "lote": {
+            "type": "string",
+            "nullable": true
+          },
+          "respuesta": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_Respuesta": {
+            "type": "string",
+            "nullable": true
+          },
+          "grupo_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "red_Adquiriente": {
+            "type": "string",
+            "nullable": true
+          },
+          "pca_Serie_Medianet": {
+            "type": "string",
+            "nullable": true
+          },
+          "pca_Serie_Produbanco": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataInvoice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceCardPlotsDto"
+            },
+            "nullable": true
+          },
+          "dataPaymentz": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentzCardPlots"
+            },
             "nullable": true
           }
         },

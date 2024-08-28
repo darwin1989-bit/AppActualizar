@@ -9,6 +9,7 @@ import { ThemeService } from "../shared/services/theme.service";
 import { LoginService } from "../api/api_login/services";
 import { UserDataObj, userData } from "../shared/models/objects";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { AuthService } from "../auth/services/auth.service";
 
 @Component({
   selector: "app-topbar",
@@ -91,13 +92,17 @@ export class AppTopBarComponent implements OnInit {
 
   themeSession!: string;
 
+  public confirm: boolean = true;
+
   constructor(
     public layoutService: LayoutService,
     public officesHttpService: OfficesHttpService,
     public menuService: MenuService,
     private route: Router,
     private themeService: ThemeService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private confirmationService: ConfirmationService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -140,5 +145,19 @@ export class AppTopBarComponent implements OnInit {
     this.themeService.switchTheme(theme);
     sessionStorage.setItem("theme", theme);
     this.loginService.apiLoginUpdateThemeIdPut({ id: Number(this.userApp.Id), theme: theme, colorScheme: "ligth" }).subscribe();
+  }
+  public confirmLogOff(position: string, confirm: boolean) {
+    this.position = position;
+    this.confirm = confirm;
+    this.confirmationService.confirm({
+      message: `Esta seguro de salir del sistema?`,
+      header: "Confirmación",
+      icon: "pi pi-info-circle",
+      accept: () => {
+        this.authService.logOut();
+        window.location.reload();
+      },
+      key: "positionDialog",
+    });
   }
 }
