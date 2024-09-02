@@ -8,7 +8,6 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthModule } from "./auth/auth.module";
 import { AppLayoutModule } from "./layout/app.layout.module";
-import { ApiModule } from "./api/api_login/api.module";
 import { ApiModule as ApiModuleActualizar } from "./api/api_actualizar/api.module";
 import { PathRest } from "src/assets/static/path-rest";
 import { MessageService } from "primeng/api";
@@ -31,7 +30,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     BrowserAnimationsModule,
     AuthModule,
-    ApiModule.forRoot({ rootUrl: PathRest.API_Login }),
     ApiModuleActualizar.forRoot({ rootUrl: PathRest.API_Actualizar }),
     TranslateModule.forRoot({ loader: { provide: TranslateLoader, useFactory: HttpLoaderFactory, deps: [HttpClient] } }),
   ],

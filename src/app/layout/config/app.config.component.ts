@@ -5,8 +5,8 @@ import { ConfirmationService } from "primeng/api";
 import { AuthService } from "src/app/auth/services/auth.service";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ThemeService } from "src/app/shared/services/theme.service";
-import { LoginService } from "src/app/api/api_login/services";
 import { UserDataObj, userData } from "src/app/shared/models/objects";
+import { LoginService } from "src/app/api/api_actualizar/services";
 
 @Component({
   selector: "app-config",

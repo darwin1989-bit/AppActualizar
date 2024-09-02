@@ -1,12 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface User {
+export interface UserLogin {
   colorScheme?: null | string;
   id?: number;
-  name?: null | string;
-  password?: null | string;
-  roles?: null | string;
   theme?: null | string;
   token?: null | string;
-  userName?: null | string;
 }

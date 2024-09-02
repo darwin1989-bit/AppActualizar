@@ -6,6 +6,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ClientService } from './services/client.service';
 import { InvoicesService } from './services/invoices.service';
+import { LoginService } from './services/login.service';
 import { MaterialsService } from './services/materials.service';
 import { OfficesService } from './services/offices.service';
 import { PaymentsService } from './services/payments.service';
@@ -24,6 +25,7 @@ import { UserService } from './services/user.service';
   providers: [
     ClientService,
     InvoicesService,
+    LoginService,
     MaterialsService,
     OfficesService,
     PaymentsService,

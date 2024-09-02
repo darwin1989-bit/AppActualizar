@@ -881,6 +881,87 @@
         }
       }
     },
+    "/api/Login/authenticate": {
+      "post": {
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MLogin"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MLogin"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUser"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUser"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Login/update-theme/{id}": {
+      "put": {
+        "tags": ["Login"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "theme",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "colorScheme",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Materials/generic": {
       "get": {
         "tags": ["Materials"],
@@ -3534,6 +3615,21 @@
         },
         "additionalProperties": false
       },
+      "MLogin": {
+        "required": ["password", "userName"],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "MaterialInfoDTO": {
         "type": "object",
         "properties": {
@@ -4729,6 +4825,15 @@
         },
         "additionalProperties": false
       },
+      "ResponseUser": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UserLogin"
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseUsers": {
         "type": "object",
         "properties": {
@@ -5073,6 +5178,28 @@
           "ipPosMobile": {
             "maxLength": 25,
             "minLength": 12,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserLogin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "theme": {
+            "type": "string",
+            "nullable": true
+          },
+          "colorScheme": {
             "type": "string",
             "nullable": true
           }

@@ -1,5 +1,6 @@
 export { ClientService } from './services/client.service';
 export { InvoicesService } from './services/invoices.service';
+export { LoginService } from './services/login.service';
 export { MaterialsService } from './services/materials.service';
 export { OfficesService } from './services/offices.service';
 export { PaymentsService } from './services/payments.service';

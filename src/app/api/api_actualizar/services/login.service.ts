@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { MLogin } from '../models/m-login';
-import { User } from '../models/user';
+import { ResponseUser } from '../models/response-user';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +39,7 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<User>> {
+): Observable<StrictHttpResponse<ResponseUser>> {
 
     const rb = new RequestBuilder(this.rootUrl, LoginService.ApiLoginAuthenticatePostPath, 'post');
     if (params) {
@@ -53,7 +53,7 @@ export class LoginService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<User>;
+        return r as StrictHttpResponse<ResponseUser>;
       })
     );
   }
@@ -69,10 +69,10 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<User> {
+): Observable<ResponseUser> {
 
     return this.apiLoginAuthenticatePost$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<User>) => r.body as User)
+      map((r: StrictHttpResponse<ResponseUser>) => r.body as ResponseUser)
     );
   }
 
@@ -87,7 +87,7 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<User>> {
+): Observable<StrictHttpResponse<ResponseUser>> {
 
     const rb = new RequestBuilder(this.rootUrl, LoginService.ApiLoginAuthenticatePostPath, 'post');
     if (params) {
@@ -101,7 +101,7 @@ export class LoginService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<User>;
+        return r as StrictHttpResponse<ResponseUser>;
       })
     );
   }
@@ -117,10 +117,10 @@ export class LoginService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<User> {
+): Observable<ResponseUser> {
 
     return this.apiLoginAuthenticatePost$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<User>) => r.body as User)
+      map((r: StrictHttpResponse<ResponseUser>) => r.body as ResponseUser)
     );
   }
 
