@@ -1,0 +1,72 @@
+<div class="mx-3">
+  <p-divider align="center"><b>Datos trama tarjeta</b></p-divider>
+  <div class="grid">
+    <div class="col-6">
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-3 flex justify-content-start">Monto</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.monto | currency }}" />
+      </div>
+
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-3 flex justify-content-start">Secuencial</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.secuencial }}" />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-5 flex justify-content-start">Lote</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.lote }}" />
+      </div>
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-5 flex justify-content-start">Autorización</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.autorizacion }}" />
+      </div>
+    </div>
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon w-3 flex justify-content-start">Respuesta</span>
+      <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.respuesta }}" />
+    </div>
+  </div>
+
+  <p-divider align="center"><b>Datos pago</b></p-divider>
+
+  <div class="grid">
+    <div class="col-6">
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-3 flex justify-content-start">Valor</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataPaymentz![0].valor | currency }}" />
+      </div>
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-3 flex justify-content-start">Serie documento</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataPaymentz![0].numeroTransaccion }}" />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-5 flex justify-content-start">Número documento</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataPaymentz![0].numeroDocumento }}" />
+      </div>
+      <div class="p-inputgroup my-2">
+        <span class="p-inputgroup-addon w-5 flex justify-content-start">Tipo transacción</span>
+        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataPaymentz![0].tipoTransaccion }}" />
+      </div>
+    </div>
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon w-3 flex justify-content-start">Datos voucher</span>
+      <textarea disabled rows="2" pInputTextarea [autoResize]="true" value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataPaymentz![0].rop_Datos_Voucher }}"></textarea>
+      <button
+        class="p-button-success border-noround-left"
+        type="button"
+        pButton
+        [icon]="icon"
+        (click)="ccopyPrintingChain()"
+        pTooltip="Copiar cadena"
+        tooltipPosition="bottom"
+        [disabled]="disabled"
+      ></button>
+    </div>
+  </div>
+  <div class="flex justify-content-end">
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+  </div>
+</div>

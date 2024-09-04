@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, tap } from "rxjs";
-import { VoucherDto } from "src/app/api/api_actualizar/models";
+import { BehaviorSubject, catchError, Observable, tap } from "rxjs";
+import { ResponsePrintVoucher, VoucherDto } from "src/app/api/api_actualizar/models";
 import { StoreService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
@@ -36,5 +36,14 @@ export class PlotsVoucherService {
   }
   public setInfoVoucher(voucher: VoucherDto): void {
     this.infoVoucher.next(voucher);
+  }
+
+  public getPrintVoucher(ip: string, office: string, body: any): Observable<ResponsePrintVoucher> {
+    return this.storeService.apiStoreVoucherPrintPost$Json({ ip, office, body }).pipe(
+      tap((res) => {
+        console.log(res.data);
+      }),
+      catchError((error) => this.calledHttpService.errorHandler(error))
+    );
   }
 }

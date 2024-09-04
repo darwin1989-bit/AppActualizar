@@ -75,6 +75,7 @@ export { ResponseMaterialInfoDto } from './models/response-material-info-dto';
 export { ResponseMaterialPromotionDto } from './models/response-material-promotion-dto';
 export { ResponseMessage } from './models/response-message';
 export { ResponseOpenBoxes } from './models/response-open-boxes';
+export { ResponsePrintVoucher } from './models/response-print-voucher';
 export { ResponsePromotion } from './models/response-promotion';
 export { ResponsePromotionStore } from './models/response-promotion-store';
 export { ResponsePromotionStoreDto } from './models/response-promotion-store-dto';

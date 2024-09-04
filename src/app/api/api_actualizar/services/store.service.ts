@@ -14,7 +14,9 @@ import { ResponseDataVoucher } from '../models/response-data-voucher';
 import { ResponseIpClient } from '../models/response-ip-client';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseOpenBoxes } from '../models/response-open-boxes';
+import { ResponsePrintVoucher } from '../models/response-print-voucher';
 import { ResponseStoreOffices } from '../models/response-store-offices';
+import { VoucherDto } from '../models/voucher-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -547,6 +549,119 @@ export class StoreService extends BaseService {
 
     return this.apiStoreCardPlotsGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreVoucherPrintPost
+   */
+  static readonly ApiStoreVoucherPrintPostPath = '/api/Store/voucher/print';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherPrintPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreVoucherPrintPost$Plain$Response(params?: {
+    ip?: string;
+    office?: string;
+    body?: VoucherDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponsePrintVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherPrintPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('office', params.office, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponsePrintVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherPrintPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreVoucherPrintPost$Plain(params?: {
+    ip?: string;
+    office?: string;
+    body?: VoucherDto
+  },
+  context?: HttpContext
+
+): Observable<ResponsePrintVoucher> {
+
+    return this.apiStoreVoucherPrintPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponsePrintVoucher>) => r.body as ResponsePrintVoucher)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherPrintPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreVoucherPrintPost$Json$Response(params?: {
+    ip?: string;
+    office?: string;
+    body?: VoucherDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponsePrintVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherPrintPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('office', params.office, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponsePrintVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherPrintPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiStoreVoucherPrintPost$Json(params?: {
+    ip?: string;
+    office?: string;
+    body?: VoucherDto
+  },
+  context?: HttpContext
+
+): Observable<ResponsePrintVoucher> {
+
+    return this.apiStoreVoucherPrintPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponsePrintVoucher>) => r.body as ResponsePrintVoucher)
     );
   }
 

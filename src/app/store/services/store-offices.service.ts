@@ -3,7 +3,6 @@ import { BehaviorSubject, catchError, tap } from "rxjs";
 import { StoreOfficesDto } from "src/app/api/api_actualizar/models/store-offices-dto";
 import { StoreService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
-import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +14,7 @@ export class StoreOfficesService {
   private resetTable = new BehaviorSubject<boolean>(false);
   public resetTable$ = this.resetTable.asObservable();
 
-  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService, private toastMesagge: ToastMessagesService) {}
+  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService) {}
 
   public getStoreOffices(company: string): void {
     this.storeService

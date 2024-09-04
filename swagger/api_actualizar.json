@@ -1921,6 +1921,68 @@
         }
       }
     },
+    "/api/Store/voucher/print": {
+      "post": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "office",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoucherDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoucherDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoucherDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePrintVoucher"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePrintVoucher"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePrintVoucher"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -4127,6 +4189,10 @@
           "rop_Datos_Voucher": {
             "type": "string",
             "nullable": true
+          },
+          "rop_Id_Movimiento": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4657,6 +4723,16 @@
             "items": {
               "$ref": "#/components/schemas/NoConnectionOpenBox"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponsePrintVoucher": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5319,6 +5395,10 @@
             "type": "string",
             "nullable": true
           },
+          "respuestaCompleta": {
+            "type": "string",
+            "nullable": true
+          },
           "codigo_Respuesta": {
             "type": "string",
             "nullable": true
@@ -5336,6 +5416,22 @@
             "nullable": true
           },
           "pca_Serie_Produbanco": {
+            "type": "string",
+            "nullable": true
+          },
+          "base0": {
+            "type": "string",
+            "nullable": true
+          },
+          "base12": {
+            "type": "string",
+            "nullable": true
+          },
+          "iva": {
+            "type": "string",
+            "nullable": true
+          },
+          "interes": {
             "type": "string",
             "nullable": true
           },
