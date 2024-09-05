@@ -19,6 +19,7 @@ import { ICompany } from "../../models/offices.interface";
 import { CalledHttpService } from "../../services/called-http.service";
 import { OfficesHttpService } from "../../services/offices-http.service";
 import { SharedService } from "../../services/shared.service";
+import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
 
 @Component({
   selector: "app-find-company",
@@ -59,7 +60,8 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     private usersAuthorizingService: UsersAuthorizingService,
     private registeredUsersService: RegisteredUsersService,
     public openBoxesService: OpenBoxesService,
-    private ipBoxesService: IpBoxesService
+    private ipBoxesService: IpBoxesService,
+    private plotsVoucherService: PlotsVoucherService
   ) {}
 
   ngOnDestroy(): void {
@@ -79,7 +81,7 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
 
     this.company = structuredClone(CompanyObj);
 
-    if (!environment.production) {
+    if (environment.production) {
       this.company.splice(0, 3);
       this.company.push({ name: "PRUEBAS", code: "prb" });
     }
@@ -126,6 +128,7 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     this.registeredUsersService.clearRegisteredUser();
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
+    this.plotsVoucherService.clearPlotsVoucher();
   }
   public clearOffice(): void {
     this.officesHttpService.setOffice(null);
@@ -141,6 +144,7 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     this.registeredUsersService.clearRegisteredUser();
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
+    this.plotsVoucherService.clearPlotsVoucher();
   }
 
   public toggle(): void {

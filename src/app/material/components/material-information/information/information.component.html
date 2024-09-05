@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [style]="{ width: '900px' }" [resizable]="false">
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '900px' }" [resizable]="false">
   <ng-template pTemplate="header">
     <i class="pi pi-info-circle" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Detalle del material</h4>
@@ -9,14 +9,14 @@
         <tr>
           <th>Código</th>
           <th>Descripción</th>
-          <th>Cod. Nivel 1</th>
-          <th>Nivel 1</th>
-          <th>Cod. Nivel 2</th>
-          <th>Nivel 2</th>
-          <th>Cod. Nivel 3</th>
-          <th>Nivel 3</th>
-          <th>Cod. Nivel 4</th>
-          <th>Nivel 4</th>
+          <th style="width: 5%">Cod. Nivel 1</th>
+          <th style="width: 10%">Nivel 1</th>
+          <th style="width: 5%">Cod. Nivel 2</th>
+          <th style="width: 10%">Nivel 2</th>
+          <th style="width: 5%">Cod. Nivel 3</th>
+          <th style="width: 10%">Nivel 3</th>
+          <th style="width: 5%">Cod. Nivel 4</th>
+          <th style="width: 10%">Nivel 4</th>
           <th>Nivel segmento</th>
         </tr>
       </ng-template>

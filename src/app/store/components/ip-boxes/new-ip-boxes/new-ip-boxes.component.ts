@@ -45,6 +45,7 @@ export class NewIpBoxesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.numberBoxControl.reset();
+    this.dialog = false;
   }
 
   ngOnInit(): void {

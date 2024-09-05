@@ -6,11 +6,11 @@
   <ng-template pTemplate="content">
     <div class="py-0 border-top-1 border-bottom-1 surface-border">
       <div class="p-fluid p-formgrid grid py-4">
-        <div class="field col-3 md:col-3">
+        <div class="field col-12 md:col-3">
           <label htmlFor="codigo">Código material</label>
           <input pInputText id="codigo" type="text" [value]="material.codigo" disabled class="opacity-100" />
         </div>
-        <div class="field col-9 md:col-9">
+        <div class="field col-12 md:col-9">
           <label htmlFor="descripcion">Descripción</label>
           <input pInputText id="descripcion" type="text" [value]="material.descripcion" disabled class="opacity-100" />
         </div>
@@ -28,32 +28,19 @@
       <ng-template pTemplate="header">
         <tr>
           <th pFrozenColumn>Código de Barras</th>
-          <!-- <th>Estado</th> -->
           <th>Principal</th>
           <th>Orden</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-material let-editing="editing">
         <tr>
-          <td [class.field-null]="material.codigoBarras == null || material.codigoBarras == ''">{{ material.codigoBarras == null || material.codigoBarras == "" ? "NULL" : material.codigoBarras }}</td>
-          <!-- <td [pEditableColumn]="material.estado" pEditableColumnField="estado" class="cursor-pointer">
-            <p-cellEditor>
-              <ng-template pTemplate="input">
-                <p-dropdown
-                  (onChange)="changeDropdown()"
-                  [options]="dropDownStatus"
-                  appendTo="body"
-                  [(ngModel)]="material.estado"
-                  optionLabel="name"
-                  placeholder="Selección"
-                  [disabled]="material.codigoBarras == null || material.codigoBarras == ''"
-                ></p-dropdown>
-              </ng-template>
-              <ng-template pTemplate="output">
-                {{ material.estado.name ? material.estado.name : material.estado == "A" ? "ACTIVO" : "INACTIVO" }}
-              </ng-template>
-            </p-cellEditor>
-          </td> -->
+          <td *ngIf="material.codigoBarras == null || material.codigoBarras == ''; else elseBlock"><p-tag severity="danger"> NULL </p-tag></td>
+          <ng-template #elseBlock>
+            <td>
+              {{ material.codigoBarras }}
+            </td>
+          </ng-template>
+
           <td [pEditableColumn]="material.principal" pEditableColumnField="principal" class="cursor-pointer">
             <p-cellEditor>
               <ng-template pTemplate="input">
@@ -86,9 +73,12 @@
                 ></p-dropdown>
               </ng-template>
               <ng-template pTemplate="output">
-                <div [class.field-null]="material.orden == '' || material.orden == null">
-                  {{ material.orden == "" || material.orden == null ? "NULL" : material.orden }}
-                </div>
+                <td *ngIf="material.orden == '' || material.orden == null; else elseBlock"><p-tag severity="danger"> NULL </p-tag></td>
+                <ng-template #elseBlock>
+                  <td>
+                    {{ material.orden }}
+                  </td>
+                </ng-template>
               </ng-template>
             </p-cellEditor>
           </td>

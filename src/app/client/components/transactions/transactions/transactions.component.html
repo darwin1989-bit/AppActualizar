@@ -13,7 +13,6 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Id</th>
             <th>Fecha</th>
             <th>Cajero</th>
             <th>Valor</th>
@@ -21,13 +20,12 @@
             <th>Valor cheque</th>
             <th>Tipo transacción</th>
             <th>Número documento</th>
-            <th>Referencia trans.</th>
+            <th>Referencia</th>
             <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-transactions>
           <tr>
-            <td>{{ transactions.idMovimiento }}</td>
             <td>{{ transactions.fechaProceso | date : "yyyy/MM/dd HH:mm:ss" }}</td>
             <td>{{ transactions.userId }}</td>
             <td>{{ transactions.valor | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
@@ -44,7 +42,7 @@
                 tooltipPosition="bottom"
                 icon="pi pi-info-circle"
                 class="p-button-secondary"
-                [disabled]="!transactions.offlinePayments && !transactions.offlinePurchases"
+                [class.hidden]="!transactions.offlinePayments && !transactions.offlinePurchases"
                 (click)="transactionOffline(transactions)"
               ></button>
             </td>

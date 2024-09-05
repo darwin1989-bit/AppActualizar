@@ -15,6 +15,9 @@ export class PlotsVoucherService {
   private infoVoucher = new BehaviorSubject<VoucherDto>({});
   public infoVoucher$ = this.infoVoucher.asObservable();
 
+  private resetTable = new BehaviorSubject<boolean>(false);
+  public resetTable$ = this.resetTable.asObservable();
+
   constructor(private storeService: StoreService, private calledHttpService: CalledHttpService, private toastMesagge: ToastMessagesService) {}
 
   public getCardsPlots(amount: string, ip: string, transactionDate: string): void {
@@ -39,11 +42,12 @@ export class PlotsVoucherService {
   }
 
   public getPrintVoucher(ip: string, office: string, body: any): Observable<ResponsePrintVoucher> {
-    return this.storeService.apiStoreVoucherPrintPost$Json({ ip, office, body }).pipe(
-      tap((res) => {
-        console.log(res.data);
-      }),
-      catchError((error) => this.calledHttpService.errorHandler(error))
-    );
+    return this.storeService.apiStoreVoucherPrintPost$Json({ ip, office, body }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+  }
+
+  public clearPlotsVoucher(): void {
+    this.resultVoucher.next([]);
+    this.infoVoucher.next({});
+    this.resetTable.next(true);
   }
 }

@@ -40,7 +40,7 @@ import { SharedService } from "../shared/services/shared.service";
       }
       :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content {
         align-items: center;
-        font-size: 1rem;
+        font-size: 0.875rem;
         justify-content: center;
       }
 
@@ -55,7 +55,7 @@ import { SharedService } from "../shared/services/shared.service";
       }
 
       :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
-        font-size: 1rem;
+        font-size: 0.875rem;
         font-weight: 700;
       }
 
@@ -67,7 +67,11 @@ import { SharedService } from "../shared/services/shared.service";
       :host ::ng-deep .p-toast-icon-close {
         margin-left: 1rem;
       }
-
+      @media (max-width: 600px) {
+        :host ::ng-deep .p-toast {
+          width: 90%;
+        }
+      }
       /*para poner bordes en los iconos del slidebar*/
       // :host ::ng-deep .layout-menu ul a {
       //   padding: 0.3rem 0.75rem;

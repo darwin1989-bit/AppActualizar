@@ -12,13 +12,13 @@ import { ToastMessagesService } from "src/app/shared/services/toast-messages.ser
 export class MaterialInformationService {
   private typeMat!: ITypeMaterials;
 
-  private materials = new Subject<MaterialsDto[]>();
+  private materials = new BehaviorSubject<MaterialsDto[]>([]);
   public materials$ = this.materials.asObservable();
 
   private typeMaterial = new Subject<ITypeMaterials>();
   public typeMaterial$ = this.typeMaterial.asObservable();
 
-  private materialsMain = new Subject<MaterialsDto[]>();
+  private materialsMain = new BehaviorSubject<MaterialsDto[]>([]);
   public materialsMain$ = this.materialsMain.asObservable();
 
   private materialsInformation = new BehaviorSubject<MaterialInfoDto[]>([]);

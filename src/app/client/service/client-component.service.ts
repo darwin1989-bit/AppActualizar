@@ -26,7 +26,7 @@ export class ClientComponentService {
     return this.clientService.apiClientGet$Json({ ip: ip, numberId: numberId, typeIdClient: typeIdClient }).pipe(
       tap((res: GetClientDto[]) => {
         this.specialTaxpayer.next(res[0].contribuyente_Especial == "0" ? "NO" : "SI");
-        if (res.length > 0) this.toastMesagge.showToast("tc", "info", "Información", `Cliente ${res[0].nombre_Razon?.toUpperCase()}.`);
+        // if (res.length > 0) this.toastMesagge.showToast("tc", "info", "Información", `Cliente ${res[0].nombre_Razon?.toUpperCase()}.`);
       }),
       catchError((error) => {
         return this.calledHttpService.errorHandler(error);

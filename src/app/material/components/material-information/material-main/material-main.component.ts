@@ -29,7 +29,8 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
 
   public moneyLocale!: { money: string; locale: string };
 
-  public materials!: MaterialsDto[];
+  public materials: MaterialsDto[] = [];
+  public materials2: any[] = [{ aa: "aa" }];
 
   public clonedProducts: { [s: string]: MaterialsDto } = {};
 
@@ -44,7 +45,6 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.materialService.materialsMain$.subscribe((res) => {
-      this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
   }
@@ -57,9 +57,10 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   }
 
   private refreshTable() {
-    this.tableComponent.reset();
-    this.tableComponent.rows = 5;
-    this.tableComponent.paginator = true;
+    if (this.tableComponent) {
+      this.tableComponent.reset();
+      this.tableComponent.rows = 5;
+    }
   }
 
   public editMaterial(material: MaterialsDto) {

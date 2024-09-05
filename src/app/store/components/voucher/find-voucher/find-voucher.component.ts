@@ -55,6 +55,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   }
 
   public findVoucher(): void {
+    this.plotsVoucherService.clearPlotsVoucher();
     this.voucherForm.markAllAsTouched();
     this.amountTransactionControl.markAsDirty();
     this.officeService.setValidFindOffice();

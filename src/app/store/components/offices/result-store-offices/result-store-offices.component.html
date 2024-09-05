@@ -36,25 +36,53 @@
         </ng-template>
         <ng-template pTemplate="body" let-storeOffices>
           <tr>
-            <td [class.field-null]="storeOffices.oficina == '' || storeOffices.oficina == null">{{ storeOffices.oficina == "" || storeOffices.oficina == null ? "NULL" : storeOffices.oficina }}</td>
-            <td [class.field-null]="storeOffices.codigoSap == '' || storeOffices.codigoSap == null">
-              {{ storeOffices.codigoSap == "" || storeOffices.codigoSap == null ? "NULL" : storeOffices.codigoSap }}
-            </td>
-            <td [class.field-null]="storeOffices.establecimientoSri == '' || storeOffices.establecimientoSri == null">
-              {{ storeOffices.establecimientoSri == "" || storeOffices.establecimientoSri == null ? "NULL" : storeOffices.establecimientoSri }}
-            </td>
-            <td [class.field-null]="storeOffices.nombre == '' || storeOffices.nombre == null">
-              {{ storeOffices.nombre == "" || storeOffices.nombre == null ? "NULL" : (storeOffices.nombre | uppercase) }}
-            </td>
-            <td [class.field-null]="storeOffices.ipServidor == '' || storeOffices.ipServidor == null">
-              {{ storeOffices.ipServidor == "" || storeOffices.ipServidor == null ? "NULL" : storeOffices.ipServidor }}
-            </td>
-            <td [class.field-null]="storeOffices.direccion1 == '' || storeOffices.direccion1 == null">
-              {{ storeOffices.direccion1 == "" || storeOffices.direccion1 == null ? "NULL" : (storeOffices.direccion1 | uppercase) }}
-            </td>
-            <td [class.field-null]="storeOffices.listaPrecio == '' || storeOffices.listaPrecio == null">
-              {{ storeOffices.listaPrecio == "" || storeOffices.listaPrecio == null ? "NULL" : storeOffices.listaPrecio }}
-            </td>
+            <td *ngIf="storeOffices.oficina == '' || storeOffices.oficina == null; else elseBlockOff"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockOff>
+              <td>
+                {{ storeOffices.oficina }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="storeOffices.codigoSap == '' || storeOffices.codigoSap == null; else elseBlockCodSap"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockCodSap>
+              <td>
+                {{ storeOffices.codigoSap }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="storeOffices.establecimientoSri == '' || storeOffices.establecimientoSri == null; else elseBlockEstaSri"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockEstaSri>
+              <td>
+                {{ storeOffices.establecimientoSri }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="storeOffices.nombre == '' || storeOffices.nombre == null; else elseBlockNom"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockNom>
+              <td>
+                {{ storeOffices.nombre }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="storeOffices.ipServidor == '' || storeOffices.ipServidor == null; else elseBlockIpSer"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockIpSer>
+              <td>
+                {{ storeOffices.ipServidor }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="storeOffices.direccion1 == '' || storeOffices.direccion1 == null; else elseBlockDir"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockDir>
+              <td>
+                {{ storeOffices.direccion1 }}
+              </td>
+            </ng-template>
+            <td *ngIf="storeOffices.listaPrecio == '' || storeOffices.listaPrecio == null; else elseBlocListPre"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlocListPre>
+              <td>
+                {{ storeOffices.listaPrecio }}
+              </td>
+            </ng-template>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

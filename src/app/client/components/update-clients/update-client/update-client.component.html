@@ -4,15 +4,6 @@
       <div *ngIf="(clientService.clientFound$ | async)![0].numero_Idcliente !== ''" class="flex justify-content-end align-items-center">
         <p-divider layout="vertical"></p-divider>
         <button (click)="showDialog()" icon="pi pi-user-edit" class="p-button-raised p-button-warning mr-2" pButton pRipple label="Editar"></button>
-        <button
-          (click)="showRetencion()"
-          *ngIf="(clientService.clientFound$ | async)![0].tipo_Idcliente == 'R'"
-          icon="pi pi-file"
-          class="p-button-raised p-button-secondary"
-          pButton
-          pRipple
-          label="Retencion"
-        ></button>
       </div>
       <div class="p-fluid p-formgrid grid">
         <div class="field col-12 md:col-2">

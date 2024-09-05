@@ -18,7 +18,7 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pFrozenColumn>Id</th>
+            <th>Id</th>
             <th>Oficina</th>
             <th>Fecha</th>
             <th>Serie factura</th>
@@ -38,15 +38,28 @@
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan"><span class="p-column-title font-bold">Serie factura</span>{{ promotion.transactionID }}</td>
             <td><span class="p-column-title font-bold">Código</span>{{ promotion.itemID }}</td>
             <td><span class="p-column-title font-bold">Cantidad</span>{{ promotion.quantity }}</td>
-            <td [class.promotion-null]="promotion.promotionDescription == null">
-              <span class="p-column-title font-bold">Descuento</span>{{ promotion.promotionDescription != null ? (promotion.amount | currency) : "Sin promoción" }}
-            </td>
-            <td [class.promotion-null]="promotion.promotionDescription == null">
-              <span class="p-column-title font-bold">Id promoción</span>{{ promotion.promotionDescription != null ? promotion.externalPromotionID : "Sin promoción" }}
-            </td>
-            <td [class.promotion-null]="promotion.promotionDescription == null">
-              <span class="p-column-title font-bold">Descripción</span>{{ promotion.promotionDescription != null ? promotion.promotionDescription : "Sin promoción" }}
-            </td>
+
+            <td *ngIf="promotion.promotionDescription == null; else elseBlockDesc"><p-tag severity="danger"> NULL </p-tag></td>
+            <td *ngIf="promotion.promotionDescription == null; else elseBlockPromId"><p-tag severity="danger"> NULL</p-tag></td>
+            <td *ngIf="promotion.promotionDescription == null; else elseBlockDescrip"><p-tag severity="danger"> Sin promoción </p-tag></td>
+            <ng-template #elseBlockDesc>
+              <td>
+                {{ promotion.amount | currency }}
+              </td>
+            </ng-template>
+
+            <ng-template #elseBlockPromId>
+              <td>
+                {{ promotion.externalPromotionID }}
+              </td>
+            </ng-template>
+
+            <ng-template #elseBlockDescrip>
+              <td>
+                {{ promotion.promotionDescription }}
+              </td>
+            </ng-template>
+
             <td><span class="p-column-title font-bold">Procentaje</span>{{ promotion.percent }}%</td>
           </tr>
         </ng-template>

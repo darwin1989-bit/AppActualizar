@@ -15,7 +15,7 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pFrozenColumn>Usuario</th>
+            <th>Usuario</th>
             <th>Contraseña</th>
             <th>Cédula</th>
             <th>Nombres</th>
@@ -30,16 +30,43 @@
         </ng-template>
         <ng-template pTemplate="body" let-users>
           <tr>
-            <td class="select-all" pFrozenColumn>{{ users.nombreCorto }}</td>
-            <td class="select-all">{{ users.contrasena }}</td>
-            <td class="select-all" [class.field-null]="users.cedula == ''">{{ users.cedula == "" ? "NULL" : users.cedula }}</td>
+            <td class="select-all">{{ users.nombreCorto }}</td>
+
+            <td *ngIf="users.contrasena == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
+            <ng-template #elseBlockCont>
+              <td>
+                {{ users.contrasena }}
+              </td>
+            </ng-template>
+
+            <td *ngIf="users.cedula == ''; else elseBlockCed"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockCed>
+              <td>
+                {{ users.cedula }}
+              </td>
+            </ng-template>
+
             <td>{{ users.nombre }}</td>
             <td>{{ users.apellido }}</td>
-            <td>{{ users.perfilReferencia }}</td>
+
+            <td *ngIf="users.perfilReferencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockPer>
+              <td>
+                {{ users.perfilReferencia }}
+              </td>
+            </ng-template>
+
             <td>{{ users.tienda }}</td>
             <td>{{ users.oficina }}</td>
             <td>{{ users.estado }}</td>
-            <td [class.field-null]="users.ipPosmobile == ''">{{ users.ipPosmobile == "" ? "NULL" : users.ipPosmobile }}</td>
+
+            <td *ngIf="users.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> MULL </p-tag></td>
+            <ng-template #elseBlockDesc>
+              <td>
+                {{ users.ipPosmobile }}
+              </td>
+            </ng-template>
+
             <td>
               <button
                 pButton

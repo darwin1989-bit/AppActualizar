@@ -13,7 +13,7 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pFrozenColumn>Id movimiento</th>
+            <th>Id movimiento</th>
             <th>Fecha</th>
             <th>Cajero</th>
             <th>Número transacción</th>
@@ -21,14 +21,13 @@
             <th>Valor efectivo</th>
             <th>Valor Chq.</th>
             <th>Valor otros</th>
-            <th>T. transacción</th>
             <th>Referencia transacción</th>
             <th>Observación</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-payments>
           <tr>
-            <td pFrozenColumn>{{ payments.id_Movimiento }}</td>
+            <td>{{ payments.id_Movimiento }}</td>
             <td>{{ payments.horaProceso | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ payments.userID }}</td>
             <td>{{ payments.numeroTransaccion }}</td>
@@ -36,7 +35,6 @@
             <td>{{ payments.valorEfectivo | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ payments.valorCHQ | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ payments.valorOtros | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
-            <td>{{ payments.tipoTransaccion }}</td>
             <td>{{ payments.referenciaTransaccion }}</td>
             <td>{{ payments.observacion }}</td>
           </tr>

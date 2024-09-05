@@ -1,7 +1,11 @@
 .promotion-null {
-  color: #ff6464;
-  font-style: italic;
-  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  background: var(--red-100);
+  color: var(--red-700);
+  font-weight: 700;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
 }
 
 // :host ::ng-deep .p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {

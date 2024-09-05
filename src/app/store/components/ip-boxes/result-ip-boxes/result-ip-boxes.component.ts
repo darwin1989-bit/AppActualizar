@@ -16,6 +16,7 @@ export class ResultIpBoxesComponent implements OnInit, OnDestroy {
   constructor(public ipBoxesService: IpBoxesService) {}
 
   ngOnInit(): void {
+    this.ipBoxesService.openDialogNewIp(false);
     this.subscription = this.ipBoxesService.resetTable$.subscribe((res) => {
       if (res) this.reset();
     });

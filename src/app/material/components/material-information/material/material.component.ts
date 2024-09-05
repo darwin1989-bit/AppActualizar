@@ -33,13 +33,13 @@ export class MaterialComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+    this.materialService.clearMaterials();
   }
 
   ngOnInit(): void {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.materialService.materials$.subscribe((res) => {
-      this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
   }
@@ -51,8 +51,9 @@ export class MaterialComponent implements OnInit, OnDestroy {
     this.detailPromotionService.getMaterialPromotion(this.office.ip_Red!, materials.codigo!);
   }
   private refreshTable() {
-    this.tableComponent.reset();
-    this.tableComponent.rows = 5;
-    this.tableComponent.paginator = true;
+    if (this.tableComponent) {
+      this.tableComponent.reset();
+      this.tableComponent.rows = 5;
+    }
   }
 }

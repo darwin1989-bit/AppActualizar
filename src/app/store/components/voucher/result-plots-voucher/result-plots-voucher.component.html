@@ -12,7 +12,7 @@
         [paginator]="(plotsVoucherService.resultVoucher$ | async)!.length > 5 ? true : false"
         rowGroupMode="rowspan"
         groupRowsBy="tienda"
-        [tableStyle]="{ 'min-width': '1rem' }"
+        [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -49,7 +49,7 @@
                 class="p-button-success p-button-sm"
                 pTooltip="Cadena de impresión"
                 tooltipPosition="bottom"
-                [disabled]="voucher.autorizacion == 'EEE' ? true : false"
+                [class.hidden]="voucher.autorizacion == 'EEE' ? true : false"
                 (click)="printDocument(voucher)"
               ></button>
             </td>
@@ -67,7 +67,7 @@
     </div>
   </div>
 </div>
-<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '35vw' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '35vw' }" [draggable]="false" [resizable]="false">
   <ng-template pTemplate="header">
     <i class="pi pi-info-circle" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Mas información</h4>
@@ -78,7 +78,7 @@
   <p class="m-0"></p>
 </p-dialog>
 
-<p-dialog [(visible)]="showDialogPay" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="showDialogPay" [modal]="true" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
   <ng-template pTemplate="header">
     <i class="pi pi-book" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Impresión pago</h4>
@@ -89,7 +89,7 @@
   <p class="m-0"></p>
 </p-dialog>
 
-<p-dialog [(visible)]="showDialogInv" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="showDialogInv" [modal]="true" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
   <ng-template pTemplate="header">
     <i class="pi pi-book" style="font-size: 2rem; color: var(--surface-900)"></i>
     <h4 class="m-0">Impresión factura</h4>

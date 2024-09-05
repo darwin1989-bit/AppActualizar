@@ -16,17 +16,17 @@
         editMode="row"
         dataKey="codBarra"
         [tableStyle]="{ 'min-width': '100rem' }"
+        [paginator]="materials.length > 5 ? true : false"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pFrozenColumn>Código</th>
+            <th>Código</th>
             <th>Descripción</th>
             <th style="width: 2%">Rest. desc.</th>
             <th>Precio</th>
             <th>Estado</th>
             <th>Marca</th>
             <th>Código de barras</th>
-            <!-- <th style="width: 8%">Estado cod. barras</th> -->
             <th style="width: 2%">Principal</th>
             <th>Orden</th>
             <th></th>
@@ -34,36 +34,56 @@
         </ng-template>
         <ng-template pTemplate="body" let-material let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowspan="rowspan">
           <tr>
-            <td class="select-all" pFrozenColumn *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
+            <td class="select-all" *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.codigo }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.descripcion }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.restringidoDesc == "N" ? "NO" : "SI" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.field-null]="material.precio == null || material.precio == ''">
-              {{ material.precio == null || material.precio == "" ? "NULL" : (material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale) }}
-            </td>
+
+            <td *ngIf="material.precio == null || material.precio == ''; else elseBlock"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlock>
+              <td>
+                {{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}
+              </td>
+            </ng-template>
+
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ material.estado == "A" ? "ACTIVO" : "INACTIVO" }}</td>
-            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" [class.field-null]="material.marca == null || material.marca == ''">
-              {{ material.marca == "" || material.marca == null ? "NULL" : material.marca }}
+
+            <td *ngIf="material.marca == null || material.marca == ''; else elseBlockMar"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockMar>
+              <td>
+                {{ material.marca }}
+              </td>
+            </ng-template>
+            <td *ngIf="!material.codBarra; else elseBlockCodB">
+              <p-tag severity="danger"> NULL </p-tag>
             </td>
-            <td [class.field-null]="!material.codBarra">
-              <div class="border-dotted border-1 select-all">
-                {{ material.codBarra ? material.codBarra : "NULL" }}
-              </div>
+            <ng-template #elseBlockCodB>
+              <td>
+                <div class="border-dotted border-1 select-all">
+                  {{ material.codBarra }}
+                </div>
+              </td>
+            </ng-template>
+
+            <td *ngIf="!material.esPrincipal; else elseEsPrincipal">
+              <p-tag severity="danger"> NULL </p-tag>
             </td>
-            <!-- <td class="style_barcode">
-              <div class="border-dotted border-1">
-                {{ material.estadoCodBarra == "A" ? "ACTIVO" : "INACTIVO" }}
-              </div>
-            </td> -->
-            <td class="style_barcode" [class.font-italic]="!material.esPrincipal">
-              <div class="border-dotted border-1">
-                {{ material.esPrincipal ? (material.esPrincipal == "N" ? "NO" : "SI") : "NULL" }}
-              </div>
+            <ng-template #elseEsPrincipal>
+              <td>
+                <div class="border-dotted border-1">
+                  {{ material.esPrincipal }}
+                </div>
+              </td>
+            </ng-template>
+            <td *ngIf="material.orden == '' || material.orden == null; else elseOrden">
+              <p-tag severity="danger"> NULL </p-tag>
             </td>
-            <td class="style_barcode" [class.field-null]="material.orden == '' || material.orden == null">
-              <div class="border-dotted border-1">
-                {{ material.orden ? material.orden : "NULL" }}
-              </div>
-            </td>
+            <ng-template #elseOrden>
+              <td>
+                <div class="border-dotted border-1 select-all">
+                  {{ material.orden }}
+                </div>
+              </td>
+            </ng-template>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
               <button pButton pRipple icon="pi pi-pencil" (click)="editMaterial(material)" class="p-button-warning p-button-sm mr-1" pTooltip="Editar" tooltipPosition="bottom"></button>
               <button
@@ -72,7 +92,7 @@
                 icon="pi pi-sync"
                 class="p-button-info p-button-sm mr-1"
                 (click)="procedureMaterial(material)"
-                [disabled]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
+                [class.hidden]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
                 pTooltip="Comunicar"
                 tooltipPosition="bottom"
               ></button>
@@ -82,7 +102,7 @@
                 icon="pi pi-dollar"
                 class="p-button-success p-button-sm"
                 (click)="procedurePrice(material)"
-                [disabled]="material.spPriceDisabled"
+                [class.hidden]="material.spPriceDisabled"
                 pTooltip="Comunicar precio"
                 tooltipPosition="bottom"
               ></button>

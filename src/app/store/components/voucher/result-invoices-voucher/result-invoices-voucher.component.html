@@ -1,7 +1,7 @@
 <div class="mx-3">
   <p-divider align="center"><b>Datos trama tarjeta</b></p-divider>
   <div class="grid">
-    <div class="col-6">
+    <div class="col-12 md:col-6">
       <div class="p-inputgroup my-2">
         <span class="p-inputgroup-addon w-3 flex justify-content-start">Monto</span>
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.monto | currency }}" />
@@ -12,7 +12,7 @@
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.secuencial }}" />
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 md:col-6">
       <div class="p-inputgroup my-2">
         <span class="p-inputgroup-addon w-5 flex justify-content-start">Lote</span>
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.lote }}" />
@@ -31,7 +31,7 @@
   <p-divider align="center"><b>Datos pago</b></p-divider>
 
   <div class="grid">
-    <div class="col-6">
+    <div class="col-12 md:col-6">
       <div class="p-inputgroup my-2">
         <span class="p-inputgroup-addon w-3 flex justify-content-start">Valor</span>
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].valor | currency }}" />
@@ -41,7 +41,7 @@
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].serie_Factura }}" />
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 md:col-6">
       <div class="p-inputgroup my-2">
         <span class="p-inputgroup-addon w-5 flex justify-content-start">Número documento</span>
         <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].numero_Documento }}" />
@@ -53,7 +53,7 @@
     </div>
     <div class="p-inputgroup my-2">
       <span class="p-inputgroup-addon w-3 flex justify-content-start">Datos voucher</span>
-      <textarea disabled rows="2" pInputTextarea [autoResize]="true" value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].comentario }}"></textarea>
+      <textarea disabled rows="2" pInputTextarea [autoResize]="true" value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].comentario?.trim() }}"></textarea>
       <button
         class="p-button-success border-noround-left"
         type="button"

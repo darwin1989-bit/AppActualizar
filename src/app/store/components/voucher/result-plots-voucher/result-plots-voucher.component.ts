@@ -1,23 +1,34 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Table } from "primeng/table";
+import { Subscription } from "rxjs";
 import { VoucherDto } from "src/app/api/api_actualizar/models";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
 
 @Component({
   selector: "app-result-plots-voucher",
   templateUrl: "./result-plots-voucher.component.html",
-  styles: [
-    `
-      :host ::ng-deep .p-tag {
-        font-size: 12px;
-      }
-    `,
-  ],
+  styles: [``],
 })
-export class ResultPlotsVoucherComponent {
+export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
+  @ViewChild("dt") tableComponent!: Table;
+
   public visible: boolean = false;
   public showDialogPay: boolean = false;
   public showDialogInv: boolean = false;
+  private subscription!: Subscription;
+
   constructor(public plotsVoucherService: PlotsVoucherService) {}
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+    this.plotsVoucherService.clearPlotsVoucher();
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.plotsVoucherService.resetTable$.subscribe((res) => {
+      if (res) this.reset();
+    });
+  }
 
   public getReference(voucher: VoucherDto): string {
     if (voucher.dataInvoice?.length! > 0) return "Factura";
@@ -33,7 +44,9 @@ export class ResultPlotsVoucherComponent {
   }
   public getIcon(voucher: VoucherDto): string {
     if (voucher.autorizacion == "EEE") return "pi pi-times";
-    return "pi pi-check";
+    if (voucher.dataInvoice?.length! > 0) return "pi pi-check";
+    if (voucher.dataPaymentz?.length! > 0) return "pi pi-check";
+    return "pi pi-question";
   }
   public moreInfoVoucher(voucher: VoucherDto): void {
     this.plotsVoucherService.setInfoVoucher(voucher);
@@ -44,5 +57,11 @@ export class ResultPlotsVoucherComponent {
     if (voucher.dataPaymentz!.length > 0) this.showDialogPay = true;
 
     this.plotsVoucherService.setInfoVoucher(voucher);
+  }
+  private reset(): void {
+    if (this.tableComponent) {
+      this.tableComponent.reset();
+      this.tableComponent.rows = 5;
+    }
   }
 }
