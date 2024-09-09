@@ -1,0 +1,33 @@
+<p-table
+  #dt
+  [value]="(giftCardService.detailsGiftCard$ | async)!"
+  styleClass="p-datatable-sm"
+  [rows]="5"
+  [rowsPerPageOptions]="[5, 10, 25, 50]"
+  [scrollable]="true"
+  [breakpoint]="'960px'"
+  [paginator]="(giftCardService.detailsGiftCard$ | async)!.length > 5 ? true : false"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Sucursal</th>
+      <th>Oficina</th>
+      <th>Código tarjeta</th>
+      <th>Serie factura</th>
+      <th>Valor</th>
+      <th>Transacción</th>
+      <th>Saldo tarjeta</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-giftCard>
+    <tr>
+      <td>{{ giftCard.ttr_Sucursal }}</td>
+      <td>{{ giftCard.ttr_Oficina }}</td>
+      <td>{{ giftCard.ttr_Codigo_Tarjeta }}</td>
+      <td>{{ giftCard.ttr_Serie_Factura }}</td>
+      <td>{{ giftCard.ttr_Valor | currency }}</td>
+      <td>{{ giftCard.ttr_Transaccion }}</td>
+      <td>{{ giftCard.ttr_Saldo_Tarjeta }}</td>
+    </tr>
+  </ng-template>
+</p-table>

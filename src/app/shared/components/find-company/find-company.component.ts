@@ -20,6 +20,7 @@ import { CalledHttpService } from "../../services/called-http.service";
 import { OfficesHttpService } from "../../services/offices-http.service";
 import { SharedService } from "../../services/shared.service";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
+import { GiftCardService } from "src/app/store/services/gift-card.service";
 
 @Component({
   selector: "app-find-company",
@@ -61,7 +62,8 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     private registeredUsersService: RegisteredUsersService,
     public openBoxesService: OpenBoxesService,
     private ipBoxesService: IpBoxesService,
-    private plotsVoucherService: PlotsVoucherService
+    private plotsVoucherService: PlotsVoucherService,
+    private giftCardService: GiftCardService
   ) {}
 
   ngOnDestroy(): void {
@@ -129,6 +131,7 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
+    this.giftCardService.clearGiftCards();
   }
   public clearOffice(): void {
     this.officesHttpService.setOffice(null);
@@ -145,6 +148,7 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
+    this.giftCardService.clearGiftCards();
   }
 
   public toggle(): void {

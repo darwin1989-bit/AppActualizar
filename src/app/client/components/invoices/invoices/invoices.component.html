@@ -11,6 +11,7 @@
         [scrollable]="true"
         [breakpoint]="'960px'"
         [tableStyle]="{ 'min-width': '120rem' }"
+        [paginator]="(invoiceService.invoicesStore$ | async)!.length > 5"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -46,9 +47,8 @@
             <td class="flex justify-content-center align-items-center">
               <button type="button" pButton pRipple icon="pi pi-list" class="p-button-sm p-button-info mr-1" (click)="selectInvoice(invoice)" pTooltip="Detalle" tooltipPosition="bottom"></button>
               <button
-                [class.hidden]="(invoiceService.hideButtonCreditN$ | async)!"
                 icon="pi pi-file"
-                [disabled]="!(invoice.data_CreditNote ? invoice.data_CreditNote.length > 0 : false)"
+                [class.hidden]="!(invoice.data_CreditNote ? invoice.data_CreditNote.length > 0 : false)"
                 type="button"
                 pButton
                 pRipple

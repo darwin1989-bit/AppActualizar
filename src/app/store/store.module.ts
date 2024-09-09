@@ -18,8 +18,12 @@ import { PageVoucherStoreComponent } from "./pages/page-voucher-store/page-vouch
 import { FindVoucherComponent } from "./components/voucher/find-voucher/find-voucher.component";
 import { ResultInvoicesVoucherComponent } from "./components/voucher/result-invoices-voucher/result-invoices-voucher.component";
 import { ResultPaymentsVoucherComponent } from "./components/voucher/result-payments-voucher/result-payments-voucher.component";
-import { ResultPlotsVoucherComponent } from './components/voucher/result-plots-voucher/result-plots-voucher.component';
-import { InformationVoucherComponent } from './components/voucher/information-voucher/information-voucher.component';
+import { ResultPlotsVoucherComponent } from "./components/voucher/result-plots-voucher/result-plots-voucher.component";
+import { InformationVoucherComponent } from "./components/voucher/information-voucher/information-voucher.component";
+import { FindGiftCardComponent } from "./components/gift-card/find-gift-card/find-gift-card.component";
+import { ResultGiftCardComponent } from './components/gift-card/result-gift-card/result-gift-card.component';
+import { PageGiftCardComponent } from './components/pages/page-gift-card/page-gift-card.component';
+import { DetailsGiftCardComponent } from './components/gift-card/details-gift-card/details-gift-card.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { InformationVoucherComponent } from './components/voucher/information-vo
     ResultPaymentsVoucherComponent,
     ResultPlotsVoucherComponent,
     InformationVoucherComponent,
+    FindGiftCardComponent,
+    ResultGiftCardComponent,
+    PageGiftCardComponent,
+    DetailsGiftCardComponent,
   ],
   imports: [CommonModule, StoreRoutingModule, SharedModule],
 })

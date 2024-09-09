@@ -70,4 +70,9 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
         this.plotsVoucherService.getCardsPlots(amountTransaccion, this.office.ip_Red!, dateVoucher.toJSON());
       }
   }
+  public clearResult(event: KeyboardEvent): void {
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") {
+      this.plotsVoucherService.clearPlotsVoucher();
+    }
+  }
 }

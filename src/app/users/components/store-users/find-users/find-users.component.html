@@ -20,7 +20,7 @@
     </div>
     <div class="field">
       <label htmlFor="documentNumber" [class.text-red-500]="userCodeControl.invalid && userCodeControl.dirty">{{ labelName }}</label>
-      <input (keydown)="codeMaterialInput($event)" pInputText formControlName="userCode" autocomplete="off" [pKeyFilter]="userBlock" />
+      <input (keydown)="clearResult($event)" pInputText formControlName="userCode" autocomplete="off" [pKeyFilter]="userBlock" />
       <div *ngIf="userCodeControl.invalid && userCodeControl.dirty">
         <span class="text-red-500 text-sm" *ngIf="userCodeControl.hasError('required')">Este campo es requerido.</span>
         <span class="text-red-500 text-sm" *ngIf="userCodeControl.errors?.['minlength']"> {{ labelError }}</span>

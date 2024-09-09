@@ -48,7 +48,6 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
     this.subscription = this.invoiceService.visibleDetails$.subscribe((res) => (this.visible = res!));
     this.subscription = this.invoiceService.dialogCreditNote$.subscribe((res) => (this.visibleCredtiNote = res!));
     this.subscription = this.invoiceService.invoicesStore$.subscribe((res) => {
-      this.tableComponent.paginator = false;
       if (res.length > 0) this.refreshTable();
     });
   }
@@ -60,6 +59,5 @@ export class InvoicesStoreComponent implements OnInit, OnDestroy {
   private refreshTable() {
     this.tableComponent.reset();
     this.tableComponent.rows = 5;
-    this.tableComponent.paginator = true;
   }
 }

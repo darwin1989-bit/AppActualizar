@@ -55,7 +55,7 @@ export const itemsObj: any[] = [
       {
         label: "Tarjeta regalo",
         icon: "pi pi-fw pi-wallet",
-        routerLink: ["/pages/empty"],
+        routerLink: ["/app/store/gift-card"],
       },
       {
         label: "Cuadre de ventas",

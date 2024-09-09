@@ -106,7 +106,7 @@ export class FindUsersComponent implements OnInit, OnDestroy {
     }
   }
 
-  public codeMaterialInput(event: KeyboardEvent): void {
+  public clearResult(event: KeyboardEvent): void {
     if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.usersService.clearUsers();
   }
 }

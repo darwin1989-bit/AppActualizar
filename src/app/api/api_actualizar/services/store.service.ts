@@ -11,6 +11,8 @@ import { map, filter } from 'rxjs/operators';
 
 import { IpClientDto } from '../models/ip-client-dto';
 import { ResponseDataVoucher } from '../models/response-data-voucher';
+import { ResponseGiftCard } from '../models/response-gift-card';
+import { ResponseInformationGiftCard } from '../models/response-information-gift-card';
 import { ResponseIpClient } from '../models/response-ip-client';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseOpenBoxes } from '../models/response-open-boxes';
@@ -662,6 +664,327 @@ export class StoreService extends BaseService {
 
     return this.apiStoreVoucherPrintPost$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponsePrintVoucher>) => r.body as ResponsePrintVoucher)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreGiftcardsCompanyNumberGiftCardGet
+   */
+  static readonly ApiStoreGiftcardsCompanyNumberGiftCardGetPath = '/api/Store/giftcards/{company}/{numberGiftCard}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsCompanyNumberGiftCardGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyNumberGiftCardGet$Plain$Response(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsCompanyNumberGiftCardGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsCompanyNumberGiftCardGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyNumberGiftCardGet$Plain(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsCompanyNumberGiftCardGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsCompanyNumberGiftCardGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyNumberGiftCardGet$Json$Response(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsCompanyNumberGiftCardGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsCompanyNumberGiftCardGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyNumberGiftCardGet$Json(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsCompanyNumberGiftCardGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreGiftcardsCompanyIdentificationIdentificationGet
+   */
+  static readonly ApiStoreGiftcardsCompanyIdentificationIdentificationGetPath = '/api/Store/giftcards/{company}/identification/{identification}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsCompanyIdentificationIdentificationGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyIdentificationIdentificationGet$Plain$Response(params: {
+    company: string;
+    identification: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsCompanyIdentificationIdentificationGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('identification', params.identification, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsCompanyIdentificationIdentificationGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyIdentificationIdentificationGet$Plain(params: {
+    company: string;
+    identification: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsCompanyIdentificationIdentificationGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsCompanyIdentificationIdentificationGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyIdentificationIdentificationGet$Json$Response(params: {
+    company: string;
+    identification: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsCompanyIdentificationIdentificationGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('identification', params.identification, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsCompanyIdentificationIdentificationGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsCompanyIdentificationIdentificationGet$Json(params: {
+    company: string;
+    identification: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsCompanyIdentificationIdentificationGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreGiftcardsInformationCompanyNumberGiftCardGet
+   */
+  static readonly ApiStoreGiftcardsInformationCompanyNumberGiftCardGetPath = '/api/Store/giftcards/information/{company}/{numberGiftCard}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Plain$Response(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInformationGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsInformationCompanyNumberGiftCardGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInformationGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Plain(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInformationGiftCard> {
+
+    return this.apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInformationGiftCard>) => r.body as ResponseInformationGiftCard)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Json$Response(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseInformationGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsInformationCompanyNumberGiftCardGetPath, 'get');
+    if (params) {
+      rb.path('company', params.company, {});
+      rb.path('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseInformationGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Json(params: {
+    company: string;
+    numberGiftCard: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseInformationGiftCard> {
+
+    return this.apiStoreGiftcardsInformationCompanyNumberGiftCardGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseInformationGiftCard>) => r.body as ResponseInformationGiftCard)
     );
   }
 

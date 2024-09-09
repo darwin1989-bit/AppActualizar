@@ -20,6 +20,7 @@ import { RegisteredUsersService } from "src/app/users/service/registered-users.s
 import { OpenBoxesService } from "src/app/store/services/open-boxes.service";
 import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
+import { GiftCardService } from "src/app/store/services/gift-card.service";
 
 @Component({
   selector: "app-find-offices",
@@ -66,7 +67,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private registeredUsersService: RegisteredUsersService,
     public openBoxesService: OpenBoxesService,
     private ipBoxesService: IpBoxesService,
-    private plotsVoucherService: PlotsVoucherService
+    private plotsVoucherService: PlotsVoucherService,
+    private giftCardService: GiftCardService
   ) {}
 
   ngOnDestroy(): void {
@@ -141,6 +143,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
+    this.giftCardService.clearGiftCards();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -159,6 +162,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.openBoxesService.clearOpenBoxes();
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
+    this.giftCardService.clearGiftCards();
   }
 
   public toggle(): void {

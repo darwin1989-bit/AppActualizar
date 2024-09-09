@@ -1,0 +1,34 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar usuarios</span>
+</div>
+
+<form [formGroup]="giftCardForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!selectOptionControl.dirty && selectOptionControl.touched">Tipo de búsqueda</label>
+      <p-dropdown
+        (onChange)="changeDropDown()"
+        [options]="dropdown"
+        optionLabel="name"
+        placeholder="Selecciona el tipo"
+        formControlName="selectOption"
+        [class.ng-dirty]="selectOptionControl.touched"
+      ></p-dropdown>
+      <div *ngIf="selectOptionControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="selectOptionControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label [class.text-red-500]="identificationControl.invalid && identificationControl.dirty">{{ labelName }}</label>
+      <input (keydown)="clearResult($event)" pInputText formControlName="identification" autocomplete="off" [pKeyFilter]="inputBlock" />
+      <div *ngIf="identificationControl.invalid && identificationControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="identificationControl.hasError('required')">Este campo es requerido.</span>
+        <span class="text-red-500 text-sm" *ngIf="identificationControl.errors?.['minlength']"> {{ labelError }}</span>
+        <span class="text-red-500 text-sm" *ngIf="identificationControl.errors?.['maxlength']"> {{ labelError }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="findUsers()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

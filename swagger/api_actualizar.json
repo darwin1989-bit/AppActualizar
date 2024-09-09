@@ -1983,6 +1983,141 @@
         }
       }
     },
+    "/api/Store/giftcards/{company}/{numberGiftCard}": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberGiftCard",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Store/giftcards/{company}/identification/{identification}": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identification",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Store/giftcards/information/{company}/{numberGiftCard}": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberGiftCard",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInformationGiftCard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInformationGiftCard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseInformationGiftCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -3427,6 +3562,98 @@
         },
         "additionalProperties": false
       },
+      "GiftCardDto": {
+        "type": "object",
+        "properties": {
+          "str_Codigo_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Saldo": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Cod_Cliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Egreso_Especial": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Nro_Orden": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Maneja_Saldo": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Recargable": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Usuario_Ingreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Fecha_Inicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "str_Fecha_Fin": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InformationGiftCard": {
+        "type": "object",
+        "properties": {
+          "ttr_Sucursal": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Codigo_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Serie_Factura": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Transaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttr_Saldo_Tarjeta": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceCardPlotsDto": {
         "type": "object",
         "properties": {
@@ -4618,6 +4845,32 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/VoucherDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseGiftCard": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GiftCardDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseInformationGiftCard": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InformationGiftCard"
             },
             "nullable": true
           }

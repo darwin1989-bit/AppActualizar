@@ -9,7 +9,7 @@ import { InvoiceDetailsObj } from "../models/invoices-objects";
   providedIn: "root",
 })
 export class InvoicesComponentService {
-  private invoicesStore = new Subject<InvoiceDto[]>();
+  private invoicesStore = new BehaviorSubject<InvoiceDto[]>([]);
   public invoicesStore$ = this.invoicesStore.asObservable();
 
   private invoicesMain = new Subject<InvoiceDto[]>();
