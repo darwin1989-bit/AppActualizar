@@ -49,7 +49,12 @@
             <td>{{ openBox.nombreCorto }}</td>
             <td>{{ openBox.nombre | uppercase }}</td>
             <td>{{ openBox.apellido | uppercase }}</td>
-            <td [class.identification-null]="openBox.cedula == ''">{{ openBox.cedula == "" ? "NULL" : openBox.cedula }}</td>
+            <td *ngIf="openBox.cedula == ''; else elseBlock"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlock>
+              <td>
+                {{ openBox.cedula }}
+              </td>
+            </ng-template>
             <td>{{ openBox.perfilReferencia }}</td>
           </tr>
         </ng-template>

@@ -52,3 +52,6 @@
 :host ::ng-deep .p-tag {
   font-size: 11px;
 }
+:host ::ng-deep .p-fluid .p-calendar .p-inputtext {
+  cursor: pointer;
+}

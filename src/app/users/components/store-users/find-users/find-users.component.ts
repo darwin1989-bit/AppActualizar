@@ -24,7 +24,7 @@ export class FindUsersComponent implements OnInit, OnDestroy {
 
   public selectedDropdown!: ITypeUsers;
 
-  public labelName: string = "Selecciona el tipo";
+  public labelName: string = "";
 
   public userBlock!: RegExp;
 

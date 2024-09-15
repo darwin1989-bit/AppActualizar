@@ -14,7 +14,7 @@ import { SharedService } from "src/app/shared/services/shared.service";
   styleUrls: ["./find-client.component.scss"],
 })
 export class FindClientComponent {
-  public label: string = "Selecciona el tipo";
+  public label: string = "";
   public selectedDocumentType!: ITypeDocument;
 
   public inputDisable: boolean = true;

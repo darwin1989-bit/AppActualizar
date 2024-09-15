@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: "material", loadChildren: () => import("../material/material.module").then((m) => m.MaterialModule) },
       { path: "users", loadChildren: () => import("../users/users.module").then((m) => m.UsersModule) },
       { path: "store", loadChildren: () => import("../store/store.module").then((m) => m.StoreModule) },
+      { path: "servers", loadChildren: () => import("../servers/servers.module").then((m) => m.ServersModule) },
       {
         path: "",
         redirectTo: "/app/home",

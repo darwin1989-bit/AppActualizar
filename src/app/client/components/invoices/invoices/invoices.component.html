@@ -10,7 +10,7 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '120rem' }"
+        [tableStyle]="(invoiceService.invoicesStore$ | async)!.length == 0 ? null : { 'min-width': '120rem' }"
         [paginator]="(invoiceService.invoicesStore$ | async)!.length > 5"
       >
         <ng-template pTemplate="header">

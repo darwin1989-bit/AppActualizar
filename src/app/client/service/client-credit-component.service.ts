@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject, catchError, tap } from "rxjs";
+import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
 import { ClientCreditDto } from "src/app/api/api_actualizar/models";
 import { ServiceCreditService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
@@ -10,7 +10,7 @@ import { CalledHttpService } from "src/app/shared/services/called-http.service";
 export class ClientCreditComponentService {
   constructor(private clientCreditService: ServiceCreditService, private calledHttpService: CalledHttpService) {}
 
-  private clientCredit = new Subject<ClientCreditDto[][] | null | undefined>();
+  private clientCredit = new BehaviorSubject<ClientCreditDto[][] | null | undefined>([]);
   public clientCredit$ = this.clientCredit.asObservable();
 
   public getClientCredit(ip: string, numberId: string, codSap: string): void {
@@ -25,6 +25,6 @@ export class ClientCreditComponentService {
       .subscribe();
   }
   public clearCreditClient(): void {
-    this.clientCredit.next(undefined);
+    this.clientCredit.next([]);
   }
 }

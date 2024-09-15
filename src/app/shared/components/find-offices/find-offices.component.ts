@@ -21,6 +21,7 @@ import { OpenBoxesService } from "src/app/store/services/open-boxes.service";
 import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
 import { GiftCardService } from "src/app/store/services/gift-card.service";
+import { ExecutionJobService } from "src/app/servers/services/execution-job.service";
 
 @Component({
   selector: "app-find-offices",
@@ -43,6 +44,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     companyInput: [this.selectedCompany, Validators.required],
     officeInput: [this.selectedOffice, Validators.required],
   });
+  private pushAllOfficesJobs!: boolean;
 
   get companyControl(): FormControl {
     return this.officesForm.get("companyInput") as FormControl;
@@ -68,7 +70,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     public openBoxesService: OpenBoxesService,
     private ipBoxesService: IpBoxesService,
     private plotsVoucherService: PlotsVoucherService,
-    private giftCardService: GiftCardService
+    private giftCardService: GiftCardService,
+    private executionJobService: ExecutionJobService
   ) {}
 
   ngOnDestroy(): void {
@@ -79,6 +82,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subcription = this.registeredUsersService.OfficesMatriz$.subscribe((res) => (this.pushOffices = res));
+    this.subcription = this.executionJobService.excutionsJobs$.subscribe((res) => (this.pushAllOfficesJobs = res));
     this.subcription = this.officesHttpService.validFindOffice$.subscribe((res: boolean) => {
       if (res) {
         this.officesForm.markAllAsTouched();
@@ -117,6 +121,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
         )
         .subscribe((offices) => {
           if (this.pushOffices) offices.unshift(OfficesMatriz.find((f) => f.nombre?.includes(typeCompany.name))!);
+          if (this.pushAllOfficesJobs) offices.unshift({ nombre: "Todos", ip_Red: "0.0.0.0", ofi_Codigo_Interno_Empresa: "0000", oficina: "000" });
           this.officesGet.next(true);
           this.offices = offices.map((office) => {
             return {
@@ -144,6 +149,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
     this.giftCardService.clearGiftCards();
+    this.executionJobService.clearTable();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -163,6 +169,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.ipBoxesService.clearIpBoxes();
     this.plotsVoucherService.clearPlotsVoucher();
     this.giftCardService.clearGiftCards();
+    this.executionJobService.clearTable();
   }
 
   public toggle(): void {

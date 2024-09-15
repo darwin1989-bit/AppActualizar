@@ -18,7 +18,7 @@
         <span class="text-red-500 text-sm" *ngIf="materialTypeControl.hasError('required')">Este campo es requerido.</span>
       </div>
     </div>
-    <div class="field">
+    <div class="field" *ngIf="labelName != ''">
       <label htmlFor="documentNumber" [class.text-red-500]="materialCodeControl.invalid && materialCodeControl.dirty">{{ labelName }}</label>
       <input (keydown)="codeMaterialInput($event)" pInputText formControlName="codeMaterial" autocomplete="off" pKeyFilter="int" />
       <div *ngIf="materialCodeControl.invalid && materialCodeControl.dirty">

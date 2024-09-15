@@ -24,7 +24,6 @@ export class ClientCreditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.officeService.moneyLocale$.subscribe((res) => (this.moneyLocale = res));
     this.subscription = this.clientCreditComponentService.clientCredit$.subscribe((res) => {
-      this.tableComponent.paginator = false;
       if (res) {
         if (res.length > 0) {
           this.tableComponent.reset();

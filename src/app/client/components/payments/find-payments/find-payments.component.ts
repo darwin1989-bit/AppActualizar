@@ -16,7 +16,7 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
 export class FindPaymentsComponent implements OnInit, OnDestroy {
   public selectedType!: ITypePayment;
 
-  public labelName: string = "Selecciona el tipo";
+  public labelName: string = "";
 
   public dropdownPaymentType = TypePaymentObj;
 

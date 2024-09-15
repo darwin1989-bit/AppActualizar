@@ -57,11 +57,11 @@ export const itemsObj: any[] = [
         icon: "pi pi-fw pi-wallet",
         routerLink: ["/app/store/gift-card"],
       },
-      {
-        label: "Cuadre de ventas",
-        icon: "pi pi-fw pi-calculator",
-        routerLink: ["/pages/empty"],
-      },
+      // {
+      //   label: "Cuadre de ventas",
+      //   icon: "pi pi-fw pi-calculator",
+      //   routerLink: ["/pages/empty"],
+      // },
     ],
   },
   {
@@ -70,13 +70,13 @@ export const itemsObj: any[] = [
       {
         label: "Ejecución jobs",
         icon: "pi pi-fw pi-sync",
-        routerLink: ["/landing"],
+        routerLink: ["/app/servers/job-executions"],
       },
 
       {
         label: "Tamaño bases de datos",
         icon: "pi pi-fw pi-database",
-        routerLink: ["/pages/crud"],
+        routerLink: ["/app/servers/database-size"],
       },
     ],
   },

@@ -10,6 +10,7 @@ import { LoginService } from './services/login.service';
 import { MaterialsService } from './services/materials.service';
 import { OfficesService } from './services/offices.service';
 import { PaymentsService } from './services/payments.service';
+import { ServerService } from './services/server.service';
 import { ServiceCreditService } from './services/service-credit.service';
 import { StoreService } from './services/store.service';
 import { TransactionsService } from './services/transactions.service';
@@ -29,6 +30,7 @@ import { UserService } from './services/user.service';
     MaterialsService,
     OfficesService,
     PaymentsService,
+    ServerService,
     ServiceCreditService,
     StoreService,
     TransactionsService,

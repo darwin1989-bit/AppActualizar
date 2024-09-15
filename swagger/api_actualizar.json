@@ -1657,6 +1657,212 @@
         }
       }
     },
+    "/api/Server/jobExecutions/jobsNames": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataNameJobs"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataNameJobs"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataNameJobs"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/jobExecutions/jobExecuted/store/nameJob": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameJob",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/jobExecutions/jobExecuted/store/allJobs": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobExecutionNameDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/jobExecutions/jobExecuted/allStore": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameJob",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobsExecutions"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobsExecutions"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobsExecutions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/ServiceCredit": {
       "get": {
         "tags": ["ServiceCredit"],
@@ -3877,6 +4083,44 @@
         },
         "additionalProperties": false
       },
+      "JobExecutionDto": {
+        "type": "object",
+        "properties": {
+          "nombreOficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipServidor": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Id_Oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Nombre_Job": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Fecha_Ejecucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Tiempo_Ejecucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Estado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Lineitem": {
         "type": "object",
         "properties": {
@@ -4121,6 +4365,20 @@
         },
         "additionalProperties": false
       },
+      "NameJobsDto": {
+        "type": "object",
+        "properties": {
+          "nameJob": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_Nombre_Job": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Newprice": {
         "type": "object",
         "properties": {
@@ -4130,6 +4388,20 @@
             "nullable": true
           },
           "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NoConnection": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
             "type": "string",
             "nullable": true
           }
@@ -4838,6 +5110,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseDataNameJobs": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameJobsDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseDataVoucher": {
         "type": "object",
         "properties": {
@@ -4910,6 +5195,39 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IpPosMobileDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseJobExecutionNameDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobExecutionDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseJobsExecutions": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobExecutionDto"
+            },
+            "nullable": true
+          },
+          "noConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoConnection"
             },
             "nullable": true
           }

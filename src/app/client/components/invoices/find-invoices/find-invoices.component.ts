@@ -20,7 +20,7 @@ export class FindInvoicesComponent implements OnInit, OnDestroy {
 
   public regDocumentNumber!: RegExp;
 
-  public labelName: string = "Selecciona el tipo";
+  public labelName: string = "";
 
   private subscription!: Subscription;
 

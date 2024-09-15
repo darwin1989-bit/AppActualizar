@@ -13,7 +13,7 @@
     class="layout-topbar-menu scalein animation-duration-500 lg:block md:block hidden w-max"
     [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }"
   >
-    <div class="flex align-items-center connect w-max">
+    <div class="flex align-items-center connect w-max" *ngIf="(officesHttpService.offices$ | async)!.ip_Red != '0.0.0.0'">
       <a class="label-badge-success text-sm mr-2 flex justify-content-center align-items-center">
         <i class="pi pi-database text-sm mr-2 align-items-center"></i><a class="font-bold mr-2" style="color: var(--primary-700)">IP: </a>{{ (officesHttpService.offices$ | async)!.ip_Red }}
       </a>

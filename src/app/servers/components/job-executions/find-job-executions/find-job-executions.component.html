@@ -1,0 +1,48 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar jobs</span>
+</div>
+
+<form [formGroup]="jobsForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!namesJobsControl.dirty && namesJobsControl.touched">Nombre del job</label>
+      <p-dropdown
+        [options]="dropdownNamesJos"
+        optionLabel="nameJob"
+        placeholder="Selecciona el job"
+        formControlName="namesJobs"
+        [class.ng-dirty]="namesJobsControl.touched"
+        [filter]="true"
+        filterBy="nameJob"
+        [showClear]="true"
+        [resetFilterOnHide]="true"
+      ></p-dropdown>
+      <div *ngIf="namesJobsControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="namesJobsControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field">
+      <label [class.text-red-500]="dateExecutionJobsControl.invalid && dateExecutionJobsControl.dirty">Fecha</label>
+      <div class="cursor-pointer">
+        <p-calendar
+          formControlName="dateExecutionJobs"
+          [showIcon]="true"
+          [class.ng-dirty]="dateExecutionJobsControl.dirty"
+          [readonlyInput]="true"
+          [showButtonBar]="true"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          dateFormat="yy/mm/dd"
+          selectionMode="range"
+          styleClass="cursor-pointer"
+        />
+      </div>
+      <div *ngIf="dateExecutionJobsControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="dateExecutionJobsControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

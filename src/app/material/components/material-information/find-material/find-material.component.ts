@@ -23,7 +23,7 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
 
   public selectedDropdown!: ITypeMaterials;
 
-  public labelName: string = "Selecciona el tipo";
+  public labelName: string = "";
 
   public materialForm = this.fb.group({
     materialType: [this.selectedDropdown, Validators.required],

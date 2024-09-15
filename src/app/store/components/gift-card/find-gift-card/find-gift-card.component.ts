@@ -24,7 +24,7 @@ export class FindGiftCardComponent implements OnInit, OnDestroy {
 
   public labelError!: string;
 
-  public labelName: string = "Selecciona el tipo";
+  public labelName: string = "";
 
   public giftCardForm = this.fb.group({
     selectOption: [this.selectedDropdown, Validators.required],

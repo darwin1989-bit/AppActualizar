@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject, catchError, tap } from "rxjs";
+import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
 import { PaymentsDto } from "src/app/api/api_actualizar/models";
 import { PaymentsService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
@@ -8,7 +8,7 @@ import { CalledHttpService } from "src/app/shared/services/called-http.service";
   providedIn: "root",
 })
 export class PaymentsComponentService {
-  private payments = new Subject<PaymentsDto[]>();
+  private payments = new BehaviorSubject<PaymentsDto[]>([]);
   public payments$ = this.payments.asObservable();
 
   constructor(private paymentService: PaymentsService, private calledHttpService: CalledHttpService) {}

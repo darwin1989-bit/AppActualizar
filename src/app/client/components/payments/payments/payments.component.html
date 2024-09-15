@@ -9,11 +9,11 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="{ 'min-width': '120rem' }"
+        [tableStyle]="(paymentsService.payments$ | async)!.length == 0 ? null : { 'min-width': '120rem' }"
+        [paginator]="(paymentsService.payments$ | async)!.length > 5 ? true : false"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Id movimiento</th>
             <th>Fecha</th>
             <th>Cajero</th>
             <th>Número transacción</th>
@@ -27,7 +27,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-payments>
           <tr>
-            <td>{{ payments.id_Movimiento }}</td>
             <td>{{ payments.horaProceso | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ payments.userID }}</td>
             <td>{{ payments.numeroTransaccion }}</td>

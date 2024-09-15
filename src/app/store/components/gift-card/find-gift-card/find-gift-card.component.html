@@ -1,5 +1,5 @@
 <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
-  <span class="m-0 text-2xl font-bold">Buscar usuarios</span>
+  <span class="m-0 text-2xl font-bold">Buscar tarjeta regalo</span>
 </div>
 
 <form [formGroup]="giftCardForm">
@@ -18,7 +18,7 @@
         <span class="text-red-500 text-sm" *ngIf="selectOptionControl.hasError('required')">Este campo es requerido.</span>
       </div>
     </div>
-    <div class="field">
+    <div class="field" *ngIf="labelName != ''">
       <label [class.text-red-500]="identificationControl.invalid && identificationControl.dirty">{{ labelName }}</label>
       <input (keydown)="clearResult($event)" pInputText formControlName="identification" autocomplete="off" [pKeyFilter]="inputBlock" />
       <div *ngIf="identificationControl.invalid && identificationControl.dirty">
