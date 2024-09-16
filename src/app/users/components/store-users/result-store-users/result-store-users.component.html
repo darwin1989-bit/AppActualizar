@@ -17,7 +17,7 @@
           <div class="flex mb-2" *ngIf="(usersService.users$ | async)!.length! > 1">
             <span class="p-input-icon-left ml-auto">
               <i class="pi pi-search"></i>
-              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+              <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." />
             </span>
           </div>
         </ng-template>

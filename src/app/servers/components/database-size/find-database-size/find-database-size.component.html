@@ -1,0 +1,29 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar tamaño base de datos</span>
+</div>
+
+<form [formGroup]="databaseForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="databasesNamesControl.invalid && databasesNamesControl.touched">Nombre de la base de datos</label>
+      <p-dropdown
+        [options]="dropdownNames"
+        optionLabel="name"
+        placeholder="Selecciona el job"
+        formControlName="databasesNames"
+        [class.ng-dirty]="databasesNamesControl.touched"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        [resetFilterOnHide]="true"
+        (onChange)="changeDropdown()"
+      ></p-dropdown>
+      <div *ngIf="databasesNamesControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="databasesNamesControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="find()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

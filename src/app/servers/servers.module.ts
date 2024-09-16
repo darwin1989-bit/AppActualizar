@@ -8,9 +8,11 @@ import { FindJobExecutionsComponent } from "./components/job-executions/find-job
 import { ResultJobExecutionsComponent } from "./components/job-executions/result-job-executions/result-job-executions.component";
 import { ResultServerDateControlComponent } from "./components/job-executions/result-server-date-control/result-server-date-control.component";
 import { SharedModule } from "../shared/shared.module";
+import { FindDatabaseSizeComponent } from './components/database-size/find-database-size/find-database-size.component';
+import { ResultDatabaseSizeComponent } from './components/database-size/result-database-size/result-database-size/result-database-size.component';
 
 @NgModule({
-  declarations: [PageJobExecutionsComponent, PageDatabaseSizeComponent, FindJobExecutionsComponent, ResultJobExecutionsComponent, ResultServerDateControlComponent],
+  declarations: [PageJobExecutionsComponent, PageDatabaseSizeComponent, FindJobExecutionsComponent, ResultJobExecutionsComponent, ResultServerDateControlComponent, FindDatabaseSizeComponent, ResultDatabaseSizeComponent],
   imports: [CommonModule, ServersRoutingModule, SharedModule],
 })
 export class ServersModule {}

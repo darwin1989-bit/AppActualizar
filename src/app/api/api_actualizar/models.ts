@@ -11,6 +11,8 @@ export { Computationbaseamount } from './models/computationbaseamount';
 export { Coupon } from './models/coupon';
 export { CreditNoteDto } from './models/credit-note-dto';
 export { DataPromotion } from './models/data-promotion';
+export { DatabaseNameDto } from './models/database-name-dto';
+export { DatabaseSizeDto } from './models/database-size-dto';
 export { Datetime } from './models/datetime';
 export { Datetime1 } from './models/datetime-1';
 export { Extendedamount } from './models/extendedamount';
@@ -73,6 +75,8 @@ export { ResponseComunicationMaterial } from './models/response-comunication-mat
 export { ResponseDto } from './models/response-dto';
 export { ResponseDataNameJobs } from './models/response-data-name-jobs';
 export { ResponseDataVoucher } from './models/response-data-voucher';
+export { ResponseDatabaseNames } from './models/response-database-names';
+export { ResponseDatabaseSize } from './models/response-database-size';
 export { ResponseGiftCard } from './models/response-gift-card';
 export { ResponseInformationGiftCard } from './models/response-information-gift-card';
 export { ResponseInvoiceDto } from './models/response-invoice-dto';

@@ -1,6 +1,6 @@
 <div class="flex align-items-center justify-content-between mb-3">
   <div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full">
-    <span class="m-0 text-2xl font-bold">Selección tienda</span>
+    <span class="m-0 text-2xl font-bold">{{ (openBoxesService.officesOpenBox$ | async)! ? "Selección tienda" : "Selección empresa" }}</span>
   </div>
   <div class="dropdown cursor-pointer scalein animation-duration-500 connect" *ngIf="officesHttpService.offices$ | async">
     <div class="label-badge-success flex align-items-center text-sm font-semibold"><i class="pi pi-database mr-2" style="font-size: 1rem"></i>Conectado</div>

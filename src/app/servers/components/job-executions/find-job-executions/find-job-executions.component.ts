@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { Table } from "primeng/table";
 import { Subscription, tap } from "rxjs";
 import { NameJobsDto, OfficesDto } from "src/app/api/api_actualizar/models";
 import { ExecutionJobService } from "src/app/servers/services/execution-job.service";
@@ -47,6 +46,7 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
       if (this.office) {
         if (this.office.nombre?.toUpperCase() == "TODOS") this.executionJobService.getNamesJosb("172.16.115.10");
         else this.executionJobService.getNamesJosb(this.office.ip_Red!);
+
         this.subscription = this.executionJobService.namesJobs$
           .pipe(
             tap((res) => {

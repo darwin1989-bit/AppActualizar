@@ -22,6 +22,7 @@ import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
 import { PlotsVoucherService } from "src/app/store/services/plots-voucher.service";
 import { GiftCardService } from "src/app/store/services/gift-card.service";
 import { ExecutionJobService } from "src/app/servers/services/execution-job.service";
+import { DatabaseSizeService } from "src/app/servers/services/database-size.service";
 
 @Component({
   selector: "app-find-offices",
@@ -71,7 +72,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private ipBoxesService: IpBoxesService,
     private plotsVoucherService: PlotsVoucherService,
     private giftCardService: GiftCardService,
-    private executionJobService: ExecutionJobService
+    private executionJobService: ExecutionJobService,
+    private databaseSizeService: DatabaseSizeService
   ) {}
 
   ngOnDestroy(): void {
@@ -83,6 +85,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subcription = this.registeredUsersService.OfficesMatriz$.subscribe((res) => (this.pushOffices = res));
     this.subcription = this.executionJobService.excutionsJobs$.subscribe((res) => (this.pushAllOfficesJobs = res));
+    this.subcription = this.databaseSizeService.databases$.subscribe((res) => (this.pushAllOfficesJobs = res));
     this.subcription = this.officesHttpService.validFindOffice$.subscribe((res: boolean) => {
       if (res) {
         this.officesForm.markAllAsTouched();
@@ -92,10 +95,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
     this.company = structuredClone(CompanyObj);
 
-    if (!environment.production) {
-      this.company.splice(0, 3);
-      this.company.push({ name: "PRUEBAS", code: "prb" });
-    }
+    // if (!environment.production) {
+    //   this.company.splice(0, 3);
+    //   this.company.push({ name: "PRUEBAS", code: "prb" });
+    // }
   }
 
   public changeCompany(): void {
@@ -150,6 +153,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.plotsVoucherService.clearPlotsVoucher();
     this.giftCardService.clearGiftCards();
     this.executionJobService.clearTable();
+    this.databaseSizeService.clearDatabaseSize();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -170,6 +174,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.plotsVoucherService.clearPlotsVoucher();
     this.giftCardService.clearGiftCards();
     this.executionJobService.clearTable();
+    this.databaseSizeService.clearDatabaseSize();
   }
 
   public toggle(): void {

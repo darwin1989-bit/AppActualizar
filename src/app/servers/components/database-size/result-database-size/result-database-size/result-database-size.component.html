@@ -1,0 +1,55 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card">
+      <p-table
+        #dt
+        [value]="(databaseSizeService.resultDatabaseSize$ | async)!"
+        styleClass="p-datatable-sm"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(databaseSizeService.resultDatabaseSize$ | async)!.length > 5 ? true : false"
+        [globalFilterFields]="['tienda', 'ipTienda', 'name']"
+        rowGroupMode="rowspan"
+        groupRowsBy="tienda"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex" *ngIf="(databaseSizeService.resultDatabaseSize$ | async)!.length! > 5">
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Tienda</th>
+            <th>Ip tienda</th>
+            <th>Base de datos</th>
+            <th pSortableColumn="size">Tamaño<p-sortIcon field="size"></p-sortIcon></th>
+            <th>Tipo</th>
+            <th>Directorio</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-database let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ database.tienda }}</td>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ database.ipTienda }}</td>
+            <td>{{ database.name }}</td>
+            <td>
+              <p-tag [severity]="getSeverity(database.size)"> {{ database.sizeTransform }}</p-tag>
+            </td>
+            <td>{{ database.type_Desc }}</td>
+            <td>{{ database.physical_Name }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="11" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -11,13 +11,12 @@
         [breakpoint]="'960px'"
         [paginator]="(executionJobService.jobsExecutions$ | async)!.length > 5 ? true : false"
         [globalFilterFields]="['cjs_Estado', 'cjs_Descripcion']"
-        [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="caption">
           <div class="flex" *ngIf="(executionJobService.jobsExecutions$ | async)!.length! > 5">
             <span class="p-input-icon-left ml-auto">
               <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." pKeyFilter="alphanum" />
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." />
             </span>
           </div>
         </ng-template>
@@ -27,8 +26,8 @@
             <th>Ip tienda</th>
             <th>Oficina</th>
             <th>Nombre del job</th>
-            <th pSortableColumn="cjs_Fecha_Ejecucion" style="width: 20%">Fecha y hora ejecución<p-sortIcon field="cjs_Fecha_Ejecucion"></p-sortIcon></th>
-            <th pSortableColumn="cjs_Tiempo_Ejecucion" style="width: 20%">Tiempo de ejecución <p-sortIcon field="cjs_Tiempo_Ejecucion"></p-sortIcon></th>
+            <th pSortableColumn="cjs_Fecha_Ejecucion">Fecha de ejecución<p-sortIcon field="cjs_Fecha_Ejecucion"></p-sortIcon></th>
+            <th pSortableColumn="cjs_Tiempo_Ejecucion">Tiempo <p-sortIcon field="cjs_Tiempo_Ejecucion"></p-sortIcon></th>
             <th>Estado</th>
             <th>Descripción</th>
           </tr>

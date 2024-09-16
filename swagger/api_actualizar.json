@@ -1961,6 +1961,214 @@
         }
       }
     },
+    "/api/Server/database/names": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseNames"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseNames"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseNames"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/database/size/store": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "officeName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameDatabase",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/database/size/allNames": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "officeName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/database/size/name": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameDatabase",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/database/stores": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/ServiceCredit": {
       "get": {
         "tags": ["ServiceCredit"],
@@ -3665,6 +3873,58 @@
         },
         "additionalProperties": false
       },
+      "DatabaseNameDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DatabaseSizeDto": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "file_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type_Desc": {
+            "type": "string",
+            "nullable": true
+          },
+          "physical_Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_Size": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Datetime": {
         "type": "object",
         "properties": {
@@ -5228,6 +5488,39 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/VoucherDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseDatabaseNames": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatabaseNameDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseDatabaseSize": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatabaseSizeDto"
+            },
+            "nullable": true
+          },
+          "noConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoConnection"
             },
             "nullable": true
           }
