@@ -7,7 +7,7 @@
     <div class="field">
       <label [class.text-red-500]="!namesJobsControl.dirty && namesJobsControl.touched">Nombre del job</label>
       <p-dropdown
-        [options]="dropdownNamesJos"
+        [options]="dropdownNamesJobs"
         optionLabel="nameJob"
         placeholder="Selecciona el job"
         formControlName="namesJobs"
@@ -16,13 +16,14 @@
         filterBy="nameJob"
         [showClear]="true"
         [resetFilterOnHide]="true"
+        (onChange)="changeDropdownNamesJobs()"
       ></p-dropdown>
       <div *ngIf="namesJobsControl.touched">
         <span class="text-red-500 text-sm" *ngIf="namesJobsControl.hasError('required')">Este campo es requerido.</span>
       </div>
     </div>
-    <div class="field">
-      <label [class.text-red-500]="dateExecutionJobsControl.invalid && dateExecutionJobsControl.dirty">Fecha</label>
+    <div *ngIf="inputVisible" class="field">
+      <label [class.text-red-500]="dateExecutionJobsControl.invalid && dateExecutionJobsControl.dirty">Fecha de ejecución</label>
       <div class="cursor-pointer">
         <p-calendar
           formControlName="dateExecutionJobs"

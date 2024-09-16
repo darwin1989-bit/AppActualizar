@@ -21,17 +21,19 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
 
   public selectedDropdown!: NameJobsDto;
 
-  public dropdownNamesJos!: NameJobsDto[];
+  public dropdownNamesJobs!: NameJobsDto[];
 
   public minDate!: Date;
 
   public maxDate!: Date;
 
+  public inputVisible: boolean = false;
+
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, public executionJobService: ExecutionJobService) {}
 
   ngOnInit(): void {
     this.executionJobService.setExecutionJobs(true);
-    this.executionJobService.getNamesJosb();
+
     let today = new Date();
     let month = today.getUTCMonth();
     let prevMonth = month === 0 ? 11 : month - 2;
@@ -43,18 +45,22 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
     this.subscription = this.officeService.offices$.subscribe((res) => {
       this.office = res!;
       if (this.office) {
-        this.executionJobService.namesJobs$
+        if (this.office.nombre?.toUpperCase() == "TODOS") this.executionJobService.getNamesJosb("172.16.115.10");
+        else this.executionJobService.getNamesJosb(this.office.ip_Red!);
+        this.subscription = this.executionJobService.namesJobs$
           .pipe(
             tap((res) => {
               const clone = structuredClone(res);
-              if (this.office.nombre?.toUpperCase() != "TODOS") {
-                const some = clone.some((f) => f.nameJob == "TODOS");
-                if (!some) clone.unshift({ nameJob: "TODOS", cjs_Nombre_Job: this.company.code });
-                this.dropdownNamesJos = clone;
-              } else {
-                const some = clone.some((f) => f.nameJob == "TODOS");
-                if (some) clone.splice(0, 1);
-                this.dropdownNamesJos = clone;
+              if (this.office) {
+                if (this.office.nombre?.toUpperCase() != "TODOS") {
+                  const some = clone.some((f) => f.nameJob == "TODOS");
+                  this.dropdownNamesJobs = clone.sort((a, b) => a.nameJob!.localeCompare(b.nameJob!, "es", { sensitivity: "base" }));
+                  if (!some) clone.unshift({ nameJob: "TODOS", cjs_Nombre_Job: this.company.code });
+                } else {
+                  const some = clone.some((f) => f.nameJob == "TODOS");
+                  this.dropdownNamesJobs = clone.sort((a, b) => a.nameJob!.localeCompare(b.nameJob!, "es", { sensitivity: "base" }));
+                  if (some) clone.splice(0, 1);
+                }
               }
             })
           )
@@ -62,10 +68,15 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
       }
       this.jobsForm.reset();
     });
+    this.subscription = this.executionJobService.executePa$.subscribe((res) => {
+      if (res) this.find();
+    });
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
     this.executionJobService.setExecutionJobs(false);
+    this.executionJobService.setVisibleResultServerDateControl(false);
+    this.executionJobService.setVisibleResultJob(true);
   }
 
   public jobsForm = this.fb.group({
@@ -88,27 +99,49 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
 
     if (this.jobsForm.valid && this.office.nombre != "") {
       let dateRange: Date[] | null = this.dateExecutionJobsControl.value;
-      let startDate: Date;
-      startDate = new Date(dateRange![0]);
-      startDate.setHours(-5, 0, 0);
-      let endDate: Date;
+      if (dateRange != null) {
+        let startDate: Date;
+        startDate = new Date(dateRange![0]);
+        startDate.setHours(-5, 0, 0);
+        let endDate: Date;
 
-      if (dateRange![1]) {
-        endDate = new Date(dateRange![1]);
-        endDate.setHours(18, 59, 59);
-      } else {
-        let startDate2 = new Date(dateRange![0]);
-        endDate = startDate2;
-        endDate.setHours(18, 59, 59);
+        if (dateRange![1]) {
+          endDate = new Date(dateRange![1]);
+          endDate.setHours(18, 59, 59);
+        } else {
+          let startDate2 = new Date(dateRange![0]);
+          endDate = startDate2;
+          endDate.setHours(18, 59, 59);
+        }
+
+        if (this.office.nombre == "TODOS" && this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() != "CONTROL FECHA SERVIDOR")
+          return this.executionJobService.GetExecutedJobAllStore(this.company.code!, this.namesJobsControl.value.cjs_Nombre_Job!, startDate.toJSON(), endDate.toJSON());
+
+        if (this.namesJobsControl.value.nameJob != "TODOS" && this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() != "CONTROL FECHA SERVIDOR") {
+          this.executionJobService.GetExecutedStoreNameJob(this.office.ip_Red!, this.namesJobsControl.value.cjs_Nombre_Job!, startDate.toJSON(), endDate.toJSON());
+        } else if (this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() != "CONTROL FECHA SERVIDOR") {
+          this.executionJobService.GetExecutedStoreAllJobs(this.office.ip_Red!, startDate.toJSON(), endDate.toJSON());
+        }
       }
 
-      if (this.office.nombre == "TODOS") return this.executionJobService.GetExecutedJobAllStore(this.company.code!, this.namesJobsControl.value.cjs_Nombre_Job!, startDate.toJSON(), endDate.toJSON());
+      if (this.office.nombre == "TODOS" && this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() == "CONTROL FECHA SERVIDOR")
+        this.executionJobService.GetServerDateControlAllStore(this.company.code!);
+      else if (this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() == "CONTROL FECHA SERVIDOR") this.executionJobService.GetServerDateControl(this.office.ip_Red!, this.office.nombre!);
+    }
+  }
 
-      if (this.namesJobsControl.value.nameJob != "TODOS") {
-        this.executionJobService.GetExecutedStoreNameJob(this.office.ip_Red!, this.namesJobsControl.value.cjs_Nombre_Job!, startDate.toJSON(), endDate.toJSON());
-      } else {
-        this.executionJobService.GetExecutedStoreAllJobs(this.office.ip_Red!, startDate.toJSON(), endDate.toJSON());
-      }
+  public changeDropdownNamesJobs(): void {
+    this.executionJobService.clearTable();
+    if (this.namesJobsControl.value.nameJob?.trimEnd().toUpperCase() == "CONTROL FECHA SERVIDOR") {
+      this.inputVisible = false;
+      this.executionJobService.setVisibleResultServerDateControl(true);
+      this.executionJobService.setVisibleResultJob(false);
+      this.dateExecutionJobsControl.disable();
+    } else {
+      this.inputVisible = true;
+      this.executionJobService.setVisibleResultJob(true);
+      this.executionJobService.setVisibleResultServerDateControl(false);
+      this.dateExecutionJobsControl.enable();
     }
   }
 }

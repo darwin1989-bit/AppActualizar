@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, tap } from "rxjs";
-import { JobExecutionDto, NameJobsDto } from "src/app/api/api_actualizar/models";
+import { JobExecutionDto, NameJobsDto, ServerDateControlDto } from "src/app/api/api_actualizar/models";
 import { ServerService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
@@ -12,6 +12,15 @@ export class ExecutionJobService {
   private excutionsJobs = new BehaviorSubject<boolean>(false);
   public excutionsJobs$ = this.excutionsJobs.asObservable();
 
+  private executePa = new BehaviorSubject<boolean>(false);
+  public executePa$ = this.executePa.asObservable();
+
+  private visibleResultServerDateControl = new BehaviorSubject<boolean>(false);
+  public visibleResultServerDateControl$ = this.visibleResultServerDateControl.asObservable();
+
+  private visibleResultJob = new BehaviorSubject<boolean>(true);
+  public visibleResultJob$ = this.visibleResultJob.asObservable();
+
   private namesJobs = new BehaviorSubject<NameJobsDto[]>([]);
   public namesJobs$ = this.namesJobs.asObservable();
 
@@ -21,11 +30,14 @@ export class ExecutionJobService {
   private resetTable = new BehaviorSubject<boolean>(false);
   public resetTable$ = this.resetTable.asObservable();
 
+  private serverDateControlResult = new BehaviorSubject<ServerDateControlDto[]>([]);
+  public serverDateControlResult$ = this.serverDateControlResult.asObservable();
+
   constructor(public serverService: ServerService, private calledHttpService: CalledHttpService, private toastMessageService: ToastMessagesService) {}
 
-  public getNamesJosb(): void {
+  public getNamesJosb(ip: string): void {
     this.serverService
-      .apiServerJobExecutionsJobsNamesGet$Json({ ip: "172.16.115.10" })
+      .apiServerJobExecutionsJobsNamesGet$Json({ ip })
       .pipe(
         tap((res) => this.namesJobs.next(res.data!)),
         catchError((error) => {
@@ -33,9 +45,6 @@ export class ExecutionJobService {
         })
       )
       .subscribe();
-  }
-  public setExecutionJobs(value: boolean): void {
-    this.excutionsJobs.next(value);
   }
 
   public GetExecutedStoreNameJob(ip: string, nameJob: string, startDate: string, endDate: string): void {
@@ -60,6 +69,9 @@ export class ExecutionJobService {
               this.toastMessageService.showToast("tc", "error", "Sin conexión", `No se tiene conexión con la tienda ${element.tienda}`);
             });
           } else {
+            if (res.data!.length == 0) {
+              this.toastMessageService.showToast("tc", "warn", "Advertencia", `No se encontraron resultados`);
+            }
             this.jobsExecutions.next(res.data!);
           }
         })
@@ -78,8 +90,64 @@ export class ExecutionJobService {
       .subscribe();
   }
 
+  public GetServerDateControl(ip: string, nameOffice: string): void {
+    this.serverService
+      .apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json({ ip, nameOffice })
+      .pipe(
+        tap((res) => {
+          this.serverDateControlResult.next(res.data!);
+        }),
+        catchError((error) => {
+          return this.calledHttpService.errorHandler(error);
+        })
+      )
+      .subscribe();
+  }
+  public GetServerDateControlAllStore(company: string): void {
+    this.serverService
+      .apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json({ company })
+      .pipe(
+        tap((res) => {
+          this.serverDateControlResult.next(res.data!);
+        }),
+        catchError((error) => {
+          return this.calledHttpService.errorHandler(error);
+        })
+      )
+      .subscribe();
+  }
+
+  public executeStoreProcedure(ip: string) {
+    this.serverService
+      .apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet({ ip })
+      .pipe(
+        tap(() => {
+          this.toastMessageService.showToast("tc", "success", "Realizado", `Se ejecuto correctamente el procedimiento almacenado`);
+          this.executePa.next(true);
+        }),
+        catchError((error) => {
+          return this.calledHttpService.errorHandler(error);
+        })
+      )
+      .subscribe();
+  }
+
+  public setExecutionJobs(value: boolean): void {
+    this.excutionsJobs.next(value);
+  }
+
+  public setVisibleResultServerDateControl(value: boolean): void {
+    this.visibleResultServerDateControl.next(value);
+  }
+  public setVisibleResultJob(value: boolean): void {
+    this.visibleResultJob.next(value);
+  }
+
   public clearTable(): void {
     this.jobsExecutions.next([]);
     this.resetTable.next(true);
+    this.serverDateControlResult.next([]);
+    this.visibleResultJob.next(true);
+    this.visibleResultServerDateControl.next(false);
   }
 }

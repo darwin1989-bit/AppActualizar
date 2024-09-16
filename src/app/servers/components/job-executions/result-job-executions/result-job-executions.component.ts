@@ -16,6 +16,7 @@ export class ResultJobExecutionsComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
 
   constructor(public executionJobService: ExecutionJobService) {}
+
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
     this.executionJobService.clearTable();
@@ -30,6 +31,7 @@ export class ResultJobExecutionsComponent implements OnInit, OnDestroy {
   public onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, "contains");
   }
+
   public getSeverity(value: string): string {
     if (value != "CORRECTO") return "danger";
     return "success";

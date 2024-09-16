@@ -1,4 +1,4 @@
-<div class="grid mt-3">
+<div *ngIf="executionJobService.visibleResultJob$ | async" class="grid mt-3">
   <div class="col-12 md:col-12">
     <div class="card surface-card">
       <p-table

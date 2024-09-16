@@ -12,6 +12,7 @@ import { map, filter } from 'rxjs/operators';
 import { ResponseDataNameJobs } from '../models/response-data-name-jobs';
 import { ResponseJobExecutionNameDto } from '../models/response-job-execution-name-dto';
 import { ResponseJobsExecutions } from '../models/response-jobs-executions';
+import { ResponseServerDateControl } from '../models/response-server-date-control';
 
 @Injectable({
   providedIn: 'root',
@@ -473,6 +474,267 @@ export class ServerService extends BaseService {
 
     return this.apiServerJobExecutionsJobExecutedAllStoreGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseJobsExecutions>) => r.body as ResponseJobsExecutions)
+    );
+  }
+
+  /**
+   * Path part for operation apiServerJobExecutionsJobExecutedServerDateControlStoreGet
+   */
+  static readonly ApiServerJobExecutionsJobExecutedServerDateControlStoreGetPath = '/api/Server/jobExecutions/jobExecuted/serverDateControl/store';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Plain$Response(params?: {
+    ip?: string;
+    nameOffice?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseServerDateControl>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ServerService.ApiServerJobExecutionsJobExecutedServerDateControlStoreGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('nameOffice', params.nameOffice, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseServerDateControl>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Plain(params?: {
+    ip?: string;
+    nameOffice?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseServerDateControl> {
+
+    return this.apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseServerDateControl>) => r.body as ResponseServerDateControl)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json$Response(params?: {
+    ip?: string;
+    nameOffice?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseServerDateControl>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ServerService.ApiServerJobExecutionsJobExecutedServerDateControlStoreGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('nameOffice', params.nameOffice, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseServerDateControl>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json(params?: {
+    ip?: string;
+    nameOffice?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseServerDateControl> {
+
+    return this.apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseServerDateControl>) => r.body as ResponseServerDateControl)
+    );
+  }
+
+  /**
+   * Path part for operation apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet
+   */
+  static readonly ApiServerJobExecutionsJobExecutedServerDateControlAllStoreGetPath = '/api/Server/jobExecutions/jobExecuted/serverDateControl/allStore';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Plain$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseServerDateControl>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ServerService.ApiServerJobExecutionsJobExecutedServerDateControlAllStoreGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseServerDateControl>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Plain(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseServerDateControl> {
+
+    return this.apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseServerDateControl>) => r.body as ResponseServerDateControl)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseServerDateControl>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ServerService.ApiServerJobExecutionsJobExecutedServerDateControlAllStoreGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseServerDateControl>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseServerDateControl> {
+
+    return this.apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseServerDateControl>) => r.body as ResponseServerDateControl)
+    );
+  }
+
+  /**
+   * Path part for operation apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet
+   */
+  static readonly ApiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGetPath = '/api/Server/jobExecutions/jobExecuted/serverDateControl/storedProcedure';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ServerService.ApiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<void> {
+
+    return this.apiServerJobExecutionsJobExecutedServerDateControlStoredProcedureGet$Response(params,context).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

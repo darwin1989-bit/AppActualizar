@@ -1863,6 +1863,104 @@
         }
       }
     },
+    "/api/Server/jobExecutions/jobExecuted/serverDateControl/store": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameOffice",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/jobExecutions/jobExecuted/serverDateControl/allStore": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseServerDateControl"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Server/jobExecutions/jobExecuted/serverDateControl/storedProcedure": {
+      "get": {
+        "tags": ["Server"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/ServiceCredit": {
       "get": {
         "tags": ["ServiceCredit"],
@@ -5459,6 +5557,26 @@
         },
         "additionalProperties": false
       },
+      "ResponseServerDateControl": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServerDateControlDto"
+            },
+            "nullable": true
+          },
+          "noConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoConnection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseStoreOffices": {
         "type": "object",
         "properties": {
@@ -5656,6 +5774,32 @@
             "items": {
               "$ref": "#/components/schemas/Promotionpricederivationrulereference"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServerDateControlDto": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "cfs_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "cfs_ultima_fecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "cfs_estado": {
+            "type": "string",
             "nullable": true
           }
         },
