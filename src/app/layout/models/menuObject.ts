@@ -86,7 +86,7 @@ export const itemsObj: any[] = [
       {
         label: "Vendedores",
         icon: "pi pi-fw pi-shopping-cart",
-        routerLink: ["/landing"],
+        routerLink: ["/app/sellers/sellers"],
       },
     ],
   },

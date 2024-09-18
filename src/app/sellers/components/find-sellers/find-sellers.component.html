@@ -1,0 +1,34 @@
+<div class="white-space-nowrap overflow-hidden text-overflow-ellipsis md:w-8rem lg:w-full mb-3">
+  <span class="m-0 text-2xl font-bold">Buscar vendedores</span>
+</div>
+
+<form [formGroup]="sellerForm">
+  <div class="card">
+    <div class="field">
+      <label [class.text-red-500]="!sellerDropdwnControl.dirty && sellerDropdwnControl.touched">Tipo de búsqueda</label>
+      <p-dropdown
+        (onChange)="changeDropDown()"
+        [options]="dropdown"
+        optionLabel="label"
+        placeholder="Selecciona el tipo"
+        formControlName="sellerDropdwn"
+        [class.ng-dirty]="sellerDropdwnControl.touched"
+      ></p-dropdown>
+      <div *ngIf="sellerDropdwnControl.touched">
+        <span class="text-red-500 text-sm" *ngIf="sellerDropdwnControl.hasError('required')">Este campo es requerido.</span>
+      </div>
+    </div>
+    <div class="field" *ngIf="labelName != ''">
+      <label [class.text-red-500]="sellerInputControl.invalid && sellerInputControl.dirty">{{ labelName }}</label>
+      <input (keydown)="clearResult($event)" pInputText formControlName="sellerInput" autocomplete="off" pKeyFilter="int" />
+      <div *ngIf="sellerInputControl.invalid && sellerInputControl.dirty">
+        <span class="text-red-500 text-sm" *ngIf="sellerInputControl.hasError('required')">Este campo es requerido.</span>
+        <span class="text-red-500 text-sm" *ngIf="sellerInputControl.errors?.['minlength']"> {{ labelError }}</span>
+        <span class="text-red-500 text-sm" *ngIf="sellerInputControl.errors?.['maxlength']"> {{ labelError }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <button (click)="findSeller()" icon="pi pi-search" class="p-button-raised p-button-primary" pButton pRipple label="Buscar"></button>
+  </div>
+</form>

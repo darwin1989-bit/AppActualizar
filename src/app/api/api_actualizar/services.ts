@@ -4,6 +4,7 @@ export { LoginService } from './services/login.service';
 export { MaterialsService } from './services/materials.service';
 export { OfficesService } from './services/offices.service';
 export { PaymentsService } from './services/payments.service';
+export { SellersService } from './services/sellers.service';
 export { ServerService } from './services/server.service';
 export { ServiceCreditService } from './services/service-credit.service';
 export { StoreService } from './services/store.service';

@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: "users", loadChildren: () => import("../users/users.module").then((m) => m.UsersModule) },
       { path: "store", loadChildren: () => import("../store/store.module").then((m) => m.StoreModule) },
       { path: "servers", loadChildren: () => import("../servers/servers.module").then((m) => m.ServersModule) },
+      { path: "sellers", loadChildren: () => import("../sellers/sellers.module").then((m) => m.SellersModule) },
       {
         path: "",
         redirectTo: "/app/home",

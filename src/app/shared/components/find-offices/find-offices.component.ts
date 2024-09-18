@@ -23,6 +23,7 @@ import { PlotsVoucherService } from "src/app/store/services/plots-voucher.servic
 import { GiftCardService } from "src/app/store/services/gift-card.service";
 import { ExecutionJobService } from "src/app/servers/services/execution-job.service";
 import { DatabaseSizeService } from "src/app/servers/services/database-size.service";
+import { SellersAssignedService } from "src/app/sellers/services/sellers-assigned.service";
 
 @Component({
   selector: "app-find-offices",
@@ -73,7 +74,8 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private plotsVoucherService: PlotsVoucherService,
     private giftCardService: GiftCardService,
     private executionJobService: ExecutionJobService,
-    private databaseSizeService: DatabaseSizeService
+    private databaseSizeService: DatabaseSizeService,
+    private sellersAssignedService: SellersAssignedService
   ) {}
 
   ngOnDestroy(): void {
@@ -154,6 +156,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.giftCardService.clearGiftCards();
     this.executionJobService.clearTable();
     this.databaseSizeService.clearDatabaseSize();
+    this.sellersAssignedService.clearTableSellers();
   }
   public clearOffice(): void {
     this.officesForm.controls.officeInput.reset();
@@ -175,6 +178,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.giftCardService.clearGiftCards();
     this.executionJobService.clearTable();
     this.databaseSizeService.clearDatabaseSize();
+    this.sellersAssignedService.clearTableSellers();
   }
 
   public toggle(): void {

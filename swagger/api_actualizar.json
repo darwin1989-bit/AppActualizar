@@ -1657,6 +1657,350 @@
         }
       }
     },
+    "/api/Sellers/sapCode": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sapCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/main/sapCode": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sapCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/identification": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identification",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/main/identification": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identification",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/assigned/id": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/main/assigned/id": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/assigned/sapCode": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SapCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Sellers/main/assigned/sapCode": {
+      "get": {
+        "tags": ["Sellers"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sapCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignedSeller"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Server/jobExecutions/jobsNames": {
       "get": {
         "tags": ["Server"],
@@ -3395,6 +3739,64 @@
             "nullable": true
           },
           "messageType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignedSellerDto": {
+        "type": "object",
+        "properties": {
+          "id_conv_barra": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_ingreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario_modificacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "oOficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "sSucursal": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechA_INICIO": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechA_FIN": {
+            "type": "string",
+            "nullable": true
+          },
+          "indefinido": {
             "type": "string",
             "nullable": true
           }
@@ -5419,6 +5821,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseAssignedSeller": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssignedSellerDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseAuthorizingUser": {
         "type": "object",
         "properties": {
@@ -5850,6 +6265,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseSeller": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SellersDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseServerDateControl": {
         "type": "object",
         "properties": {
@@ -6067,6 +6495,32 @@
             "items": {
               "$ref": "#/components/schemas/Promotionpricederivationrulereference"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SellersDto": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo_Vendedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre_Vendedor": {
+            "type": "string",
+            "nullable": true
+          },
+          "ven_CedulaVendedor": {
+            "type": "string",
             "nullable": true
           }
         },
