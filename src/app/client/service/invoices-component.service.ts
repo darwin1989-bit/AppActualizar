@@ -64,7 +64,7 @@ export class InvoicesComponentService {
   }
 
   private invoiceNumberMain(ip: string, numberInvoice: string): Observable<ResponseInvoiceDto> {
-    return this.invoiceService.apiInvoicesNumberMainGet$Json({ ip, numberInvoice }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+    return this.invoiceService.apiInvoicesMainNumberGet$Json({ ip, numberInvoice }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
   }
 
   private invoiceIdentification(ip: string, identification: string): Observable<ResponseInvoiceDto> {
@@ -72,7 +72,7 @@ export class InvoicesComponentService {
   }
 
   private invoiceIdentificationMain(ip: string, identification: string): Observable<ResponseInvoiceDto> {
-    return this.invoiceService.apiInvoicesIdentificationMainGet$Json({ ip, identification }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+    return this.invoiceService.apiInvoicesMainIdentificationGet$Json({ ip, identification }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
   }
 
   private allInvoices(ip: string): Observable<ResponseInvoiceDto> {
@@ -80,15 +80,15 @@ export class InvoicesComponentService {
   }
 
   private allInvoicesMain(ip: string, office: string): Observable<ResponseInvoiceDto> {
-    return this.invoiceService.apiInvoicesAllInvoicesMainGet$Json({ ip, office }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
+    return this.invoiceService.apiInvoicesMainAllInvoicesGet$Json({ ip, office }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
   }
 
   private creditNote(ip: string, creditNoteNumber: string) {
-    return this.invoiceService.apiInvoicesCreditNoteGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+    return this.invoiceService.apiInvoicesCreditNotesGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
   }
 
   private creditNoteMain(ip: string, creditNoteNumber: string) {
-    return this.invoiceService.apiInvoicesCreditNoteMainGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
+    return this.invoiceService.apiInvoicesMainCreditNotesGet$Json({ ip, creditNoteNumber }).pipe(catchError((error) => this.calledHttpService.errorHandler(error)));
   }
 
   public getInvoiceDetails(ip: string, numberInvoice: string): void {

@@ -47,7 +47,7 @@ export class AppConfigComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     const token: any = sessionStorage.getItem("token");
-    const tokenDataDecode: any = this.helper.decodeToken(token);
+    const tokenDataDecode = this.helper.decodeToken(token);
     this.userApp = tokenDataDecode;
 
     if (!token) this.expiredSession("top", false);

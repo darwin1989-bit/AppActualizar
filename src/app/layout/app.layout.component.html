@@ -32,3 +32,34 @@
   <app-config></app-config>
   <div class="layout-mask"></div>
 </div>
+
+<p-dialog [(visible)]="sesionCaducada" [modal]="true" [draggable]="false" [resizable]="false" [closable]="false" [style]="{ width: '380px' }" class="custom">
+  <ng-template pTemplate="header">
+    <div class="loader"></div>
+    <h4 class="m-0">Información de sesión</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="flex align-items-center">
+      <span class="mr-2 flex justify-content-center">Su sesión caducará en</span>
+      <a class="font-bold mr-1">{{ tiempoCaducidad }}</a>
+      <a class="font-bold" *ngIf="(tiempoCaducidad === 3 || tiempoCaducidad === 2) && !seconds">minutos</a>
+      <a class="font-bold" *ngIf="seconds">{{ tiempoCaducidad == 1 ? "segundo" : "segundos" }}</a>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" pButton label="Continuar trabajando" class="p-button-raised p-button-info" (click)="continueWorking()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="sesionCaduco" [modal]="true" [draggable]="false" [resizable]="false" [closable]="false" [style]="{ width: '380px' }" class="custom">
+  <ng-template pTemplate="header">
+    <i class="pi pi-clock font-bold" style="font-size: 1.6rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Información de sesión</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <span>Su sesión ha caducado</span>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" pButton label="Iniciar sesión" class="p-button-raised p-button-sm p-button-info" (click)="login()"></button>
+  </ng-template>
+</p-dialog>

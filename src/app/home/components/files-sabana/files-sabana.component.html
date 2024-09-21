@@ -1,0 +1,40 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div *ngIf="(homeService.filesEcomm$ | async) ? false : true; else elseBlock">
+      <p-skeleton width="sm:5rem 62rem" height="10rem" />
+    </div>
+
+    <ng-template #elseBlock>
+      <div class="card surface-card">
+        <h5 class="font-bold mb-5">Archivos Sabana Ecomm</h5>
+        <p-table #dt [value]="(homeService.filesEcomm$ | async)!" styleClass="p-datatable-sm" [rows]="2" [scrollable]="true" [breakpoint]="'960px'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nombre</th>
+              <th>Fecha de creación</th>
+              <th>Tamaño</th>
+              <th>Extensión</th>
+              <th>Estado</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-files>
+            <tr>
+              <td>{{ files.name }}</td>
+              <td>{{ files.creationTime | date : "yyy/mm/dd HH:mm" }}</td>
+              <td>{{ files.siceMb }} MB</td>
+              <td>{{ files.extension }}</td>
+              <td>
+                <p-tag [severity]="getSeverity(files.status)"> {{ files.status }}</p-tag>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="3" class="font-normal py-4">No existen datos que mostrar.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </ng-template>
+  </div>
+</div>

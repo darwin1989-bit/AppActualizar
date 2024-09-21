@@ -128,6 +128,7 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
         this.executionJobService.GetServerDateControlAllStore(this.company.code!);
       else if (this.namesJobsControl.value.nameJob!.trimEnd().toUpperCase() == "CONTROL FECHA SERVIDOR") this.executionJobService.GetServerDateControl(this.office.ip_Red!, this.office.nombre!);
     }
+    this.executionJobService.clearData();
   }
 
   public changeDropdownNamesJobs(): void {

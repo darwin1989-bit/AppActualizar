@@ -1,0 +1,16 @@
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div *ngIf="(homeService.summaryPayFrom$ | async) ? false : true; else elseBlock">
+      <p-skeleton width="sm:5rem 62rem" height="32rem" />
+    </div>
+
+    <ng-template #elseBlock>
+      <div class="card surface-card">
+        <h5 class="font-bold mb-5">Resumen tiendas paga desde</h5>
+        <div>
+          <p-chart class="flex justify-content-center" type="doughnut" [data]="polarData" [options]="polarOptions" />
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

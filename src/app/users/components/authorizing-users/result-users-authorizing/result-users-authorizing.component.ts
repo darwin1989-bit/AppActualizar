@@ -29,4 +29,9 @@ export class ResultUsersAuthorizingComponent implements OnInit, OnDestroy {
 
     this.usersAuthorizingService.updateAuthorizingUser(this.office.ip_Red!, userAuthorizing);
   }
+
+  public changeAuthorizingNc(value: string): void {
+    if (value == "S") this.usersAuthorizingService.updateAuthorizerNc(this.office.ip_Red!, "N");
+    else this.usersAuthorizingService.updateAuthorizerNc(this.office.ip_Red!, "S");
+  }
 }

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ClientService } from './services/client.service';
+import { DashboardService } from './services/dashboard.service';
 import { InvoicesService } from './services/invoices.service';
 import { LoginService } from './services/login.service';
 import { MaterialsService } from './services/materials.service';
@@ -26,6 +27,7 @@ import { UserService } from './services/user.service';
   declarations: [],
   providers: [
     ClientService,
+    DashboardService,
     InvoicesService,
     LoginService,
     MaterialsService,

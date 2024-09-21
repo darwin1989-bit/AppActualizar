@@ -21,14 +21,19 @@ export class RequestInterceptor implements HttpInterceptor {
     });
 
     if (!req.url.includes("es.json")) {
-      this.countRequest++;
-      this.callHttp.showLoad();
-      return next.handle(requestClone).pipe(
-        finalize(() => {
-          this.countRequest--;
-          if (this.countRequest == 0) this.callHttp.hideLoad();
-        })
-      );
+      if (!req.url.includes("api/Dashboard")) {
+        this.countRequest++;
+        this.callHttp.showLoad();
+        return next.handle(requestClone).pipe(
+          finalize(() => {
+            this.countRequest--;
+            if (this.countRequest == 0) this.callHttp.hideLoad();
+          })
+        );
+      } else {
+        this.callHttp.hideLoad();
+        return next.handle(requestClone);
+      }
     } else {
       this.callHttp.hideLoad();
       return next.handle(requestClone);

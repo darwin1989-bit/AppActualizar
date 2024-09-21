@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { AuthorizingUserDto } from '../models/authorizing-user-dto';
 import { RegisteredUserDto } from '../models/registered-user-dto';
+import { ResponseAuthorizerNcDto } from '../models/response-authorizer-nc-dto';
 import { ResponseAuthorizingUser } from '../models/response-authorizing-user';
 import { ResponseIpPosMobile } from '../models/response-ip-pos-mobile';
 import { ResponseMessage } from '../models/response-message';
@@ -1387,6 +1388,214 @@ export class UserService extends BaseService {
 
     return this.apiUserMainUpdateRegisteredUserPut$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserAuthorizerNcGet
+   */
+  static readonly ApiUserAuthorizerNcGetPath = '/api/User/authorizerNc';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizerNcGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcGet$Plain$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizerNcGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizerNcGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcGet$Plain(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserAuthorizerNcGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizerNcGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcGet$Json$Response(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizerNcGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizerNcGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcGet$Json(params?: {
+    ip?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserAuthorizerNcGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserAuthorizerNcPut
+   */
+  static readonly ApiUserAuthorizerNcPutPath = '/api/User/authorizerNc';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizerNcPut$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcPut$Plain$Response(params?: {
+    ip?: string;
+    description?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizerNcPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('description', params.description, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizerNcPut$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcPut$Plain(params?: {
+    ip?: string;
+    description?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserAuthorizerNcPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserAuthorizerNcPut$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcPut$Json$Response(params?: {
+    ip?: string;
+    description?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserAuthorizerNcPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('description', params.description, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserAuthorizerNcPut$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserAuthorizerNcPut$Json(params?: {
+    ip?: string;
+    description?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserAuthorizerNcPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
     );
   }
 

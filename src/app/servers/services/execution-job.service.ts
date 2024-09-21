@@ -95,7 +95,21 @@ export class ExecutionJobService {
       .apiServerJobExecutionsJobExecutedServerDateControlStoreGet$Json({ ip, nameOffice })
       .pipe(
         tap((res) => {
-          this.serverDateControlResult.next(res.data!);
+          const date = new Date().toJSON().substring(0, 10).replace("-", "").replace("-", "");
+
+          const mapRes = res.data?.map((m) => {
+            const dateRes = m.cfs_ultima_fecha?.substring(0, 10).replace("/", "").replace("/", "");
+
+            let invalidDate = true;
+
+            if (date == dateRes && m.cfs_estado == "OK") invalidDate = false;
+
+            return {
+              ...m,
+              validDate: invalidDate,
+            };
+          });
+          this.serverDateControlResult.next(mapRes!);
         }),
         catchError((error) => {
           return this.calledHttpService.errorHandler(error);
@@ -108,7 +122,21 @@ export class ExecutionJobService {
       .apiServerJobExecutionsJobExecutedServerDateControlAllStoreGet$Json({ company })
       .pipe(
         tap((res) => {
-          this.serverDateControlResult.next(res.data!);
+          const date = new Date().toJSON().substring(0, 10).replace("-", "").replace("-", "");
+
+          const mapRes = res.data?.map((m) => {
+            const dateRes = m.cfs_ultima_fecha?.substring(0, 10).replace("/", "").replace("/", "");
+
+            let invalidDate = true;
+
+            if (date == dateRes && m.cfs_estado == "OK") invalidDate = false;
+
+            return {
+              ...m,
+              validDate: invalidDate,
+            };
+          });
+          this.serverDateControlResult.next(mapRes!);
         }),
         catchError((error) => {
           return this.calledHttpService.errorHandler(error);
@@ -141,6 +169,11 @@ export class ExecutionJobService {
   }
   public setVisibleResultJob(value: boolean): void {
     this.visibleResultJob.next(value);
+  }
+
+  public clearData(): void {
+    this.jobsExecutions.next([]);
+    this.serverDateControlResult.next([]);
   }
 
   public clearTable(): void {

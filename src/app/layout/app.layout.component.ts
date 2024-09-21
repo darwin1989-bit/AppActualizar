@@ -1,6 +1,6 @@
-import { Component, OnDestroy, Renderer2, ViewChild } from "@angular/core";
+import { Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
-import { filter, Subscription } from "rxjs";
+import { concatMap, filter, interval, Subscription, take, tap, timer } from "rxjs";
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from "./app.topbar.component";
@@ -72,6 +72,29 @@ import { SharedService } from "../shared/services/shared.service";
           width: 90%;
         }
       }
+
+      .loader {
+        width: 20px;
+        aspect-ratio: 1;
+        display: flex;
+        color: var(--surface-900);
+        border: 2px solid;
+        box-sizing: border-box;
+        border-radius: 50%;
+        background: radial-gradient(circle 2px, currentColor 95%, #0000), linear-gradient(currentColor 50%, #0000 0) 50%/2px 60% no-repeat;
+        animation: l1 5s infinite linear;
+      }
+      .loader:before {
+        content: "";
+        flex: 1;
+        background: linear-gradient(currentColor 50%, #0000 0) 50%/2px 80% no-repeat;
+        animation: inherit;
+      }
+      @keyframes l1 {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
       /*para poner bordes en los iconos del slidebar*/
       // :host ::ng-deep .layout-menu ul a {
       //   padding: 0.3rem 0.75rem;
@@ -93,8 +116,10 @@ import { SharedService } from "../shared/services/shared.service";
     `,
   ],
 })
-export class AppLayoutComponent implements OnDestroy {
+export class AppLayoutComponent implements OnInit, OnDestroy {
   overlayMenuOpenSubscription: Subscription;
+
+  subscription!: Subscription;
 
   menuOutsideClickListener: any;
 
@@ -103,6 +128,18 @@ export class AppLayoutComponent implements OnDestroy {
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
   @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
+
+  sesionCaducada: boolean = false;
+  sesionCaduco: boolean = false;
+  sesionBlock: boolean = false;
+  block: boolean = false;
+  tiempoCaducidad: number = 3;
+  seconds!: boolean;
+  minutos!: boolean;
+
+  private contadorSub?: Subscription;
+  private addMinutosSub?: Subscription;
+  private segundosSub?: Subscription;
 
   constructor(
     public layoutService: LayoutService,
@@ -160,6 +197,9 @@ export class AppLayoutComponent implements OnDestroy {
       this.hideMenu();
       this.hideProfileMenu();
     });
+  }
+  ngOnInit(): void {
+    this.expiredTime();
   }
 
   hideMenu() {
@@ -227,5 +267,58 @@ export class AppLayoutComponent implements OnDestroy {
 
   onReject() {
     this.messageService.clear("cf");
+  }
+
+  @HostListener("document:click", ["$event"])
+  onClick(event: MouseEvent) {
+    if (!this.sesionBlock) {
+      this.continueWorking();
+      this.expiredTime();
+    }
+  }
+
+  expiredTime(): void {
+    this.minutos = true;
+    let timeLeft = 180;
+    const contador = timer(1020000);
+    const ts = interval(1000).pipe(take(timeLeft));
+
+    this.subscription = contador
+      .pipe(
+        tap(() => {
+          this.sesionCaducada = true;
+          this.sesionBlock = true;
+        }),
+        concatMap((_) =>
+          ts.pipe(
+            tap((_) => {
+              timeLeft--;
+              if (timeLeft > 120 && timeLeft < 180) this.tiempoCaducidad = 3;
+              if (timeLeft > 60 && timeLeft < 120) this.tiempoCaducidad = 2;
+              if (timeLeft < 60) {
+                this.tiempoCaducidad = timeLeft;
+                this.seconds = true;
+              }
+
+              if (timeLeft == 0) {
+                this.sesionCaducada = false;
+                this.sesionCaduco = true;
+                sessionStorage.clear();
+                this.subscription!.unsubscribe();
+              }
+            })
+          )
+        )
+      )
+      .subscribe();
+  }
+  login(): void {
+    this.subscription.unsubscribe();
+    window.location.reload();
+  }
+  continueWorking(): void {
+    this.subscription.unsubscribe();
+    this.sesionCaducada = false;
+    this.sesionBlock = false;
   }
 }

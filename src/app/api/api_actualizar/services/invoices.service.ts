@@ -240,7 +240,7 @@ export class InvoicesService extends BaseService {
   /**
    * Path part for operation apiInvoicesAllInvoicesGet
    */
-  static readonly ApiInvoicesAllInvoicesGetPath = '/api/Invoices/all_invoices';
+  static readonly ApiInvoicesAllInvoicesGetPath = '/api/Invoices/allInvoices';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -339,17 +339,17 @@ export class InvoicesService extends BaseService {
   }
 
   /**
-   * Path part for operation apiInvoicesNumberMainGet
+   * Path part for operation apiInvoicesMainNumberGet
    */
-  static readonly ApiInvoicesNumberMainGetPath = '/api/Invoices/number/main';
+  static readonly ApiInvoicesMainNumberGetPath = '/api/Invoices/main/number';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesNumberMainGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesMainNumberGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNumberMainGet$Plain$Response(params?: {
+  apiInvoicesMainNumberGet$Plain$Response(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -357,7 +357,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainNumberGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberInvoice', params.numberInvoice, {});
@@ -377,11 +377,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesNumberMainGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainNumberGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNumberMainGet$Plain(params?: {
+  apiInvoicesMainNumberGet$Plain(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -389,18 +389,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesNumberMainGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesMainNumberGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesNumberMainGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesMainNumberGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNumberMainGet$Json$Response(params?: {
+  apiInvoicesMainNumberGet$Json$Response(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -408,7 +408,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNumberMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainNumberGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberInvoice', params.numberInvoice, {});
@@ -428,11 +428,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesNumberMainGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainNumberGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNumberMainGet$Json(params?: {
+  apiInvoicesMainNumberGet$Json(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -440,23 +440,23 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesNumberMainGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesMainNumberGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
-   * Path part for operation apiInvoicesIdentificationMainGet
+   * Path part for operation apiInvoicesMainIdentificationGet
    */
-  static readonly ApiInvoicesIdentificationMainGetPath = '/api/Invoices/identification/main';
+  static readonly ApiInvoicesMainIdentificationGetPath = '/api/Invoices/main/identification';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesIdentificationMainGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesMainIdentificationGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesIdentificationMainGet$Plain$Response(params?: {
+  apiInvoicesMainIdentificationGet$Plain$Response(params?: {
     ip?: string;
     identification?: string;
   },
@@ -464,7 +464,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainIdentificationGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('identification', params.identification, {});
@@ -484,11 +484,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesIdentificationMainGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainIdentificationGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesIdentificationMainGet$Plain(params?: {
+  apiInvoicesMainIdentificationGet$Plain(params?: {
     ip?: string;
     identification?: string;
   },
@@ -496,18 +496,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesIdentificationMainGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesMainIdentificationGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesIdentificationMainGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesMainIdentificationGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesIdentificationMainGet$Json$Response(params?: {
+  apiInvoicesMainIdentificationGet$Json$Response(params?: {
     ip?: string;
     identification?: string;
   },
@@ -515,7 +515,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesIdentificationMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainIdentificationGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('identification', params.identification, {});
@@ -535,11 +535,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesIdentificationMainGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainIdentificationGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesIdentificationMainGet$Json(params?: {
+  apiInvoicesMainIdentificationGet$Json(params?: {
     ip?: string;
     identification?: string;
   },
@@ -547,23 +547,23 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesIdentificationMainGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesMainIdentificationGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
-   * Path part for operation apiInvoicesAllInvoicesMainGet
+   * Path part for operation apiInvoicesMainAllInvoicesGet
    */
-  static readonly ApiInvoicesAllInvoicesMainGetPath = '/api/Invoices/all_invoices/main';
+  static readonly ApiInvoicesMainAllInvoicesGetPath = '/api/Invoices/main/allInvoices';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesAllInvoicesMainGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesMainAllInvoicesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesAllInvoicesMainGet$Plain$Response(params?: {
+  apiInvoicesMainAllInvoicesGet$Plain$Response(params?: {
     ip?: string;
     office?: string;
   },
@@ -571,7 +571,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainAllInvoicesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('office', params.office, {});
@@ -591,11 +591,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesAllInvoicesMainGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainAllInvoicesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesAllInvoicesMainGet$Plain(params?: {
+  apiInvoicesMainAllInvoicesGet$Plain(params?: {
     ip?: string;
     office?: string;
   },
@@ -603,18 +603,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesAllInvoicesMainGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesMainAllInvoicesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesAllInvoicesMainGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesMainAllInvoicesGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesAllInvoicesMainGet$Json$Response(params?: {
+  apiInvoicesMainAllInvoicesGet$Json$Response(params?: {
     ip?: string;
     office?: string;
   },
@@ -622,7 +622,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesAllInvoicesMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainAllInvoicesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('office', params.office, {});
@@ -642,11 +642,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesAllInvoicesMainGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainAllInvoicesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesAllInvoicesMainGet$Json(params?: {
+  apiInvoicesMainAllInvoicesGet$Json(params?: {
     ip?: string;
     office?: string;
   },
@@ -654,7 +654,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesAllInvoicesMainGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesMainAllInvoicesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
@@ -874,17 +874,17 @@ export class InvoicesService extends BaseService {
   }
 
   /**
-   * Path part for operation apiInvoicesNotecreditapplyGet
+   * Path part for operation apiInvoicesNoteCreditApplysGet
    */
-  static readonly ApiInvoicesNotecreditapplyGetPath = '/api/Invoices/notecreditapply';
+  static readonly ApiInvoicesNoteCreditApplysGetPath = '/api/Invoices/noteCreditApplys';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesNotecreditapplyGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesNoteCreditApplysGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNotecreditapplyGet$Plain$Response(params?: {
+  apiInvoicesNoteCreditApplysGet$Plain$Response(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -892,7 +892,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNotecreditapplyGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNoteCreditApplysGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberInvoice', params.numberInvoice, {});
@@ -912,11 +912,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesNotecreditapplyGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesNoteCreditApplysGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNotecreditapplyGet$Plain(params?: {
+  apiInvoicesNoteCreditApplysGet$Plain(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -924,18 +924,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesNotecreditapplyGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesNoteCreditApplysGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesNotecreditapplyGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesNoteCreditApplysGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNotecreditapplyGet$Json$Response(params?: {
+  apiInvoicesNoteCreditApplysGet$Json$Response(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -943,7 +943,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNotecreditapplyGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesNoteCreditApplysGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('numberInvoice', params.numberInvoice, {});
@@ -963,11 +963,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesNotecreditapplyGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesNoteCreditApplysGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesNotecreditapplyGet$Json(params?: {
+  apiInvoicesNoteCreditApplysGet$Json(params?: {
     ip?: string;
     numberInvoice?: string;
   },
@@ -975,23 +975,23 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesNotecreditapplyGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesNoteCreditApplysGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
-   * Path part for operation apiInvoicesCreditNoteGet
+   * Path part for operation apiInvoicesCreditNotesGet
    */
-  static readonly ApiInvoicesCreditNoteGetPath = '/api/Invoices/credit_note';
+  static readonly ApiInvoicesCreditNotesGetPath = '/api/Invoices/creditNotes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesCreditNoteGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesCreditNotesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteGet$Plain$Response(params?: {
+  apiInvoicesCreditNotesGet$Plain$Response(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -999,7 +999,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNotesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('creditNoteNumber', params.creditNoteNumber, {});
@@ -1019,11 +1019,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesCreditNoteGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNotesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteGet$Plain(params?: {
+  apiInvoicesCreditNotesGet$Plain(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1031,18 +1031,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesCreditNoteGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesCreditNotesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesCreditNoteGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesCreditNotesGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteGet$Json$Response(params?: {
+  apiInvoicesCreditNotesGet$Json$Response(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1050,7 +1050,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNotesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('creditNoteNumber', params.creditNoteNumber, {});
@@ -1070,11 +1070,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesCreditNoteGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesCreditNotesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteGet$Json(params?: {
+  apiInvoicesCreditNotesGet$Json(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1082,23 +1082,23 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesCreditNoteGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesCreditNotesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
-   * Path part for operation apiInvoicesCreditNoteMainGet
+   * Path part for operation apiInvoicesMainCreditNotesGet
    */
-  static readonly ApiInvoicesCreditNoteMainGetPath = '/api/Invoices/credit_note/main';
+  static readonly ApiInvoicesMainCreditNotesGetPath = '/api/Invoices/main/creditNotes';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesCreditNoteMainGet$Plain()` instead.
+   * To access only the response body, use `apiInvoicesMainCreditNotesGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteMainGet$Plain$Response(params?: {
+  apiInvoicesMainCreditNotesGet$Plain$Response(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1106,7 +1106,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainCreditNotesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('creditNoteNumber', params.creditNoteNumber, {});
@@ -1126,11 +1126,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesCreditNoteMainGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainCreditNotesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteMainGet$Plain(params?: {
+  apiInvoicesMainCreditNotesGet$Plain(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1138,18 +1138,18 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesCreditNoteMainGet$Plain$Response(params,context).pipe(
+    return this.apiInvoicesMainCreditNotesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiInvoicesCreditNoteMainGet$Json()` instead.
+   * To access only the response body, use `apiInvoicesMainCreditNotesGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteMainGet$Json$Response(params?: {
+  apiInvoicesMainCreditNotesGet$Json$Response(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1157,7 +1157,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseInvoiceDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesCreditNoteMainGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, InvoicesService.ApiInvoicesMainCreditNotesGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('creditNoteNumber', params.creditNoteNumber, {});
@@ -1177,11 +1177,11 @@ export class InvoicesService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiInvoicesCreditNoteMainGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiInvoicesMainCreditNotesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiInvoicesCreditNoteMainGet$Json(params?: {
+  apiInvoicesMainCreditNotesGet$Json(params?: {
     ip?: string;
     creditNoteNumber?: string;
   },
@@ -1189,7 +1189,7 @@ export class InvoicesService extends BaseService {
 
 ): Observable<ResponseInvoiceDto> {
 
-    return this.apiInvoicesCreditNoteMainGet$Json$Response(params,context).pipe(
+    return this.apiInvoicesMainCreditNotesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseInvoiceDto>) => r.body as ResponseInvoiceDto)
     );
   }

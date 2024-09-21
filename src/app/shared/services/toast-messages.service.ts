@@ -22,6 +22,17 @@ export class ToastMessagesService {
       icon: this.getIcon(severity, summaryMessage),
     });
   }
+  showToastTarget(position: Iposition, severity: ItypeSeverity, summaryMessage: string, detailMessage: string): void {
+    this.messageService.clear();
+    this.messageService.add({
+      key: position,
+      severity: severity,
+      summary: summaryMessage,
+      detail: detailMessage,
+      life: 6000,
+      icon: this.getIcon(severity, summaryMessage),
+    });
+  }
 
   showMultiple(): void {
     this.messageService.addAll([
@@ -52,7 +63,7 @@ export class ToastMessagesService {
     this.messageService.clear();
   }
 
-  inlineMessage(error: { severity: string; summary: string; detail: string }): any {
+  inlineMessage(error: { severity: string; summary: string; detail: string }, p0?: { severity: string; summary: string; detail: string }): any {
     this.msgs = [];
     this.msgs.push({ severity: error.severity, summary: error.summary, detail: error.detail });
     return this.msgs;

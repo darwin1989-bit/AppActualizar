@@ -132,7 +132,7 @@ export class PaymentsService extends BaseService {
   /**
    * Path part for operation apiPaymentsAllPaymentsGet
    */
-  static readonly ApiPaymentsAllPaymentsGetPath = '/api/Payments/all_payments';
+  static readonly ApiPaymentsAllPaymentsGetPath = '/api/Payments/allPayments';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

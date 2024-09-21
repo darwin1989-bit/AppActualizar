@@ -1,6 +1,8 @@
-<div class="grid mt-3 justify-content-center">
-  <div class="col-12 md:col-6">
+<div class="grid mt-3">
+  <div class="xl:col-6 g:col-6 md:col-6 col-12">
     <div class="card surface-card">
+      <h5 class="opacity-80">Autorización días notas de crédito</h5>
+      <p-divider></p-divider>
       <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
@@ -22,7 +24,7 @@
                 *ngIf="userAuthorizing.hasta <= userAuthorizing.parameterization.until; else minus"
                 pButton
                 pRipple
-                icon="pi pi-plus"
+                icon="pi pi-plus-circle"
                 class="p-button-success p-button-sm w-1 h-1"
                 (click)="changeDayAuthorizing(userAuthorizing, true)"
                 pTooltip="Sumar días"
@@ -32,7 +34,7 @@
                 <button
                   pButton
                   pRipple
-                  icon="pi pi-minus"
+                  icon="pi pi-minus-circle"
                   class="p-button-danger p-button-sm w-1 h-1"
                   (click)="changeDayAuthorizing(userAuthorizing, false)"
                   pTooltip="Disminuir días"
@@ -45,6 +47,46 @@
         <ng-template pTemplate="emptymessage">
           <tr>
             <td colspan="5" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div class="xl:col-6 g:col-6 md:col-6 col-12">
+    <div class="card surface-card">
+      <h5 class="opacity-80">Segundo autorizador notas de crédito</h5>
+      <p-divider></p-divider>
+      <p-table #dt [value]="(usersAuthorizingService.authorizerNc$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Descripción</th>
+            <th>Argumento</th>
+            <th>Estado</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-userAuthorizingNc>
+          <tr>
+            <td>{{ userAuthorizingNc.idTabla }}</td>
+            <td>{{ userAuthorizingNc.tablaArgumento | uppercase }}</td>
+            <td>{{ userAuthorizingNc.tablaDescripcion == "S" ? "HABILITADO" : "DESHABILITADO" }}</td>
+            <td>
+              <button
+                pButton
+                pRipple
+                [icon]="userAuthorizingNc.tablaDescripcion == 'N' ? 'pi pi-eye-slash' : 'pi pi-eye'"
+                class="p-button-warning p-button-sm w-1 h-1"
+                (click)="changeAuthorizingNc(userAuthorizingNc.tablaDescripcion)"
+                pTooltip="Actualizar estado"
+                tooltipPosition="bottom"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

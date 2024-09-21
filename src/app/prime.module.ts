@@ -46,6 +46,7 @@ import { OverlayModule } from "primeng/overlay";
 import { PanelModule } from "primeng/panel";
 import { BadgeModule } from "primeng/badge";
 import { ScrollTopModule } from "primeng/scrolltop";
+import { ChartModule } from "primeng/chart";
 
 const myModules = [
   CommonModule,
@@ -96,6 +97,7 @@ const myModules = [
   PanelModule,
   BadgeModule,
   ScrollTopModule,
+  ChartModule,
 ];
 
 @NgModule({

@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { authGuard } from "src/app/auth/guards/auth.guard";
 
 @Component({
   selector: "app-page-home",

@@ -415,6 +415,150 @@
         }
       }
     },
+    "/api/Dashboard/database/sizes": {
+      "get": {
+        "tags": ["Dashboard"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDatabaseSize"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dashboard/ecommerce/files": {
+      "get": {
+        "tags": ["Dashboard"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFilesEcomm"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFilesEcomm"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFilesEcomm"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dashboard/interfaces/payFroms": {
+      "get": {
+        "tags": ["Dashboard"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dashboard/interfaces/main/payFrom": {
+      "get": {
+        "tags": ["Dashboard"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponsePayFrom"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Invoices/number": {
       "get": {
         "tags": ["Invoices"],
@@ -501,7 +645,7 @@
         }
       }
     },
-    "/api/Invoices/all_invoices": {
+    "/api/Invoices/allInvoices": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -537,7 +681,7 @@
         }
       }
     },
-    "/api/Invoices/number/main": {
+    "/api/Invoices/main/number": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -580,7 +724,7 @@
         }
       }
     },
-    "/api/Invoices/identification/main": {
+    "/api/Invoices/main/identification": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -623,7 +767,7 @@
         }
       }
     },
-    "/api/Invoices/all_invoices/main": {
+    "/api/Invoices/main/allInvoices": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -752,7 +896,7 @@
         }
       }
     },
-    "/api/Invoices/notecreditapply": {
+    "/api/Invoices/noteCreditApplys": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -795,7 +939,7 @@
         }
       }
     },
-    "/api/Invoices/credit_note": {
+    "/api/Invoices/creditNotes": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -838,7 +982,7 @@
         }
       }
     },
-    "/api/Invoices/credit_note/main": {
+    "/api/Invoices/main/creditNotes": {
       "get": {
         "tags": ["Invoices"],
         "parameters": [
@@ -1621,7 +1765,7 @@
         }
       }
     },
-    "/api/Payments/all_payments": {
+    "/api/Payments/allPayments": {
       "get": {
         "tags": ["Payments"],
         "parameters": [
@@ -3688,6 +3832,83 @@
           }
         }
       }
+    },
+    "/api/User/authorizerNc": {
+      "get": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthorizerNcDto"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3776,7 +3997,7 @@
             "type": "string",
             "nullable": true
           },
-          "oOficina": {
+          "oficina": {
             "type": "string",
             "nullable": true
           },
@@ -3784,7 +4005,7 @@
             "type": "string",
             "nullable": true
           },
-          "sSucursal": {
+          "sucursal": {
             "type": "string",
             "nullable": true
           },
@@ -3797,6 +4018,24 @@
             "nullable": true
           },
           "indefinido": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthorizerNcDto": {
+        "type": "object",
+        "properties": {
+          "idTabla": {
+            "type": "string",
+            "nullable": true
+          },
+          "tablaArgumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tablaDescripcion": {
             "type": "string",
             "nullable": true
           }
@@ -4388,6 +4627,36 @@
             "nullable": true
           },
           "currency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilesEcomm": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "attribute": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "extension": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
             "type": "string",
             "nullable": true
           }
@@ -5364,6 +5633,40 @@
         },
         "additionalProperties": false
       },
+      "PayFromDto": {
+        "type": "object",
+        "properties": {
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipTienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttc_Codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttc_Nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttc_Estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttc_Dias_Gracia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ttc_Tipo_Material": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PaymentsDTO": {
         "type": "object",
         "properties": {
@@ -5834,6 +6137,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseAuthorizerNcDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuthorizerNcDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResponseAuthorizingUser": {
         "type": "object",
         "properties": {
@@ -5936,6 +6252,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/NoConnection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseFilesEcomm": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilesEcomm"
             },
             "nullable": true
           }
@@ -6099,6 +6428,26 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/NoConnectionOpenBox"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponsePayFrom": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayFromDto"
+            },
+            "nullable": true
+          },
+          "noConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoConnection"
             },
             "nullable": true
           }
