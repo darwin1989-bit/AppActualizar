@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint_actualizar: "http://172.16.11.246:8094",
+  endpoint_actualizar: "http://172.16.11.238:8097",
 };
