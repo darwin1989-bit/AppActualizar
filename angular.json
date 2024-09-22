@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "\\\\172.16.11.246\\c$\\Dev\\AppActualizar",
+            "outputPath": "\\\\172.16.11.238\\c$\\AppWeb\\AppActualizar",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
