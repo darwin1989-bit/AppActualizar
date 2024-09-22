@@ -1,4 +1,4 @@
-<div class="grid mt-6" *ngIf="company == 'eta'">
+<div class="grid" *ngIf="company == 'eta'">
   <div class="col-12 md:col-12">
     <div *ngIf="(homeService.payFrom$ | async) ? false : true; else elseBlock">
       <p-skeleton width="sm:5rem 62rem" height="10rem" />
@@ -6,7 +6,10 @@
 
     <ng-template #elseBlock>
       <div class="card surface-card">
-        <h5 class="font-bold mb-5">Paga desde matriz Etafashion</h5>
+        <div class="flex justify-content-center mb-4">
+          <img src="../../../../assets/layout/images/{{ layoutService.config.colorScheme === 'light' ? 'eta' : 'eta-white' }}.png" height="25px" width="200px" alt="eta" />
+        </div>
+        <h5 class="font-bold mb-5">Paga desde matriz</h5>
         <p-table #dt [value]="(homeService.payFrom$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'" sortField="ttc_Estado" sortMode="multiple">
           <ng-template pTemplate="header">
             <tr>
@@ -35,7 +38,7 @@
   </div>
 </div>
 
-<div class="grid mt-1" *ngIf="company == 'rm'">
+<div class="grid" *ngIf="company == 'rm'">
   <div class="col-12 md:col-12">
     <div *ngIf="(homeService.payFromRm$ | async) ? false : true; else elseBlockRm">
       <p-skeleton width="sm:5rem 62rem" height="10rem" />
@@ -43,7 +46,10 @@
 
     <ng-template #elseBlockRm>
       <div class="card surface-card">
-        <h5 class="font-bold mb-5">Paga desde matriz Rm</h5>
+        <div class="flex justify-content-center mb-4">
+          <img src="../../../../assets/layout/images/rm.png" height="25px" width="50px" alt="rm" />
+        </div>
+        <h5 class="font-bold mb-5">Paga desde matriz</h5>
         <p-table
           #dt
           [value]="(homeService.payFromRm$ | async)!"

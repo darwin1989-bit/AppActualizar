@@ -112,8 +112,13 @@ export class AppTopBarComponent implements OnInit {
 
     this.themeSession = sessionStorage.getItem("theme")!;
 
-    if (this.themeSession == "saga-blue") this.sun = true;
-    else this.moon = true;
+    if (this.themeSession == "saga-blue") {
+      this.sun = true;
+      this.layoutService.config.colorScheme = "light";
+    } else {
+      this.moon = true;
+      this.layoutService.config.colorScheme = "dark";
+    }
   }
 
   onConfigButtonClick() {
@@ -135,15 +140,18 @@ export class AppTopBarComponent implements OnInit {
       theme = "vela-blue";
       this.moon = true;
       this.sun = false;
+      this.layoutService.config.colorScheme = "dark";
     }
     if (this.themeSession == "vela-blue") {
       theme = "saga-blue";
       this.sun = true;
       this.moon = false;
+      this.layoutService.config.colorScheme = "light";
     }
 
     this.themeService.switchTheme(theme);
     sessionStorage.setItem("theme", theme);
+
     this.loginService.apiLoginUpdateThemeIdPut({ id: Number(this.userApp.Id), theme: theme, colorScheme: "ligth" }).subscribe();
   }
   public confirmLogOff(position: string, confirm: boolean) {
