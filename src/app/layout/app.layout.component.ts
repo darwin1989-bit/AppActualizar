@@ -301,6 +301,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
               }
 
               if (timeLeft == 0) {
+                this.seconds = false;
                 this.sesionCaducada = false;
                 this.sesionCaduco = true;
                 sessionStorage.clear();
@@ -320,5 +321,6 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.sesionCaducada = false;
     this.sesionBlock = false;
+    this.seconds = false;
   }
 }
