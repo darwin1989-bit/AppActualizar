@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint_login: "https://localhost:7197",
-  endpoint_actualizar: "https://localhost:7249",
+  endpoint_actualizar: "http://172.16.11.246:8094",
 };
 
 /*
