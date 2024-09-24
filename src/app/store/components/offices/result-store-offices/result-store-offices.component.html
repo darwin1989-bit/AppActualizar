@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(storeOfficesService.storeOffices$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -60,7 +59,9 @@
             <td *ngIf="storeOffices.nombre == '' || storeOffices.nombre == null; else elseBlockNom"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockNom>
               <td>
-                {{ storeOffices.nombre }}
+                <div class="font-bold">
+                  {{ storeOffices.nombre }}
+                </div>
               </td>
             </ng-template>
 

@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(paymentsService.payments$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -29,7 +28,11 @@
           <tr>
             <td>{{ payments.horaProceso | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ payments.userID }}</td>
-            <td>{{ payments.numeroTransaccion }}</td>
+            <td>
+              <div class="font-bold">
+                {{ payments.numeroTransaccion }}
+              </div>
+            </td>
             <td>{{ payments.valor | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ payments.valorEfectivo | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ payments.valorCHQ | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
