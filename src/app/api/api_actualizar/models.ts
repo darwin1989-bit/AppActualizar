@@ -35,6 +35,7 @@ export { IpClientDto } from './models/ip-client-dto';
 export { IpPosMobileDto } from './models/ip-pos-mobile-dto';
 export { Itemid } from './models/itemid';
 export { JobExecutionDto } from './models/job-execution-dto';
+export { JobsErrorDto } from './models/jobs-error-dto';
 export { Lineitem } from './models/lineitem';
 export { MLogin } from './models/m-login';
 export { MaterialInfoDto } from './models/material-info-dto';
@@ -89,6 +90,7 @@ export { ResponseInformationGiftCard } from './models/response-information-gift-
 export { ResponseInvoiceDto } from './models/response-invoice-dto';
 export { ResponseIpClient } from './models/response-ip-client';
 export { ResponseIpPosMobile } from './models/response-ip-pos-mobile';
+export { ResponseJobError } from './models/response-job-error';
 export { ResponseJobExecutionNameDto } from './models/response-job-execution-name-dto';
 export { ResponseJobsExecutions } from './models/response-jobs-executions';
 export { ResponseMaterialDto } from './models/response-material-dto';

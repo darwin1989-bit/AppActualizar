@@ -31,30 +31,36 @@
   <div #topbarmenu class="layout-topbar-menu">
     <li>
       <button
+        [pTooltip]="moon ? 'Tema claro' : 'Tema oscuro'"
+        tooltipPosition="bottom"
         (click)="changeTheme()"
         type="button"
-        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary mr-2 cursor-pointer surface-ground"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary mr-2 cursor-pointer"
       >
-        <i class="pi pi-moon opacity-50" style="font-size: 1.3rem" *ngIf="moon"></i>
-        <i class="pi pi-sun opacity-50 font-bold" style="font-size: 1.3rem" *ngIf="sun"></i>
+        <i class="pi pi-moon opacity-60" style="font-size: 1.3rem" *ngIf="moon"></i>
+        <i class="pi pi-sun opacity-60 font-bold" style="font-size: 1.3rem" *ngIf="sun"></i>
       </button>
     </li>
     <li>
       <button
+        pTooltip="Configuración"
+        tooltipPosition="bottom"
         (click)="onConfigButtonClick()"
         type="button"
-        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer surface-ground"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer"
       >
-        <i class="pi pi-cog opacity-50" style="font-size: 1.3rem"></i>
+        <i class="pi pi-cog opacity-60" style="font-size: 1.3rem"></i>
       </button>
     </li>
     <li>
       <button
+        pTooltip="Salir"
+        tooltipPosition="bottom"
         (click)="confirmLogOff('top', true)"
         type="button"
-        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer surface-ground ml-2"
+        class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer ml-2"
       >
-        <i class="pi pi-sign-out opacity-50" style="font-size: 1rem"></i>
+        <i class="pi pi-sign-out opacity-60" style="font-size: 1rem"></i>
       </button>
     </li>
   </div>

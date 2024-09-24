@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(ipBoxesService.ipClient$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -31,7 +30,11 @@
         <ng-template pTemplate="body" let-ipClient>
           <tr>
             <td>{{ ipClient.ipServidor }}</td>
-            <td>{{ ipClient.ipCliente }}</td>
+            <td>
+              <div class="font-bold">
+                {{ ipClient.ipCliente }}
+              </div>
+            </td>
             <td>{{ ipClient.numeroCaja }}</td>
             <td>{{ ipClient.tipoImpresora }}</td>
           </tr>

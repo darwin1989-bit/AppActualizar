@@ -559,6 +559,42 @@
         }
       }
     },
+    "/api/Dashboard/jobs/error": {
+      "get": {
+        "tags": ["Dashboard"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJobError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Invoices/number": {
       "get": {
         "tags": ["Invoices"],
@@ -5150,6 +5186,48 @@
         },
         "additionalProperties": false
       },
+      "JobsErrorDto": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "ip_red": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_nombre_job": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_fecha_ejecucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_tiempo_ejecucion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cjs_estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "envio_pos": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Lineitem": {
         "type": "object",
         "properties": {
@@ -6330,6 +6408,19 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IpPosMobileDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseJobError": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobsErrorDto"
             },
             "nullable": true
           }

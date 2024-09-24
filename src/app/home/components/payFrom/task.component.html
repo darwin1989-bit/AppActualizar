@@ -7,10 +7,10 @@
     <ng-template #elseBlock>
       <div class="card surface-card">
         <div class="flex justify-content-center mb-4">
-          <img src="../../../../assets/layout/images/{{ layoutService.config.colorScheme === 'light' ? 'eta' : 'eta-white' }}.png" height="25px" width="200px" alt="eta" />
+          <img src="../../../../assets/layout/images/{{ layoutService.config.colorScheme === 'light' ? 'eta' : 'eta-white' }}.png" height="25px" width="180px" alt="eta" />
         </div>
         <h5 class="font-bold mb-5">Paga desde matriz</h5>
-        <p-table #dt [value]="(homeService.payFrom$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'" sortField="ttc_Estado" sortMode="multiple">
+        <p-table #dt [value]="(homeService.payFrom$ | async)!" [scrollable]="true" [breakpoint]="'960px'" sortField="ttc_Estado" sortMode="multiple">
           <ng-template pTemplate="header">
             <tr>
               <th>Código</th>
@@ -23,7 +23,13 @@
             <tr>
               <td>{{ payFrom.ttc_Codigo }}</td>
               <td>{{ payFrom.ttc_Nombre }}</td>
-              <td>{{ payFrom.ttc_Estado }}</td>
+              <td *ngIf="payFrom.ttc_Estado == 'S'; else elseBlockDesc"><p-tag severity="success"> ACTIVO </p-tag></td>
+              <ng-template #elseBlockDesc>
+                <td>
+                  <p-tag severity="warning"> INACTIVO </p-tag>
+                </td>
+              </ng-template>
+
               <td>{{ payFrom.ttc_Tipo_Material }}</td>
             </tr>
           </ng-template>
@@ -50,17 +56,7 @@
           <img src="../../../../assets/layout/images/rm.png" height="25px" width="50px" alt="rm" />
         </div>
         <h5 class="font-bold mb-5">Paga desde matriz</h5>
-        <p-table
-          #dt
-          [value]="(homeService.payFromRm$ | async)!"
-          styleClass="p-datatable-sm"
-          [rows]="2"
-          [scrollable]="true"
-          [breakpoint]="'960px'"
-          sortField="ttc_Estado"
-          [sortOrder]="-1"
-          sortMode="multiple"
-        >
+        <p-table #dt [value]="(homeService.payFromRm$ | async)!" [rows]="2" [scrollable]="true" [breakpoint]="'960px'" sortField="ttc_Estado" [sortOrder]="-1" sortMode="multiple">
           <ng-template pTemplate="header">
             <tr>
               <th>Código</th>
@@ -73,7 +69,13 @@
             <tr>
               <td>{{ payFrom.ttc_Codigo }}</td>
               <td>{{ payFrom.ttc_Nombre }}</td>
-              <td>{{ payFrom.ttc_Estado }}</td>
+              <td *ngIf="payFrom.ttc_Estado == 'S'; else elseBlockDesc"><p-tag severity="success"> ACTIVO </p-tag></td>
+              <ng-template #elseBlockDesc>
+                <td>
+                  <p-tag severity="warning"> INACTIVO </p-tag>
+                </td>
+              </ng-template>
+
               <td>{{ payFrom.ttc_Tipo_Material }}</td>
             </tr>
           </ng-template>

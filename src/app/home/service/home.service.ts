@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, concatMap, mergeMap, NEVER, Observable, tap } from "rxjs";
-import { DatabaseSizeDto, FilesEcomm, PayFromDto, ResponsePayFrom } from "src/app/api/api_actualizar/models";
+import { DatabaseSizeDto, FilesEcomm, JobExecutionDto, JobsErrorDto, PayFromDto, ResponsePayFrom } from "src/app/api/api_actualizar/models";
 import { DashboardService } from "src/app/api/api_actualizar/services";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 import { SummaryPayFrom } from "../models/home-models";
@@ -26,6 +26,12 @@ export class HomeService {
 
   private summaryPayFrom = new BehaviorSubject<SummaryPayFrom | null>(null);
   public summaryPayFrom$ = this.summaryPayFrom.asObservable();
+
+  private jobError = new BehaviorSubject<JobsErrorDto[] | null>(null);
+  public jobError$ = this.jobError.asObservable();
+
+  private jobErrorRm = new BehaviorSubject<JobsErrorDto[] | null>(null);
+  public jobErrorRm$ = this.jobErrorRm.asObservable();
 
   constructor(private dashboardService: DashboardService, private toastMessageService: ToastMessagesService) {}
 
@@ -133,7 +139,7 @@ export class HomeService {
           totalStoreEta: res.data!.length,
           totalStoreRm: resRm.data!.length,
           textile_n_Eta: res.data!.filter((f) => f.ttc_Estado == "N" && f.ttc_Tipo_Material == "TEXTIL").length,
-          textile_s_Eta: res.data!.filter((f) => f.ttc_Estado == "S" && f.ttc_Tipo_Material == "TEXTIL").length,
+          textile_s_Eta: res.data!.filter((fe) => fe.ttc_Estado == "S" && fe.ttc_Tipo_Material == "TEXTIL").length,
           textile_n_Rm: resRm.data!.filter((f) => f.ttc_Estado == "N" && f.ttc_Tipo_Material == "TEXTIL").length,
           textile_s_Rm: resRm.data!.filter((f) => f.ttc_Estado == "S" && f.ttc_Tipo_Material == "TEXTIL").length,
           electronica_n_Eta: res.data!.filter((f) => f.ttc_Estado == "N" && f.ttc_Tipo_Material == "ELECTRÓNICA").length,
@@ -188,6 +194,37 @@ export class HomeService {
         }),
         catchError(() => {
           this.payFromRm.next([]);
+          this.toastMessageService.showToastTarget("tc", "error", "Error", "No se pudo obtener los datos");
+          return NEVER;
+        })
+      )
+      .subscribe();
+  }
+
+  public getJobError(company: string): void {
+    this.dashboardService
+      .apiDashboardJobsErrorGet$Json({ company })
+      .pipe(
+        tap((res) => {
+          this.jobError.next(res.data!);
+        }),
+        catchError(() => {
+          this.jobError.next([]);
+          this.toastMessageService.showToastTarget("tc", "error", "Error", "No se pudo obtener los datos");
+          return NEVER;
+        })
+      )
+      .subscribe();
+  }
+  public getJobErrorRm(company: string): void {
+    this.dashboardService
+      .apiDashboardJobsErrorGet$Json({ company })
+      .pipe(
+        tap((res) => {
+          this.jobErrorRm.next(res.data!);
+        }),
+        catchError(() => {
+          this.jobErrorRm.next([]);
           this.toastMessageService.showToastTarget("tc", "error", "Error", "No se pudo obtener los datos");
           return NEVER;
         })

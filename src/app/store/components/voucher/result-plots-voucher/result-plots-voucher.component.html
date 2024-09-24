@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(plotsVoucherService.resultVoucher$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -42,6 +41,9 @@
             <td *ngIf="voucher.autorizacion != 'EEE'"><p-tag severity="success" [value]="voucher.respuesta" /></td>
             <td>{{ voucher.numero_Tarjeta }}</td>
             <td>
+              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" pTooltip="Mas información" tooltipPosition="bottom" (click)="moreInfoVoucher(voucher)"></button>
+            </td>
+            <td>
               <button
                 pButton
                 pRipple
@@ -52,9 +54,6 @@
                 [class.hidden]="voucher.autorizacion == 'EEE' ? true : false"
                 (click)="printDocument(voucher)"
               ></button>
-            </td>
-            <td>
-              <button pButton pRipple icon="pi pi-info-circle" class="p-button-info p-button-sm" pTooltip="Mas información" tooltipPosition="bottom" (click)="moreInfoVoucher(voucher)"></button>
             </td>
           </tr>
         </ng-template>

@@ -5,7 +5,6 @@
       <p-table
         #dt
         [value]="(usersService.usersMain$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -30,19 +29,23 @@
         </ng-template>
         <ng-template pTemplate="body" let-users>
           <tr>
-            <td class="select-all">{{ users.nombreCorto }}</td>
+            <div class="font-bold">
+              <td class="select-all">{{ users.nombreCorto }}</td>
+            </div>
 
             <td *ngIf="users.contrasena == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
             <ng-template #elseBlockCont>
-              <td>
+              <td class="select-all">
                 {{ users.contrasena }}
               </td>
             </ng-template>
 
             <td *ngIf="users.cedula == ''; else elseBlockCed"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockCed>
-              <td>
-                {{ users.cedula }}
+              <td class="select-all">
+                <div class="font-bold">
+                  {{ users.cedula }}
+                </div>
               </td>
             </ng-template>
 
@@ -52,7 +55,9 @@
             <td *ngIf="users.perfilReferencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockPer>
               <td>
-                {{ users.perfilReferencia }}
+                <div class="font-bold">
+                  {{ users.perfilReferencia }}
+                </div>
               </td>
             </ng-template>
 
@@ -60,7 +65,7 @@
             <td>{{ users.oficina }}</td>
             <td>{{ users.estado }}</td>
 
-            <td *ngIf="users.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> MULL </p-tag></td>
+            <td *ngIf="users.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockDesc>
               <td>
                 {{ users.ipPosmobile }}

@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { ResponseDatabaseSize } from '../models/response-database-size';
 import { ResponseFilesEcomm } from '../models/response-files-ecomm';
+import { ResponseJobError } from '../models/response-job-error';
 import { ResponsePayFrom } from '../models/response-pay-from';
 
 @Injectable({
@@ -425,6 +426,107 @@ export class DashboardService extends BaseService {
 
     return this.apiDashboardInterfacesMainPayFromGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponsePayFrom>) => r.body as ResponsePayFrom)
+    );
+  }
+
+  /**
+   * Path part for operation apiDashboardJobsErrorGet
+   */
+  static readonly ApiDashboardJobsErrorGetPath = '/api/Dashboard/jobs/error';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardJobsErrorGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardJobsErrorGet$Plain$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseJobError>> {
+
+    const rb = new RequestBuilder(this.rootUrl, DashboardService.ApiDashboardJobsErrorGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseJobError>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardJobsErrorGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardJobsErrorGet$Plain(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseJobError> {
+
+    return this.apiDashboardJobsErrorGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseJobError>) => r.body as ResponseJobError)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardJobsErrorGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardJobsErrorGet$Json$Response(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseJobError>> {
+
+    const rb = new RequestBuilder(this.rootUrl, DashboardService.ApiDashboardJobsErrorGetPath, 'get');
+    if (params) {
+      rb.query('company', params.company, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseJobError>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardJobsErrorGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardJobsErrorGet$Json(params?: {
+    company?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseJobError> {
+
+    return this.apiDashboardJobsErrorGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseJobError>) => r.body as ResponseJobError)
     );
   }
 

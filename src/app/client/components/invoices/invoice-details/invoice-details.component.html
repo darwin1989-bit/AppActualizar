@@ -1,5 +1,5 @@
 <h5 class="mt-2">Forma de pago</h5>
-<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" styleClass="p-datatable-sm" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoiceMethodPayment!" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
       <th>Forma pago</th>
@@ -11,7 +11,11 @@
   <ng-template pTemplate="body" let-invoice>
     <tr>
       <td>{{ invoice.forma_Pago }}</td>
-      <td>{{ invoice.descripcion }}</td>
+      <td>
+        <div class="font-bold">
+          {{ invoice.descripcion }}
+        </div>
+      </td>
       <td>{{ invoice.valor | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
       <td>{{ invoice.forma_Pago == "10" ? "Serie nota crédito: " + invoice.nombreTransporte : "Sin observaciones" }}</td>
     </tr>
@@ -23,7 +27,7 @@
   </ng-template>
 </p-table>
 <h5 class="mt-4">Detalle</h5>
-<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoicesDet!" styleClass="p-datatable-sm" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table [value]="(invoiceService.invoiceDetails$ | async)!.invoicesDet!" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
       <th>Material</th>
