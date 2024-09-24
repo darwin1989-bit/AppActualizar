@@ -7,7 +7,7 @@
     <ng-template #elseBlock>
       <div class="card surface-card">
         <h5 class="font-bold mb-5">Archivos Sabana Ecomm</h5>
-        <p-table #dt [value]="(homeService.filesEcomm$ | async)!" styleClass="p-datatable-sm" [rows]="2" [scrollable]="true" [breakpoint]="'960px'">
+        <p-table #dt [value]="(homeService.filesEcomm$ | async)!" [rows]="2" [scrollable]="true" [breakpoint]="'960px'">
           <ng-template pTemplate="header">
             <tr>
               <th>Nombre</th>

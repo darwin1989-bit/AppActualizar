@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(invoiceService.invoicesStore$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -38,7 +37,7 @@
             <td>{{ invoice.nombre }}</td>
             <td>{{ invoice.tipo_Documento }}</td>
             <td>{{ invoice.tipo_Idcliente }}</td>
-            <td pTooltip="{{ invoice.nombre_Razon }}" tooltipPosition="bottom" class="cursor-pointer">
+            <td class="select-all" pTooltip="{{ invoice.nombre_Razon }}" tooltipPosition="bottom" class="cursor-pointer">
               {{ invoice.numero_Idcliente }}
             </td>
             <td>{{ invoice.fecha_Factura | date : "yyyy/MM/dd HH:mm" }}</td>
@@ -46,7 +45,11 @@
             <td>{{ invoice.iva | number }}%</td>
             <td>{{ invoice.valoriva | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
             <td>{{ invoice.descuento | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
-            <td>{{ invoice.totalfactura | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}</td>
+            <td>
+              <div class="font-bold">
+                {{ invoice.totalfactura | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}
+              </div>
+            </td>
             <td>{{ invoice.userid }}</td>
             <td>{{ invoice.estacionId }}</td>
             <td class="flex justify-content-center align-items-center">
@@ -78,7 +81,7 @@
 <p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [resizable]="false" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '60vw' }">
   <ng-template pTemplate="header">
     <i class="pi pi-list" style="font-size: 2rem; color: var(--surface-900)"></i>
-    <h4 class="m-0">Detalle factura</h4>
+    <h4 class="m-0">Detalle del documento</h4>
   </ng-template>
   <ng-template pTemplate="content">
     <app-invoice-details></app-invoice-details>

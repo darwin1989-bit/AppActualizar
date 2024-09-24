@@ -29,7 +29,7 @@ export class OpenBoxesService {
       .apiStoreOpenBoxesGet$Json({ company })
       .pipe(
         tap((res) => {
-          if (res.data) {
+          if (res.data?.length == 0) {
             this.toastMesagge.showToast("tc", "warn", "Advertencia", `No se tiene cajas abiertas.`);
           } else {
             this.openBoxes.next(res.data!);

@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(openBoxesService.openBoxes$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -42,11 +41,23 @@
           <tr>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ openBox.tienda }}</td>
             <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ openBox.ipTienda }}</td>
-            <td>{{ openBox.estadoCierre }}</td>
+            <td>
+              <div class="font-bold">
+                {{ openBox.estadoCierre }}
+              </div>
+            </td>
             <td>{{ openBox.fechaHoraApertura | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ openBox.ipCaja }}</td>
-            <td>{{ openBox.estado }}</td>
-            <td>{{ openBox.nombreCorto }}</td>
+            <td>
+              <div class="font-bold">
+                {{ openBox.estado }}
+              </div>
+            </td>
+            <td>
+              <div class="font-bold">
+                {{ openBox.nombreCorto }}
+              </div>
+            </td>
             <td>{{ openBox.nombre | uppercase }}</td>
             <td>{{ openBox.apellido | uppercase }}</td>
             <td *ngIf="openBox.cedula == ''; else elseBlock"><p-tag severity="danger"> NULL </p-tag></td>

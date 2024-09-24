@@ -4,7 +4,7 @@
     <h4 class="m-0">Información del material</h4>
   </ng-template>
   <ng-template pTemplate="content">
-    <p-table [value]="(materialService.materialsInformation$ | async)!" styleClass="p-datatable-sm">
+    <p-table [value]="(materialService.materialsInformation$ | async)!">
       <ng-template pTemplate="header">
         <tr>
           <th>Código</th>

@@ -3,7 +3,7 @@
     <div class="card surface-card">
       <h5 class="opacity-80">Autorización días notas de crédito</h5>
       <p-divider></p-divider>
-      <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
             <th>Rol</th>
@@ -57,7 +57,7 @@
     <div class="card surface-card">
       <h5 class="opacity-80">Segundo autorizador notas de crédito</h5>
       <p-divider></p-divider>
-      <p-table #dt [value]="(usersAuthorizingService.authorizerNc$ | async)!" styleClass="p-datatable-sm" [scrollable]="true" [breakpoint]="'960px'">
+      <p-table #dt [value]="(usersAuthorizingService.authorizerNc$ | async)!" [scrollable]="true" [breakpoint]="'960px'">
         <ng-template pTemplate="header">
           <tr>
             <th>Descripción</th>

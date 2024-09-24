@@ -1,6 +1,6 @@
 <div class="grid mt-3" *ngIf="company == 'eta'">
   <div class="col-12 md:col-12">
-    <div *ngIf="(homeService.resultDatabaseSize$ | async) ? false : true; else elseBlock">
+    <div *ngIf="(homeService.jobError$ | async) ? false : true; else elseBlock">
       <p-skeleton width="sm:5rem 62rem" height="28rem" />
     </div>
 
@@ -9,40 +9,41 @@
         <div class="flex justify-content-center mb-4">
           <img src="../../../../assets/layout/images/{{ layoutService.config.colorScheme === 'light' ? 'eta' : 'eta-white' }}.png" height="25px" width="180px" alt="eta" />
         </div>
-        <h5 class="font-bold mb-5">Tamaño base datos</h5>
+        <h5 class="font-bold mb-5">Error en los jobs</h5>
 
         <p-table
           #dt
-          [value]="(homeService.resultDatabaseSize$ | async)!"
+          [value]="(homeService.jobError$ | async)!"
           [rows]="5"
           [scrollable]="true"
           [breakpoint]="'960px'"
-          [paginator]="(homeService.resultDatabaseSize$ | async)!.length > 5 ? true : false"
+          [paginator]="(homeService.jobError$ | async)!.length > 5 ? true : false"
           sortField="size"
           [sortOrder]="-1"
         >
           <ng-template pTemplate="header">
             <tr>
               <th>Tienda</th>
-              <th>Base de datos</th>
-              <th pSortableColumn="size">Tamaño<p-sortIcon field="size"></p-sortIcon></th>
+              <th>Fecha</th>
+              <th pSortableColumn="cjs_nombre_job">Job <p-sortIcon field="cjs_nombre_job" /></th>
+              <th>Estado</th>
+              <th>Descripión</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-database>
+          <ng-template pTemplate="body" let-job>
             <tr>
-              <td>{{ database.tienda }}</td>
-              <td>{{ database.name }}</td>
+              <td>{{ job.nombre }}</td>
+              <td>{{ job.cjs_fecha_ejecucion | date : "yyyy/MM/dd HH:mm" }}</td>
+              <td>{{ job.cjs_nombre_job }}</td>
               <td>
-                <span [class]="getPercentText(database.size)"> {{ database.sizeTransform }}</span>
-                <div class="surface-300 border-round overflow-hidden my-1" [ngStyle]="{ height: '8px' }">
-                  <div [class]="getPercentBar(database.size)" [ngStyle]="getValue(database.size)"></div>
-                </div>
+                <p-tag severity="danger"> {{ job.cjs_estado }} </p-tag>
               </td>
+              <td>{{ job.cjs_descripcion }}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td colspan="3" class="font-normal py-4">No existen datos que mostrar.</td>
+              <td colspan="5" class="font-normal py-4">No existen datos que mostrar.</td>
             </tr>
           </ng-template>
         </p-table>
@@ -53,7 +54,7 @@
 
 <div class="grid mt-3" *ngIf="company == 'rm'">
   <div class="col-12 md:col-12">
-    <div *ngIf="(homeService.resultDatabaseSizeRm$ | async) ? false : true; else elseBlockRm">
+    <div *ngIf="(homeService.jobErrorRm$ | async) ? false : true; else elseBlockRm">
       <p-skeleton width="sm:5rem 62rem" height="28rem" />
     </div>
 
@@ -62,39 +63,40 @@
         <div class="flex justify-content-center mb-4">
           <img src="../../../../assets/layout/images/rm.png" height="25px" width="50px" alt="rm" />
         </div>
-        <h5 class="font-bold mb-5">Tamaño base de datos</h5>
+        <h5 class="font-bold mb-5">Error en los jobs</h5>
         <p-table
           #dt
-          [value]="(homeService.resultDatabaseSizeRm$ | async)!"
+          [value]="(homeService.jobErrorRm$ | async)!"
           [rows]="5"
           [scrollable]="true"
           [breakpoint]="'960px'"
-          [paginator]="(homeService.resultDatabaseSizeRm$ | async)!.length > 5 ? true : false"
+          [paginator]="(homeService.jobErrorRm$ | async)!.length > 5 ? true : false"
           sortField="size"
           [sortOrder]="-1"
         >
           <ng-template pTemplate="header">
             <tr>
               <th>Tienda</th>
-              <th>Base de datos</th>
-              <th pSortableColumn="size">Tamaño<p-sortIcon field="size"></p-sortIcon></th>
+              <th>Fecha</th>
+              <th pSortableColumn="cjs_nombre_job">Job <p-sortIcon field="cjs_nombre_job" /></th>
+              <th>Estado</th>
+              <th>Descripión</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-database>
+          <ng-template pTemplate="body" let-job>
             <tr>
-              <td>{{ database.tienda }}</td>
-              <td>{{ database.name }}</td>
+              <td>{{ job.nombre }}</td>
+              <td>{{ job.cjs_fecha_ejecucion | date : "yyyy/MM/dd HH:mm" }}</td>
+              <td>{{ job.cjs_nombre_job }}</td>
               <td>
-                <span [class]="getPercentText(database.size)"> {{ database.sizeTransform }}</span>
-                <div class="surface-300 border-round overflow-hidden my-1" [ngStyle]="{ height: '8px' }">
-                  <div [class]="getPercentBar(database.size)" [ngStyle]="getValue(database.size)"></div>
-                </div>
+                <p-tag severity="danger"> {{ job.cjs_estado }} </p-tag>
               </td>
+              <td>{{ job.cjs_descripcion }}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td colspan="3" class="font-normal py-4">No existen datos que mostrar.</td>
+              <td colspan="5" class="font-normal py-4">No existen datos que mostrar.</td>
             </tr>
           </ng-template>
         </p-table>

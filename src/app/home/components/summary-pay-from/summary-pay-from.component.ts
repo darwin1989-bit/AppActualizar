@@ -47,12 +47,12 @@ export class SummaryPayFromComponent implements OnInit {
       if (res?.electronica_s_Eta! > 0) {
         labels.push("ETA ELECTRÓNICA ACTIVO");
         data.push(res?.electronica_s_Eta);
-        backgroundColor.push(documentStyle.getPropertyValue("--bluegray-900"));
+        backgroundColor.push(documentStyle.getPropertyValue("--bluegray-700"));
       }
       if (res?.electronica_n_Eta! > 0) {
         labels.push("ETA ELECTRÓNICA INACTIVO");
         data.push(res?.electronica_n_Eta);
-        backgroundColor.push(documentStyle.getPropertyValue("--bluegray-500"));
+        backgroundColor.push(documentStyle.getPropertyValue("--bluegray-400"));
       }
 
       if (res?.textile_s_Rm! > 0) {

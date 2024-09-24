@@ -4,7 +4,6 @@
       <p-table
         #dt
         [value]="(usersService.users$ | async)!"
-        styleClass="p-datatable-sm"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
@@ -36,25 +35,35 @@
         </ng-template>
         <ng-template pTemplate="body" let-users>
           <tr>
-            <td class="select-all">{{ users.nombreCorto }}</td>
+            <td class="select-all">
+              <div class="font-bold">
+                {{ users.nombreCorto }}
+              </div>
+            </td>
 
             <td *ngIf="users.contrasena == ''; else elseBlockContra"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockContra>
-              <td>
+              <td class="select-all">
                 {{ users.contrasena }}
               </td>
             </ng-template>
 
             <td *ngIf="users.cedula == ''; else elseBlockDesc"><p-tag severity="danger"> NULL</p-tag></td>
             <ng-template #elseBlockDesc>
-              <td>
-                {{ users.cedula }}
+              <td class="select-all">
+                <div class="font-bold">
+                  {{ users.cedula }}
+                </div>
               </td>
             </ng-template>
 
             <td>{{ users.nombre }}</td>
             <td>{{ users.apellido }}</td>
-            <td>{{ users.perfilReferencia }}</td>
+            <td>
+              <div class="font-bold">
+                {{ users.perfilReferencia }}
+              </div>
+            </td>
             <td>{{ users.tienda }}</td>
             <td>{{ users.oficina }}</td>
             <td>{{ users.estado }}</td>
