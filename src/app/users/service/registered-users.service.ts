@@ -76,7 +76,7 @@ export class RegisteredUsersService {
           this.loadUserRegistered.next(true);
           this.toastMesagge.showToast("tc", "success", "Exito", res.message!);
         }),
-        catchError((error) => this.calledHttpService.errorHandler(error))
+        catchError((error) => this.calledHttpService.errorHandlerMain(error))
       )
       .subscribe();
   }

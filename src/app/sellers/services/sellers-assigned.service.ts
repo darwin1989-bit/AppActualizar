@@ -33,7 +33,7 @@ export class SellersAssignedService {
       .apiSellersMainAssignedIdGet$Json({ company, id })
       .pipe(
         tap((res) => this.sellersAssignedMain.next(res.data!)),
-        catchError((error) => this.calledHttpService.errorHandler(error))
+        catchError((error) => this.calledHttpService.errorHandlerMain(error))
       )
       .subscribe();
   }
@@ -51,7 +51,7 @@ export class SellersAssignedService {
       .apiSellersMainAssignedSapCodeGet$Json({ company, sapCode })
       .pipe(
         tap((res) => this.sellersAssignedMain.next(res.data!)),
-        catchError((error) => this.calledHttpService.errorHandler(error))
+        catchError((error) => this.calledHttpService.errorHandlerMain(error))
       )
       .subscribe();
   }
