@@ -672,7 +672,7 @@ export class UserService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiUserPut$Plain$Response(params?: {
-    company?: string;
+    ip?: string;
     body?: UpdateUserDto
   },
   context?: HttpContext
@@ -681,7 +681,7 @@ export class UserService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserPutPath, 'put');
     if (params) {
-      rb.query('company', params.company, {});
+      rb.query('ip', params.ip, {});
       rb.body(params.body, 'application/*+json');
     }
 
@@ -704,7 +704,7 @@ export class UserService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiUserPut$Plain(params?: {
-    company?: string;
+    ip?: string;
     body?: UpdateUserDto
   },
   context?: HttpContext
@@ -723,7 +723,7 @@ export class UserService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiUserPut$Json$Response(params?: {
-    company?: string;
+    ip?: string;
     body?: UpdateUserDto
   },
   context?: HttpContext
@@ -732,7 +732,7 @@ export class UserService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserPutPath, 'put');
     if (params) {
-      rb.query('company', params.company, {});
+      rb.query('ip', params.ip, {});
       rb.body(params.body, 'application/*+json');
     }
 
@@ -755,7 +755,7 @@ export class UserService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiUserPut$Json(params?: {
-    company?: string;
+    ip?: string;
     body?: UpdateUserDto
   },
   context?: HttpContext
@@ -763,6 +763,113 @@ export class UserService extends BaseService {
 ): Observable<ResponseMessage> {
 
     return this.apiUserPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserMainPut
+   */
+  static readonly ApiUserMainPutPath = '/api/User/main';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserMainPut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserMainPut$Plain$Response(params?: {
+    company?: string;
+    body?: UpdateUserDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserMainPut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserMainPut$Plain(params?: {
+    company?: string;
+    body?: UpdateUserDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiUserMainPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserMainPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserMainPut$Json$Response(params?: {
+    company?: string;
+    body?: UpdateUserDto
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseMessage>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseMessage>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserMainPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiUserMainPut$Json(params?: {
+    company?: string;
+    body?: UpdateUserDto
+  },
+  context?: HttpContext
+
+): Observable<ResponseMessage> {
+
+    return this.apiUserMainPut$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMessage>) => r.body as ResponseMessage)
     );
   }
@@ -1595,6 +1702,232 @@ export class UserService extends BaseService {
 ): Observable<ResponseAuthorizerNcDto> {
 
     return this.apiUserAuthorizerNcPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserPasswordPut
+   */
+  static readonly ApiUserPasswordPutPath = '/api/User/password';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserPasswordPut$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserPasswordPut$Plain$Response(params?: {
+    ip?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserPasswordPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('password', params.password, {});
+      rb.query('user', params.user, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserPasswordPut$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserPasswordPut$Plain(params?: {
+    ip?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserPasswordPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserPasswordPut$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserPasswordPut$Json$Response(params?: {
+    ip?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserPasswordPutPath, 'put');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('password', params.password, {});
+      rb.query('user', params.user, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserPasswordPut$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserPasswordPut$Json(params?: {
+    ip?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserPasswordPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiUserMainPasswordPut
+   */
+  static readonly ApiUserMainPasswordPutPath = '/api/User/main/password';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserMainPasswordPut$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserMainPasswordPut$Plain$Response(params?: {
+    company?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainPasswordPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.query('password', params.password, {});
+      rb.query('user', params.user, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserMainPasswordPut$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserMainPasswordPut$Plain(params?: {
+    company?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserMainPasswordPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserMainPasswordPut$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserMainPasswordPut$Json$Response(params?: {
+    company?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseAuthorizerNcDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainPasswordPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.query('password', params.password, {});
+      rb.query('user', params.user, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseAuthorizerNcDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserMainPasswordPut$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserMainPasswordPut$Json(params?: {
+    company?: string;
+    password?: string;
+    user?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseAuthorizerNcDto> {
+
+    return this.apiUserMainPasswordPut$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseAuthorizerNcDto>) => r.body as ResponseAuthorizerNcDto)
     );
   }
