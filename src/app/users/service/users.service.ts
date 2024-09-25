@@ -85,9 +85,9 @@ export class UsersService {
     this.userService.apiUserIpPosmobileGet$Json({ ip }).subscribe((res) => this.ipPosMobile.next(res.data!));
   }
 
-  public updateUser(company: string, updateUser: UpdateUserDto) {
+  public updateUser(ip: string, updateUser: UpdateUserDto) {
     this.userService
-      .apiUserPut$Json({ company, body: updateUser })
+      .apiUserPut$Json({ ip, body: updateUser })
       .pipe(
         tap((res) => {
           this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
@@ -95,6 +95,19 @@ export class UsersService {
           this.loadUser.next(true);
         }),
         catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
+  }
+  public updateUserMain(company: string, updateUser: UpdateUserDto) {
+    this.userService
+      .apiUserMainPut$Json({ company, body: updateUser })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito Matriz", res.message!);
+          this.closeDialog();
+          this.loadUser.next(true);
+        }),
+        catchError((error) => this.calledHttpService.errorHandlerMain(error))
       )
       .subscribe();
   }

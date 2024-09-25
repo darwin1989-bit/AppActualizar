@@ -1,4 +1,4 @@
-<div class="grid" *ngIf="company == 'eta'">
+<div class="grid mt-3" *ngIf="company == 'eta'">
   <div class="col-12 md:col-12">
     <div *ngIf="(homeService.payFrom$ | async) ? false : true; else elseBlock">
       <p-skeleton width="sm:5rem 62rem" height="10rem" />
@@ -44,7 +44,7 @@
   </div>
 </div>
 
-<div class="grid" *ngIf="company == 'rm'">
+<div class="grid mt-3" *ngIf="company == 'rm'">
   <div class="col-12 md:col-12">
     <div *ngIf="(homeService.payFromRm$ | async) ? false : true; else elseBlockRm">
       <p-skeleton width="sm:5rem 62rem" height="10rem" />

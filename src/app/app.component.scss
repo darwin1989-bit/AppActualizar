@@ -55,3 +55,7 @@
 :host ::ng-deep .p-fluid .p-calendar .p-inputtext {
   cursor: pointer;
 }
+
+:host ::ng-deep .p-component {
+  font-family: "Inter var", sans-serif;
+}

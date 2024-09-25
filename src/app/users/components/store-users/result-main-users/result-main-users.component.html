@@ -18,70 +18,86 @@
             <th>Contraseña</th>
             <th>Cédula</th>
             <th>Nombres</th>
-            <th>Apellidos</th>
             <th>Perfil</th>
-            <th>Tienda</th>
+            <th>Tienda asignada</th>
             <th>Oficina</th>
             <th>Estado</th>
             <th>Ip Pos Mobile</th>
+            <th>Tarjeta autorizador</th>
             <th></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-users>
+        <ng-template pTemplate="body" let-user>
           <tr>
-            <div class="font-bold">
-              <td class="select-all">{{ users.nombreCorto }}</td>
-            </div>
+            <td class="select-all">
+              <div class="font-bold">
+                {{ user.nombreCorto }}
+              </div>
+            </td>
 
-            <td *ngIf="users.contrasena == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
+            <td *ngIf="user.contrasena == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
             <ng-template #elseBlockCont>
               <td class="select-all">
-                {{ users.contrasena }}
+                {{ user.contrasena }}
               </td>
             </ng-template>
 
-            <td *ngIf="users.cedula == ''; else elseBlockCed"><p-tag severity="danger"> NULL </p-tag></td>
+            <td *ngIf="user.cedula == ''; else elseBlockCed"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockCed>
               <td class="select-all">
                 <div class="font-bold">
-                  {{ users.cedula }}
+                  {{ user.cedula }}
                 </div>
               </td>
             </ng-template>
 
-            <td>{{ users.nombre }}</td>
-            <td>{{ users.apellido }}</td>
+            <td>{{ user.nombre }} {{ user.apellido }}</td>
 
-            <td *ngIf="users.perfilReferencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
+            <td *ngIf="user.perfilReferencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockPer>
               <td>
                 <div class="font-bold">
-                  {{ users.perfilReferencia }}
+                  {{ user.perfilReferencia }}
                 </div>
               </td>
             </ng-template>
 
-            <td>{{ users.tienda }}</td>
-            <td>{{ users.oficina }}</td>
-            <td>{{ users.estado }}</td>
+            <td>{{ user.tienda }}</td>
+            <td>{{ user.oficina }}</td>
 
-            <td *ngIf="users.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> NULL </p-tag></td>
-            <ng-template #elseBlockDesc>
+            <td *ngIf="user.estado.toLowerCase() == 'deshabilitado'; else elseBlockestado">
+              <p-tag severity="warning"> {{ user.estado }} </p-tag>
+            </td>
+            <ng-template #elseBlockestado>
               <td>
-                {{ users.ipPosmobile }}
+                <p-tag severity="success"> {{ user.estado }} </p-tag>
               </td>
             </ng-template>
 
+            <td *ngIf="user.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> NULL </p-tag></td>
+            <ng-template #elseBlockDesc>
+              <td>
+                {{ user.ipPosmobile }}
+              </td>
+            </ng-template>
+            <td>
+              <div *ngIf="user.cta_estado == 'ACTIVO' && user.cta_oficina == user.oficina; else elseBlockTarjeta" class="font-bold">
+                {{ user.tienda }}
+              </div>
+              <ng-template #elseBlockTarjeta>
+                <div class="font-bold">Sin parametros</div>
+              </ng-template>
+            </td>
             <td>
               <button
                 pButton
                 pRipple
                 icon="pi pi-user-edit"
                 class="p-button-warning p-button-sm"
-                (click)="editUser(users)"
+                (click)="editUser(user)"
                 pTooltip="Editar usuario"
                 tooltipPosition="bottom"
-                [disabled]="users.tienda == 'MATRIZ'"
+                *ngIf="user.tienda != 'MATRIZ'"
               ></button>
             </td>
           </tr>
