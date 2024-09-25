@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint_actualizar: "http://172.16.11.238:8097",
+  endpoint_actualizar: "https://api-actualizar.etafashion.com",
 };
 
 /*
