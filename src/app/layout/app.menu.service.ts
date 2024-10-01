@@ -14,11 +14,13 @@ export class MenuService {
 
   public indexMenu = new BehaviorSubject(0);
   private indexMenuItem = new BehaviorSubject(0);
+  private indexMenuItemsItem = new BehaviorSubject(0);
 
   menuSource$ = this.menuSource.asObservable();
   resetSource$ = this.resetSource.asObservable();
   indexMenu$ = this.indexMenu.asObservable();
   indexMenuItem$ = this.indexMenuItem.asObservable();
+  indexMenuItemsItem$ = this.indexMenuItemsItem.asObservable();
 
   private _userData = new BehaviorSubject<userData>(UserDataObj);
 
@@ -34,6 +36,7 @@ export class MenuService {
     const eventSplit = event.key.split("-");
     this.indexMenu.next(Number(eventSplit[0]));
     this.indexMenuItem.next(Number(eventSplit[1]));
+    this.indexMenuItemsItem.next(Number(eventSplit[2]));
   }
 
   reset() {

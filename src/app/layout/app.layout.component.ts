@@ -50,10 +50,6 @@ import { SharedService } from "../shared/services/shared.service";
         border-left: 1px solid var(--primary-color);
       }
 
-      :host ::ng-deep .layout-menu ul a:hover {
-        border-left: 1px solid var(--primary-color);
-      }
-
       :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
         font-size: 0.875rem;
         font-weight: 700;

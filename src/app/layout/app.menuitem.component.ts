@@ -11,10 +11,19 @@ import { LayoutService } from "./service/app.layout.service";
   selector: "[app-menuitem]",
   template: `
     <ng-container>
-      <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{ item.label }}</div>
-      <a *ngIf="(!item.routerLink || item.items) && item.visible !== false" [attr.href]="item.url" (click)="itemClick($event)" [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple>
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{ item.label }}</span>
+      <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text "></div>
+      <a
+        *ngIf="(!item.routerLink || item.items) && item.visible !== false"
+        [attr.href]="item.url"
+        (click)="itemClick($event)"
+        [ngClass]="item.class"
+        [attr.target]="item.target"
+        tabindex="0"
+        pRipple
+        class=" hover:text-primary-700"
+      >
+        <i [ngClass]="item.icon" class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center  mr-2"></i>
+        <span class="layout-menuitem-text font-bold">{{ item.label }}</span>
         <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
       </a>
       <a
@@ -34,9 +43,10 @@ import { LayoutService } from "./service/app.layout.service";
         [attr.target]="item.target"
         tabindex="0"
         pRipple
+        class="ml-5 ul-inactive"
       >
-        <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-        <span class="layout-menuitem-text">{{ item.label }}</span>
+        <i [ngClass]="item.icon" class="layout-menuitem-icon "></i>
+        <span class="layout-menuitem-text ">{{ item.label }}</span>
         <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
       </a>
 
@@ -63,6 +73,16 @@ import { LayoutService } from "./service/app.layout.service";
       ),
       transition("collapsed <=> expanded", animate("400ms cubic-bezier(0.86, 0, 0.07, 1)")),
     ]),
+  ],
+  styles: [
+    `
+      .ul-inactive {
+        border-left: 1px solid var(--surface-200);
+      }
+      .ul-inactive:hover {
+        border-left: 1px solid var(--surface-400);
+      }
+    `,
   ],
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {

@@ -84,11 +84,6 @@
         border-left: 2px solid var(--primary-color);
       }
 
-      &:hover {
-        // background-color: var(--surface-hover);
-        border-left: 2px solid var(--primary-color);
-      }
-
       &:focus {
         @include focused-inset();
       }

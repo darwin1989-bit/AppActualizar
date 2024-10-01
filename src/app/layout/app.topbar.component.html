@@ -5,7 +5,10 @@
     </button>
   </div>
   <div class="layout-topbar-logo w-full">
-    <div class="text-600">{{ model[(menuService.indexMenu$ | async)!].label }} / {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].label }}</div>
+    <div class="text-600">
+      {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].label }} /
+      {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].items[(menuService.indexMenuItemsItem$ | async)!].label }}
+    </div>
   </div>
   <div
     #topbarmenu

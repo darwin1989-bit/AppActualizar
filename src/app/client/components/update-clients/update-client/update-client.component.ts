@@ -23,7 +23,7 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   private selectedEmployed!: IEmployee;
   private selectedGender!: IGender;
-  public onlyAlphabetic: RegExp = /^[a-zA-Z\s]+$/;
+  public onlyAlphabetic: RegExp = /^[a-zA-ZñÑ\s]*$/;
   public regEmail: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   private client!: GetClientDto;
   private user!: userData;
