@@ -46,7 +46,7 @@ import { LayoutService } from "./service/app.layout.service";
         class="ml-5 ul-inactive"
       >
         <i [ngClass]="item.icon" class="layout-menuitem-icon "></i>
-        <span class="layout-menuitem-text ">{{ item.label }}</span>
+        <span class="layout-menuitem-text my-1">{{ item.label }}</span>
         <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
       </a>
 

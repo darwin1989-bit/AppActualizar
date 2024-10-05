@@ -34,6 +34,8 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
 
   public clonedProducts: { [s: string]: MaterialsDto } = {};
 
+  public visible: boolean = false;
+
   constructor(public materialService: MaterialInformationService, private officeService: OfficesHttpService) {}
 
   ngOnDestroy(): void {
@@ -52,6 +54,7 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   public procedureMaterial(materials: MaterialsDto): void {
     this.materialService.SpComunicateMaterial(this.office.ip_Red!, materials.codigo!);
   }
+
   public procedurePrice(materials: MaterialsDto): void {
     this.materialService.SpComunicatePrice(this.office.ip_Red!, materials.codigo!);
   }
@@ -66,5 +69,12 @@ export class MaterialMainComponent implements OnInit, OnDestroy {
   public editMaterial(material: MaterialsDto) {
     this.clonedProducts[material.codBarra as string] = { ...material };
     this.materialService.setDialogEdit(this.office.ip_Red!, material);
+  }
+
+  public variants(): void {
+    this.materialService.getMaterialVariants(this.office.ip_Red!, this.materials[0].generico!);
+    this.materialService.materialsVariantsMain$.subscribe((res) => {
+      if (res.length > 0) this.visible = true;
+    });
   }
 }

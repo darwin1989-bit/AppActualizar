@@ -10,6 +10,9 @@ import { CalledHttpService } from "src/app/shared/services/called-http.service";
 export class ClientCreditComponentService {
   constructor(private clientCreditService: ServiceCreditService, private calledHttpService: CalledHttpService) {}
 
+  private clearForm = new Subject<void>();
+  public clearForm$ = this.clearForm.asObservable();
+
   private clientCredit = new BehaviorSubject<ClientCreditDto[][] | null | undefined>([]);
   public clientCredit$ = this.clientCredit.asObservable();
 
@@ -26,5 +29,9 @@ export class ClientCreditComponentService {
   }
   public clearCreditClient(): void {
     this.clientCredit.next([]);
+  }
+
+  public clearFormClientCredit(): void {
+    this.clearForm.next();
   }
 }

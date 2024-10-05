@@ -29,20 +29,20 @@ import { SharedService } from "../shared/services/shared.service";
         border: solid 1px #bfc2c5;
       }
       :host ::ng-deep .p-toast .p-toast-message {
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(15px);
       }
-      :host ::ng-deep .p-toast {
-        position: fixed;
-        width: auto;
-        opacity: 1;
-        top: 0px;
-        margin-top: 5px;
-      }
-      :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content {
-        align-items: center;
-        font-size: 0.875rem;
-        justify-content: center;
-      }
+      // :host ::ng-deep .p-toast {
+      //   position: fixed;
+      //   width: auto;
+      //   opacity: 1;
+      //   top: 0px;
+      //   margin-top: 5px;
+      // }
+      // :host ::ng-deep .p-toast .p-toast-message .p-toast-message-content {
+      //   align-items: center;
+      //   font-size: 0.875rem;
+      //   justify-content: center;
+      // }
 
       :host ::ng-deep .layout-menu ul a.active-route {
         font-weight: 600;

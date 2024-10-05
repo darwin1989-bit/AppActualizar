@@ -1,6 +1,6 @@
 <div class="grid mt-3 flex justify-content-center">
-  <div class="sm:col-12 md:col-10 lg:col-6">
-    <div class="card surface-card">
+  <div class="sm:col-12 md:col-10 lg:col-8">
+    <div class="card surface-card shadow-2">
       <p-table
         #dt
         [value]="(ipBoxesService.ipClient$ | async)!"
@@ -10,38 +10,62 @@
         [breakpoint]="'960px'"
         [paginator]="(ipBoxesService.ipClient$ | async)!.length > 5 ? true : false"
         [sortOrder]="0"
+        [globalFilterFields]="['ipcliente', 'numCaja']"
       >
         <ng-template pTemplate="caption">
-          <div class="flex align-items-center justify-content-end">
-            <span class="p-input-icon-left" [class.hidden]="(ipBoxesService.ipClient$ | async)!.length > 0 ? false : true">
-              <i class="pi pi-search"></i>
-              <button pButton pRipple label="Nueva ip" icon="pi pi-plus" class="p-button-secondary mr-2 mb-2" (click)="newIp()"></button>
-            </span>
+          <div [class.hidden]="(ipBoxesService.ipClient$ | async)!.length > 0 ? false : true">
+            <div class="flex align-items-center justify-content-end">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <button pButton pRipple label="Nueva ip" icon="pi pi-plus" class="p-button-secondary" (click)="newIp()"></button>
+              </span>
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input #inp pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..." />
+              </span>
+            </div>
+            <p-divider></p-divider>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
             <th>Ip servidor</th>
-            <th pSortableColumn="ipCliente">Ip caja<p-sortIcon field="ipCliente"></p-sortIcon></th>
-            <th pSortableColumn="numeroCaja">Número caja <p-sortIcon field="numeroCaja"></p-sortIcon></th>
+            <th>Mid</th>
+            <th pSortableColumn="ipcliente">Ip caja<p-sortIcon field="ipcliente"></p-sortIcon></th>
+            <th pSortableColumn="numCaja">Caja <p-sortIcon field="numCaja"></p-sortIcon></th>
+            <th>Tid</th>
             <th>Tipo impresora</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-ipClient>
           <tr>
             <td>{{ ipClient.ipServidor }}</td>
+            <td *ngIf="ipClient.mid == null; else elsemid"><p-tag severity="danger"> NULL</p-tag></td>
+            <ng-template #elsemid>
+              <td>
+                <span class="font-bold">{{ ipClient.mid }}</span>
+              </td>
+            </ng-template>
             <td>
               <div class="font-bold">
-                {{ ipClient.ipCliente }}
+                {{ ipClient.ipcliente }}
               </div>
             </td>
-            <td>{{ ipClient.numeroCaja }}</td>
-            <td>{{ ipClient.tipoImpresora }}</td>
+            <td>{{ ipClient.numCaja }}</td>
+
+            <td *ngIf="ipClient.tid == null; else elseTid"><p-tag severity="danger"> NULL</p-tag></td>
+            <ng-template #elseTid>
+              <td>
+                <span class="font-bold">{{ ipClient.tid }}</span>
+              </td>
+            </ng-template>
+
+            <td>{{ ipClient.ipc_tipo_impresora }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="4" class="font-normal py-4">No existen datos que mostrar.</td>
+            <td colspan="6" class="font-normal py-4">No existen datos que mostrar.</td>
           </tr>
         </ng-template>
       </p-table>

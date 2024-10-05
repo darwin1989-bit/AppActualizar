@@ -60,9 +60,9 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
     this.officeService.setValidFindOffice();
     if (Boolean(this.office) && this.materialForm.valid) {
       this.materialService.setTypeMaterial(this.materialTypeControl.value, this.materialCodeControl.value);
-      if (this.materialTypeControl.value.type == "CG") this.materialService.getMaterialGenerics(this.office.ip_Red!, this.materialCodeControl.value);
-      if (this.materialTypeControl.value.type == "CV") this.materialService.getMaterialVariants(this.office.ip_Red!, this.materialCodeControl.value);
+      if (this.materialTypeControl.value.type == "CV") this.materialService.getMaterial(this.office.ip_Red!, this.materialCodeControl.value);
       if (this.materialTypeControl.value.type == "CB") this.materialService.getMaterialBarcode(this.office.ip_Red!, this.materialCodeControl.value);
+      if (this.materialTypeControl.value.type == "EL") this.materialService.getMaterialInformation(this.office.ip_Red!, this.materialCodeControl.value, true);
     }
   }
   public changeDropDown(): void {
@@ -75,18 +75,22 @@ export class FindMaterialComponent implements OnInit, OnDestroy {
         this.labelName = "Código del material";
         break;
       case "CV":
-        this.materialCodeControl.setValidators([Validators.required, Validators.minLength(16), Validators.maxLength(16), this.codeValidator()]);
+        this.materialCodeControl.setValidators([Validators.required, Validators.minLength(13), Validators.maxLength(16), this.codeValidator()]);
         this.labelName = "Código del material";
         break;
       case "CB":
         this.materialCodeControl.setValidators([Validators.required, Validators.minLength(13), Validators.maxLength(13), this.barcodeValidator()]);
         this.labelName = "Código de barras";
         break;
+      case "EL":
+        this.materialCodeControl.setValidators([Validators.required, Validators.minLength(13), Validators.maxLength(16)]);
+        this.labelName = "Código";
+        break;
     }
   }
 
   public codeMaterialInput(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.materialService.clearMaterials();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") this.materialService.clearMaterials();
   }
   private barcodeValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

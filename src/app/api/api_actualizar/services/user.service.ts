@@ -17,6 +17,7 @@ import { ResponseIpPosMobile } from '../models/response-ip-pos-mobile';
 import { ResponseMessage } from '../models/response-message';
 import { ResponseRegisteredUserDto } from '../models/response-registered-user-dto';
 import { ResponseUsers } from '../models/response-users';
+import { ResponseUsersMain } from '../models/response-users-main';
 import { UpdateUserDto } from '../models/update-user-dto';
 
 @Injectable({
@@ -149,7 +150,7 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainIdentificationNumberGet$Plain$Response(params?: {
-    ip?: string;
+    company?: string;
     identificationNumber?: string;
   },
   context?: HttpContext
@@ -158,7 +159,7 @@ export class UserService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainIdentificationNumberGetPath, 'get');
     if (params) {
-      rb.query('ip', params.ip, {});
+      rb.query('company', params.company, {});
       rb.query('identificationNumber', params.identificationNumber, {});
     }
 
@@ -181,7 +182,7 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainIdentificationNumberGet$Plain(params?: {
-    ip?: string;
+    company?: string;
     identificationNumber?: string;
   },
   context?: HttpContext
@@ -200,7 +201,7 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainIdentificationNumberGet$Json$Response(params?: {
-    ip?: string;
+    company?: string;
     identificationNumber?: string;
   },
   context?: HttpContext
@@ -209,7 +210,7 @@ export class UserService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainIdentificationNumberGetPath, 'get');
     if (params) {
-      rb.query('ip', params.ip, {});
+      rb.query('company', params.company, {});
       rb.query('identificationNumber', params.identificationNumber, {});
     }
 
@@ -232,7 +233,7 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainIdentificationNumberGet$Json(params?: {
-    ip?: string;
+    company?: string;
     identificationNumber?: string;
   },
   context?: HttpContext
@@ -363,16 +364,16 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainUsernameGet$Plain$Response(params?: {
-    ip?: string;
+    company?: string;
     username?: string;
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<ResponseUsers>> {
+): Observable<StrictHttpResponse<ResponseUsersMain>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainUsernameGetPath, 'get');
     if (params) {
-      rb.query('ip', params.ip, {});
+      rb.query('company', params.company, {});
       rb.query('username', params.username, {});
     }
 
@@ -383,7 +384,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<ResponseUsers>;
+        return r as StrictHttpResponse<ResponseUsersMain>;
       })
     );
   }
@@ -395,15 +396,15 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainUsernameGet$Plain(params?: {
-    ip?: string;
+    company?: string;
     username?: string;
   },
   context?: HttpContext
 
-): Observable<ResponseUsers> {
+): Observable<ResponseUsersMain> {
 
     return this.apiUserMainUsernameGet$Plain$Response(params,context).pipe(
-      map((r: StrictHttpResponse<ResponseUsers>) => r.body as ResponseUsers)
+      map((r: StrictHttpResponse<ResponseUsersMain>) => r.body as ResponseUsersMain)
     );
   }
 
@@ -414,16 +415,16 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainUsernameGet$Json$Response(params?: {
-    ip?: string;
+    company?: string;
     username?: string;
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<ResponseUsers>> {
+): Observable<StrictHttpResponse<ResponseUsersMain>> {
 
     const rb = new RequestBuilder(this.rootUrl, UserService.ApiUserMainUsernameGetPath, 'get');
     if (params) {
-      rb.query('ip', params.ip, {});
+      rb.query('company', params.company, {});
       rb.query('username', params.username, {});
     }
 
@@ -434,7 +435,7 @@ export class UserService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<ResponseUsers>;
+        return r as StrictHttpResponse<ResponseUsersMain>;
       })
     );
   }
@@ -446,15 +447,15 @@ export class UserService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiUserMainUsernameGet$Json(params?: {
-    ip?: string;
+    company?: string;
     username?: string;
   },
   context?: HttpContext
 
-): Observable<ResponseUsers> {
+): Observable<ResponseUsersMain> {
 
     return this.apiUserMainUsernameGet$Json$Response(params,context).pipe(
-      map((r: StrictHttpResponse<ResponseUsers>) => r.body as ResponseUsers)
+      map((r: StrictHttpResponse<ResponseUsersMain>) => r.body as ResponseUsersMain)
     );
   }
 

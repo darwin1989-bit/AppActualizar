@@ -1,6 +1,6 @@
 <div *ngIf="visible" class="grid mt-3 flex justify-content-center">
   <div class="col-7 md:col-7">
-    <div class="card surface-card">
+    <div class="card surface-card shadow-2">
       <p-table
         #dt
         [value]="(executionJobService.serverDateControlResult$ | async)!"

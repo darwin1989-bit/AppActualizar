@@ -141,10 +141,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.companyControl.untouched;
     this.officesHttpService.setOffice(this.officeControl.value);
     this.clienteService.clearClientFound();
-    this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
+    this.transactionsService.clearFromTransaction();
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();
@@ -163,10 +163,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.offices = [];
     this.officesHttpService.setOffice(null);
     this.clienteService.clearClientFound();
-    this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
+    this.transactionsService.clearFromTransaction();
     this.materialService.clearMaterials();
     this.detailPromotionService.clearPromotions();
     this.usersService.clearUsers();

@@ -2,7 +2,7 @@
   <span class="m-0 text-2xl font-bold">Buscar voucher</span>
 </div>
 <form [formGroup]="voucherForm">
-  <div class="card">
+  <div class="card shadow-2">
     <div class="field">
       <label htmlFor="documentNumber" [class.text-red-500]="amountTransactionControl.invalid && amountTransactionControl.dirty">Ingrese el monto</label>
       <p-inputNumber (keydown)="clearResult($event)" formControlName="amountTransaction" inputId="currency-us" mode="currency" currency="USD" locale="en-US" autocomplete="off"> </p-inputNumber>

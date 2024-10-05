@@ -1,6 +1,6 @@
 <div class="grid mt-3">
   <div class="xl:col-6 g:col-6 md:col-6 col-12">
-    <div class="card surface-card">
+    <div class="card surface-card shadow-2">
       <h5 class="opacity-80">Autorización días notas de crédito</h5>
       <p-divider></p-divider>
       <p-table #dt [value]="(usersAuthorizingService.usersAuthorizing$ | async)!" [scrollable]="true" [breakpoint]="'960px'">
@@ -54,7 +54,7 @@
   </div>
 
   <div class="xl:col-6 g:col-6 md:col-6 col-12">
-    <div class="card surface-card">
+    <div class="card surface-card shadow-2">
       <h5 class="opacity-80">Segundo autorizador notas de crédito</h5>
       <p-divider></p-divider>
       <p-table #dt [value]="(usersAuthorizingService.authorizerNc$ | async)!" [scrollable]="true" [breakpoint]="'960px'">

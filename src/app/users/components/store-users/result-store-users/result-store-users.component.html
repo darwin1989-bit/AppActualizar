@@ -1,6 +1,6 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card">
+    <div class="card surface-card shadow-2">
       <p-table
         #dt
         [value]="(usersService.users$ | async)!"
@@ -8,8 +8,8 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [paginator]="(usersService.users$ | async)!.length > 1 ? true : false"
-        [globalFilterFields]="['nombreCorto', 'cedula', 'nombre', 'apellido', 'perfilReferencia']"
+        [paginator]="(usersService.users$ | async)!.length > 5 ? true : false"
+        [globalFilterFields]="['nombreCorto', 'cedula', 'nombre', 'perfilReferencia']"
         [tableStyle]="{ 'min-width': '100rem' }"
       >
         <ng-template pTemplate="caption">

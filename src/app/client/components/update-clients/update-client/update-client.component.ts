@@ -129,14 +129,6 @@ export class UpdateClientComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.menuService.userData.subscribe((user: userData) => (this.user = user));
-    this.subscription = this.sharedService.dialogCreateClient$.subscribe((res: boolean) => {
-      if (res) {
-        this.showDialogCreate();
-        this.getProvince();
-      } else {
-        this.dialogCreate = res;
-      }
-    });
     this.subscription = this.sharedService.clientNotFound$.subscribe((client) => (this.clientNotFound = client));
   }
 

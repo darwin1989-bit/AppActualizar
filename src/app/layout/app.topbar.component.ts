@@ -23,11 +23,11 @@ import { LoginService } from "../api/api_actualizar/services";
       }
 
       .label-badge-success {
-        background: var(--primary-100);
-        color: var(--primary-700);
+        color: var(--primary-600);
         padding: 6px;
         border-radius: 5px;
         font-size: 10px;
+        border: 1px solid var(--primary-600);
       }
       .connected {
         visibility: hidden;

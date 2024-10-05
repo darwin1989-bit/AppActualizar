@@ -11,14 +11,14 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
   styleUrls: ["./find-client-credit.component.scss"],
 })
 export class FindClientCreditComponent implements OnInit, OnDestroy {
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
   private office!: OfficesDto;
 
   public moneyLocale!: { money: string; locale: string };
 
   public clientCreditForm = this.fb.group({
-    numberId: ["", [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
+    numberId: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
   });
 
   get numberIdControl(): FormControl {
@@ -28,14 +28,15 @@ export class FindClientCreditComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, private clientCreditService: ClientCreditComponentService) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
-    this.subcription = this.officeService.moneyLocale$.subscribe((res) => {
+    this.subscription = this.clientCreditService.clearForm$.subscribe(() => this.clientCreditForm.reset());
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.moneyLocale$.subscribe((res) => {
       this.moneyLocale = res;
       this.numberIdControl.markAsUntouched();
     });
@@ -51,6 +52,6 @@ export class FindClientCreditComponent implements OnInit, OnDestroy {
   }
 
   public clearInvoiceInput(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.clientCreditService.clearCreditClient();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") this.clientCreditService.clearCreditClient();
   }
 }

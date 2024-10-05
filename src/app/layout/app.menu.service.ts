@@ -3,6 +3,7 @@ import { BehaviorSubject, Subject } from "rxjs";
 import { MenuChangeEvent } from "./api/menuchangeevent";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UserDataObj, userData } from "../shared/models/objects";
+import { itemsObj } from "./models/menuObject";
 
 @Injectable({
   providedIn: "root",
@@ -15,6 +16,8 @@ export class MenuService {
   public indexMenu = new BehaviorSubject(0);
   private indexMenuItem = new BehaviorSubject(0);
   private indexMenuItemsItem = new BehaviorSubject(0);
+  breadCrumb = "";
+  private changeBreadCrumb = "";
 
   menuSource$ = this.menuSource.asObservable();
   resetSource$ = this.resetSource.asObservable();
@@ -32,11 +35,17 @@ export class MenuService {
   }
 
   onMenuStateChange(event: MenuChangeEvent) {
+    const menuItems = itemsObj;
     this.menuSource.next(event);
     const eventSplit = event.key.split("-");
     this.indexMenu.next(Number(eventSplit[0]));
     this.indexMenuItem.next(Number(eventSplit[1]));
-    this.indexMenuItemsItem.next(Number(eventSplit[2]));
+    if (eventSplit[2]) {
+      this.breadCrumb = `${menuItems[Number(eventSplit[0])].items[Number(eventSplit[1])].label} / ${menuItems[Number(eventSplit[0])].items[Number(eventSplit[1])].items[Number(eventSplit[2])].label}`;
+    } else {
+      this.breadCrumb = this.changeBreadCrumb;
+    }
+    this.changeBreadCrumb = this.breadCrumb;
   }
 
   reset() {

@@ -21,9 +21,9 @@ import { ResultPaymentsVoucherComponent } from "./components/voucher/result-paym
 import { ResultPlotsVoucherComponent } from "./components/voucher/result-plots-voucher/result-plots-voucher.component";
 import { InformationVoucherComponent } from "./components/voucher/information-voucher/information-voucher.component";
 import { FindGiftCardComponent } from "./components/gift-card/find-gift-card/find-gift-card.component";
-import { ResultGiftCardComponent } from './components/gift-card/result-gift-card/result-gift-card.component';
-import { PageGiftCardComponent } from './components/pages/page-gift-card/page-gift-card.component';
-import { DetailsGiftCardComponent } from './components/gift-card/details-gift-card/details-gift-card.component';
+import { ResultGiftCardComponent } from "./components/gift-card/result-gift-card/result-gift-card.component";
+import { PageGiftCardComponent } from "./pages/page-gift-card/page-gift-card.component";
+import { DetailsGiftCardComponent } from "./components/gift-card/details-gift-card/details-gift-card.component";
 
 @NgModule({
   declarations: [
