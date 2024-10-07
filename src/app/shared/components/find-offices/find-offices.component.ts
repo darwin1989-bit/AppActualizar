@@ -97,10 +97,10 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
 
     this.company = structuredClone(CompanyObj);
 
-    // if (!environment.production) {
-    //   this.company.splice(0, 3);
-    //   this.company.push({ name: "PRUEBAS", code: "prb" });
-    // }
+    if (true) {
+      this.company.splice(0, 3);
+      this.company.push({ name: "PRUEBAS", code: "prb" });
+    }
   }
 
   public changeCompany(): void {
