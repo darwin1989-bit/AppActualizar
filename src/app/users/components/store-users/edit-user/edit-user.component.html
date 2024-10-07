@@ -19,7 +19,7 @@
               <span class="text-red-500 text-sm" *ngIf="cedulaControl.hasError('minlength') || cedulaControl.hasError('maxlength')">El número de cédula es incorrecto.</span>
             </div>
           </div>
-          <div class="field col-12">
+          <div class="field col-6">
             <label>Contraseña</label>
             <input pInputText id="password" type="text" formControlName="password" autocomplete="off" />
           </div>
@@ -27,8 +27,10 @@
             <label htmlFor="estado">Estado</label>
             <p-dropdown formControlName="estado" [options]="statusUser" optionLabel="name" placeholder="Selecciona el estado" appendTo="body"></p-dropdown>
           </div>
-          <div class="field col-6 md:col-6">
-            <label htmlFor="ipPosMobile">Ip PosMobile</label>
+          <div class="field col-12 md:col-12">
+            <label htmlFor="ipPosMobile"
+              ><span class="font-bold">{{ userMain }}</span> ip posMobile
+            </label>
             <p-dropdown formControlName="ipPosMobileUser" [options]="ipPosMobileUser" optionLabel="ipCliente" placeholder="Selecciona una Ip" appendTo="body"></p-dropdown>
           </div>
         </div>

@@ -77,7 +77,7 @@ export class FindSellersComponent implements OnInit, OnDestroy {
   }
 
   public clearResult(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") {
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") {
       this.sellersAssignedService.clearTableSellers();
     }
   }

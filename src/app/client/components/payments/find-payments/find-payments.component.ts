@@ -20,7 +20,7 @@ export class FindPaymentsComponent implements OnInit, OnDestroy {
 
   public dropdownPaymentType = TypePaymentObj;
 
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
   private office!: OfficesDto;
 
@@ -41,13 +41,13 @@ export class FindPaymentsComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, private paymentService: PaymentsComponentService) {}
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
     this.numberIdControl.disable();
   }
 
@@ -84,6 +84,6 @@ export class FindPaymentsComponent implements OnInit, OnDestroy {
   }
 
   public clearInvoiceInput(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.paymentService.clearPayments();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") this.paymentService.clearPayments();
   }
 }

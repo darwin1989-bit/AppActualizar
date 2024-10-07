@@ -1,72 +1,51 @@
-<div class="mx-3">
-  <p-divider align="center"><b>Datos trama tarjeta</b></p-divider>
-  <div class="grid">
-    <div class="col-12 md:col-6">
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-3 flex justify-content-start">Monto</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.monto | currency }}" />
-      </div>
-
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-3 flex justify-content-start">Secuencial</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.secuencial }}" />
-      </div>
+<div class="grid mt-3">
+  <div class="col-12 md:col-12">
+    <div class="card surface-card shadow-2">
+      <h4 class="opacity-80">Facturas</h4>
+      <p-divider></p-divider>
+      <p-table
+        #dt
+        [value]="(plotsVoucherService.resultVoucherInvoices$ | async)!"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [scrollable]="true"
+        [breakpoint]="'960px'"
+        [paginator]="(plotsVoucherService.resultVoucherInvoices$ | async)!.length > 5 ? true : false"
+        [tableStyle]="{ 'min-width': '100rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 11%">Id transacción</th>
+            <th style="width: 15%">Fecha factura</th>
+            <th>Serie factura</th>
+            <th style="width: 9%">Num. doc.</th>
+            <th style="width: 9%">Tipo doc.</th>
+            <th>Valor</th>
+            <th style="width: 22%">Datos voucher</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-invoice>
+          <tr>
+            <td>{{ invoice.num_Transcanc }}</td>
+            <td>{{ invoice.fecha_Factura | date : "yyyy/MM/dd HH:mm" }}</td>
+            <td>{{ invoice.serie_Factura }}</td>
+            <td>{{ invoice.numero_Documento }}</td>
+            <td>{{ invoice.tipo_Documento }}</td>
+            <td>{{ invoice.valor | currency }}</td>
+            <td>{{ invoice.comentario }}</td>
+            <td>
+              <span *ngIf="disabled" [class]="classCopy">Copiado!</span>
+              <button *ngIf="!disabled" class="p-button-success" type="button" pButton [icon]="icon" (click)="copyPrintingChain(invoice.valor)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8" class="font-normal py-4">No existen datos que mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
-    <div class="col-12 md:col-6">
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-5 flex justify-content-start">Lote</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.lote }}" />
-      </div>
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-5 flex justify-content-start">Autorización</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.autorizacion }}" />
-      </div>
-    </div>
-    <div class="p-inputgroup my-2">
-      <span class="p-inputgroup-addon w-3 flex justify-content-start">Respuesta</span>
-      <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.respuesta }}" />
-    </div>
-  </div>
-
-  <p-divider align="center"><b>Datos pago</b></p-divider>
-
-  <div class="grid">
-    <div class="col-12 md:col-6">
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-3 flex justify-content-start">Valor</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].valor | currency }}" />
-      </div>
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-3 flex justify-content-start">Serie documento</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].serie_Factura }}" />
-      </div>
-    </div>
-    <div class="col-12 md:col-6">
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-5 flex justify-content-start">Número documento</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].numero_Documento }}" />
-      </div>
-      <div class="p-inputgroup my-2">
-        <span class="p-inputgroup-addon w-5 flex justify-content-start">Tipo documento</span>
-        <input disabled class="opacity-100" pInputText value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].tipo_Documento }}" />
-      </div>
-    </div>
-    <div class="p-inputgroup my-2">
-      <span class="p-inputgroup-addon w-3 flex justify-content-start">Datos voucher</span>
-      <textarea disabled rows="2" pInputTextarea [autoResize]="true" value="{{ (plotsVoucherService.infoVoucher$ | async)!.dataInvoice![0].comentario?.trim() }}"></textarea>
-      <button
-        class="p-button-success border-noround-left"
-        type="button"
-        pButton
-        [icon]="icon"
-        (click)="ccopyPrintingChain()"
-        pTooltip="Copiar cadena"
-        tooltipPosition="bottom"
-        [disabled]="disabled"
-      ></button>
-    </div>
-  </div>
-  <div class="flex justify-content-end">
-    <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
   </div>
 </div>

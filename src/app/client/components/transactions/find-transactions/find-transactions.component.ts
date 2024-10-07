@@ -11,7 +11,7 @@ import { OfficesHttpService } from "src/app/shared/services/offices-http.service
   styleUrls: ["./find-transactions.component.scss"],
 })
 export default class FindTransactionsComponent implements OnInit, OnDestroy {
-  private subcription!: Subscription;
+  private subscription!: Subscription;
 
   private office!: OfficesDto;
 
@@ -24,13 +24,14 @@ export default class FindTransactionsComponent implements OnInit, OnDestroy {
   }
 
   constructor(private fb: FormBuilder, private officeService: OfficesHttpService, private transactionsService: TransactionsComponentService) {}
+
   ngOnInit(): void {
-    this.subcription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
   }
 
   ngOnDestroy(): void {
-    if (this.subcription) {
-      this.subcription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
@@ -44,6 +45,6 @@ export default class FindTransactionsComponent implements OnInit, OnDestroy {
   }
 
   public clearInvoiceInput(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.transactionsService.clearTransactions();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") this.transactionsService.clearTransactions();
   }
 }

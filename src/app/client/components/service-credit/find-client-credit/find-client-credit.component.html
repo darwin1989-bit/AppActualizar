@@ -2,7 +2,7 @@
   <span class="m-0 text-2xl font-bold">Buscar cliente crédito</span>
 </div>
 <form [formGroup]="clientCreditForm">
-  <div class="card">
+  <div class="card shadow-2">
     <div class="field">
       <label htmlFor="documentNumber" [class.text-red-500]="numberIdControl.invalid && numberIdControl.dirty">Número de identificación</label>
       <input (keydown)="clearInvoiceInput($event)" pInputText formControlName="numberId" autocomplete="off" pKeyFilter="num" />

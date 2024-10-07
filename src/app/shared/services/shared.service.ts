@@ -28,7 +28,7 @@ export class SharedService {
     this.dialogCreateClient.next(false);
   }
 
-  public setClearInvoiceFrom(): void {
+  public setClearInvoiceForm(): void {
     this.clearInvoiceForm.next();
   }
 }

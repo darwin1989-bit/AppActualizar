@@ -7,9 +7,9 @@ export interface ISelect {
 }
 
 export const TypeMaterialObj: ITypeMaterials[] = [
-  { name: "GENÉRICO", type: "CG" },
-  { name: "VARIANTE", type: "CV" },
+  { name: "CÓDIGO", type: "CV" },
   { name: "CÓDIGO DE BARRAS", type: "CB" },
+  { name: "ES ELECTRÓNICA", type: "EL" },
 ];
 
 export const SelectObj: ISelect[] = [

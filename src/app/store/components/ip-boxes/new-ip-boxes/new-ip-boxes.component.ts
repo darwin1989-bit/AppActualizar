@@ -68,9 +68,9 @@ export class NewIpBoxesComponent implements OnInit, OnDestroy {
       let aa = this.typePrinterControl.value;
       let ipClient: IpClientDto = {
         ipServidor: this.offices.ip_Red,
-        ipCliente: this.numberIpControl.value,
-        numeroCaja: this.numberBoxControl.value,
-        tipoImpresora: aa.value,
+        ipcliente: this.numberIpControl.value,
+        numCaja: this.numberBoxControl.value,
+        ipc_tipo_impresora: aa.value,
       };
 
       this.ipBoxesService.postInsertIpClient(this.offices.ip_Red!, ipClient);

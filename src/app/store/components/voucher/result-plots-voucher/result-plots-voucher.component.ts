@@ -7,7 +7,14 @@ import { PlotsVoucherService } from "src/app/store/services/plots-voucher.servic
 @Component({
   selector: "app-result-plots-voucher",
   templateUrl: "./result-plots-voucher.component.html",
-  styles: [``],
+  styles: [
+    `
+      :host ::ng-deep .p-tag.p-tag-info {
+        color: var(--surface-700);
+        background: var(--surface-200);
+      }
+    `,
+  ],
 })
 export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
   @ViewChild("dt") tableComponent!: Table;
@@ -32,20 +39,23 @@ export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
 
   public getReference(voucher: VoucherDto): string {
     if (voucher.dataInvoice?.length! > 0) return "Factura";
-    if (voucher.dataPaymentz?.length! > 0) return "Pago";
+    if (voucher.dataPayments?.length! > 0) return "Pago";
     if (voucher.autorizacion == "EEE") return "";
+    if (voucher.autorizacion == "") return "";
     return "Sin referencia";
   }
   public getSeverity(voucher: VoucherDto): string {
     if (voucher.dataInvoice?.length! > 0) return "success";
-    if (voucher.dataPaymentz?.length! > 0) return "success";
+    if (voucher.dataPayments?.length! > 0) return "success";
     if (voucher.autorizacion == "EEE") return "danger";
+    if (voucher.autorizacion == "") return "danger";
     return "warning";
   }
   public getIcon(voucher: VoucherDto): string {
     if (voucher.autorizacion == "EEE") return "pi pi-times";
+    if (voucher.autorizacion == "") return "pi pi-times";
     if (voucher.dataInvoice?.length! > 0) return "pi pi-check";
-    if (voucher.dataPaymentz?.length! > 0) return "pi pi-check";
+    if (voucher.dataPayments?.length! > 0) return "pi pi-check";
     return "pi pi-question";
   }
   public moreInfoVoucher(voucher: VoucherDto): void {
@@ -54,7 +64,7 @@ export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
   }
   public printDocument(voucher: VoucherDto): void {
     if (voucher.dataInvoice!.length > 0) this.showDialogInv = true;
-    if (voucher.dataPaymentz!.length > 0) this.showDialogPay = true;
+    if (voucher.dataPayments!.length > 0) this.showDialogPay = true;
 
     this.plotsVoucherService.setInfoVoucher(voucher);
   }

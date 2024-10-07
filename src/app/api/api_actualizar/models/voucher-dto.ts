@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { InvoiceCardPlotsDto } from './invoice-card-plots-dto';
-import { PaymentzCardPlots } from './paymentz-card-plots';
+import { PaymentsCardPlots } from './payments-card-plots';
 export interface VoucherDto {
   autorizacion?: null | string;
   base0?: null | string;
@@ -9,7 +9,7 @@ export interface VoucherDto {
   caja?: null | string;
   codigo_Respuesta?: null | string;
   dataInvoice?: null | Array<InvoiceCardPlotsDto>;
-  dataPaymentz?: null | Array<PaymentzCardPlots>;
+  dataPayments?: null | Array<PaymentsCardPlots>;
   fecha_Tx?: null | string;
   grupo_Tarjeta?: null | string;
   hora_Tx?: null | string;

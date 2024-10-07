@@ -119,7 +119,6 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
   public changeOffice(): void {
     this.companyControl.untouched;
     this.clienteService.clearClientFound();
-    this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
@@ -136,7 +135,6 @@ export class FindCompanyComponent implements OnInit, OnDestroy {
   public clearOffice(): void {
     this.officesHttpService.setOffice(null);
     this.clienteService.clearClientFound();
-    this.sharedService.setClearInvoiceFrom();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();

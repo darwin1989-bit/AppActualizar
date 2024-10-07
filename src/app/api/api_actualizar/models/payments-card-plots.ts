@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface PaymentzCardPlots {
+export interface PaymentsCardPlots {
   codigoServicio?: null | string;
   fechaProceso?: null | string;
   numeroDocumento?: null | string;

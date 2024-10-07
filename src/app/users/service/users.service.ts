@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
-import { IpPosMobileDto, UpdateUserDto, UsersDto } from "src/app/api/api_actualizar/models";
+import { IpPosMobileDto, UpdateUserDto, UserMainDto, UsersDto } from "src/app/api/api_actualizar/models";
 import { UserService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
@@ -15,7 +15,7 @@ export class UsersService {
   private usersMain = new BehaviorSubject<UsersDto[]>([]);
   public usersMain$ = this.usersMain.asObservable();
 
-  private editUser = new BehaviorSubject<UsersDto>({});
+  private editUser = new BehaviorSubject<UserMainDto>({});
   public editUser$ = this.editUser.asObservable();
 
   private resetTable = new BehaviorSubject<boolean>(false);
@@ -42,9 +42,9 @@ export class UsersService {
       .subscribe();
   }
 
-  public getUsernameMain(ip: string, username: string): void {
+  public getUsernameMain(company: string, username: string): void {
     this.userService
-      .apiUserMainUsernameGet$Json({ ip, username })
+      .apiUserMainUsernameGet$Json({ company, username })
       .pipe(
         tap((res) => this.usersMain.next(res.data!)),
         catchError((error) => this.calledHttpService.errorHandlerMain(error))
@@ -61,9 +61,9 @@ export class UsersService {
       .subscribe();
   }
 
-  public getIdentificationNumberMain(ip: string, identificationNumber: string): void {
+  public getIdentificationNumberMain(company: string, identificationNumber: string): void {
     this.userService
-      .apiUserMainIdentificationNumberGet$Json({ ip, identificationNumber })
+      .apiUserMainIdentificationNumberGet$Json({ company, identificationNumber })
       .pipe(
         tap((res) => this.usersMain.next(res.data!)),
         catchError((error) => this.calledHttpService.errorHandlerMain(error))
@@ -125,5 +125,6 @@ export class UsersService {
     this.users.next([]);
     this.usersMain.next([]);
     this.resetTable.next(true);
+    this.editUser.next({});
   }
 }
