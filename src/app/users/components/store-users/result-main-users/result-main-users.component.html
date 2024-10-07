@@ -1,7 +1,8 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card">
-      <h5 class="opacity-80">Matriz</h5>
+    <div class="card surface-card shadow-2">
+      <h4 class="opacity-80">Matriz</h4>
+      <p-divider></p-divider>
       <p-table
         #dt
         [value]="(usersService.usersMain$ | async)!"
@@ -21,8 +22,8 @@
             <th>Perfil</th>
             <th>Tienda asignada</th>
             <th>Oficina</th>
-            <th>Estado</th>
             <th>Ip Pos Mobile</th>
+            <th>Estado</th>
             <th>Tarjeta autorizador</th>
             <th></th>
           </tr>
@@ -34,14 +35,12 @@
                 {{ user.nombreCorto }}
               </div>
             </td>
-
-            <td *ngIf="user.contrasena == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
+            <td *ngIf="user.password == ''; else elseBlockCont"><p-tag severity="danger"> NULL</p-tag></td>
             <ng-template #elseBlockCont>
               <td class="select-all">
-                {{ user.contrasena }}
+                {{ user.password }}
               </td>
             </ng-template>
-
             <td *ngIf="user.cedula == ''; else elseBlockCed"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockCed>
               <td class="select-all">
@@ -50,21 +49,35 @@
                 </div>
               </td>
             </ng-template>
-
             <td>{{ user.nombre }} {{ user.apellido }}</td>
 
-            <td *ngIf="user.perfilReferencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
+            <td *ngIf="user.perfil_Referencia == ''; else elseBlockPer"><p-tag severity="danger"> NULL </p-tag></td>
             <ng-template #elseBlockPer>
               <td>
                 <div class="font-bold">
-                  {{ user.perfilReferencia }}
+                  {{ user.perfil_Referencia }}
                 </div>
               </td>
             </ng-template>
-
-            <td>{{ user.tienda }}</td>
-            <td>{{ user.oficina }}</td>
-
+            <td>
+              <div class="td-Array my-2" *ngFor="let item of user.oficinasAsignadas; index as i">
+                <span *ngIf="item.oficina_Banco == '001'; else elseBlockOficina">MATRIZ</span>
+                <ng-template #elseBlockOficina>
+                  {{ item.nombre }}
+                </ng-template>
+              </div>
+            </td>
+            <td>
+              <div class="td-Array my-2" *ngFor="let item of user.oficinasAsignadas; index as i">{{ item.oficina_Banco }}</div>
+            </td>
+            <td>
+              <div class="td-Array my-2" *ngFor="let item of user.oficinasAsignadas; index as i">
+                <div *ngIf="item.uag_ip_posmovil == '' || item.uag_ip_posmovil == null; else elsePosm"><p-tag severity="danger"> NULL </p-tag></div>
+                <ng-template #elsePosm>
+                  {{ item.uag_ip_posmovil }}
+                </ng-template>
+              </div>
+            </td>
             <td *ngIf="user.estado.toLowerCase() == 'deshabilitado'; else elseBlockestado">
               <p-tag severity="warning"> {{ user.estado }} </p-tag>
             </td>
@@ -73,19 +86,12 @@
                 <p-tag severity="success"> {{ user.estado }} </p-tag>
               </td>
             </ng-template>
-
-            <td *ngIf="user.ipPosmobile == ''; else elseBlockDesc"><p-tag severity="danger"> NULL </p-tag></td>
-            <ng-template #elseBlockDesc>
-              <td>
-                {{ user.ipPosmobile }}
-              </td>
-            </ng-template>
             <td>
-              <div *ngIf="user.cta_estado == 'ACTIVO' && user.cta_oficina == user.oficina; else elseBlockTarjeta" class="font-bold">
-                {{ user.tienda }}
+              <div *ngIf="user.tarjetaAutorizador.length == 0; else tarjeta">
+                <p-tag severity="warning">Sin parametros </p-tag>
               </div>
-              <ng-template #elseBlockTarjeta>
-                <div class="font-bold">Sin parametros</div>
+              <ng-template #tarjeta>
+                <div *ngFor="let item of user.tarjetaAutorizador; index as i">{{ item.tienda }}</div>
               </ng-template>
             </td>
             <td>

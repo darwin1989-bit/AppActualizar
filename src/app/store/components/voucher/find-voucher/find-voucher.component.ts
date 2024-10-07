@@ -61,9 +61,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     this.officeService.setValidFindOffice();
     if (this.office)
       if (this.office.nombre != "" && this.voucherForm.valid) {
-        let dateVoucher: Date = new Date(
-          `${this.dateTransactionControl.value.getUTCFullYear()}/${this.dateTransactionControl.value.getUTCMonth() + 1}/${this.dateTransactionControl.value.getUTCDate()}`
-        );
+        let dateVoucher: Date = new Date(`${this.dateTransactionControl.value.getFullYear()}/${this.dateTransactionControl.value.getMonth() + 1}/${this.dateTransactionControl.value.getDate()}`);
         let twoFixedValue = this.amountTransactionControl.value.toFixed(2);
         let amountReplace = twoFixedValue.toString().replace(",", "").replace(".", "");
         let amountTransaccion = amountReplace.toString().padStart(12, "0");
@@ -71,7 +69,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
       }
   }
   public clearResult(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") {
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") {
       this.plotsVoucherService.clearPlotsVoucher();
     }
   }

@@ -1,12 +1,17 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card">
-      <h5 class="opacity-80">Matriz</h5>
+    <div class="card surface-card shadow-2">
+      <div class="flex justify-content-between">
+        <h4 class="opacity-80 my-0 flex justify-content-start align-items-center">Matriz</h4>
+        <div *ngIf="materials.length > 0 ? true : false" class="flex justify-content-end align-items-center">
+          <p-divider layout="vertical"></p-divider>
+          <button pButton pRipple label="Variantes" class="p-button-info" (click)="variants()"></button>
+        </div>
+      </div>
+      <p-divider></p-divider>
       <p-table
         #dt
         [value]="materials"
-        [rows]="5"
-        [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
         rowGroupMode="rowspan"
@@ -15,7 +20,6 @@
         editMode="row"
         dataKey="codBarra"
         [tableStyle]="{ 'min-width': '100rem' }"
-        [paginator]="materials.length > 5 ? true : false"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -92,7 +96,7 @@
                 class="p-button-info p-button-sm mr-1"
                 (click)="procedureMaterial(material)"
                 [class.hidden]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
-                pTooltip="Comunicar"
+                pTooltip="Comunicar material"
                 tooltipPosition="bottom"
               ></button>
               <button
@@ -118,3 +122,110 @@
   </div>
 </div>
 <app-material-edit></app-material-edit>
+
+<p-dialog [(visible)]="visible" [modal]="true" [draggable]="true" [breakpoints]="{ '960px': '95vw' }" [style]="{ width: '1200px' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-th-large" style="font-size: 2rem; color: var(--surface-900)"></i>
+    <h4 class="m-0">Variantes del material</h4>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="grid">
+      <div class="xl:col-5 lg:col-5 md:col-5 sm:col-12">
+        <h4 class="my-0 flex justify-content-center">Tienda</h4>
+        <p-divider></p-divider>
+        <p-table
+          [value]="(materialService.materialsVariants$ | async)!"
+          [rows]="5"
+          [rowsPerPageOptions]="[5, 10, 25, 50]"
+          [paginator]="(materialService.materialsVariants$ | async)!.length > 5 ? true : false"
+          paginatorDropdownAppendTo="body"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 2%">Código</th>
+              <th style="width: 20%">Descripción</th>
+              <th style="width: 2%">Marca</th>
+              <th style="width: 2%">Precio</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-material>
+            <tr>
+              <td>{{ material.codigo }}</td>
+              <td>{{ material.descripcion }}</td>
+              <td>{{ material.marca }}</td>
+              <td>
+                {{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-end">
+              Total variantes {{ (materialService.materialsVariants$ | async)!.length ? (materialService.materialsVariants$ | async)!.length : 0 }}
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="col-1 xl:block lg:block md:block hidden">
+        <p-divider layout="vertical"></p-divider>
+      </div>
+      <div class="xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <h4 class="my-0 flex justify-content-center">Matriz</h4>
+        <p-divider></p-divider>
+        <p-table
+          [value]="(materialService.materialsVariantsMain$ | async)!"
+          [rows]="5"
+          [rowsPerPageOptions]="[5, 10, 25, 50]"
+          [paginator]="(materialService.materialsVariantsMain$ | async)!.length > 5 ? true : false"
+          paginatorDropdownAppendTo="body"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 2%">Código</th>
+              <th style="width: 15%">Descripción</th>
+              <th style="width: 2%">Marca</th>
+              <th style="width: 2%">Precio</th>
+              <th style="width: 2%"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-material>
+            <tr>
+              <td>{{ material.codigo }}</td>
+              <td>{{ material.descripcion }}</td>
+              <td>{{ material.marca }}</td>
+              <td>
+                {{ material.precio | currency : moneyLocale.money : "symbol" : "" : moneyLocale.locale }}
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-arrow-left"
+                  class="p-button-info p-button-sm mr-1"
+                  pTooltip="Comunicar material"
+                  tooltipPosition="bottom"
+                  [class.hidden]="material.spDisabled || material.marca == '' ? true : false || material.precio == null ? true : false"
+                  (click)="procedureMaterial(material)"
+                ></button>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-dollar"
+                  class="p-button-success p-button-sm"
+                  (click)="procedurePrice(material)"
+                  [class.hidden]="material.spPriceDisabled"
+                  pTooltip="Comunicar precio"
+                  tooltipPosition="bottom"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-end">
+              Total variantes {{ (materialService.materialsVariantsMain$ | async)!.length ? (materialService.materialsVariantsMain$ | async)!.length : 0 }}
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

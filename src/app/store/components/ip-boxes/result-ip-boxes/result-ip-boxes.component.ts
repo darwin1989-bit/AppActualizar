@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Table } from "primeng/table";
 import { Subscription } from "rxjs";
 import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
@@ -9,6 +9,8 @@ import { IpBoxesService } from "src/app/store/services/ip-boxes.service";
   styles: [],
 })
 export class ResultIpBoxesComponent implements OnInit, OnDestroy {
+  @ViewChild("inp") Input!: ElementRef;
+
   @ViewChild("dt") tableComponent!: Table;
 
   private subscription!: Subscription;
@@ -26,6 +28,8 @@ export class ResultIpBoxesComponent implements OnInit, OnDestroy {
     this.ipBoxesService.clearIpBoxes();
   }
   private reset(): void {
+    if (this.Input) this.Input.nativeElement.value = "";
+    if (this.Input) this.tableComponent.filterGlobal("", "");
     if (this.tableComponent) {
       this.tableComponent.reset();
       this.tableComponent.rows = 5;
@@ -33,5 +37,9 @@ export class ResultIpBoxesComponent implements OnInit, OnDestroy {
   }
   public newIp(): void {
     this.ipBoxesService.openDialogNewIp(true);
+  }
+
+  public onGlobalFilter(table: Table, event: Event) {
+    table.filterGlobal((event.target as HTMLInputElement).value, "contains");
   }
 }

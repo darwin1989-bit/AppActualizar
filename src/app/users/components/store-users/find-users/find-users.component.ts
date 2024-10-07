@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angu
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { OfficesDto } from "src/app/api/api_actualizar/models";
+import { ICompany } from "src/app/shared/models/offices.interface";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { ITypeUsers, TypeUsersObj } from "src/app/users/models/user-models";
 import { UsersService } from "src/app/users/service/users.service";
@@ -15,6 +16,8 @@ export class FindUsersComponent implements OnInit, OnDestroy {
   @Output() visbleMain = new EventEmitter<boolean>();
 
   private subscription!: Subscription;
+
+  private company!: ICompany;
 
   private office!: OfficesDto;
 
@@ -52,6 +55,8 @@ export class FindUsersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
+    this.subscription = this.officeService.company$.subscribe((res) => (this.company = res!));
+    this;
     this.userCodeControl.disable();
     this.usersService.loadUser$.subscribe((res) => {
       if (res) this.findUsers();
@@ -66,11 +71,11 @@ export class FindUsersComponent implements OnInit, OnDestroy {
       this.usersService.getIpPosMobile(this.office.ip_Red!);
       if (this.userTypeControl.value.type == "ua") {
         this.usersService.getUsername(this.office.ip_Red!, this.userCodeControl.value);
-        this.usersService.getUsernameMain(this.office.ip_Red!, this.userCodeControl.value);
+        this.usersService.getUsernameMain(this.company.code!, this.userCodeControl.value);
       }
       if (this.userTypeControl.value.type == "ce") {
         this.usersService.getIdentificationNumber(this.office.ip_Red!, this.userCodeControl.value);
-        this.usersService.getIdentificationNumberMain(this.office.ip_Red!, this.userCodeControl.value);
+        this.usersService.getIdentificationNumberMain(this.company.code!, this.userCodeControl.value);
       }
       if (this.userTypeControl.value.type == "tu") {
         this.usersService.getAllUsers(this.office.ip_Red!);
@@ -85,7 +90,7 @@ export class FindUsersComponent implements OnInit, OnDestroy {
         this.userCodeControl.setValidators([Validators.required, Validators.minLength(4), Validators.maxLength(65)]);
         this.labelName = "Ingrese el usuario";
         this.userCodeControl.enable();
-        this.userBlock = /^[A-Za-z.]+$/;
+        this.userBlock = /^[a-zA-Z0-9.]*$/;
         this.labelError = "El usuario ingresado es incorrecto";
         this.visbleMain.emit(true);
 
@@ -107,6 +112,6 @@ export class FindUsersComponent implements OnInit, OnDestroy {
   }
 
   public clearResult(event: KeyboardEvent): void {
-    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "Control" || event.key == "shift") this.usersService.clearUsers();
+    if (event.key == "Enter" || event.key == "Backspace" || event.key == "Delete" || event.key == "shift") this.usersService.clearUsers();
   }
 }

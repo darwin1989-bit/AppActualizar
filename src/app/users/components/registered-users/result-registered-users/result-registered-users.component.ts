@@ -8,20 +8,7 @@ import { RegisteredUsersService } from "src/app/users/service/registered-users.s
 @Component({
   selector: "app-result-registered-users",
   templateUrl: "./result-registered-users.component.html",
-  styles: [
-    `
-      :host ::ng-deep .p-input-filled .p-inputtext {
-        background-color: white;
-      }
-
-      :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
-        padding: 0.1rem 0.1rem;
-      }
-      :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-        padding: 0.1rem 0.1rem;
-      }
-    `,
-  ],
+  styles: [``],
 })
 export class ResultRegisteredUsersComponent implements OnInit, OnDestroy {
   @ViewChild("dt") tableComponent!: Table;

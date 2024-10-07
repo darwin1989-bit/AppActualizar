@@ -11,6 +11,9 @@ export class PaymentsComponentService {
   private payments = new BehaviorSubject<PaymentsDto[]>([]);
   public payments$ = this.payments.asObservable();
 
+  private clearForm = new Subject<void>();
+  public clearForm$ = this.clearForm.asObservable();
+
   constructor(private paymentService: PaymentsService, private calledHttpService: CalledHttpService) {}
 
   public getPaymentsAll(ip: string): void {
@@ -37,5 +40,8 @@ export class PaymentsComponentService {
   }
   public clearPayments(): void {
     this.payments.next([]);
+  }
+  public clearFormPayments(): void {
+    this.clearForm.next();
   }
 }

@@ -45,7 +45,7 @@ export class MaterialComponent implements OnInit, OnDestroy {
   }
 
   public information(materials: MaterialsDto): void {
-    this.materialService.getMaterialInformation(this.office.ip_Red!, materials.codigo!);
+    this.materialService.getMaterialInformation(this.office.ip_Red!, materials.codigo!, false);
   }
   public promotion(materials: MaterialsDto): void {
     this.detailPromotionService.getMaterialPromotion(this.office.ip_Red!, materials.codigo!);

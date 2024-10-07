@@ -77,6 +77,7 @@ export class MaterialEditComponent implements OnInit, OnDestroy {
 
     this.saveMaterial.barCode = barcode;
 
-    this.materialService.putMaterial(this.company.code, this.office.ip_Red!, this.saveMaterial);
+    this.materialService.putMaterial(this.office.ip_Red!, this.saveMaterial);
+    this.materialService.putMaterialMain(this.company.code,  this.saveMaterial);
   }
 }

@@ -5,7 +5,9 @@
     </button>
   </div>
   <div class="layout-topbar-logo w-full">
-    <div class="text-600">{{ model[(menuService.indexMenu$ | async)!].label }} / {{ model[(menuService.indexMenu$ | async)!].items[(menuService.indexMenuItem$ | async)!].label }}</div>
+    <div class="text-600">
+      {{ menuService.breadCrumb }}
+    </div>
   </div>
   <div
     #topbarmenu
@@ -15,14 +17,14 @@
   >
     <div class="flex align-items-center connect w-max" *ngIf="(officesHttpService.offices$ | async)!.ip_Red != '0.0.0.0'">
       <a class="label-badge-success text-sm mr-2 flex justify-content-center align-items-center">
-        <i class="pi pi-database text-sm mr-2 align-items-center"></i><a class="font-bold mr-2" style="color: var(--primary-700)">IP: </a>{{ (officesHttpService.offices$ | async)!.ip_Red }}
+        <i class="pi pi-database text-sm mr-2 align-items-center"></i><a class="font-bold mr-2" style="color: var(--primary-600)">IP: </a>{{ (officesHttpService.offices$ | async)!.ip_Red }}
       </a>
       <a class="label-badge-success text-sm mr-2 flex justify-content-center align-items-center">
-        <i class="pi pi-building mr-2"></i><a class="font-bold mr-2" style="color: var(--primary-700)">OFICINA POS: </a>
+        <i class="pi pi-building mr-2"></i><a class="font-bold mr-2" style="color: var(--primary-600)">OFICINA POS: </a>
         {{ (officesHttpService.offices$ | async)!.oficina }}
       </a>
       <a class="label-badge-success text-sm flex justify-content-center align-items-center">
-        <i class="pi pi-table mr-2"></i><a class="font-bold mr-2" style="color: var(--primary-700)">CÓDIGO SAP: </a>
+        <i class="pi pi-table mr-2"></i><a class="font-bold mr-2" style="color: var(--primary-600)">CÓDIGO SAP: </a>
         {{ (officesHttpService.offices$ | async)!.ofi_Codigo_Interno_Empresa }}
       </a>
     </div>
@@ -56,7 +58,7 @@
       <button
         pTooltip="Salir"
         tooltipPosition="bottom"
-        (click)="confirmLogOff('top', true)"
+        (click)="confirmLogOff('center', true)"
         type="button"
         class="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary cursor-pointer ml-2"
       >

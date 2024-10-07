@@ -12,4 +12,6 @@ export interface MaterialInfoDto {
   n3?: null | string;
   n4?: null | string;
   nivelSegmento?: null | string;
+  tip_Estado?: null | string;
+  tip_Tipo?: null | string;
 }

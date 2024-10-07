@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { IpPosMobileDto, OfficesDto, UpdateUserDto } from "src/app/api/api_actualizar/models";
+import { IpPosMobileDto, OfficesDto, UpdateUserDto, UserMainDto } from "src/app/api/api_actualizar/models";
 import { ICompany } from "src/app/shared/models/offices.interface";
 import { OfficesHttpService } from "src/app/shared/services/offices-http.service";
 import { ISelect, SelectStatus } from "src/app/users/models/user-models";
@@ -30,6 +30,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
   private selectedIpPosMobile!: IpPosMobileDto;
 
   public ipPosMobileUser!: IpPosMobileDto[];
+
+  public userMain!: string;
+
+  private userMainOffice!: string;
 
   public userForm = new FormGroup({
     nombreCorto: new FormControl(),
@@ -66,6 +70,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.usersService.editUserDialog$.subscribe((res) => (this.visible = res));
     this.subscription = this.usersService.editUser$.subscribe((res) => {
+      if (res.oficinasAsignadas?.length! > 0) {
+        const tableIpPosMobil = res.oficinasAsignadas?.find((f) => f.oficina_Banco != "001")!;
+        if (tableIpPosMobil) {
+          this.ipPosMobileUserControl.enable();
+          this.userMain = tableIpPosMobil.nombre!;
+          this.userMainOffice = tableIpPosMobil.oficina_Banco!;
+          this.userForm.controls.ipPosMobileUser.patchValue(this.ipPosMobileUser.find((f) => f.ipCliente == tableIpPosMobil.uag_ip_posmovil)!);
+        } else {
+          this.ipPosMobileUserControl.disable();
+        }
+      }
       this.userForm.controls.nombreCorto.disable();
       this.userForm.controls.nombreCorto.patchValue(res.nombreCorto!);
       if (res.cedula != "") this.userForm.controls.cedula.disable();
@@ -74,11 +89,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.userForm.controls.estado.patchValue(this.statusUser.find((f) => f.name == res.estado!)!);
       this.usersService.ipPosMobile$.subscribe((resIp) => {
         this.ipPosMobileUser = resIp;
-        this.userForm.controls.ipPosMobileUser.patchValue(this.ipPosMobileUser.find((f) => f.ipCliente == res.ipPosmobile!)!);
-        if (res.contrasena == null || res.contrasena == "") this.passwordControl.clearValidators();
+        if (res.password == null || res.password == "") this.passwordControl.clearValidators();
         else {
           this.passwordControl.enable();
-          this.passwordControl.patchValue(res.contrasena);
+          this.passwordControl.patchValue(res.password);
         }
       });
     });
@@ -98,6 +112,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         estado: Number(estado.type),
         ipPosMobile: ipPosMobile ? ipPosMobile.ipCliente : null,
         password: this.passwordControl.value,
+        oficina: this.userMainOffice,
       };
 
       this.usersService.updateUser(this.offices.ip_Red!, userUpdate);

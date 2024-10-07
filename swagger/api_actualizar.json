@@ -1142,7 +1142,7 @@
         }
       }
     },
-    "/api/Materials/generic": {
+    "/api/Materials/code": {
       "get": {
         "tags": ["Materials"],
         "parameters": [
@@ -1271,7 +1271,7 @@
         }
       }
     },
-    "/api/Materials/main/generic": {
+    "/api/Materials/main/code": {
       "get": {
         "tags": ["Materials"],
         "parameters": [
@@ -1577,14 +1577,62 @@
         "tags": ["Materials"],
         "parameters": [
           {
-            "name": "company",
+            "name": "ip",
             "in": "query",
             "schema": {
               "type": "string"
             }
-          },
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMaterial"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/main/update": {
+      "put": {
+        "tags": ["Materials"],
+        "parameters": [
           {
-            "name": "ip",
+            "name": "company",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1706,6 +1754,90 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponsePromotionStoreDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Materials/electronic": {
+      "post": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "segmentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Materials"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "segmentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseComunicationMaterial"
                 }
               }
             }
@@ -2957,6 +3089,108 @@
         }
       }
     },
+    "/api/Store/voucher/payments": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Store/voucher/invoices": {
+      "get": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDataVoucher"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Store/voucher/print": {
       "post": {
         "tags": ["Store"],
@@ -3345,7 +3579,7 @@
         "tags": ["User"],
         "parameters": [
           {
-            "name": "ip",
+            "name": "company",
             "in": "query",
             "schema": {
               "type": "string"
@@ -3431,7 +3665,7 @@
         "tags": ["User"],
         "parameters": [
           {
-            "name": "ip",
+            "name": "company",
             "in": "query",
             "schema": {
               "type": "string"
@@ -3451,17 +3685,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseUsers"
+                  "$ref": "#/components/schemas/ResponseUsersMain"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseUsers"
+                  "$ref": "#/components/schemas/ResponseUsersMain"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseUsers"
+                  "$ref": "#/components/schemas/ResponseUsersMain"
                 }
               }
             }
@@ -4227,6 +4461,32 @@
             "nullable": true
           },
           "tablaDescripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthorizingCardCodesDto": {
+        "type": "object",
+        "properties": {
+          "cta_oficina": {
+            "type": "string",
+            "nullable": true
+          },
+          "tienda": {
+            "type": "string",
+            "nullable": true
+          },
+          "cta_estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "cta_cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "cta_usuario": {
             "type": "string",
             "nullable": true
           }
@@ -5260,19 +5520,27 @@
       "IpClientDto": {
         "type": "object",
         "properties": {
+          "mid": {
+            "type": "string",
+            "nullable": true
+          },
+          "tid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipcliente": {
+            "type": "string",
+            "nullable": true
+          },
           "ipServidor": {
             "type": "string",
             "nullable": true
           },
-          "ipCliente": {
+          "numCaja": {
             "type": "string",
             "nullable": true
           },
-          "numeroCaja": {
-            "type": "string",
-            "nullable": true
-          },
-          "tipoImpresora": {
+          "ipc_tipo_impresora": {
             "type": "string",
             "nullable": true
           }
@@ -5469,6 +5737,14 @@
             "nullable": true
           },
           "nivelSegmento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tip_Tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tip_Estado": {
             "type": "string",
             "nullable": true
           }
@@ -5900,6 +6176,48 @@
         },
         "additionalProperties": false
       },
+      "PaymentsCardPlots": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaProceso": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoTransaccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoServicio": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "string",
+            "nullable": true
+          },
+          "rop_Datos_Voucher": {
+            "type": "string",
+            "nullable": true
+          },
+          "rop_Id_Movimiento": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PaymentsDTO": {
         "type": "object",
         "properties": {
@@ -5944,48 +6262,6 @@
             "nullable": true
           },
           "horaProceso": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PaymentzCardPlots": {
-        "type": "object",
-        "properties": {
-          "userID": {
-            "type": "string",
-            "nullable": true
-          },
-          "numeroTransaccion": {
-            "type": "string",
-            "nullable": true
-          },
-          "fechaProceso": {
-            "type": "string",
-            "nullable": true
-          },
-          "numeroDocumento": {
-            "type": "string",
-            "nullable": true
-          },
-          "tipoTransaccion": {
-            "type": "string",
-            "nullable": true
-          },
-          "codigoServicio": {
-            "type": "string",
-            "nullable": true
-          },
-          "valor": {
-            "type": "string",
-            "nullable": true
-          },
-          "rop_Datos_Voucher": {
-            "type": "string",
-            "nullable": true
-          },
-          "rop_Id_Movimiento": {
             "type": "string",
             "nullable": true
           }
@@ -6928,6 +7204,19 @@
         },
         "additionalProperties": false
       },
+      "ResponseUsersMain": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserMainDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Retailpricemodifier": {
         "type": "object",
         "properties": {
@@ -7317,6 +7606,30 @@
             "minLength": 12,
             "type": "string",
             "nullable": true
+          },
+          "oficina": {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserAgencyDto": {
+        "type": "object",
+        "properties": {
+          "oficina_Banco": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "uag_ip_posmovil": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -7338,6 +7651,54 @@
           },
           "colorScheme": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserMainDto": {
+        "type": "object",
+        "properties": {
+          "nombreCorto": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "perfil_Referencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "oficinasAsignadas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserAgencyDto"
+            },
+            "nullable": true
+          },
+          "tarjetaAutorizador": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuthorizingCardCodesDto"
+            },
             "nullable": true
           }
         },
@@ -7374,6 +7735,10 @@
             "type": "string",
             "nullable": true
           },
+          "nombre_OfBanco": {
+            "type": "string",
+            "nullable": true
+          },
           "oficina": {
             "type": "string",
             "nullable": true
@@ -7383,6 +7748,10 @@
             "nullable": true
           },
           "ipPosmobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "cta_nombre_oficina": {
             "type": "string",
             "nullable": true
           },
@@ -7515,10 +7884,10 @@
             },
             "nullable": true
           },
-          "dataPaymentz": {
+          "dataPayments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PaymentzCardPlots"
+              "$ref": "#/components/schemas/PaymentsCardPlots"
             },
             "nullable": true
           }

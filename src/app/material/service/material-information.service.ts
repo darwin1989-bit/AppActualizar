@@ -15,6 +15,12 @@ export class MaterialInformationService {
   private materials = new BehaviorSubject<MaterialsDto[]>([]);
   public materials$ = this.materials.asObservable();
 
+  private materialsVariants = new BehaviorSubject<MaterialsDto[]>([]);
+  public materialsVariants$ = this.materialsVariants.asObservable();
+
+  private materialsVariantsMain = new BehaviorSubject<MaterialsDto[]>([]);
+  public materialsVariantsMain$ = this.materialsVariantsMain.asObservable();
+
   private typeMaterial = new Subject<ITypeMaterials>();
   public typeMaterial$ = this.typeMaterial.asObservable();
 
@@ -24,7 +30,7 @@ export class MaterialInformationService {
   private materialsInformation = new BehaviorSubject<MaterialInfoDto[]>([]);
   public materialsInformation$ = this.materialsInformation.asObservable();
 
-  private dialogInformation = new Subject<boolean>();
+  private dialogInformation = new Subject<{ show: boolean; isElectronic: boolean }>();
   public dialogInformation$ = this.dialogInformation.asObservable();
 
   private dialogEditMaterial = new BehaviorSubject<boolean>(false);
@@ -42,22 +48,24 @@ export class MaterialInformationService {
   constructor(private materialService: MaterialsService, private calledHttpService: CalledHttpService, private toastMesagge: ToastMessagesService) {
     this.typeMaterial$.subscribe((res) => (this.typeMat = res));
   }
-  public getMaterialGenerics(ip: string, materialCode: string): void {
-    this.materialsGenerics(ip, materialCode)
+  public getMaterial(ip: string, materialVariant: string): void {
+    this.getMaterialHttp(ip, materialVariant)
       .pipe(
         tap((res) => this.materials.next(res.data!)),
-        concatMap((val) => this.mainMaterialGenerics(ip, materialCode, val)),
+        concatMap((val) => this.mainMaterialHttp(ip, materialVariant, val)),
         catchError((error) => {
-          this.mainMaterialGenerics(ip, materialCode, null).subscribe();
+          this.mainMaterialHttp(ip, materialVariant, null).subscribe();
           return this.calledHttpService.errorHandler(error);
         })
       )
       .subscribe();
   }
   public getMaterialVariants(ip: string, materialVariant: string): void {
+    this.materialsVariants.next([]);
+    this.materialsVariantsMain.next([]);
     this.materialVariants(ip, materialVariant)
       .pipe(
-        tap((res) => this.materials.next(res.data!)),
+        tap((res) => this.materialsVariants.next(res.data!)),
         concatMap((val) => this.mainMaterialVariants(ip, materialVariant, val)),
         catchError((error) => {
           this.mainMaterialVariants(ip, materialVariant, null).subscribe();
@@ -78,11 +86,12 @@ export class MaterialInformationService {
       )
       .subscribe();
   }
-  private materialsGenerics(ip: string, materialCode: string): Observable<ResponseMaterialDto> {
-    return this.materialService.apiMaterialsGenericGet$Json({ ip, materialCode });
+  private getMaterialHttp(ip: string, materialCode: string): Observable<ResponseMaterialDto> {
+    return this.materialService.apiMaterialsCodeGet$Json({ ip, materialCode });
   }
-  private mainMaterialGenerics(ip: string, materialCode: string, val: ResponseMaterialDto | null): Observable<ResponseMaterialDto> {
-    return this.materialService.apiMaterialsMainGenericGet$Json({ ip, materialCode }).pipe(
+
+  private mainMaterialHttp(ip: string, materialCode: string, val: ResponseMaterialDto | null): Observable<ResponseMaterialDto> {
+    return this.materialService.apiMaterialsMainCodeGet$Json({ ip, materialCode }).pipe(
       tap((res) => {
         const resMap = res.data?.map((r) => {
           let validatePrecio = val?.data?.find((f) => f.codigo == r.codigo);
@@ -102,8 +111,30 @@ export class MaterialInformationService {
       catchError((error) => this.calledHttpService.errorHandlerMain(error))
     );
   }
+
   private materialVariants(ip: string, materialVariant: string): Observable<ResponseMaterialDto> {
     return this.materialService.apiMaterialsVariantGet$Json({ ip, materialVariant });
+  }
+  private mainMaterial(ip: string, materialVariant: string, val: ResponseMaterialDto | null): Observable<ResponseMaterialDto> {
+    return this.materialService.apiMaterialsMainVariantGet$Json({ ip, materialVariant }).pipe(
+      tap((res) => {
+        const resMap = res.data?.map((r) => {
+          let validatePrecio = val?.data?.find((f) => f.codigo == r.codigo);
+          let spPrice: boolean = true;
+          if (validatePrecio) {
+            if (Number(validatePrecio.precio) == Number(r.precio) || r.precio == null) spPrice = true;
+            else spPrice = false;
+          }
+          return {
+            ...r,
+            spDisabled: val?.data?.some((s) => s.codigo == r.codigo),
+            spPriceDisabled: spPrice,
+          };
+        });
+        this.materialsMain.next(resMap!);
+      }),
+      catchError((error) => this.calledHttpService.errorHandlerMain(error))
+    );
   }
   private mainMaterialVariants(ip: string, materialVariant: string, val: ResponseMaterialDto | null): Observable<ResponseMaterialDto> {
     return this.materialService.apiMaterialsMainVariantGet$Json({ ip, materialVariant }).pipe(
@@ -121,7 +152,7 @@ export class MaterialInformationService {
             spPriceDisabled: spPrice,
           };
         });
-        this.materialsMain.next(resMap!);
+        this.materialsVariantsMain.next(resMap!);
       }),
       catchError((error) => this.calledHttpService.errorHandlerMain(error))
     );
@@ -150,12 +181,12 @@ export class MaterialInformationService {
       catchError((error) => this.calledHttpService.errorHandlerMain(error))
     );
   }
-  public getMaterialInformation(ip: string, code: string): void {
+  public getMaterialInformation(ip: string, code: string, electronic: boolean): void {
     this.materialService
       .apiMaterialsInformationGet$Json({ ip, code })
       .pipe(
         tap((res) => {
-          this.dialogInformation.next(true);
+          this.dialogInformation.next({ show: true, isElectronic: electronic });
           this.materialsInformation.next(res.data!);
         }),
         catchError((error) => {
@@ -200,12 +231,29 @@ export class MaterialInformationService {
     this.editMaterial.next(materialClone);
     this.getBarcode(ip, material.codigo!);
   }
-  public putMaterial(company: string, ip: string, materialUpdate: UpdateMaterial): void {
+  public putMaterial(ip: string, materialUpdate: UpdateMaterial): void {
     this.materialService
-      .apiMaterialsUpdatePut$Json({ company, ip, body: materialUpdate })
+      .apiMaterialsUpdatePut$Json({ ip, body: materialUpdate })
       .pipe(
         tap((res) => {
           this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
+          this.loadMaterial.next(true);
+        }),
+        catchError((error) => {
+          this.dialogEditMaterial.next(false);
+          return this.calledHttpService.errorHandler(error);
+        })
+      )
+      .subscribe({
+        complete: () => this.dialogEditMaterial.next(false),
+      });
+  }
+  public putMaterialMain(company: string, materialUpdate: UpdateMaterial): void {
+    this.materialService
+      .apiMaterialsMainUpdatePut$Json({ company, body: materialUpdate })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito matriz", res.message!);
           this.loadMaterial.next(true);
         }),
         catchError((error) => {
@@ -231,5 +279,31 @@ export class MaterialInformationService {
   }
   public closeDialog(): void {
     this.dialogEditMaterial.next(false);
+  }
+
+  public InsertMaterialElectronic(ip: string, segmentCode: string): void {
+    this.materialService
+      .apiMaterialsElectronicPost$Json({ ip, segmentCode })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
+          this.dialogInformation.next({ show: false, isElectronic: false });
+        }),
+        catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
+  }
+
+  public deleteMaterialElectronic(ip: string, segmentCode: string): void {
+    this.materialService
+      .apiMaterialsElectronicDelete$Json({ ip, segmentCode })
+      .pipe(
+        tap((res) => {
+          this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
+          this.dialogInformation.next({ show: false, isElectronic: false });
+        }),
+        catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
   }
 }

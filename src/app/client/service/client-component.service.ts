@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, catchError, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subject, catchError, tap } from "rxjs";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { ClientObj } from "../models/clients-object";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
@@ -19,6 +19,9 @@ export class ClientComponentService {
 
   private specialTaxpayer = new BehaviorSubject<string>("");
   public specialTaxpayer$ = this.specialTaxpayer.asObservable();
+
+  private clearForm = new Subject<void>();
+  public clearForm$ = this.clearForm.asObservable();
 
   constructor(private toastMesagge: ToastMessagesService, private clientService: ClientService, private calledHttpService: CalledHttpService, private sharedService: SharedService) {}
 
@@ -98,6 +101,9 @@ export class ClientComponentService {
   public clearClientFound(): void {
     this.clientFound.next([ClientObj]);
     this.specialTaxpayer.next("");
+  }
+  public clearFormClient(): void {
+    this.clearForm.next();
   }
 
   public showRetention(): void {

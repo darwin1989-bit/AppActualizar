@@ -5,5 +5,6 @@ export interface UpdateUserDto {
   estado?: null | number;
   ipPosMobile?: null | string;
   nombreCorto?: null | string;
+  oficina?: null | string;
   password?: null | string;
 }

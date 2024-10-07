@@ -1,92 +1,119 @@
 export const itemsObj: any[] = [
   {
-    label: "Inicio",
-    items: [{ label: "Dashboard", icon: "pi pi-fw pi-home", routerLink: ["/app/home"] }],
-  },
-  {
-    label: "Clientes",
-    items: [
-      { label: "Actualizar", icon: "pi pi-fw pi-id-card", routerLink: ["/app/client/update-client"] },
-      { label: "Documentos", icon: "pi pi-fw pi-file", routerLink: ["/app/client/invoices"] },
-      { label: "Pagos", icon: "pi pi-fw pi-money-bill", routerLink: ["/app/client/payments"] },
-      { label: "Servicio crédito", icon: "pi pi-fw pi-cloud", routerLink: ["/app/client/credit-service"] },
-      { label: "Transacciones", icon: "pi pi-arrow-right-arrow-left", routerLink: ["/app/client/transactions"] },
-    ],
-  },
-  {
-    label: "Materiales",
-    items: [
-      { label: "Consulta", icon: "pi pi-fw pi-shopping-bag", routerLink: ["/app/material/material-information"] },
-      { label: "Promociones", icon: "pi pi-fw pi-tags", routerLink: ["/app/material/material-promotion"] },
-    ],
-  },
-  {
-    label: "Usuarios",
-    items: [
-      { label: "Usuarios tienda", icon: "pi pi-fw pi-users", routerLink: ["/app/users/users"] },
-      { label: "Usuarios autorizador", icon: "pi pi-fw pi-user", routerLink: ["/app/users/authorizing-user"] },
-      { label: "Usuarios registrados", icon: "pi pi-fw pi-user-edit", routerLink: ["/app/users/registered-users"] },
-    ],
-  },
-  {
-    label: "Tienda",
     items: [
       {
-        label: "Cajas abiertas",
-        icon: "pi pi-fw pi-lock-open",
-        routerLink: ["/app/store/open-boxes"],
+        label: "Inicio",
+        icon: "pi pi-fw pi-home",
+        items: [{ label: "Dashboard", routerLink: ["/app/home"] }],
       },
-
+    ],
+  },
+  {
+    items: [
       {
-        label: "Ip cajas",
-        icon: "pi pi-fw pi-desktop",
-        routerLink: ["/app/store/ip-boxes"],
+        label: "Clientes",
+        icon: "pi pi-fw pi-user-edit",
+        items: [
+          { label: "Actualizar", routerLink: ["/app/client/update-client"] },
+          { label: "Facturas", routerLink: ["/app/client/invoices"] },
+          { label: "Pagos", routerLink: ["/app/client/payments"] },
+          { label: "Servicio crédito", routerLink: ["/app/client/credit-service"] },
+          { label: "Transacciones", routerLink: ["/app/client/transactions"] },
+        ],
       },
+    ],
+  },
+  {
+    items: [
       {
-        label: "Oficinas",
+        label: "Materiales",
+        icon: "pi pi-fw pi-shopping-bag",
+        items: [
+          { label: "Consulta", routerLink: ["/app/material/material-information"] },
+          { label: "Promociones", routerLink: ["/app/material/material-promotion"] },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        label: "Usuarios",
+        icon: "pi pi-fw pi-users",
+        items: [
+          { label: "Usuarios tienda", routerLink: ["/app/users/users"] },
+          { label: "Autorizadores", routerLink: ["/app/users/authorizing-user"] },
+          { label: "Logueados", routerLink: ["/app/users/registered-users"] },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        label: "Tienda",
         icon: "pi pi-fw pi-building",
-        routerLink: ["/app/store/offices"],
-      },
-      {
-        label: "Voucher",
-        icon: "pi pi-fw pi-credit-card",
-        routerLink: ["/app/store/voucher"],
-      },
-      {
-        label: "Tarjeta regalo",
-        icon: "pi pi-fw pi-wallet",
-        routerLink: ["/app/store/gift-card"],
-      },
-      // {
-      //   label: "Cuadre de ventas",
-      //   icon: "pi pi-fw pi-calculator",
-      //   routerLink: ["/pages/empty"],
-      // },
-    ],
-  },
-  {
-    label: "Servidores",
-    items: [
-      {
-        label: "Ejecución jobs",
-        icon: "pi pi-fw pi-sync",
-        routerLink: ["/app/servers/job-executions"],
-      },
+        items: [
+          {
+            label: "Cajas abiertas",
+            routerLink: ["/app/store/open-boxes"],
+          },
 
-      {
-        label: "Tamaño bases de datos",
-        icon: "pi pi-fw pi-database",
-        routerLink: ["/app/servers/database-size"],
+          {
+            label: "Ip cajas",
+            routerLink: ["/app/store/ip-boxes"],
+          },
+          {
+            label: "Oficinas",
+            routerLink: ["/app/store/offices"],
+          },
+          {
+            label: "Voucher",
+            routerLink: ["/app/store/voucher"],
+          },
+          {
+            label: "Tarjeta regalo",
+            routerLink: ["/app/store/gift-card"],
+          },
+          // {
+          //   label: "Cuadre de ventas",
+          //   icon: "pi pi-fw pi-calculator",
+          //   routerLink: ["/pages/empty"],
+          // },
+        ],
       },
     ],
   },
   {
-    label: "Vendedores",
     items: [
       {
-        label: "Consulta vendedores",
+        label: "Servidores",
+        icon: "pi pi-fw pi-database",
+        items: [
+          {
+            label: "Ejecución jobs",
+            routerLink: ["/app/servers/job-executions"],
+          },
+
+          {
+            label: "Tamaño bases de datos",
+            routerLink: ["/app/servers/database-size"],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        label: "Vendedores",
         icon: "pi pi-fw pi-shopping-cart",
-        routerLink: ["/app/sellers/sellers"],
+        items: [
+          {
+            label: "Consulta vendedores",
+            routerLink: ["/app/sellers/sellers"],
+          },
+        ],
       },
     ],
   },

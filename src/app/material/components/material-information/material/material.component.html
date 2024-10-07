@@ -1,18 +1,15 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card">
+    <div class="card surface-card shadow-2">
       <p-table
         #dt
         [value]="(materialService.materials$ | async)!"
-        [rows]="5"
-        [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
         rowGroupMode="rowspan"
         groupRowsBy="codigo"
         [groupRowsByOrder]="0"
         [tableStyle]="{ 'min-width': '100rem' }"
-        [paginator]="(materialService.materials$ | async)!.length > 5 ? true : false"
       >
         <ng-template pTemplate="header">
           <tr>

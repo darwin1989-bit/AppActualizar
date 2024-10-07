@@ -8,7 +8,7 @@ import { CalledHttpService } from "src/app/shared/services/called-http.service";
   providedIn: "root",
 })
 export class TransactionsComponentService {
-  private transactions = new Subject<TransactionsDto[]>();
+  private transactions = new BehaviorSubject<TransactionsDto[]>([]);
   public transactions$ = this.transactions.asObservable();
 
   public dialogOffline = new Subject<boolean>();
@@ -19,6 +19,9 @@ export class TransactionsComponentService {
 
   private offlineMain = new BehaviorSubject<OfflinePaymentDto>({});
   public offlineMain$ = this.offlineMain.asObservable();
+
+  private clearForm = new Subject<void>();
+  public clearForm$ = this.clearForm.asObservable();
 
   constructor(private transactionsService: TransactionsService, private calledHttpService: CalledHttpService) {}
 
@@ -68,5 +71,9 @@ export class TransactionsComponentService {
 
   public clearTransactions(): void {
     this.transactions.next([]);
+  }
+
+  public clearFromTransaction(): void {
+    this.clearForm.next();
   }
 }

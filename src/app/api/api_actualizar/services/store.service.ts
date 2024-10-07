@@ -555,6 +555,232 @@ export class StoreService extends BaseService {
   }
 
   /**
+   * Path part for operation apiStoreVoucherPaymentsGet
+   */
+  static readonly ApiStoreVoucherPaymentsGetPath = '/api/Store/voucher/payments';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherPaymentsGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherPaymentsGet$Plain$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherPaymentsGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherPaymentsGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherPaymentsGet$Plain(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreVoucherPaymentsGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherPaymentsGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherPaymentsGet$Json$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherPaymentsGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherPaymentsGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherPaymentsGet$Json(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreVoucherPaymentsGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
+   * Path part for operation apiStoreVoucherInvoicesGet
+   */
+  static readonly ApiStoreVoucherInvoicesGetPath = '/api/Store/voucher/invoices';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherInvoicesGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherInvoicesGet$Plain$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherInvoicesGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherInvoicesGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherInvoicesGet$Plain(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreVoucherInvoicesGet$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreVoucherInvoicesGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherInvoicesGet$Json$Response(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseDataVoucher>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreVoucherInvoicesGetPath, 'get');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('transactionDate', params.transactionDate, {});
+      rb.query('amount', params.amount, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseDataVoucher>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreVoucherInvoicesGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreVoucherInvoicesGet$Json(params?: {
+    ip?: string;
+    transactionDate?: string;
+    amount?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseDataVoucher> {
+
+    return this.apiStoreVoucherInvoicesGet$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseDataVoucher>) => r.body as ResponseDataVoucher)
+    );
+  }
+
+  /**
    * Path part for operation apiStoreVoucherPrintPost
    */
   static readonly ApiStoreVoucherPrintPostPath = '/api/Store/voucher/print';

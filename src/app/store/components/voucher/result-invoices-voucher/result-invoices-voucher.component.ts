@@ -15,9 +15,9 @@ export class ResultInvoicesVoucherComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   private office!: OfficesDto;
   public icon: string = "pi pi-copy";
-  public messages!: Message[];
   public disabled: boolean = false;
-  private voucher!: VoucherDto;
+  private voucher!: VoucherDto[];
+  public classCopy: string = "p-2 surface-200 text-800 border-round-md";
 
   constructor(public plotsVoucherService: PlotsVoucherService, private clipboard: Clipboard, private officeService: OfficesHttpService) {}
 
@@ -27,28 +27,40 @@ export class ResultInvoicesVoucherComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.officeService.offices$.subscribe((res) => (this.office = res!));
-    this.subscription = this.plotsVoucherService.infoVoucher$.subscribe((res) => (this.voucher = res!));
+    this.subscription = this.plotsVoucherService.resultVoucher$.subscribe((res) => (this.voucher = res!));
   }
 
-  public ccopyPrintingChain() {
+  public copyPrintingChain(valor: number) {
     this.icon = "pi pi-spin pi-spinner";
-    this.disabled = true;
+    let voucher = this.voucher.find((f) => f.monto == valor);
 
     this.plotsVoucherService
-      .getPrintVoucher(this.office.ip_Red!, this.office.oficina!, this.voucher)
+      .getPrintVoucher(this.office.ip_Red!, this.office.oficina!, voucher!)
       .pipe(
         tap((res) => {
-          this.clipboard.copy(res.data!);
-          this.icon = "pi pi-check";
-          this.messages = [{ severity: "success", summary: "", detail: "Cadena de impresión copiado" }];
+          const pending = this.clipboard.beginCopy(res.data!);
+          let remainingAttempts = 5;
+          const attempt = () => {
+            const result = pending.copy();
+            if (!result && --remainingAttempts) {
+              setTimeout(attempt);
+            } else {
+              pending.destroy();
+              this.icon = "pi pi-check";
+              this.disabled = true;
+              this.classCopy = "p-2 surface-200 text-800 border-round-md fadeout animation-duration-3000";
+            }
+          };
+          attempt();
         })
       )
-      .subscribe();
-
-    setTimeout(() => {
-      this.icon = "pi pi-copy";
-      this.messages = [];
-      this.disabled = false;
-    }, 3000);
+      .subscribe({
+        complete: () => {
+          setTimeout(() => {
+            this.icon = "pi pi-copy";
+            this.disabled = false;
+          }, 3000);
+        },
+      });
   }
 }

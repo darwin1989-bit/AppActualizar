@@ -4,7 +4,7 @@ import { PageOpenBoxesComponent } from "./pages/page-open-boxes/page-open-boxes.
 import { PageIpBoxesComponent } from "./pages/page-ip-boxes/page-ip-boxes.component";
 import { PageOfficesComponent } from "./pages/page-offices/page-offices.component";
 import { PageVoucherStoreComponent } from "./pages/page-voucher-store/page-voucher-store.component";
-import { PageGiftCardComponent } from "./components/pages/page-gift-card/page-gift-card.component";
+import { PageGiftCardComponent } from "./pages/page-gift-card/page-gift-card.component";
 
 const routes: Routes = [
   { path: "open-boxes", component: PageOpenBoxesComponent },

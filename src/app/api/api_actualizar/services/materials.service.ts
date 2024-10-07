@@ -29,17 +29,17 @@ export class MaterialsService extends BaseService {
   }
 
   /**
-   * Path part for operation apiMaterialsGenericGet
+   * Path part for operation apiMaterialsCodeGet
    */
-  static readonly ApiMaterialsGenericGetPath = '/api/Materials/generic';
+  static readonly ApiMaterialsCodeGetPath = '/api/Materials/code';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiMaterialsGenericGet$Plain()` instead.
+   * To access only the response body, use `apiMaterialsCodeGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsGenericGet$Plain$Response(params?: {
+  apiMaterialsCodeGet$Plain$Response(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -47,7 +47,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseMaterialDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsGenericGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsCodeGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('materialCode', params.materialCode, {});
@@ -67,11 +67,11 @@ export class MaterialsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiMaterialsGenericGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiMaterialsCodeGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsGenericGet$Plain(params?: {
+  apiMaterialsCodeGet$Plain(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -79,18 +79,18 @@ export class MaterialsService extends BaseService {
 
 ): Observable<ResponseMaterialDto> {
 
-    return this.apiMaterialsGenericGet$Plain$Response(params,context).pipe(
+    return this.apiMaterialsCodeGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialDto>) => r.body as ResponseMaterialDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiMaterialsGenericGet$Json()` instead.
+   * To access only the response body, use `apiMaterialsCodeGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsGenericGet$Json$Response(params?: {
+  apiMaterialsCodeGet$Json$Response(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -98,7 +98,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseMaterialDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsGenericGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsCodeGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('materialCode', params.materialCode, {});
@@ -118,11 +118,11 @@ export class MaterialsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiMaterialsGenericGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiMaterialsCodeGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsGenericGet$Json(params?: {
+  apiMaterialsCodeGet$Json(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -130,7 +130,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<ResponseMaterialDto> {
 
-    return this.apiMaterialsGenericGet$Json$Response(params,context).pipe(
+    return this.apiMaterialsCodeGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialDto>) => r.body as ResponseMaterialDto)
     );
   }
@@ -350,17 +350,17 @@ export class MaterialsService extends BaseService {
   }
 
   /**
-   * Path part for operation apiMaterialsMainGenericGet
+   * Path part for operation apiMaterialsMainCodeGet
    */
-  static readonly ApiMaterialsMainGenericGetPath = '/api/Materials/main/generic';
+  static readonly ApiMaterialsMainCodeGetPath = '/api/Materials/main/code';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiMaterialsMainGenericGet$Plain()` instead.
+   * To access only the response body, use `apiMaterialsMainCodeGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsMainGenericGet$Plain$Response(params?: {
+  apiMaterialsMainCodeGet$Plain$Response(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -368,7 +368,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseMaterialDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainGenericGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainCodeGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('materialCode', params.materialCode, {});
@@ -388,11 +388,11 @@ export class MaterialsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiMaterialsMainGenericGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiMaterialsMainCodeGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsMainGenericGet$Plain(params?: {
+  apiMaterialsMainCodeGet$Plain(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -400,18 +400,18 @@ export class MaterialsService extends BaseService {
 
 ): Observable<ResponseMaterialDto> {
 
-    return this.apiMaterialsMainGenericGet$Plain$Response(params,context).pipe(
+    return this.apiMaterialsMainCodeGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialDto>) => r.body as ResponseMaterialDto)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiMaterialsMainGenericGet$Json()` instead.
+   * To access only the response body, use `apiMaterialsMainCodeGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsMainGenericGet$Json$Response(params?: {
+  apiMaterialsMainCodeGet$Json$Response(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -419,7 +419,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<StrictHttpResponse<ResponseMaterialDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainGenericGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainCodeGetPath, 'get');
     if (params) {
       rb.query('ip', params.ip, {});
       rb.query('materialCode', params.materialCode, {});
@@ -439,11 +439,11 @@ export class MaterialsService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiMaterialsMainGenericGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiMaterialsMainCodeGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiMaterialsMainGenericGet$Json(params?: {
+  apiMaterialsMainCodeGet$Json(params?: {
     ip?: string;
     materialCode?: string;
   },
@@ -451,7 +451,7 @@ export class MaterialsService extends BaseService {
 
 ): Observable<ResponseMaterialDto> {
 
-    return this.apiMaterialsMainGenericGet$Json$Response(params,context).pipe(
+    return this.apiMaterialsMainCodeGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseMaterialDto>) => r.body as ResponseMaterialDto)
     );
   }
@@ -1110,7 +1110,6 @@ export class MaterialsService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiMaterialsUpdatePut$Plain$Response(params?: {
-    company?: string;
     ip?: string;
     body?: UpdateMaterial
   },
@@ -1120,7 +1119,6 @@ export class MaterialsService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsUpdatePutPath, 'put');
     if (params) {
-      rb.query('company', params.company, {});
       rb.query('ip', params.ip, {});
       rb.body(params.body, 'application/*+json');
     }
@@ -1144,7 +1142,6 @@ export class MaterialsService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiMaterialsUpdatePut$Plain(params?: {
-    company?: string;
     ip?: string;
     body?: UpdateMaterial
   },
@@ -1164,7 +1161,6 @@ export class MaterialsService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiMaterialsUpdatePut$Json$Response(params?: {
-    company?: string;
     ip?: string;
     body?: UpdateMaterial
   },
@@ -1174,7 +1170,6 @@ export class MaterialsService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsUpdatePutPath, 'put');
     if (params) {
-      rb.query('company', params.company, {});
       rb.query('ip', params.ip, {});
       rb.body(params.body, 'application/*+json');
     }
@@ -1198,7 +1193,6 @@ export class MaterialsService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiMaterialsUpdatePut$Json(params?: {
-    company?: string;
     ip?: string;
     body?: UpdateMaterial
   },
@@ -1207,6 +1201,113 @@ export class MaterialsService extends BaseService {
 ): Observable<ResponseComunicationMaterial> {
 
     return this.apiMaterialsUpdatePut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * Path part for operation apiMaterialsMainUpdatePut
+   */
+  static readonly ApiMaterialsMainUpdatePutPath = '/api/Materials/main/update';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsMainUpdatePut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiMaterialsMainUpdatePut$Plain$Response(params?: {
+    company?: string;
+    body?: UpdateMaterial
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainUpdatePutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsMainUpdatePut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiMaterialsMainUpdatePut$Plain(params?: {
+    company?: string;
+    body?: UpdateMaterial
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsMainUpdatePut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsMainUpdatePut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiMaterialsMainUpdatePut$Json$Response(params?: {
+    company?: string;
+    body?: UpdateMaterial
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsMainUpdatePutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.body(params.body, 'application/*+json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsMainUpdatePut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiMaterialsMainUpdatePut$Json(params?: {
+    company?: string;
+    body?: UpdateMaterial
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsMainUpdatePut$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
     );
   }
@@ -1416,6 +1517,220 @@ export class MaterialsService extends BaseService {
 
     return this.apiMaterialsPromotionStoreGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<ResponsePromotionStoreDto>) => r.body as ResponsePromotionStoreDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiMaterialsElectronicPost
+   */
+  static readonly ApiMaterialsElectronicPostPath = '/api/Materials/electronic';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsElectronicPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicPost$Plain$Response(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsElectronicPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('segmentCode', params.segmentCode, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsElectronicPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicPost$Plain(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsElectronicPost$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsElectronicPost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicPost$Json$Response(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsElectronicPostPath, 'post');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('segmentCode', params.segmentCode, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsElectronicPost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicPost$Json(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsElectronicPost$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * Path part for operation apiMaterialsElectronicDelete
+   */
+  static readonly ApiMaterialsElectronicDeletePath = '/api/Materials/electronic';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsElectronicDelete$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicDelete$Plain$Response(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsElectronicDeletePath, 'delete');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('segmentCode', params.segmentCode, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsElectronicDelete$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicDelete$Plain(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsElectronicDelete$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiMaterialsElectronicDelete$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicDelete$Json$Response(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseComunicationMaterial>> {
+
+    const rb = new RequestBuilder(this.rootUrl, MaterialsService.ApiMaterialsElectronicDeletePath, 'delete');
+    if (params) {
+      rb.query('ip', params.ip, {});
+      rb.query('segmentCode', params.segmentCode, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseComunicationMaterial>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiMaterialsElectronicDelete$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiMaterialsElectronicDelete$Json(params?: {
+    ip?: string;
+    segmentCode?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseComunicationMaterial> {
+
+    return this.apiMaterialsElectronicDelete$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseComunicationMaterial>) => r.body as ResponseComunicationMaterial)
     );
   }
 

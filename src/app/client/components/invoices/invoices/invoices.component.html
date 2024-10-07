@@ -1,7 +1,8 @@
 <div class="grid mt-3">
   <div class="col-12 md:col-12">
-    <div class="card surface-card">
-      <h5 class="opacity-80">Matriz</h5>
+    <div class="card surface-card shadow-2">
+      <h4 class="opacity-80">Matriz</h4>
+      <p-divider></p-divider>
       <p-table
         #dt
         [value]="(invoiceService.invoicesMain$ | async)!"
