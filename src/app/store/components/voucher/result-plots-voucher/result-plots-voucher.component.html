@@ -34,7 +34,7 @@
             <td>{{ voucher.caja }}</td>
             <td>{{ voucher.fechaHora | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>
-              <p-tag severity="warning" [value]="voucher.tipo_TxMessage" />
+              <p-tag severity="info" [value]="voucher.tipo_TxMessage" />
             </td>
             <td>{{ voucher.numero_Tarjeta }}</td>
             <td>{{ voucher.monto | currency }}</td>

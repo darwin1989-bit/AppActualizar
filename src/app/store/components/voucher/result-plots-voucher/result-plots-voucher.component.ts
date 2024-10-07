@@ -9,7 +9,7 @@ import { PlotsVoucherService } from "src/app/store/services/plots-voucher.servic
   templateUrl: "./result-plots-voucher.component.html",
   styles: [
     `
-      :host ::ng-deep .p-tag.p-tag-warning {
+      :host ::ng-deep .p-tag.p-tag-info {
         color: var(--surface-700);
         background: var(--surface-200);
       }
