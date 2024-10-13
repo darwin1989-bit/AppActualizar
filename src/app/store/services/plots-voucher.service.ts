@@ -3,6 +3,7 @@ import { BehaviorSubject, catchError, Observable, tap } from "rxjs";
 import { InvoiceCardPlotsDto, PaymentsCardPlots, ResponsePrintVoucher, VoucherDto } from "src/app/api/api_actualizar/models";
 import { StoreService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
+import { Clipboard } from "@angular/cdk/clipboard";
 
 @Injectable({
   providedIn: "root",
@@ -23,7 +24,10 @@ export class PlotsVoucherService {
   private resetTable = new BehaviorSubject<boolean>(false);
   public resetTable$ = this.resetTable.asObservable();
 
-  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService) {}
+  private amountVoucher = new BehaviorSubject<number>(0);
+  public amountVoucher$ = this.amountVoucher.asObservable();
+
+  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService, private clipboard: Clipboard) {}
 
   public getCardsPlots(amount: string, ip: string, transactionDate: string): void {
     this.storeService
@@ -88,5 +92,22 @@ export class PlotsVoucherService {
     this.resultVoucherPayments.next([]);
     this.infoVoucher.next({});
     this.resetTable.next(true);
+  }
+
+  public setAmount(amount: number): void {
+    this.amountVoucher.next(amount);
+  }
+  public copyClipboard(text: string): void {
+    const pending = this.clipboard.beginCopy(text);
+    let remainingAttempts = 5;
+    const attempt = () => {
+      const result = pending.copy();
+      if (!result && --remainingAttempts) {
+        setTimeout(attempt);
+      } else {
+        pending.destroy();
+      }
+    };
+    attempt();
   }
 }

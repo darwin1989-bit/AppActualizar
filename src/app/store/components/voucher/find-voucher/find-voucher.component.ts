@@ -62,6 +62,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     if (this.office)
       if (this.office.nombre != "" && this.voucherForm.valid) {
         let dateVoucher: Date = new Date(`${this.dateTransactionControl.value.getFullYear()}/${this.dateTransactionControl.value.getMonth() + 1}/${this.dateTransactionControl.value.getDate()}`);
+        this.plotsVoucherService.setAmount(Number(this.amountTransactionControl.value));
         let twoFixedValue = this.amountTransactionControl.value.toFixed(2);
         let amountReplace = twoFixedValue.toString().replace(",", "").replace(".", "");
         let amountTransaccion = amountReplace.toString().padStart(12, "0");
