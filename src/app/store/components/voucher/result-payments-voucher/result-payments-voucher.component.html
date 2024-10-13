@@ -27,7 +27,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-payment>
           <tr>
-            <td>{{ payment.rop_Id_Movimiento }}</td>
+            <td>
+              <p-tag severity="success" [value]="payment.rop_Id_Movimiento"></p-tag>
+            </td>
             <td>{{ payment.fechaProceso | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ payment.numeroTransaccion }}</td>
             <td>{{ payment.numeroDocumento }}</td>
@@ -35,8 +37,13 @@
             <td>{{ payment.valor | currency }}</td>
             <td>{{ payment.rop_Datos_Voucher }}</td>
             <td>
-              <span *ngIf="disabled" [class]="classCopy">Copiado!</span>
-              <button *ngIf="!disabled" class="p-button-success" type="button" pButton [icon]="icon" (click)="copyPrintingChain(payment.valor)"></button>
+              <div *ngIf="payment.rop_Datos_Voucher == auth; else blockAuth">
+                <span *ngIf="disabled" [class]="classCopy">Copiado!</span>
+                <button *ngIf="!disabled" class="p-button-success" type="button" pButton [icon]="icon" (click)="generatePrintingChain(payment.rop_Datos_Voucher)"></button>
+              </div>
+              <ng-template #blockAuth>
+                <button class="p-button-success" type="button" pButton icon="pi pi-copy" (click)="generatePrintingChain(payment.rop_Datos_Voucher)"></button>
+              </ng-template>
             </td>
           </tr>
         </ng-template>
@@ -49,3 +56,4 @@
     </div>
   </div>
 </div>
+<textarea *ngIf="false" rows="5" cols="30" pInputTextarea [(ngModel)]="text"></textarea>

@@ -24,6 +24,7 @@ import { GiftCardService } from "src/app/store/services/gift-card.service";
 import { ExecutionJobService } from "src/app/servers/services/execution-job.service";
 import { DatabaseSizeService } from "src/app/servers/services/database-size.service";
 import { SellersAssignedService } from "src/app/sellers/services/sellers-assigned.service";
+import { InvoicesComponentService } from "src/app/client/service/invoices-component.service";
 
 @Component({
   selector: "app-find-offices",
@@ -60,6 +61,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private clienteService: ClientComponentService,
     private sharedService: SharedService,
+    private invoiceService: InvoicesComponentService,
     private paymentsService: PaymentsComponentService,
     private clientCreditService: ClientCreditComponentService,
     private transactionsService: TransactionsComponentService,
@@ -141,6 +143,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.companyControl.untouched;
     this.officesHttpService.setOffice(this.officeControl.value);
     this.clienteService.clearClientFound();
+    this.invoiceService.clearInvoices();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();
@@ -163,6 +166,7 @@ export class FindOfficesComponent implements OnInit, OnDestroy {
     this.offices = [];
     this.officesHttpService.setOffice(null);
     this.clienteService.clearClientFound();
+    this.invoiceService.clearInvoices();
     this.paymentsService.clearPayments();
     this.clientCreditService.clearCreditClient();
     this.transactionsService.clearTransactions();

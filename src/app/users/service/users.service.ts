@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject, catchError, tap } from "rxjs";
-import { IpPosMobileDto, UpdateUserDto, UserMainDto, UsersDto } from "src/app/api/api_actualizar/models";
+import { BehaviorSubject, Observable, Subject, catchError, mergeMap, tap } from "rxjs";
+import { IpPosMobileDto, ResponseMessage, UpdateUserDto, UserMainDto, UsersDto } from "src/app/api/api_actualizar/models";
 import { UserService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
 import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
@@ -85,7 +85,7 @@ export class UsersService {
     this.userService.apiUserIpPosmobileGet$Json({ ip }).subscribe((res) => this.ipPosMobile.next(res.data!));
   }
 
-  public updateUser(ip: string, updateUser: UpdateUserDto) {
+  public updateUser(company: string, ip: string, updateUser: UpdateUserDto) {
     this.userService
       .apiUserPut$Json({ ip, body: updateUser })
       .pipe(
@@ -94,22 +94,14 @@ export class UsersService {
           this.closeDialog();
           this.loadUser.next(true);
         }),
+
+        mergeMap((_) => this.updateUserMain(company, updateUser).pipe(tap((res) => this.toastMesagge.showToast("tc", "success", "Éxito Matriz", res.message!)))),
         catchError((error) => this.calledHttpService.errorHandler(error))
       )
       .subscribe();
   }
-  public updateUserMain(company: string, updateUser: UpdateUserDto) {
-    this.userService
-      .apiUserMainPut$Json({ company, body: updateUser })
-      .pipe(
-        tap((res) => {
-          this.toastMesagge.showToast("tc", "success", "Éxito Matriz", res.message!);
-          this.closeDialog();
-          this.loadUser.next(true);
-        }),
-        catchError((error) => this.calledHttpService.errorHandlerMain(error))
-      )
-      .subscribe();
+  private updateUserMain(company: string, updateUser: UpdateUserDto): Observable<ResponseMessage> {
+    return this.userService.apiUserMainPut$Json({ company, body: updateUser }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
   }
 
   public openDialog(user: UsersDto): void {

@@ -9,6 +9,39 @@ import { PlotsVoucherService } from "src/app/store/services/plots-voucher.servic
   templateUrl: "./result-plots-voucher.component.html",
   styles: [
     `
+      :host {
+        @keyframes slidedown-icon {
+          0% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(20px);
+          }
+
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        .slidedown-icon {
+          animation: slidedown-icon;
+          animation-duration: 3s;
+          animation-iteration-count: infinite;
+        }
+
+        .box {
+          background-image: radial-gradient(var(--primary-300), var(--primary-600));
+          border-radius: 50% !important;
+          color: var(--primary-color-text);
+        }
+      }
+      .slidedown-icon {
+        animation: slidedown-icon;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+
       :host ::ng-deep .p-tag.p-tag-info {
         color: var(--surface-700);
         background: var(--surface-200);
@@ -38,8 +71,14 @@ export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
   }
 
   public getReference(voucher: VoucherDto): string {
-    if (voucher.dataInvoice?.length! > 0) return "Factura";
-    if (voucher.dataPayments?.length! > 0) return "Pago";
+    if (voucher.dataInvoice?.length! > 0) {
+      const dataInvoice = voucher.dataInvoice?.find((f) => f.autorizacion_Tarjeta == voucher.autorizacion);
+      return `${dataInvoice?.num_Transcanc} - Factura `;
+    }
+    if (voucher.dataPayments?.length! > 0) {
+      const dataPayments = voucher.dataPayments?.find((f) => f.rop_Datos_Voucher?.split("|")?.[0] == voucher.autorizacion);
+      return `${dataPayments?.rop_Id_Movimiento} - Pago`;
+    }
     if (voucher.autorizacion == "EEE") return "";
     if (voucher.autorizacion == "") return "";
     return "Sin referencia";
