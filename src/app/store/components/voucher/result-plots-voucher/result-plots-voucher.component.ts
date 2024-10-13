@@ -73,11 +73,19 @@ export class ResultPlotsVoucherComponent implements OnInit, OnDestroy {
   public getReference(voucher: VoucherDto): string {
     if (voucher.dataInvoice?.length! > 0) {
       const dataInvoice = voucher.dataInvoice?.find((f) => f.autorizacion_Tarjeta == voucher.autorizacion);
-      return `${dataInvoice?.num_Transcanc} - Factura `;
+      if (dataInvoice) {
+        return `${dataInvoice?.num_Transcanc} - Factura `;
+      } else {
+        return `Factura`;
+      }
     }
     if (voucher.dataPayments?.length! > 0) {
       const dataPayments = voucher.dataPayments?.find((f) => f.rop_Datos_Voucher?.split("|")?.[0] == voucher.autorizacion);
-      return `${dataPayments?.rop_Id_Movimiento} - Pago`;
+      if (dataPayments) {
+        return `${dataPayments?.rop_Id_Movimiento} - Pago`;
+      } else {
+        return `Pago`;
+      }
     }
     if (voucher.autorizacion == "EEE") return "";
     if (voucher.autorizacion == "") return "";
