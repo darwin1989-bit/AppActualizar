@@ -27,7 +27,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-invoice>
           <tr>
-            <td>{{ invoice.num_Transcanc }}</td>
+            <td>
+              <p-tag severity="success" [value]="invoice.num_Transcanc" />
+            </td>
             <td>{{ invoice.fecha_Factura | date : "yyyy/MM/dd HH:mm" }}</td>
             <td>{{ invoice.serie_Factura }}</td>
             <td>{{ invoice.numero_Documento }}</td>
@@ -35,8 +37,13 @@
             <td>{{ invoice.valor | currency }}</td>
             <td>{{ invoice.comentario }}</td>
             <td>
-              <span *ngIf="disabled" [class]="classCopy">Copiado!</span>
-              <button *ngIf="!disabled" class="p-button-success" type="button" pButton [icon]="icon" (click)="copyPrintingChain(invoice.valor)"></button>
+              <div *ngIf="invoice.autorizacion_Tarjeta == auth; else blockAuth">
+                <span *ngIf="disabled" [class]="classCopy">Copiado!</span>
+                <button *ngIf="!disabled" class="p-button-success" type="button" pButton [icon]="icon" (click)="generatePrintingChain(invoice.autorizacion_Tarjeta)"></button>
+              </div>
+              <ng-template #blockAuth>
+                <button class="p-button-success" type="button" pButton icon="pi pi-copy" (click)="generatePrintingChain(invoice.autorizacion_Tarjeta)"></button>
+              </ng-template>
             </td>
           </tr>
         </ng-template>
@@ -49,3 +56,5 @@
     </div>
   </div>
 </div>
+
+<textarea *ngIf="false" rows="5" cols="30" pInputTextarea [(ngModel)]="text"></textarea>

@@ -115,8 +115,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         oficina: this.userMainOffice,
       };
 
-      this.usersService.updateUser(this.offices.ip_Red!, userUpdate);
-      this.usersService.updateUserMain(this.company.code, userUpdate);
+      this.usersService.updateUser(this.company.code, this.offices.ip_Red!, userUpdate);
     }
   }
 }
