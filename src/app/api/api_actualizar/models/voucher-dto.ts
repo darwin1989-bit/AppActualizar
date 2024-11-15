@@ -10,6 +10,8 @@ export interface VoucherDto {
   codigo_Respuesta?: null | string;
   dataInvoice?: null | Array<InvoiceCardPlotsDto>;
   dataPayments?: null | Array<PaymentsCardPlots>;
+  datosNoCoincidentesFactura?: null | string;
+  datosNoCoincidentesPagos?: null | string;
   fecha_Tx?: null | string;
   grupo_Tarjeta?: null | string;
   hora_Tx?: null | string;
