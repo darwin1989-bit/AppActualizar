@@ -57,7 +57,7 @@ export class ResultGiftCardComponent implements OnInit, OnDestroy {
   confirm(event: Event, numberGiftCard: string): void {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: "Esta segúro de activar la tarjeta ?",
+      message: "Esta segúro de <strong>ACTIVAR</strong> la tarjeta regalo?",
       header: "Confirmación",
       icon: "pi pi-exclamation-triangle",
       acceptLabel: "Si",
