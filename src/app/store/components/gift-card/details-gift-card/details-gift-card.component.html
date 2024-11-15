@@ -13,8 +13,8 @@
       <th>Oficina</th>
       <th>Código tarjeta</th>
       <th>Serie factura</th>
-      <th>Valor</th>
       <th>Transacción</th>
+      <th>Valor</th>
       <th>Saldo tarjeta</th>
     </tr>
   </ng-template>
@@ -24,9 +24,9 @@
       <td>{{ giftCard.ttr_Oficina }}</td>
       <td>{{ giftCard.ttr_Codigo_Tarjeta }}</td>
       <td>{{ giftCard.ttr_Serie_Factura }}</td>
-      <td>{{ giftCard.ttr_Valor | currency }}</td>
       <td>{{ giftCard.ttr_Transaccion }}</td>
-      <td>{{ giftCard.ttr_Saldo_Tarjeta }}</td>
+      <td>{{ giftCard.ttr_Valor | currency }}</td>
+      <td>{{ (giftCard.ttr_Saldo_Tarjeta == null ? "0" : giftCard.ttr_Saldo_Tarjeta) | currency }}</td>
     </tr>
   </ng-template>
 </p-table>

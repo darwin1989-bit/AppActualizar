@@ -52,6 +52,15 @@ export class GiftCardService {
       )
       .subscribe();
   }
+  public editGiftCard(company: string, status: string, numberGiftCard: string): void {
+    this.storeService
+      .apiStoreGiftcardsEditPut$Json({ company, status, numberGiftCard })
+      .pipe(
+        tap(() => this.getGitCardNumber(company, numberGiftCard)),
+        catchError((error) => this.calledHttpService.errorHandler(error))
+      )
+      .subscribe();
+  }
 
   public clearGiftCards(): void {
     this.giftCard.next([]);

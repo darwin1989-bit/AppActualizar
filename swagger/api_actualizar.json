@@ -3388,6 +3388,56 @@
         }
       }
     },
+    "/api/Store/giftcards/edit": {
+      "put": {
+        "tags": ["Store"],
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numberGiftCard",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGiftCard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Transactions": {
       "get": {
         "tags": ["Transactions"],
@@ -7889,6 +7939,14 @@
             "items": {
               "$ref": "#/components/schemas/PaymentsCardPlots"
             },
+            "nullable": true
+          },
+          "datosNoCoincidentesPagos": {
+            "type": "string",
+            "nullable": true
+          },
+          "datosNoCoincidentesFactura": {
+            "type": "string",
             "nullable": true
           }
         },

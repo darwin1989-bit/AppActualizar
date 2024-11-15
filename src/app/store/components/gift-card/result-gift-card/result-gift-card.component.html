@@ -9,7 +9,7 @@
         [scrollable]="true"
         [breakpoint]="'960px'"
         [paginator]="(giftCardService.giftCard$ | async)!.length > 5 ? true : false"
-        [tableStyle]="(giftCardService.giftCard$ | async)!.length == 0 ? null : { 'min-width': '100rem' }"
+        [tableStyle]="(giftCardService.giftCard$ | async)!.length == 0 ? null : { 'min-width': '120rem' }"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -54,17 +54,30 @@
             <td>{{ giftCard.str_Fecha_Inicio | date : "yyyy/MM/dd" }}</td>
             <td>{{ giftCard.str_Fecha_Fin | date : "yyyy/MM/dd" }}</td>
             <td>
-              <button
-                icon="pi pi-list"
-                [class.hidden]="giftCard.str_Estado == 'CONSUMIDO' ? false : true"
-                type="button"
-                pButton
-                pRipple
-                class="p-button-sm p-button-information"
-                (click)="detailsGiftCard(giftCard.str_Codigo_Tarjeta)"
-                pTooltip="Detalle"
-                tooltipPosition="bottom"
-              ></button>
+              <div class="flex align-items-center gap-2">
+                <button
+                  *ngIf="giftCard.str_Estado == 'INACTIVO'"
+                  icon="pi pi-pencil"
+                  type="button"
+                  pButton
+                  pRipple
+                  class="p-button-sm p-button-warning"
+                  (click)="confirm($event, giftCard.str_Codigo_Tarjeta)"
+                  pTooltip="Editar"
+                  tooltipPosition="bottom"
+                ></button>
+                <button
+                  icon="pi pi-list"
+                  [class.hidden]="giftCard.str_Estado == 'CONSUMIDO' ? false : true"
+                  type="button"
+                  pButton
+                  pRipple
+                  class="p-button-sm p-button-information"
+                  (click)="detailsGiftCard(giftCard.str_Codigo_Tarjeta)"
+                  pTooltip="Detalle"
+                  tooltipPosition="bottom"
+                ></button>
+              </div>
             </td>
           </tr>
         </ng-template>
@@ -88,3 +101,5 @@
   </ng-template>
   <p class="m-0"></p>
 </p-dialog>
+
+<p-confirmDialog [closable]="false" />
