@@ -3,6 +3,7 @@ import { BehaviorSubject, catchError, tap } from "rxjs";
 import { GiftCardDto, InformationGiftCard } from "src/app/api/api_actualizar/models";
 import { StoreService } from "src/app/api/api_actualizar/services";
 import { CalledHttpService } from "src/app/shared/services/called-http.service";
+import { ToastMessagesService } from "src/app/shared/services/toast-messages.service";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,7 @@ export class GiftCardService {
   private resetTable = new BehaviorSubject<boolean>(false);
   public resetTable$ = this.resetTable.asObservable();
 
-  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService) {}
+  constructor(private storeService: StoreService, private calledHttpService: CalledHttpService, private toastMesagge: ToastMessagesService) {}
 
   public getGitCardNumber(company: string, numberGiftCard: string): void {
     this.storeService
@@ -56,7 +57,10 @@ export class GiftCardService {
     this.storeService
       .apiStoreGiftcardsEditPut$Json({ company, status, numberGiftCard })
       .pipe(
-        tap(() => this.getGitCardNumber(company, numberGiftCard)),
+        tap(() => {
+          this.toastMesagge.showToast("tc", "success", "Exito", "Se ha actualizado el estado de la tarjeta");
+          this.getGitCardNumber(company, numberGiftCard);
+        }),
         catchError((error) => this.calledHttpService.errorHandler(error))
       )
       .subscribe();
