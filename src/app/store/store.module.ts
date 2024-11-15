@@ -24,6 +24,7 @@ import { FindGiftCardComponent } from "./components/gift-card/find-gift-card/fin
 import { ResultGiftCardComponent } from "./components/gift-card/result-gift-card/result-gift-card.component";
 import { PageGiftCardComponent } from "./pages/page-gift-card/page-gift-card.component";
 import { DetailsGiftCardComponent } from "./components/gift-card/details-gift-card/details-gift-card.component";
+import { EditGiftCardComponent } from "./components/gift-card/edit-gift-card/edit-gift-card.component";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DetailsGiftCardComponent } from "./components/gift-card/details-gift-ca
     ResultGiftCardComponent,
     PageGiftCardComponent,
     DetailsGiftCardComponent,
+    EditGiftCardComponent,
   ],
   imports: [CommonModule, StoreRoutingModule, SharedModule],
 })

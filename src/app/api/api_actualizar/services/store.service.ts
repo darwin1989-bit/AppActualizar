@@ -1214,4 +1214,117 @@ export class StoreService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation apiStoreGiftcardsEditPut
+   */
+  static readonly ApiStoreGiftcardsEditPutPath = '/api/Store/giftcards/edit';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsEditPut$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsEditPut$Plain$Response(params?: {
+    company?: string;
+    status?: string;
+    numberGiftCard?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsEditPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.query('status', params.status, {});
+      rb.query('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsEditPut$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsEditPut$Plain(params?: {
+    company?: string;
+    status?: string;
+    numberGiftCard?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsEditPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiStoreGiftcardsEditPut$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsEditPut$Json$Response(params?: {
+    company?: string;
+    status?: string;
+    numberGiftCard?: string;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<ResponseGiftCard>> {
+
+    const rb = new RequestBuilder(this.rootUrl, StoreService.ApiStoreGiftcardsEditPutPath, 'put');
+    if (params) {
+      rb.query('company', params.company, {});
+      rb.query('status', params.status, {});
+      rb.query('numberGiftCard', params.numberGiftCard, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<ResponseGiftCard>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiStoreGiftcardsEditPut$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiStoreGiftcardsEditPut$Json(params?: {
+    company?: string;
+    status?: string;
+    numberGiftCard?: string;
+  },
+  context?: HttpContext
+
+): Observable<ResponseGiftCard> {
+
+    return this.apiStoreGiftcardsEditPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<ResponseGiftCard>) => r.body as ResponseGiftCard)
+    );
+  }
+
 }

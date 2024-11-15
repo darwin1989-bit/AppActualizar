@@ -56,7 +56,7 @@ export class FindGiftCardComponent implements OnInit, OnDestroy {
     if (value.type == "nt") {
       this.inputBlock = /^[0-9]+$/;
       this.labelName = "Ingrese el número de tarjeta";
-      this.identificationControl.setValidators([Validators.required, Validators.minLength(25), Validators.maxLength(150)]);
+      this.identificationControl.setValidators([Validators.required, Validators.minLength(15), Validators.maxLength(250)]);
       this.labelError = "El número de tarjeta es incorrecta";
     } else {
       this.inputBlock = /^[0-9]+$/;
