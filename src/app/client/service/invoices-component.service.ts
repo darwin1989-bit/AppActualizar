@@ -12,7 +12,7 @@ export class InvoicesComponentService {
   private invoicesStore = new BehaviorSubject<InvoiceDto[]>([]);
   public invoicesStore$ = this.invoicesStore.asObservable();
 
-  private invoicesMain = new Subject<InvoiceDto[]>();
+  private invoicesMain = new BehaviorSubject<InvoiceDto[]>([]);
   public invoicesMain$ = this.invoicesMain.asObservable();
 
   private dialogCreditNote = new BehaviorSubject<boolean>(false);
