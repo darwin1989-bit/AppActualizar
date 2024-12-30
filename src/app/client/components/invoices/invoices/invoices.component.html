@@ -10,8 +10,8 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [scrollable]="true"
         [breakpoint]="'960px'"
-        [tableStyle]="(invoiceService.invoicesStore$ | async)!.length == 0 ? null : { 'min-width': '120rem' }"
-        [paginator]="(invoiceService.invoicesStore$ | async)!.length > 5"
+        [tableStyle]="(invoiceService.invoicesMain$ | async)!.length == 0 ? null : { 'min-width': '120rem' }"
+        [paginator]="(invoiceService.invoicesMain$ | async)!.length > 5"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -26,7 +26,7 @@
             <th>Iva</th>
             <th>Valor iva</th>
             <th>Descuento</th>
-            <th>Total factura</th>
+            <th>Total</th>
             <th></th>
           </tr>
         </ng-template>

@@ -91,14 +91,17 @@ export class UsersService {
       .pipe(
         tap((res) => {
           this.toastMesagge.showToast("tc", "success", "Éxito", res.message!);
-          this.closeDialog();
-          this.loadUser.next(true);
         }),
 
         mergeMap((_) => this.updateUserMain(company, updateUser).pipe(tap((res) => this.toastMesagge.showToast("tc", "success", "Éxito Matriz", res.message!)))),
         catchError((error) => this.calledHttpService.errorHandler(error))
       )
-      .subscribe();
+      .subscribe({
+        complete: () => {
+          this.closeDialog();
+          this.loadUser.next(true);
+        },
+      });
   }
   private updateUserMain(company: string, updateUser: UpdateUserDto): Observable<ResponseMessage> {
     return this.userService.apiUserMainPut$Json({ company, body: updateUser }).pipe(catchError((error) => this.calledHttpService.errorHandlerMain(error)));
