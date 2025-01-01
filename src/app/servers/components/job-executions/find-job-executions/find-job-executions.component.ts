@@ -34,10 +34,13 @@ export class FindJobExecutionsComponent implements OnInit, OnDestroy {
     this.executionJobService.setExecutionJobs(true);
 
     let today = new Date();
-    let month = today.getUTCMonth();
-    let prevMonth = month === 0 ? 11 : month - 2;
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let prevMonth = month === 0 ? 11 : month - 1;
+    let prevYear = prevMonth === 11 ? year - 1 : year;
     this.minDate = new Date();
-    this.minDate.setUTCMonth(prevMonth);
+    this.minDate.setMonth(prevMonth);
+    this.minDate.setFullYear(prevYear);
     this.maxDate = new Date();
 
     this.subscription = this.officeService.company$.subscribe((res) => (this.company = res!));
