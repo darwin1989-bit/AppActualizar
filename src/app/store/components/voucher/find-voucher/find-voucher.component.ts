@@ -44,10 +44,13 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     this.dateTransactionControl.setValue(new Date());
 
     let today = new Date();
-    let month = today.getUTCMonth();
+    let month = today.getMonth();
+    let year = today.getFullYear();
     let prevMonth = month === 0 ? 11 : month - 2;
+    let prevYear = prevMonth === 11 ? year - 1 : year;
     this.minDate = new Date();
-    this.minDate.setUTCMonth(prevMonth);
+    this.minDate.setMonth(prevMonth);
+    this.minDate.setFullYear(prevYear);
     this.maxDate = new Date();
   }
   ngOnDestroy(): void {
