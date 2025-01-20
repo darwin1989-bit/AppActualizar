@@ -9,7 +9,6 @@
         [scrollable]="true"
         [breakpoint]="'960px'"
         [paginator]="(databaseSizeService.resultDatabaseSize$ | async)!.length > 5 ? true : false"
-        [globalFilterFields]="['tienda', 'ipTienda', 'name']"
         rowGroupMode="rowspan"
         groupRowsBy="tienda"
       >
