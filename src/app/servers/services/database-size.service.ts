@@ -120,7 +120,7 @@ export class DatabaseSizeService {
               let size;
               if (Number(verifyMB) == 0) {
                 size = Number(m.size) * 1024;
-                mb = `${size.toString().substring(0, 3)} MB`;
+                mb = `${size.toString().substring(0, 4)} MB`;
               } else {
                 size = `${m.size?.substring(0, 3)} GB`;
               }
